@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    --dark: #05386B;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --deepdark: #1010;
+}
+
+h1{
+    color: red;
+}
+
+/* Button */
+.copybtn {
+    /* --color: #560bad; */
+    cursor: pointer;
+    background-color: var(--dark);
+    font-family: inherit;
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    line-height: 1.9em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--para);
+}
+
+.copybtn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--skyblue);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.copybtn:hover {
+    color: #fff;
+}
+
+.copybtn:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.copybtn:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+.copybtn:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+}

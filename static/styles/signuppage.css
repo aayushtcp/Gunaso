@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    --dark: #05386B;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --deepdark: #1010;
+}
+
+/* body {
+    background-image: url(../../static/images/signuppage.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center; 
+} */
+
+/* Button */
+.copybtn {
+    /* --color: #560bad; */
+    cursor: pointer;
+    background-color: var(--dark);
+    font-family: inherit;
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    line-height: 1.9em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--para);
+}
+
+.copybtn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--skyblue);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.copybtn:hover {
+    color: #fff;
+}
+
+.copybtn:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.copybtn:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+.copybtn:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+}
+
+/* main div */
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+    margin-bottom: 4rem;
+    /* height: 70vh;
+    width: 25%;
+    margin: auto 70%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: red; */
+}
+
+
+.mainone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--para);
+    border-radius: 10px;
+    padding: 35px 20px;
+    width: 42vw;
+    background-color: rgb(23, 5, 45);
+}
+
+form .combobox{
+    display: flex;
+    gap: 1.3rem;
+    margin-top: 1rem;
+}
+
+form{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+form .formrow{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+form input{
+    width: 99%;
+    height: 45px;
+    border: none;
+    background-color: #fff;
+    border-radius: 4px;
+    font-size: 22px;
+    padding: 3px;
+}
+form input:focus{
+    text-decoration: none;
+    border: none;
+}
+
+/* footer css for small screen starts */
+@media(max-width: 980px) {
+    .maintwo{
+        display: none;
+    }
+    .mainone{
+        margin-top: 1rem;
+        padding: 30px;
+        width: 90vw;
+    }    
+    form input{
+        width: 97%;
+        height: 45px;
+        border-radius: 4px;
+        font-size: 20px;
+    }
+    form .combobox{
+        display: flex;
+        flex-direction: column;
+    }
+}

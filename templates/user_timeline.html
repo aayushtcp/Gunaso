@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- user_timeline.html -->
+    <h2>{{ username }}'s Timeline</h2>
+
+    {% for post in user_posts %}
+    <p>{{ post.content }} - {{ post.created_at }}</p>
+    {% endfor %}
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Write something..." required></textarea>
+        <button type="submit">Post</button>
+    </form>
+
+</body>
+
+</html>

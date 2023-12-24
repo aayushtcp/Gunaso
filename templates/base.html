@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Guanso</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% block base_style%}
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    {% endblock base_style%}
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<body>
+    <!-- header start -->
+    <header class="header">
+        <div class="container_nav">
+            <div class="header-main">
+                <div class="logo">
+                    <a href="/">
+                        <!-- <img class="logo_img" src="{% static 'hcc.png' %}" alt=""> -->
+                        <span class="img_side_text">Gunaso</span>
+                    </a>
+                </div>
+                <div class="open-nav-menu">
+                    <span></span>
+                </div>
+                <div class="menu-overlay"></div>
+                <!-- navigation menu start -->
+                <nav class="nav-menu">
+                    <div class="close-nav-menu">
+                        <!-- <img src="{% static 'close.svg' %}" alt="close"> -->
+                        <!-- <i class="fa-thin fa-xmark"></i> -->
+                        <h4 class="headerh4">X</h4>
+                    </div>
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#" data-toggle="sub-menu">About <i class="plus"></i
+                ></a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="/">About Gunaso</a></li>
+                                <li class="menu-item"><a href="/">Uniqueness</a></li>
+                                <li class="menu-item"><a href="/">Team Members</a></li>
+                                <li class="menu-item"><a href="/">Location</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="/">Services</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#" data-toggle="sub-menu">Programs <i class="plus"></i
+                ></a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="/">Confess</a></li>
+                                <li class="menu-item"><a href="/">Gallery</a></li>
+                                <li class="menu-item"><a href="/">Anonymity</a></li>
+                                <li class="menu-item"><a href="/">Home</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#" data-toggle="sub-menu">Topics <i class="plus"></i></a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="/">Politicians</a></li>
+                                <li class="menu-item"><a href="/">Celebraties</a></li>
+                            </ul>
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <button class="menu-item" id="loginbtn" onclick="logoutfunc()">
+                            Logout
+                        </button>
+                        {% else %}
+                        <button class="menu-item" id="loginbtn" onclick="loginfunc()">
+                            Login
+                        </button>
+                        <button class="menu-item" id="signupbtn" onclick="signupfunc()">
+                            Signup
+                        </button>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <!-- navigation menu end -->
+            </div>
+        </div>
+    </header>
+    <!-- <hr> -->
+    <!-- header end -->
+    {% block content %} {% endblock %}
+    <!-- Footer HTML Starts -->
+    <hr>
+    <footer class="footer">
+        <div class="fone">
+            <!-- <h2>Logo</h2> -->
+            <img src="{%static 'images/story1purple.png'%}" alt="lyamma lyamm logo" class="footer-logo">
+            <p>We seek to provide a better and quick food delivery.<br> <span> La khamm hai ta Hajur!</span></p>
+            <div class="footer-links">
+                <a href=""><i class="fa-brands fa-square-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-square-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-square-twitter"></i></a>
+                <a href=""><i class="fa-brands fa-square-github"></i></a>
+            </div>
+        </div>
+        <div class="ftwo">
+            <ul>
+                <h3 class="footer-h3">About Us</h3>
+                <li><a href="">Who are we?</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Our Services</a></li>
+                <li><a href="">Our Vision</a></li>
+            </ul>
+        </div>
+        <div class="fthree">
+            <ul>
+                <h3 class="footer-h3">For the Restaurant</h3>
+                <li><a href="">Patner with Us</a></li>
+                <li><a href="">Register</a></li>
+                <li><a href="">Rules and Terms</a></li>
+            </ul>
+        </div>
+        <div class="ffour">
+            <ul>
+                <h3 class="footer-h3">Know More</h3>
+                <li><a href="">Secerecy</a></li>
+                <li><a href="">Bails</a></li>
+                <li><a href="">Terms</a></li>
+                <li><a href="">Site Map</a></li>
+            </ul>
+        </div>
+    </footer>
+    <hr>
+
+
+    <script>
+        function signupfunc(){
+            location.href = "/presignup";
+        }
+        function loginfunc(){
+            location.href = "/prelogin";
+        }
+        function logoutfunc(){
+            location.href = "/logout";
+        }
+    </script>
+    <!-- Footer HTML Ends -->
+    <script src="{% static 'scripts/base.js' %}"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.min.js" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

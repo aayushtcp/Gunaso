@@ -1,0 +1,121 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Contact</title>
+
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    {% endblock base_style%}
+</head>
+
+<body>
+    {% block content %}
+    <div id="body-content">
+        <!-- sliding image -->
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        
+        <!-- Carousel Wrapped -->
+        <div id="carousel" class="carousel">
+            <div class="each-img">
+                <img src="{% static 'images/drinkingwater2.jpg' %}" alt="Image 2">
+            </div>
+
+            <div class="each-img">
+
+                <img src="{% static 'images/drinkingwater3.jpg' %}" alt="Image 1">
+
+            </div>
+
+            <div class="each-img">
+                <img src="{% static 'images/drinkingwater1.jpg' %}" alt="Image 1">
+            </div>
+
+            <i class="ri-arrow-left-circle-line" id="prevbtn"></i>
+            <i class="ri-arrow-right-circle-line" id="nextbtn"></i>
+        </div>
+
+        <div id="rest-content">
+            <p><strong>{% translate 'Welcome' %}</strong><br>
+                Your trusted destination for pure hydration:
+                Quench your thirst, protect your health<br>
+
+                खाने पानीमा, हामी तपाईंले उपभोग गर्ने प्रत्येक थोपा शुद्ध, स्फूर्तिदायी र सुरक्षित छ भनी सुनिश्चित गर्न
+                समर्पित छौं। हामी तपाइँ र तपाइँको परिवार को लागी योग्य शुद्ध पिउने पानी को लागी शीर्ष स्तरीय समाधानहरु
+                प्रदान गरेर तपाइँको कल्याण लाई प्राथमिकता दिन्छौं।<br>
+            <fieldset>
+                <legend><strong>किन खाने पानी रोज्नुहुन्छ?</strong></legend>
+                <ul>
+                    <li><strong>गुणस्तर आश्वासन:</strong> तपाईंले पिउने पानी अशुद्धता, दूषित पदार्थहरू र कुनै पनि
+                        हानिकारक तत्वहरूबाट मुक्त छ भनी ग्यारेन्टी गर्न हामी कठोर मापदण्डहरूको पालना गर्छौं।</li>
+
+                    <li><strong>अत्याधुनिक प्रविधि:</strong> पानी शुद्धीकरणमा नवीनतम प्रगतिहरू प्रयोग गर्दै, हाम्रा
+                        प्रणालीहरू अतुलनीय गुणस्तर र विश्वसनीयता प्रदान गर्न डिजाइन गरिएका छन्।</li>
+
+                    <li><strong>वातावरणीय उत्तरदायित्व:</strong> हामी असाधारण पेय पानी समाधानहरू प्रदान गर्दा हाम्रो
+                        वातावरणीय प्रभावलाई कम गर्दै, पर्यावरण-मैत्री अभ्यासहरू गर्न प्रतिबद्ध छौं।</li>
+
+                    <li><strong>ग्राहक-केन्द्रित दृष्टिकोण:</strong> तपाईंको सन्तुष्टि हाम्रो प्राथमिकता हो। हामी
+                        तपाईंको विशिष्ट आवश्यकताहरू पूरा गर्नका लागि समर्पित ग्राहक समर्थन र भरपर्दो सेवाहरू प्रदान
+                        गर्दछौं।</li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend><strong>उत्पादन र सेवाहरूको हाम्रो दायराहरू :</strong> </legend>
+                <ul>
+                    <li><strong>गृह निस्पंदन प्रणालीहरू:</strong> हाम्रो घरको पानी फिल्टरेशन प्रणालीहरूको दायरा अन्वेषण
+                        गर्नुहोस्, तपाईंको परिवारलाई ट्यापबाट सीधा शुद्ध, उत्कृष्ट-स्वादिष्ट पानीमा पहुँच छ भनी
+                        सुनिश्चित गर्नुहोस्।</li>
+
+                    <li><strong>व्यावसायिक समाधानहरू:</strong> व्यवसायहरूका लागि अनुकूलित समाधानहरू, कर्मचारीहरू,
+                        ग्राहकहरू, र अतिथिहरूका लागि विभिन्न व्यावसायिक सेटिङहरूमा उच्च-गुणस्तरको पानीमा पहुँच सुनिश्चित
+                        गर्दै।</li>
+
+                    <li><strong>बोतलको पानी डेलिभरी:</strong> सुविधाजनक, निर्धारित डेलिभरी सेवाहरूले सफा पानीको पहुँचको
+                        ग्यारेन्टी दिन्छ जब र जहाँ तपाईंलाई आवश्यक हुन्छ, तपाईंको ढोकामा डेलिभर गरिन्छ।</li>
+
+                    <li><strong>मर्मत र समर्थन:</strong> विज्ञहरूको हाम्रो टोली एक निर्बाध अनुभव सुनिश्चित गर्दै हाम्रा
+                        सबै उत्पादनहरूको स्थापना, मर्मत, र समर्थनमा सहयोग गर्न तयार छ।</li>
+                </ul>
+            </fieldset>
+
+            <strong>पिउने पानी आन्दोलनमा सामेल हुनुहोस्</strong><br>
+
+            हामी तपाईलाई हाम्रो मिशनमा सामेल हुन आमन्त्रित गर्दछौं स्वच्छ, सुरक्षित पानी सबैको लागि पहुँचयोग्य बनाउन।
+            सँगै, एक स्वस्थ, अधिक दिगो भविष्य तिर एक कदम चालौं।
+
+            हामीलाई आज सम्पर्क गर्नुहोस्
+
+            पिउने पानीको शुद्धता र ताजापनको अनुभव लिनुहोस्। हाम्रा उत्पादनहरू, सेवाहरू, र हामीले कसरी सफा, स्फूर्तिदायी
+            पानीले तपाईंको जीवन बढाउन सक्छौं भन्ने बारे थप पत्ता लगाउन हामीलाई आज सम्पर्क गर्नुहोस्।<br>
+
+            <strong>खाने पानी - जहाँ गुणस्तर हाइड्रेशन मिल्छ।</strong> </p>
+
+            <marquee class="myscrl" behavior="alternate" direction="">हाम्रो पानी, शुद्ध पानी</marquee>
+        </div>
+        <script src="{% static 'scripts/index.js' %}"></script>
+        <!-- current nepali date -->
+        <script>
+            let _mypatroDateFormat = 5;
+            let _mypatroResponseType = 'html';
+            let script = document.createElement('script');
+            script.src = 'https://mypatro.com/resources/nepali_date/nepali_date.js';
+            document.head.appendChild(script);
+        </script>
+        <!-- current nepali date -->
+
+        {% endblock %}
+    </div>
+</body>
+
+</html>

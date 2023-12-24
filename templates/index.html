@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INdex</title>
+</head>
+{% block content %}
+<style>
+    .messages {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .success {
+        color: greenyellow;
+    }
+
+    .warning {
+        color: rgba(255, 220, 79, 0.923);
+    }
+</style>
+
+<body>
+    <h1>This is index page</h1>
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    <h3>Go to About Page:</h3>
+    <a href="/about">About</a>
+    <script>
+        document.getElementById("show-logout").onclick = function () {
+            location.href = "/logout";
+        };
+    </script>
+    {% endblock %}
+</body>
+
+</html>
