@@ -126,7 +126,7 @@ ul {
 
 .header .menu>.menu-item>.sub-menu>.menu-item>a:hover,
 .header .menu>.menu-item:hover>a {
-    color: var(--dark);
+    color: rgb(62, 62, 62);
 }
 
 .header .menu>.menu-item>.sub-menu {

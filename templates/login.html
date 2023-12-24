@@ -32,11 +32,11 @@
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="formrow">
-                    <label for="username">Username:</label>
+                    <label>Username:</label>
                     <input type="text" name="loginusername" id="">
                 </div>
                 <div class="formrow">
-                    <label for="password">Password:</label>
+                    <label>Password:</label>
                     <input type="password" name="loginpassword" id="">
                 </div>
                 <input type="submit" value="Login" class="copybtn">

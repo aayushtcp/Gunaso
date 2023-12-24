@@ -28,27 +28,27 @@
     <!-- <hr> -->
     <div class="main">
         <div class="mainone">
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'signup' %}" method="post">
                 <h2>Signup:</h2>
                 {% csrf_token %}
                 <div class="combobox">
                     <div class="formrow">
-                        <label for="username">Username:</label>
+                        <label>Username:</label>
                         <input type="text" name="username" id="">
                     </div>
                     <div class="formrow">
-                        <label for="email">Email:</label>
+                        <label>Email:</label>
                         <input type="text" name="email" id="">
                     </div>
                 </div>
 
                 <div class="combobox">
                     <div class="formrow">
-                        <label for="password">Password:</label>
+                        <label>Password:</label>
                         <input type="password" name="password" id="">
                     </div>
                     <div class="formrow">
-                        <label for="password">Confirm Password:</label>
+                        <label>Confirm Password:</label>
                         <input type="password" name="cpassword" id="">
                     </div>
                 </div>
