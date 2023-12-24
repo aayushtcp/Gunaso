@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    --dark: #05386B;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --deepdark: #1010;
+}
+
+form{
+    background-color: rgb(23, 5, 45);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: max-content;
+    border-radius: 10px;
+    padding: 30px;
+}
+form .row{
+    display: flex;
+    flex-direction: column;
+    /* gap: 4rem; */
+}
+
+form .row input{
+    border: none;
+    background-color: #fff;
+    border-radius: 4px;
+    line-height: 30px;
+    width: 70vh;
+}
+
+form .row textarea{
+    border: none;
+    background-color: #fff;
+    border-radius: 4px;
+    width: 70vh;
+    height: 20vw;
+}

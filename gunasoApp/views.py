@@ -132,4 +132,4 @@ def user_timeline(request, category):
         hm.save()
         return redirect('user_timeline', category=extracted_category)
 
-    return render(request, 'user_timeline.html', {'user_posts': user_posts})
+    return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category})

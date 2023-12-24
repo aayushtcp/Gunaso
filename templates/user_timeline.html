@@ -1,15 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/user_timeline.css' %}">
+    {% endblock base_style%}
     <title>Document</title>
 </head>
 
 <body>
+    {% block content %}
     <!-- user_timeline.html -->
-    <h2>{{ username }}'s Timeline</h2>
+    <h2>{{ extracted_category }}'s Timeline</h2>
 
     {% for post in user_posts %}
     <p>{{ post.content }} - {{ post.created_at }}</p>
@@ -17,9 +24,18 @@
 
     <form method="post" action="">
         {% csrf_token %}
-        <textarea name="content" placeholder="Write something..." required></textarea>
+        <div class="row">
+            <label for="">Subject:</label>
+            <input type="text" name="subject" required>
+        </div>
+        <div class="row">
+            <label for="">Message:</label>
+            <textarea name="content" placeholder="Gunaso Pokhnuhos" required></textarea>
+        </div>
         <button type="submit">Post</button>
     </form>
+
+    {% endblock %}
 
 </body>
 
