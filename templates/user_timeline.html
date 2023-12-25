@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,26 +15,28 @@
 
 <body>
     {% block content %}
-    <!-- user_timeline.html -->
-    <h2>{{ extracted_category }}'s Timeline</h2>
+    <div class="timelinemain">
+        <!-- user_timeline.html -->
+        <h2>{{ extracted_category }}'s Timeline</h2>
 
-    {% for post in user_posts %}
-    <p>{{ post.content }} - {{ post.created_at }}</p>
-    {% endfor %}
+        {% for post in user_posts %}
+        <p>{{ post.content }} - {{ post.created_at }}</p>
+        {% endfor %}
 
-    <form method="post" action="">
-        {% csrf_token %}
-        <div class="row">
-            <label for="">Subject:</label>
-            <input type="text" name="subject" required>
-        </div>
-        <div class="row">
-            <label for="">Message:</label>
-            <textarea name="content" placeholder="Gunaso Pokhnuhos" required></textarea>
-        </div>
-        <button type="submit">Post</button>
-    </form>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="row">
+                <label for="">Subject:</label>
+                <input type="text" name="subject" required>
+            </div>
+            <div class="row">
+                <label for="">Message:</label>
+                <textarea name="content" placeholder="Gunaso Pokhnuhos" required></textarea>
+            </div>
+            <button type="submit">Post</button>
+        </form>
 
+    </div>
     {% endblock %}
 
 </body>

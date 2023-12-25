@@ -23,6 +23,14 @@ h1{
     color: red;
 }
 
+h2{
+    color: yellow;
+}
+
+.about-main{
+    margin-left: 4.9rem;
+}
+
 /* Button */
 .copybtn {
     /* --color: #560bad; */

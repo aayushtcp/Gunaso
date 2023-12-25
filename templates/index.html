@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +30,13 @@
     .warning {
         color: rgba(190, 255, 27, 0.923);
     }
+    .index-main{
+        margin-left: 4.7244rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
 </style>
 
 <body>
@@ -40,37 +47,39 @@
     </ul>
 
 
-    <center>
-        <h2>Welcome to Gunaso</h2>
-    </center>
 
-    <div id="carousel" class="carousel">
-        <div class="each-img">
-            <img src="https://images.pexels.com/photos/884788/pexels-photo-884788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Image 2">
+    <div class="index-main">
+
+        <center>
+            <h2>Welcome to Gunaso</h2>
+        </center>
+        <h2>Famous Topics:</h2>
+        <h2>Confess to:</h2>
+        
+        <div id="carousel" class="carousel">
+            <div class="each-img">
+                <img src="https://images.pexels.com/photos/884788/pexels-photo-884788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    alt="Image 2">
+            </div>
+    
+            <div class="each-img">
+    
+                <img src="https://images.pexels.com/photos/1275413/pexels-photo-1275413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    alt="Image 1">
+    
+            </div>
+    
+            <div class="each-img">
+                <img src="https://images.pexels.com/photos/713664/pexels-photo-713664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    alt="Image 1">
+            </div>
+    
+            <i class="ri-arrow-left-circle-line" id="prevbtn"></i>
+            <i class="ri-arrow-right-circle-line" id="nextbtn"></i>
         </div>
 
-        <div class="each-img">
-
-            <img src="https://images.pexels.com/photos/1275413/pexels-photo-1275413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Image 1">
-
-        </div>
-
-        <div class="each-img">
-            <img src="https://images.pexels.com/photos/713664/pexels-photo-713664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Image 1">
-        </div>
-
-        <i class="ri-arrow-left-circle-line" id="prevbtn"></i>
-        <i class="ri-arrow-right-circle-line" id="nextbtn"></i>
+        
     </div>
-
-
-    <h2>Famous Topics:</h2>
-    <h2>Confess to:</h2>
-
-    {% include 'banner.html' %}
     <script src="{% static 'scripts/index.js' %}"></script>
     <script>
         document.getElementById("show-logout").onclick = function () {

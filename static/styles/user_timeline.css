@@ -18,6 +18,9 @@
     --skyblue: #525FE1;
     --deepdark: #1010;
 }
+.timelinemain{
+    margin-left: 5rem;
+}
 
 form{
     background-color: rgb(23, 5, 45);
