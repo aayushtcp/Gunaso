@@ -31,25 +31,30 @@
             <form action="{% url 'signup' %}" method="post">
                 <h2>Signup:</h2>
                 {% csrf_token %}
+                <label for="profilepic">Profile Picture:</label>
+                <div class="profilepiccontainer" id="profilePicContainer">
+                    <!-- Display uploaded image here -->
+                </div>
+                <input type="file" id="profile-pic" name="profilepic" accept="image/*" class="imageinput" onchange="displayImage(this)">
                 <div class="combobox">
                     <div class="formrow">
                         <label>Username:</label>
-                        <input type="text" name="username" id="">
+                        <input class="generalinp" type="text" name="username" id="">
                     </div>
                     <div class="formrow">
                         <label>Email:</label>
-                        <input type="text" name="email" id="">
+                        <input class="generalinp" type="text" name="email" id="">
                     </div>
                 </div>
 
                 <div class="combobox">
                     <div class="formrow">
                         <label>Password:</label>
-                        <input type="password" name="password" id="">
+                        <input class="generalinp" type="password" name="password" id="">
                     </div>
                     <div class="formrow">
                         <label>Confirm Password:</label>
-                        <input type="password" name="cpassword" id="">
+                        <input class="generalinp" type="password" name="cpassword" id="">
                     </div>
                 </div>
                 <input type="submit" value="Signup" class="copybtn">
@@ -60,6 +65,18 @@
         </div>
     </div>
 
+    <script>
+        function displayImage(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profilePicContainer').style.backgroundImage = 'url(' + e.target.result + ')';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
     {% endblock %}
 </body>
 

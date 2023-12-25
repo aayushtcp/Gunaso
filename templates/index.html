@@ -40,16 +40,16 @@
 </style>
 
 <body>
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-
-
-
+    
+    
+    
     <div class="index-main">
-
+        
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
         <center>
             <h2>Welcome to Gunaso</h2>
         </center>

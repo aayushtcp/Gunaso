@@ -58,7 +58,7 @@
                         <li class="menu-item menu-item-has-children">
                             <a href="#" data-toggle="sub-menu">Programs <i class="plus"></i></a>
                             <ul class="sub-menu">
-                                <li class="menu-item"><a href="/">Confess</a></li>
+                                <li class="menu-item"><a href="/">Confession</a></li>
                                 <li class="menu-item"><a href="/">Gallery</a></li>
                                 <li class="menu-item"><a href="/">Anonymity</a></li>
                                 <li class="menu-item"><a href="/">Home</a></li>
@@ -98,9 +98,9 @@
     <!-- sidebar starts -->
     <nav class="sidebar hoverable close">
         <div class="logo_items flex">
-            <!-- <span class="nav_image">
-                <img src="images/logo.png" alt="logo_img" />
-            </span> -->
+            <span class="nav_image">
+                <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" />
+            </span>
             <span class="logo_name">Guanso</span>
             <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
             <i class="bx bx-x" id="sidebar-close"></i>
@@ -113,39 +113,33 @@
                         <span class="line"></span>
                     </div>
                     <li class="item">
-                        <a href="#" class="link flex">
-                            <i class="bx bx-home-alt"></i>
-                            <span>Overview</span>
+                        <a href="/user/{{request.user}}" class="link flex">
+                            <i class="ri-user-fill"></i>
+                            <span>My Profile</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="#" class="link flex">
-                            <i class="bx bx-grid-alt"></i>
-                            <span>All Projects</span>
+                            <i class='bx bx-search-alt' ></i>
+                            <span>Explore</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="menu_item">
                     <div class="menu_title flex">
-                        <span class="title">Editor</span>
+                        <span class="title">Topics</span>
                         <span class="line"></span>
                     </div>
                     <li class="item">
                         <a href="#" class="link flex">
-                            <i class="bx bxs-magic-wand"></i>
-                            <span>Magic Build</span>
+                            <i class="ri-service-fill"></i> 
+                            <span>Politicians</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="#" class="link flex">
-                            <i class="bx bx-folder"></i>
-                            <span>New Projects</span>
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#" class="link flex">
-                            <i class="bx bx-cloud-upload"></i>
-                            <span>Upload New</span>
+                            <i class='bx bxs-user-circle' ></i>
+                            <span>Celebraties</span>
                         </a>
                     </li>
                 </ul>
@@ -157,30 +151,30 @@
                     <li class="item">
                         <a href="#" class="link flex">
                             <i class="bx bx-flag"></i>
-                            <span>Notice Board</span>
+                            <span>Notice</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="#" class="link flex">
-                            <i class="bx bx-award"></i>
-                            <span>Award</span>
+                            <i class='bx bx-log-out-circle' ></i>
+                            <span>Logout</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="#" class="link flex">
-                            <i class="bx bx-cog"></i>
-                            <span>Setting</span>
+                            <i class='bx bxl-dev-to' ></i>
+                            <span>About Developers</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="sidebar_profile flex">
-                <!-- <span class="nav_image">
-                    <img src="images/profile.jpg" alt="logo_img" />
-                </span> -->
+                <span class="nav_image">
+                    <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" />
+                </span>
                 <div class="data_text">
-                    <span class="name">David Oliva</span>
-                    <span class="email">david@gmail.com</span>
+                    <span class="name">Aayush Dhakal</span>
+                    <span class="email">aayush@gmail.com</span>
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
 from .models import UserPost
+from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 
 
@@ -108,7 +109,7 @@ def profile(request):
 #     return render(request,'profile.html', uppercontext)
 #     # return HttpResponse(f"User Profile for {username}")
     
-    
+@login_required(login_url='/prelogin/')
 def user_timeline(request, category):
     user_posts = UserPost.objects.filter(category=category)
     # res = str(request.user)

@@ -105,6 +105,26 @@
     width: 42vw;
     background-color: rgb(23, 5, 45);
 }
+.profilepiccontainer{
+    /* background-color: #cdcdcd; */
+    background-color: violet;
+    height: 65px;
+    width: 65px;
+    position: relative;
+    border-radius: 20%;
+    margin: 10px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.imageinput{
+    padding: 5px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #fff;
+}
 
 form .combobox{
     display: flex;
@@ -123,16 +143,17 @@ form .formrow{
     margin-top: 1rem;
 }
 
-form input{
+form .generalinp{
     width: 99%;
     height: 45px;
     border: none;
     background-color: #fff;
+    /* background-color: red; */
     border-radius: 4px;
     font-size: 22px;
     padding: 3px;
 }
-form input:focus{
+form .generalinp:focus{
     text-decoration: none;
     border: none;
 }
@@ -147,7 +168,7 @@ form input:focus{
         padding: 30px;
         width: 90vw;
     }    
-    form input{
+    form .generalinp{
         width: 97%;
         height: 45px;
         border-radius: 4px;

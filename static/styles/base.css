@@ -132,7 +132,7 @@ ul {
 
 .header .menu>.menu-item>.sub-menu>.menu-item>a:hover,
 .header .menu>.menu-item:hover>a {
-    color: rgb(62, 62, 62);
+    color: var(--dark);
 }
 
 .header .menu>.menu-item>.sub-menu {
@@ -143,7 +143,7 @@ ul {
     top: 100%;
     background-color: #ffffff;
     padding: 10px 0;
-    border-top: 3px solid cyan;
+    border-top: 3px solid var(--dark);
     transform: translateY(10px);
     transition: all 0.3s ease;
     opacity: 0;
@@ -333,7 +333,8 @@ ul {
 button {
     /* --color: #560bad; */
     cursor: pointer;
-    background-color: var(--dark);
+    /* background-color: var(--dark); */
+    background-color: #754ffe;
     font-family: inherit;
     display: inline-block;
     width: 5em;
@@ -555,7 +556,7 @@ body {
 #lock-icon,
 #sidebar-close {
     padding: 10px;
-    color: #4070f4;
+    color: var(--dark);
     font-size: 25px;
     cursor: pointer;
     margin-left: -4px;
@@ -588,6 +589,7 @@ body {
 
 .menu_title .title {
     margin-left: 15px;
+    color: var(--hotish);
     transition: all 0.3s ease;
 }
 
@@ -627,7 +629,7 @@ body {
 
 .link:hover {
     color: #fff;
-    background-color: #4070f4;
+    background-color: var(--dark);
 }
 
 .link span {
@@ -645,20 +647,20 @@ body {
 }
 
 .sidebar_profile {
-    padding-top: 15px;
-    margin-top: 15px;
+    padding-top: 5px;
+    margin-top: 5px;
     gap: 15px;
-    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    border-top: 2px solid rgba(100, 100, 100, 0.3);
 }
 
 .sidebar_profile .name {
     font-size: 18px;
-    color: #333;
+    color: #fff;
 }
 
 .sidebar_profile .email {
     font-size: 15px;
-    color: #333;
+    color: var(--hotish);
 }
 
 /* Navbar */
