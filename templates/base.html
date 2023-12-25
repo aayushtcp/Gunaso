@@ -155,7 +155,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#" class="link flex">
+                        <a href="{% url 'logout' %}" class="link flex">
                             <i class='bx bx-log-out-circle' ></i>
                             <span>Logout</span>
                         </a>
@@ -231,10 +231,10 @@
         }
         
         function loginfunc(){
-            location.href = "/prelogin";
+            location.href = "/login";
         }
         function signupfunc(){
-            location.href = "/presignup";
+            location.href = "/signup";
         }
     </script>
     <script src="{% static 'scripts/base.js' %}"></script>

@@ -13,3 +13,16 @@ class UserPost(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.created_at}'
+    
+    
+    
+# Models for profile picture of user
+
+class Profile(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Profile")
+    user = models.CharField(max_length=55, blank=True)
+    image = models.ImageField(upload_to="gunasoApp/images", blank=True, default="upload-image")
+    
+    def __str__(self):
+        # return f'{self.user.username} -  Profile'
+        return f'{self.user} -  Profile'

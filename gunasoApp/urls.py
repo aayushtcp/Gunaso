@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from gunasoApp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 from django.contrib.auth.models import User
 urlpatterns = [
@@ -24,8 +26,8 @@ urlpatterns = [
     # path('profile/<str:slug>/', views.profile, name='profile'),
     path('profile/<str:username>/', views.profile, name='user_profile'),
     # path('profile/', views.profile, name='profile'),
-    path('presignup/', views.prehandleSignup, name='presignup'),
-    path('prelogin/', views.prehandleLogin, name='prelogin'),
+    # path('presignup/', views.prehandleSignup, name='presignup'),
+    # path('prelogin/', views.prehandleLogin, name='prelogin'),
     # path('prelogin/', views.user_timeline, name='user_timeline'),
     
     # Login system urls
@@ -38,4 +40,4 @@ urlpatterns = [
     
     
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

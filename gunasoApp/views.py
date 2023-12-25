@@ -9,10 +9,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost
+from .models import UserPost,Profile
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
-
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+from django.contrib.auth.forms import UserCreationForm
+# from .forms import UserProfileForm
 
 
 def index(request):
@@ -38,6 +41,9 @@ def handleSignup(request):
         password = request.POST['password']
         email = request.POST['email']
         cpassword = request.POST['cpassword']
+        # for profile images
+        userimage = request.FILES['image']
+    
         # check/verify
         if(password != cpassword):
             messages.error(request, "Password mismatch")
@@ -46,15 +52,21 @@ def handleSignup(request):
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
             return redirect("/")
-        
+
         # Create a new user
         myuser = User.objects.create_user(username, email, password)
         myuser.save()
+    
+        # profile pic upload to Profile modal DB
+        profile = Profile(user=myuser.username, image=userimage)
+        profile.save()
         messages.success(request, "User created sucessfully!")
         print(f"Hello {username}")
         return redirect('/')
     else:
         HttpResponse("Hiro na ban")
+    return render(request,'signup.html')
+
 # Login
 def handleLogin(request):
     if request.method == "POST":
@@ -70,7 +82,8 @@ def handleLogin(request):
         else:
             messages.error(request, "Username or password incorrect")
             return redirect("/")
-    return redirect("/")
+    # return redirect("/")
+    return render(request, 'login.html')
 
 def handleLogout(request):
     logout(request)
