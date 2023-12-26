@@ -28,3 +28,11 @@ class Profile(models.Model):
         # return f'{self.user.username} -  Profile'
         return f'{self.user} -  Profile'
     
+    
+class IndexProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="IndexProfile")
+    image = models.ImageField(upload_to="gunasoApp/images/indexpost", blank=True, default="upload-image")
+    
+    def __str__(self):
+        # return f'{self.user.username} -  Profile'
+        return f'{self.user} -  IndexProfile'

@@ -144,7 +144,6 @@ img {
     .cards{
         padding-top: 10px;
         flex-direction: column;
-        background-color: green;
         gap: 10px;
         height:max-content;
     }
@@ -152,4 +151,10 @@ img {
         height: 27vh;
         width: 90%;
     }   
+}
+
+.cardbgimg{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

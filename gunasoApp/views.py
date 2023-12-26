@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile
+from .models import UserPost,Profile, IndexProfile
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -18,7 +18,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def index(request):
-    return render(request, 'index.html', {"username": request.user})    
+    mainusers = IndexProfile.objects.all()[:4]
+    return render(request, 'index.html', {"username": request.user, "mainusers":mainusers})    
 
 def about(request):
     return render(request, 'about.html')
@@ -137,7 +138,7 @@ def profile(request):
 @login_required(login_url='/login/')
 def user_timeline(request, category):
     user_posts = UserPost.objects.filter(category=category)
-    forimgfetch = Profile.objects.filter(user=category)
+    # forimgfetch = Profile.objects.filter(user=category)
     # res = str(request.user)
     current_path = request.path
     
@@ -158,4 +159,4 @@ def user_timeline(request, category):
         hm = UserPost(user = request.user,category = extracted_category, content = content)
         hm.save()
         return redirect('user_timeline', category=extracted_category)
-    return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category, 'forimgfetch':forimgfetch})
+    return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category})
