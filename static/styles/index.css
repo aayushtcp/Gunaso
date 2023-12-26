@@ -7,12 +7,29 @@
     box-sizing: border-box;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
-body,
-html {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+body {
+    line-height: 1.5;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    /* background-color: var(--bcolor); */
+    background-color: var(--mainheading);
 }
 
 img {
@@ -75,4 +92,64 @@ img {
         width: 100%;
     }
 
+}
+
+.messages {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: black;
+}
+
+.warning {
+    color: rgba(190, 255, 27, 0.923);
+}
+
+.index-main {
+    margin-left: 4.7244rem;
+    display: flex;
+    flex-direction: column;
+}
+.colorspan{
+    color: var(--dark);
+}
+
+.cards{
+    display: flex;
+    /* background-color: red; */
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30vh;
+}
+.cards .card{
+    height: 27vh;
+    width: 20%;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(117, 79, 254,0.858) -5px 5px, rgba(117, 79, 254, 0.3) -10px 10px, rgba(117, 79, 254, 0.2) -15px 15px, rgba(117, 79, 254, 0.1) -20px 20px, rgba(117, 79, 254, 0.05) -25px 25px;
+    background-color: violet;
+}
+
+/* for small screen cards */
+@media (max-width: 920px) {
+    .index-main {
+        margin-left: 0;
+    }
+    .cards{
+        padding-top: 10px;
+        flex-direction: column;
+        background-color: green;
+        gap: 10px;
+        height:max-content;
+    }
+    .cards .card{
+        height: 27vh;
+        width: 90%;
+    }   
 }

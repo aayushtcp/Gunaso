@@ -13,32 +13,6 @@
     <title>Index | Gunaso</title>
 </head>
 {% block content %}
-<style>
-    .messages {
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .error {
-        color: red;
-    }
-
-    .success {
-        color: black;
-    }
-
-    .warning {
-        color: rgba(190, 255, 27, 0.923);
-    }
-    .index-main{
-        margin-left: 4.7244rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-</style>
-
 <body>
     
     
@@ -50,33 +24,41 @@
             <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                 {% endfor %}
         </ul>
-        <center>
-            <h2>Welcome to Gunaso</h2>
-        </center>
-        <h2>Famous Topics:</h2>
-        <h2>Confess to:</h2>
-        
+        <!-- <center>
+            <h2>Welcome to <span class="colorspan">Gunaso</span></h2>
+        </center> -->
         <div id="carousel" class="carousel">
             <div class="each-img">
-                <img src="https://images.pexels.com/photos/884788/pexels-photo-884788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                <img src="{% static 'images/carouselone.jpg' %}"
+                    alt="Image 1">
+            </div>
+    
+            <div class="each-img">
+    
+                <img src="{% static 'images/carouseltwo.jpg' %}"
                     alt="Image 2">
-            </div>
-    
-            <div class="each-img">
-    
-                <img src="https://images.pexels.com/photos/1275413/pexels-photo-1275413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    alt="Image 1">
     
             </div>
     
             <div class="each-img">
-                <img src="https://images.pexels.com/photos/713664/pexels-photo-713664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    alt="Image 1">
+                <img src="{% static 'images/carouselthree.jpg' %}"
+                    alt="Image 3">
             </div>
     
             <i class="ri-arrow-left-circle-line" id="prevbtn"></i>
             <i class="ri-arrow-right-circle-line" id="nextbtn"></i>
         </div>
+        <h2>Famous <span class="colorspan">Topics:</span></h2>
+        <!-- cards for topic section -->
+        <div class="topicscards cards">
+            <div class="card">card</div>
+            <div class="card">card</div>
+            <div class="card">card</div>
+            <div class="card">card</div>
+        </div>
+        <!-- cards for celebraties section -->
+        <h2 >Confess <span class="colorspan">to:</span></h2>
+
 
         
     </div>

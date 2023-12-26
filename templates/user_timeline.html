@@ -23,6 +23,10 @@
         <p>{{ post.content }} - {{ post.created_at }}</p>
         {% endfor %}
 
+        {% for p in forimgfetch %}
+        <img src="../../media/{{p.image}}" alt="mero">
+        {% endfor %}
+        
         <form method="post" action="">
             {% csrf_token %}
             <div class="row">
@@ -35,6 +39,7 @@
             </div>
             <button type="submit">Post</button>
         </form>
+
 
     </div>
     {% endblock %}

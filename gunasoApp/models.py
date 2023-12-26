@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from django.utils.timezone import localtime
@@ -19,10 +20,11 @@ class UserPost(models.Model):
 # Models for profile picture of user
 
 class Profile(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Profile")
-    user = models.CharField(max_length=55, blank=True)
+    # user = models.CharField(max_length=55, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Profile")
     image = models.ImageField(upload_to="gunasoApp/images", blank=True, default="upload-image")
     
     def __str__(self):
         # return f'{self.user.username} -  Profile'
         return f'{self.user} -  Profile'
+    

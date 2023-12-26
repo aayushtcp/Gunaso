@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
-from django.contrib import messages
 import re
 
 
@@ -56,10 +55,23 @@ def handleSignup(request):
         # Create a new user
         myuser = User.objects.create_user(username, email, password)
         myuser.save()
-    
-        # profile pic upload to Profile modal DB
-        profile = Profile(user=myuser.username, image=userimage)
-        profile.save()
+        
+        # !login directly user starts
+        user = authenticate(username= username, password= password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Login successful")
+            # profile pic upload to Profile modal DB
+            profile = Profile(user=request.user, image=userimage)
+            profile.save()
+            return redirect("/")
+        else:
+            messages.error(request, "Username or password incorrect")
+            return redirect("/")
+        # return redirect("/")
+        return render(request, 'login.html')
+        # !login directly user ends
+
         messages.success(request, "User created sucessfully!")
         print(f"Hello {username}")
         return redirect('/')
@@ -122,9 +134,10 @@ def profile(request):
 #     return render(request,'profile.html', uppercontext)
 #     # return HttpResponse(f"User Profile for {username}")
     
-@login_required(login_url='/prelogin/')
+@login_required(login_url='/login/')
 def user_timeline(request, category):
     user_posts = UserPost.objects.filter(category=category)
+    forimgfetch = Profile.objects.filter(user=category)
     # res = str(request.user)
     current_path = request.path
     
@@ -145,5 +158,4 @@ def user_timeline(request, category):
         hm = UserPost(user = request.user,category = extracted_category, content = content)
         hm.save()
         return redirect('user_timeline', category=extracted_category)
-
-    return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category})
+    return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category, 'forimgfetch':forimgfetch})

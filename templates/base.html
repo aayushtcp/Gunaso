@@ -169,13 +169,19 @@
                 </ul>
             </div>
             <div class="sidebar_profile flex">
+                <!-- <h3>mugi</h3> -->
+                {% if user.is_authenticated %}
                 <span class="nav_image">
-                    <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" />
+                    <img src="{{request.user.Profile.image.url}}" alt="logo_img" />
+                    <!-- <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" /> -->
                 </span>
                 <div class="data_text">
-                    <span class="name">Aayush Dhakal</span>
-                    <span class="email">aayush@gmail.com</span>
+                    <span class="name">{{request.user}}</span>
+                    <span class="email">{{request.user.email}}</span>
                 </div>
+                {% else %}
+                <span class="name">Login</span>
+                {% endif %}
             </div>
         </div>
     </nav>
