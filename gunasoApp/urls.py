@@ -38,6 +38,7 @@ urlpatterns = [
     
     path('logout/',views.handleLogout, name='logout'),
     
+    path('update_profile/',views.update_profile, name='update_profile'),
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

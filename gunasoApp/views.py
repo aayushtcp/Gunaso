@@ -107,6 +107,41 @@ def handleLogout(request):
 def profile(request):
     return render(request,'profile.html')
 
+@login_required(login_url='/login/')
+def update_profile(request):
+    '''to update user profile'''
+    profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        userimageFU = request.FILES['image']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+        
+        # check/verify
+        if(password != cpassword):
+            messages.error(request, "Password mismatch")
+            return redirect("update_profile")
+        
+        if(len(username) >10):
+            messages.warning(request, "Username is greater than 10 characters")
+            return redirect("update_profile")
+        
+        # Update user profile
+        request.user.username = username
+        request.user.email = email
+        request.user.email = password
+        request.user.save()
+        
+        # Update profile picture
+        if userimageFU:
+            profile.image = userimageFU
+            profile.save()
+
+        messages.success(request, 'Profile updated successfully.')
+        return redirect('update_profile')
+    return render(request,'update_profile.html', {'user': request.user})
+
 
 
 # def profile(request, username):
@@ -137,6 +172,7 @@ def profile(request):
     
 @login_required(login_url='/login/')
 def user_timeline(request, category):
+    # print(f"The id is: ====={request.user.id}")
     user_posts = UserPost.objects.filter(category=category)
     # forimgfetch = Profile.objects.filter(user=category)
     # res = str(request.user)
