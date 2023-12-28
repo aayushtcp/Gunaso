@@ -42,5 +42,7 @@ urlpatterns = [
     
     path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
     
+    path('postThoughts/',views.postThoughts, name='postThoughts'),
+    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -175,3 +175,11 @@ def famoustopics(request, slug):
     post = Topic.objects.filter(slug=slug).first()
     context = {"post": post}
     return render(request, 'famoustopics.html', context)
+
+
+# Posting Thougths in Topic API
+def postThoughts(request):
+    if request.method == 'POST':
+        pass
+    return redirect('famoustopics.html')
+                  

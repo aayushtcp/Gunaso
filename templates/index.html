@@ -49,17 +49,17 @@
         </div>
         <h2>Confession<span class="colorspan">To:</span></h2>
         <!-- cards for topic section -->
+        {% for item in mainusers %}
         <div class="topicscards cards">
-            {% for item in mainusers %}
             <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
                 <h3>{{item.user}}</h3>
             </a>
-            {% endfor %}
-
+            
             <!-- <div class="card">card</div>
-            <div class="card">card</div>
-            <div class="card">card</div> -->
-        </div>
+                <div class="card">card</div>
+                <div class="card">card</div> -->
+            </div>
+            {% endfor %}
         <h2>Famous <span class="colorspan">Topics:</span></h2>
         <!-- cards for celebraties section -->
         <div class="topicscards cards">

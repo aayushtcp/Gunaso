@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from django.utils.timezone import localtime
+from django.utils.timezone import localtime, now
 
 # Create your models here.
 
@@ -50,3 +50,16 @@ class Topic(models.Model):
     
     def __str__(self):
         return f'Topic of -- {self.name} -'
+    
+    
+# For Topic Thoughts (Comments)
+class TopicComment(models.Model):
+    sno = models.AutoField(primary_key=True)
+    comment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    timestamp = models.DateTimeField(default=now)
+    
+    # def __str__(self):
+    #     return f'Topic of -- {self.name} -'

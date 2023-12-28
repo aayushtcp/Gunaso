@@ -24,6 +24,17 @@
     margin: 0 .5rem 0 5rem;
 }
 
+.commentbox{
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.comment{
+    padding: 8px;
+    border-radius: 5px;
+    background-color: yellow;
+}
+
 .containflex{
     padding: 10px;
     display: flex;
