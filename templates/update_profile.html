@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block base_style%}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'styles/signuppage.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/update_profile.css' %}">
     {% endblock base_style%}
     <title>Document</title>
 </head>
@@ -16,6 +16,9 @@
 <body>
     {% block content %}
     <div class="main">
+        <div class="maintwo">
+            <img src="{% static 'images/story3.png' %}" alt="">
+        </div>
         <div class="mainone">
             <ul class="messages">
                 {% for message in messages %}
@@ -55,9 +58,6 @@
                 </div>
                 <input type="submit" value="Signup" class="copybtn">
             </form>
-        </div>
-        <div class="maintwo">
-            <img src="{% static 'images/story2.png' %}" alt="">
         </div>
     </div>
 
