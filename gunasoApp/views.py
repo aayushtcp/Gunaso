@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile
+from .models import UserPost,Profile, IndexProfile, Topic
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -142,33 +142,6 @@ def update_profile(request):
         return redirect('update_profile')
     return render(request,'update_profile.html', {'user': request.user})
 
-
-
-# def profile(request, username):
-#     showgunaso = Post.objects.filter(user=request.user)
-#     # showgunaso = Gunaso.objects.filter(fil=filentity)
-#     # order_by('-timestamp')
-
-#     if request.method == 'POST':
-#         # name = request.POST['name']
-#         gunaso = request.POST['gunaso']
-#         usersl = username
-#         print(f"{gunaso} ====and the user is==== {usersl}")
-#         # usergunaso = Post(gunaso = gunaso)
-#         # usergunaso.save()
-#         context ={
-#                 "username": username,
-#                 "gunaso": gunaso,
-#                 "showgunaso":showgunaso
-#         }
-#         return render(request,'profile.html', context)
-    
-#     uppercontext = {
-#                     "username": username,
-#                     "showgunaso": showgunaso
-#     }
-#     return render(request,'profile.html', uppercontext)
-#     # return HttpResponse(f"User Profile for {username}")
     
 @login_required(login_url='/login/')
 def user_timeline(request, category):
@@ -196,3 +169,9 @@ def user_timeline(request, category):
         hm.save()
         return redirect('user_timeline', category=extracted_category)
     return render(request, 'user_timeline.html', {'user_posts': user_posts, 'extracted_category': extracted_category})
+
+
+def famoustopics(request, slug):
+    post = Topic.objects.filter(slug=slug).first()
+    context = {"post": post}
+    return render(request, 'famoustopics.html', context)

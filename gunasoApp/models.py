@@ -36,3 +36,17 @@ class IndexProfile(models.Model):
     def __str__(self):
         # return f'{self.user.username} -  Profile'
         return f'{self.user} -  IndexProfile'
+    
+
+class Topic(models.Model):
+    sno = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    tagone = models.CharField(max_length=10)
+    tagtwo = models.CharField(max_length=10)
+    slug = models.CharField(max_length=130, default="slugthis")
+    image = models.ImageField(upload_to="gunasoApp/images/topicimages", blank=True, default="upload-image")
+    introduction = models.TextField()
+    
+    def __str__(self):
+        return f'Topic of -- {self.name} -'

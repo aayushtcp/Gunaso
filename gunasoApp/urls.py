@@ -34,11 +34,13 @@ urlpatterns = [
     path('signup/',views.handleSignup, name='signup'),
     path('login/',views.handleLogin, name='login'),
     
-    path('user/<str:category>/', views.user_timeline, name='user_timeline'),
+    path('user/<str:category>/', views.user_timeline, name='user_timeline'), #category is username from url
     
     path('logout/',views.handleLogout, name='logout'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
+    
+    path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

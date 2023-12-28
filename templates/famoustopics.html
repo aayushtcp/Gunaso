@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/famoustopics.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="famoustopicsmain">
+        <div class="containflex">
+            <div class="leftside">
+                <h2>{{post.name}}</h2>
+                <p>{{post.date}}</p>
+                <p>#{{post.tagone}} #{{post.tagtwo}}</p>
+                <img src="/media/{{post.image}}" alt="">
+                <p>{{post.introduction}}</p>
+
+                <!-- Your Thoughts System Starts -->
+                <!-- Your Thoughts System Ends-->
+            </div>
+            <div class="rightside">
+                <h3>Search</h3>
+                <input type="text">
+                <h3>Categories</h3>
+                <ul>
+                    <li>hello</li>
+                    <li>hello</li>
+                    <li>hello</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
