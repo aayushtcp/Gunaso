@@ -18,31 +18,37 @@
     <div class="famoustopicsmain">
         <div class="containflex">
             <div class="leftside">
-                <h2>{{post.name}}</h2>
-                <p>{{post.date}}</p>
-                <p>#{{post.tagone}} #{{post.tagtwo}}</p>
-                <img src="/media/{{post.image}}" alt="">
-                <p>{{post.introduction}}</p>
+                <h2>{{topic.name}}</h2>
+                <p>{{topic.date}}</p>
+                <p>#{{topic.tagone}} #{{topic.tagtwo}}</p>
+                <img src="/media/{{topic.image}}" alt="">
+                <p>{{topic.introduction}}</p>
                 <!-- Self Thought (Comment) Form starts -->
                 <!-- Self Thought (Comment) Form ends -->
                 <!-- Your Thoughts System Starts -->
                 <h2>People Thoughts</h2>
+                <section class="thoughtsform">
+                    <form action="{% url 'postThoughts' %}" method="post">
+                        {% csrf_token %}
+                        <label for="">Your Thoughts</label>
+                        <br>
+                        <input type="hidden" name="postsno" value="{{topic.sno}}">
+                        <textarea name="comment" id="" cols="60" rows="7"></textarea>
+                        <input type="submit" value="Post">
+                    </form>
+                </section>
                 <div class="commentbox">
+                    {% for comment in comments %}
                     <div class="comment">
-                        <h4>Jemsey Bhai</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, quis. Incidunt fugiat
-                            quae nulla!</p>
+                        <div class="imagepart">
+                            <img src="{% static 'images/noone.png' %}" alt="userimg">
+                        </div>
+                        <div class="textpart">
+                            <h4>Anonymous</h4>
+                            <p>{{comment.comment}}</p>
+                        </div>
                     </div>
-                    <div class="comment">
-                        <h4>Jemsey Bhai</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, quis. Incidunt fugiat
-                            quae nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo porro at voluptas.</p>
-                    </div>
-                    <div class="comment">
-                        <h4>Jemsey Bhai</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, quis. Incidunt fugiat
-                            quae nulla!</p>
-                    </div>
+                    {% endfor %}
                 </div>
                 <!-- Your Thoughts System Ends-->
             </div>

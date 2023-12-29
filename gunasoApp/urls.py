@@ -40,9 +40,9 @@ urlpatterns = [
     
     path('update_profile/',views.update_profile, name='update_profile'),
     
-    path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
-    
     path('postThoughts/',views.postThoughts, name='postThoughts'),
+    
+    path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

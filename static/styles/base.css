@@ -531,6 +531,9 @@ body {
     transition: all 0.4s ease;
 }
 
+@-moz-document url-prefix() {
+    .sidebar,.sidebar.close{overflow: hidden !important;}
+}
 .sidebar.close {
     width: calc(55px + 20px);
 }
@@ -574,7 +577,7 @@ body {
     justify-content: space-between;
     margin-top: 7px;
     overflow-y: auto;
-    height: calc(100% - 82px);
+    height: calc(100% - 70px);
 }
 
 .menu_container::-webkit-scrollbar {

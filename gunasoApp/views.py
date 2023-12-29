@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -172,14 +172,23 @@ def user_timeline(request, category):
 
 
 def famoustopics(request, slug):
-    post = Topic.objects.filter(slug=slug).first()
-    context = {"post": post}
+    topic = Topic.objects.filter(slug=slug).first()
+    comments = TopicComment.objects.filter(topic=topic)
+    context = {"topic": topic, "comments": comments}
     return render(request, 'famoustopics.html', context)
 
 
 # Posting Thougths in Topic API
 def postThoughts(request):
     if request.method == 'POST':
-        pass
-    return redirect('famoustopics.html')
+        comment =request.POST['comment']
+        user =request.user
+        postsno=request.POST['postsno']
+        topic = Topic.objects.get(sno = postsno)
+        # parent = request.POST['']
+        
+        comment = TopicComment(comment =comment, user=user,topic=topic)
+        comment.save()
+        # print(comment)
+    return redirect(f'/topics/{topic.slug}')
                   
