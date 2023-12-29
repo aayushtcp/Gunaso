@@ -189,7 +189,6 @@ def postThoughts(request):
         
         comment = TopicComment(comment =comment, user=user,topic=topic)
         comment.save()
-        # print(comment)
     return redirect(f'/topics/{topic.slug}')
                   
                   

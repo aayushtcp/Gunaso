@@ -21,10 +21,11 @@
                 <h2>All <span class="blue">Topics:</span></h2>
                 <div class="gridcontain">
                     {% for alltopics in alltopics %}
-                    <div class="card">{{alltopics.name}}</div>
-                    <!-- <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div> -->
+                    <a href="{{alltopics.slug}}">
+                        <div class="card" style="background-image: url(../media/{{alltopics.image}});">
+                            <h2>{{alltopics.name}}</h2>
+                        </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>

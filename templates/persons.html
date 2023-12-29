@@ -21,10 +21,11 @@
                 <h2>Connect <span class="blue">with:</span></h2>
                 <div class="gridcontain">
                     {% for allusers in allusers %}
-                    <div class="card">{{allusers.user}}</div>
-                    <!-- <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div> -->
+                    <a href="../user/{{allusers.user}}">
+                        <div class="card" style="background-image: url(../media/{{allusers.image}});">
+                            <h2>{{allusers.user}}</h2>
+                        </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
