@@ -38,6 +38,9 @@ urlpatterns = [
     
     path('logout/',views.handleLogout, name='logout'),
     
+    path('persons/',views.persons, name='person'),
+    path('topics/',views.topics, name='topics'),
+    
     path('update_profile/',views.update_profile, name='update_profile'),
     
     path('postThoughts/',views.postThoughts, name='postThoughts'),

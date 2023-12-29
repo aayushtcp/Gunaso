@@ -192,3 +192,13 @@ def postThoughts(request):
         # print(comment)
     return redirect(f'/topics/{topic.slug}')
                   
+                  
+def persons(request):
+    allusers = Profile.objects.all() #[:4]
+    context = {"allusers":allusers}
+    return render(request, 'persons.html',context)
+
+def topics(request):
+    alltopics = Topic.objects.all()
+    context = {"alltopics":alltopics}
+    return render(request, 'topics.html', context) #edit this later

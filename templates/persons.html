@@ -8,31 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block base_style%}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'styles/aboutpage.css' %}">
-    {% endblock base_style%}
-    <title>Document</title>
-</head>
-
-<body>
-    {% block content %}
-        <h1>About Page</h1>
-    {% endblock %}
-</body>
-</html>
-
-
-
-
-<!-- {% extends 'base.html' %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block base_style%}
-    {{ block.super }}
     <link rel="stylesheet" href="{% static 'styles/persons.css' %}">
     {% endblock base_style%}
     <title>Document</title>
@@ -43,7 +18,15 @@
     <div class="famoustopicsmain">
         <div class="containflex">
             <div class="leftside">
-                <h1>Code here</h1>
+                <h2>Connect <span class="blue">with:</span></h2>
+                <div class="gridcontain">
+                    {% for allusers in allusers %}
+                    <div class="card">{{allusers.user}}</div>
+                    <!-- <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div> -->
+                    {% endfor %}
+                </div>
             </div>
             <div class="rightside">
                 <div class="searchdiv">
@@ -79,4 +62,4 @@
     {% endblock %}
 </body>
 
-</html> -->
+</html>
