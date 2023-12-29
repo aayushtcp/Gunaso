@@ -173,7 +173,7 @@ def user_timeline(request, category):
 
 def famoustopics(request, slug):
     topic = Topic.objects.filter(slug=slug).first()
-    comments = TopicComment.objects.filter(topic=topic)
+    comments = TopicComment.objects.filter(topic=topic)[::-1]
     context = {"topic": topic, "comments": comments}
     return render(request, 'famoustopics.html', context)
 

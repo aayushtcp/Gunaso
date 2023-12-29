@@ -20,11 +20,9 @@
             <div class="leftside">
                 <h2>{{topic.name}}</h2>
                 <p>{{topic.date}}</p>
-                <p>#{{topic.tagone}} #{{topic.tagtwo}}</p>
+                <p class="tags">#{{topic.tagone}} #{{topic.tagtwo}}</p>
                 <img src="/media/{{topic.image}}" alt="">
                 <p>{{topic.introduction}}</p>
-                <!-- Self Thought (Comment) Form starts -->
-                <!-- Self Thought (Comment) Form ends -->
                 <!-- Your Thoughts System Starts -->
                 <h2>People Thoughts</h2>
                 <section class="thoughtsform">
@@ -33,8 +31,9 @@
                         <label for="">Your Thoughts</label>
                         <br>
                         <input type="hidden" name="postsno" value="{{topic.sno}}">
-                        <textarea name="comment" id="" cols="60" rows="7"></textarea>
-                        <input type="submit" value="Post">
+                        <textarea name="comment" id="" placeholder="Say Something about {{topic.name}}"></textarea>
+                        <br>
+                        <input type="submit" value="Post" class="copybtn">
                     </form>
                 </section>
                 <div class="commentbox">
@@ -42,6 +41,7 @@
                     <div class="comment">
                         <div class="imagepart">
                             <img src="{% static 'images/noone.png' %}" alt="userimg">
+                            <!-- <i class="ri-user-3-fill"></i> -->
                         </div>
                         <div class="textpart">
                             <h4>Anonymous</h4>
@@ -53,14 +53,33 @@
                 <!-- Your Thoughts System Ends-->
             </div>
             <div class="rightside">
-                <h3>Search</h3>
-                <input type="text">
-                <h3>Categories</h3>
-                <ul>
-                    <li>hello</li>
-                    <li>hello</li>
-                    <li>hello</li>
-                </ul>
+                <div class="searchdiv">
+                    <!-- <h3>Search</h3> -->
+                    <i class='bx bx-search-alt'></i>
+                    <input class="searchinp" placeholder="Search..." type="text">
+                </div>
+                <div class="catandside">
+                    <div class="categoriesdiv">
+                        <h3>Categories</h3>
+                        <div class="uls">
+                            <ul class="lineone">
+                                <li><a href="#">Politics</a></li>
+                                <li><a href="#">Celebraties</a></li>
+                                <li><a href="#">More People</a></li>
+                            </ul>
+                            <ul class="lineone">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="categoriesdiv">
+                        <h3>Side Widget</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis corporis hic nulla,
+                            numquam quo officiis autem?</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
