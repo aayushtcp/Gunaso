@@ -19,38 +19,59 @@
     --skyblue: #525FE1;
     --footer: #18113c;
 }
-.timelinemain{
+
+.timelinemain {
     margin-left: 5rem;
 }
 
-form{
+.allcontain {
+    background-color: red;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.confessions {
+    flex-basis: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: yellow;
+}
+
+.chartandform {
+    color: #fff;
+    flex-basis: 30%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--footer);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.chartcontain {
+    height: 40vh;
+}
+.formcontain{
+    background-color: violet;
+    padding: 10px;
+}
+form {
+    border-radius: 8px;
+    /* padding: 100px; */
     background-color: rgb(23, 5, 45);
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: max-content;
-    border-radius: 10px;
-    padding: 30px;
-}
-form .row{
-    display: flex;
-    flex-direction: column;
-    /* gap: 4rem; */
 }
 
-form .row input{
-    border: none;
-    background-color: #fff;
-    border-radius: 4px;
-    line-height: 30px;
-    width: 70vh;
-}
+@media only screen and (max-width: 600px) {
+    .timelinemain {
+        margin: 0;
+    }
 
-form .row textarea{
-    border: none;
-    background-color: #fff;
-    border-radius: 4px;
-    width: 70vh;
-    height: 20vw;
+    .allcontain {
+        flex-direction: column;
+    }
+    form {
+        padding: 60px;
+    }
 }

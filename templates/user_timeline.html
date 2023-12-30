@@ -19,29 +19,102 @@
         <!-- user_timeline.html -->
         <h2>{{ extracted_category }}'s Timeline</h2>
 
-        {% for post in user_posts %}
-        <p>{{ post.content }} - {{ post.created_at }}</p>
-        {% endfor %}
 
-        {% for p in forimgfetch %}
+        <div class="allcontain">
+
+            <div class="confessions">
+                {% for post in user_posts %}
+                <p>{{ post.content }} - {{ post.created_at }}</p>
+                {% endfor %}
+            </div>
+
+            <!-- {% for p in forimgfetch %}
         <img src="../../media/{{p.image}}" alt="mero">
-        {% endfor %}
-        
-        <form method="post" action="">
-            {% csrf_token %}
-            <div class="row">
-                <label for="">Subject:</label>
-                <input type="text" name="subject" required>
-            </div>
-            <div class="row">
-                <label for="">Message:</label>
-                <textarea name="content" placeholder="Gunaso Pokhnuhos" required></textarea>
-            </div>
-            <button type="submit">Post</button>
-        </form>
+        {% endfor %} -->
 
+            <div class="chartandform">
+                <div class="chartcontain">
+                    <center>
+                        <h3>Received Messages: {{actualdata}}</h3>
+                        <div id="container" style="width: 60%;">
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                    </center>
+                </div>
+                <div class="formcontain">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="row">
+                            <label for="">Subject:</label>
+                            <input type="text" name="subject" required>
+                        </div>
+                        <div class="row">
+                            <label for="">Message:</label>
+                            <textarea name="content" placeholder="Gunaso Pokhnuhos" required></textarea>
+                        </div>
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart1 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: {{finaldate|safe}},
+                // labels: ["Message"],
+                datasets: [{
+                    label: 'Details',
+                    // data: ['40', '10', '30'],
+                    data: [{{actualdata|safe}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 135, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(151, 102, 132, 1)',
+                        'rgba(153, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 135, 1)',
+                        'rgba(25, 206, 86, 1)',
+                        'rgba(211, 192, 192, 1)',
+                        'rgba(234, 102, 132, 1)',
+                        'rgba(153, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'green',
+                        'yellow',
+                    ],
+
+                    borderColor: [
+                        'rgba(54, 162, 135, 1)',
+                        'rgba(25, 206, 86, 1)',
+                        'rgba(211, 192, 192, 1)',
+                        'rgba(234, 102, 132, 1)',
+                        'rgba(153, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+
+                    ],
+
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
+    </script>
     {% endblock %}
 
 </body>
