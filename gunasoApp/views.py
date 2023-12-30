@@ -149,17 +149,11 @@ def user_timeline(request, category):
     data = []
     date =[]
     finaldate_set = set()
-    # print(f"The id is: ====={request.user.id}")
     user_posts = UserPost.objects.filter(category=category)
-    # forimgfetch = Profile.objects.filter(user=category)
-    # res = str(request.user)
     current_path = request.path
-    
     path_parts = current_path.split('/')
-    
     # Filter out empty parts
-    path_parts = [part for part in path_parts if part]
-    
+    path_parts = [part for part in path_parts if part]  
     # Get the last element (last word) if the path is not empty
     extracted_category = path_parts[-1] if path_parts else None
     print("The last word: ==" + extracted_category)
@@ -171,7 +165,6 @@ def user_timeline(request, category):
     # Remove Decimal objects by converting them to int
     actualdata = len(data)
     actualdate = [str(y) for y in date]
-    formatted_dates = []
     
     for date_str in actualdate:
         # Convert string to datetime object
@@ -181,23 +174,24 @@ def user_timeline(request, category):
             date_object = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S%z')
         # Get the formatted date with month name
         formatted_date = date_object.strftime('%d %B %Y %H:%M:%S %z')
-        # formatted_dates.append(formatted_date)
         finaldate_set.add(formatted_date[3:6])
         
     finaldate = list(finaldate_set)
     
     if request.method == 'POST':
         content = request.POST.get('content')
-        # UserPost.objects.create(user=request.user, content=content, created_at=timezone.now())
-        # hm = UserPost(user = request.user, content = content)
         hm = UserPost(user = request.user,category = extracted_category, content = content)
         hm.save()
         return redirect('user_timeline', category=extracted_category)
+    
+    visited_user = User.objects.get(username=extracted_category)
+    visited_user_profiles = Profile.objects.filter(user=visited_user)
     uppercontext = {
         'user_posts': user_posts,   
         'extracted_category': extracted_category,
         'actualdata': actualdata,
         'finaldate': finaldate,
+        'visited_user_profiles': visited_user_profiles
     }
     return render(request, 'user_timeline.html', uppercontext)
 

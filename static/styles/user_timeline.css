@@ -20,58 +20,171 @@
     --footer: #18113c;
 }
 
-.timelinemain {
-    margin-left: 5rem;
+
+/* Button */
+.copybtn {
+    /* --color: #560bad; */
+    cursor: pointer;
+    background-color: var(--skyblue);
+    font-family: inherit;
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    line-height: 1.9em;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--para);
 }
 
-.allcontain {
-    background-color: red;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+.copybtn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--skyblue);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
 }
 
-.confessions {
-    flex-basis: 60%;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: yellow;
-}
-
-.chartandform {
+.copybtn:hover {
     color: #fff;
-    flex-basis: 30%;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: var(--footer);
+}
+
+.copybtn:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.copybtn:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+.copybtn:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+}
+
+.famoustopicsmain {
+    margin: 0 .5rem 0 5rem;
+}
+
+.commentbox {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    gap: .4rem;
 }
 
-.chartcontain {
-    height: 40vh;
+.comment {
+    padding: 8px;
+    border-radius: 5px;
+    color: var(--mainheading);
+    background-color: var(--dark);
 }
-.formcontain{
-    background-color: violet;
+
+.containflex {
     padding: 10px;
-}
-form {
-    border-radius: 8px;
-    /* padding: 100px; */
-    background-color: rgb(23, 5, 45);
-    color: #fff;
+    display: flex;
+    gap: 20px;
 }
 
-@media only screen and (max-width: 600px) {
-    .timelinemain {
+.leftside {
+    padding: 0 10px 10px 10px;
+    flex-basis: 70%;
+}
+
+.leftside img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+.tags{
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    width: max-content;
+    padding: 4px;
+    background-color: gainsboro;
+}
+
+.rightside {
+    padding-top: 13px;
+    flex-basis: 30%;
+    border-radius: 6px;
+}
+
+.thoughtsform {
+    display: flex;
+    flex-direction: column;
+}
+
+.thoughtsform textarea {
+    padding: 7px;
+    width: 100%;
+    height: 10vh;
+    background-color: gainsboro;
+    color: #3a0ca3;
+}
+textarea {
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+textarea:focus {
+    border: none;
+}
+.catandside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.categoriesdiv {
+    margin-top: 2rem;
+    border-radius: 6px;
+    padding: 15px;
+    background-color: gainsboro;
+    text-align: center;
+    width: 70%;
+}
+
+.comment {
+    display: flex;
+    gap: 15px;
+}
+
+.comment .imagepart {
+    height: 50px;
+    width: 50px;
+}
+
+.comment .imagepart img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    border-radius: 50%;
+}
+
+/* for small screen cards */
+@media (max-width: 920px) {
+    .famoustopicsmain {
         margin: 0;
+        margin-right: 0;
     }
 
-    .allcontain {
-        flex-direction: column;
+    .leftside {
+        flex-basis: 100%;
     }
-    form {
-        padding: 60px;
+
+    .rightside {
+        display: none;
     }
 }
