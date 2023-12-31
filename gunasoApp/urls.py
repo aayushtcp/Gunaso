@@ -40,6 +40,7 @@ urlpatterns = [
     
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
+    path('developers/',views.developers, name='developers'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
     

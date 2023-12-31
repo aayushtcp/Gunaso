@@ -226,3 +226,6 @@ def topics(request):
     alltopics = Topic.objects.all()
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
+
+def developers(request):
+    return render(request, 'developers.html')

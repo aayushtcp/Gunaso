@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/developers.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="developersmain">
+        <div class="introtext">
+            <h2>Our <span>Team</span></h2>
+            <p>Here are our developers who worked hard and working hard to maintain this System.</p>
+        </div>
+
+        <!-- Devlopers cards -->
+        <div class="cards">
+            <div class="card">
+                <div class="imagepart">
+                    <img src="{% static 'images/profileimage.jpg' %}" alt="">
+                </div>
+                <div class="textpart">
+                    <h2>Aayush Dhakal</h2>
+                    <h3>Backend Developer</h3>
+                    <hr>
+                    <div class="aboutandlinks">
+                        <p>Ratau Ratt Code KO Taskari</p>
+
+                        <div class="links">
+                            <a href="">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="">
+                                <i class="ri-twitter-x-fill"></i>
+                            </a>
+                            <a href="">
+                                <i class="ri-github-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
