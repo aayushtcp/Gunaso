@@ -78,3 +78,15 @@ class Developer(models.Model):
     
     def __str__(self):
         return self.name + " -- " + self.position
+    
+    
+class Contact(models.Model):
+    sno = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=55)
+    email = models.CharField(max_length=90)
+    phone = models.CharField(max_length=55)
+    content = models.TextField()
+    
+    def __str__(self):
+        return "Contact from -- " + self.name
+    

@@ -24,8 +24,8 @@
                     <div class="left-side">
                         <div class="email details">
                             <i class="ri-mail-unread-fill"></i>
-                            <div class="topic">Email to {{cname}}</div>
-                            <div class="text-one">lyammakyamma@gmail.com</div>
+                            <div class="topic">Email</div>
+                            <div class="text-one">guanso@gmail.com</div>
                             <div class="text-two">test@gmail.com</div>
                         </div>
                         <div class="phone details">
@@ -52,15 +52,15 @@
                         <form action="" method="post">
                             {% csrf_token %}
                             <div class="input-box" data-aos="fade-up">
-                                <input type="text" name="cname" placeholder="Enter your name"
+                                <input type="text" name="name" placeholder="Enter your name"
                                     onkeyup="validName(this)" />
                             </div>
                             <div id="nameError"></div>
                             <div class="input-box" data-aos="fade-up">
-                                <input type="email" name="cemail" placeholder="Enter your email" />
+                                <input type="email" name="email" placeholder="Enter your email" />
                             </div>
                             <div class="input-box" data-aos="fade-up">
-                                <input type="phone" name="cphone" placeholder="Enter your phone number"
+                                <input type="phone" name="phone" placeholder="Enter your phone number"
                                     onkeyup="validPhone(this)" />
                             </div>
                             <div id="phoneError"></div>

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -233,4 +233,12 @@ def developers(request):
     return render(request, 'developers.html', context)
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        content = request.POST['content']
+        tosave = Contact(name = name, email = email, phone = phone, content = content)
+        tosave.save()
+        return render(request, 'contact.html')
     return render(request, 'contact.html')
