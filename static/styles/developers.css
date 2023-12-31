@@ -53,6 +53,7 @@
     padding-top: 10px;
     justify-content: center;
     flex-basis: 30%;
+    object-fit: cover;
 }
 
 .imagepart img {

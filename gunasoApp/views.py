@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -228,4 +228,6 @@ def topics(request):
     return render(request, 'topics.html', context) #edit this later
 
 def developers(request):
-    return render(request, 'developers.html')
+    developers = Developer.objects.all()
+    context = {"developers":developers}
+    return render(request, 'developers.html', context)

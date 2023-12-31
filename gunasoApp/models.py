@@ -63,3 +63,18 @@ class TopicComment(models.Model):
     
     def __str__(self):
         return self.comment[0:13] + ' ' + 'by -- ' + self.user.email
+    
+    
+class Developer(models.Model):
+    sno = models.AutoField(primary_key=True)
+    image = models.ImageField(upload_to="gunasoApp/images/developers", blank=True, default="upload-image-dev")
+    name = models.CharField(max_length=30)
+    position = models.CharField(max_length=30)
+    bio = models.TextField()
+    facebook = models.CharField(max_length=255)
+    instagram = models.CharField(max_length=255)
+    x = models.CharField(max_length=255)
+    github = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name + " -- " + self.position
