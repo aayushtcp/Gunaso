@@ -231,3 +231,6 @@ def developers(request):
     developers = Developer.objects.all()
     context = {"developers":developers}
     return render(request, 'developers.html', context)
+
+def contact(request):
+    return render(request, 'contact.html')

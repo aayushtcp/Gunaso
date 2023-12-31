@@ -26,7 +26,9 @@
             {% for item in developers %}
             <div class="card">
                 <div class="imagepart">
-                    <img src="{{item.image.url}}" alt="">
+                    <!-- <img src="{{item.image.url}}" alt=""> -->
+                    <div class="imagecontain" style="background-image: url({{item.image.url}});">     
+                    </div>
                 </div>
                 <div class="textpart">
                     <h2>{{item.name}}</h2>

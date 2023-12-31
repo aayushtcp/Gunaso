@@ -47,13 +47,22 @@
 }
 
 .imagepart {
+    padding: 10px;
     height: 100%;
     width: 30%;
     display: flex;
     padding-top: 10px;
     justify-content: center;
     flex-basis: 30%;
-    object-fit: cover;
+}
+
+.imagecontain{
+    background-color: violet;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .imagepart img {

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/contact.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="contactmain">
+
+        <!-- Contact Form starts -->
+        <div class="main_contactus">
+            <div class="contact_container">
+                <div class="content">
+                    <div class="left-side">
+                        <div class="email details">
+                            <i class="ri-mail-unread-fill"></i>
+                            <div class="topic">Email to {{cname}}</div>
+                            <div class="text-one">lyammakyamma@gmail.com</div>
+                            <div class="text-two">test@gmail.com</div>
+                        </div>
+                        <div class="phone details">
+                            <i class="ri-customer-service-fill"></i>
+                            <div class="topic">Phone</div>
+                            <div class="text-one">057-000000</div>
+                            <div class="text-two">+977 9800000000</div>
+                        </div>
+                        <div class="address details">
+                            <i class="ri-map-pin-2-fill"></i>
+                            <div class="topic">Address</div>
+                            <div class="text-one">Hetauda 07</div>
+                            <div class="text-two">Kamane</div>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="topic-text">
+                            Send Us a <span class="design">Message</span>
+                        </div>
+                        <p>
+                            If you want to ask a questions or if you need general enquiry from
+                            us then you can get in touch with us.
+                        </p>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="input-box" data-aos="fade-up">
+                                <input type="text" name="cname" placeholder="Enter your name"
+                                    onkeyup="validName(this)" />
+                            </div>
+                            <div id="nameError"></div>
+                            <div class="input-box" data-aos="fade-up">
+                                <input type="email" name="cemail" placeholder="Enter your email" />
+                            </div>
+                            <div class="input-box" data-aos="fade-up">
+                                <input type="phone" name="cphone" placeholder="Enter your phone number"
+                                    onkeyup="validPhone(this)" />
+                            </div>
+                            <div id="phoneError"></div>
+                            <div class="input-box message-box" data-aos="fade-up">
+                                <textarea name="content" placeholder="Please enter your message..."
+                                    onkeyup="validMessage(this)"></textarea>
+                            </div>
+                            <div id="contentError"></div>
+                            <div class="cbutton">
+                                <input type="submit" value="Submit" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact Form ends -->
+    </div>
+    <script src="{% static 'scripts/contact.js' %}"></script>
+    {% endblock %}
+</body>
+
+</html>
