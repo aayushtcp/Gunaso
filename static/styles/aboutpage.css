@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
@@ -27,12 +28,11 @@
 
 /* Button */
 .copybtn {
-    /* --color: #560bad; */
     cursor: pointer;
     background-color: var(--dark);
     font-family: inherit;
     display: inline-block;
-    width: 5em;
+    width: 6em;
     height: 2em;
     line-height: 1.9em;
     margin: 20px 0 20px 0;
@@ -85,14 +85,13 @@
 .fullheight {
     height: 100vh;
     display: flex;
-    justify-content: space-evenly;
+    padding: 10px 100px;
 }
 
 .fullheight .leftside {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px 150px;
 
 }
 
@@ -107,7 +106,9 @@
 }
 
 .explore{
-    background-color: red;
+    padding: 0;
+    flex-direction: column;
+    background-color: violet;
 }
 
 
@@ -122,8 +123,9 @@
     }
 
     .fullheight {
-        flex-direction: column;
-        justify-content: space-around;
+        height: max-content;
+        flex-direction: column-reverse;
+        padding: 0;
     }
 
     .fullheight .leftside {

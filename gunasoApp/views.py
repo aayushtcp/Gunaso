@@ -15,6 +15,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
+from collections import defaultdict
 # from .forms import UserProfileForm
 
 
@@ -157,6 +158,8 @@ def user_timeline(request, category):
     # Get the last element (last word) if the path is not empty
     extracted_category = path_parts[-1] if path_parts else None
     print("The last word: ==" + extracted_category)
+    
+    date_count = defaultdict(int)
 
     for item in user_posts:
         data.append(item.category)
@@ -174,7 +177,9 @@ def user_timeline(request, category):
             date_object = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S%z')
         # Get the formatted date with month name
         formatted_date = date_object.strftime('%d %B %Y %H:%M:%S %z')
+        
         finaldate_set.add(formatted_date[3:6])
+        date_count[formatted_date[3:6]] += 1 
         
     finaldate = list(finaldate_set)
     
@@ -186,11 +191,14 @@ def user_timeline(request, category):
     
     visited_user = User.objects.get(username=extracted_category)
     visited_user_profiles = Profile.objects.filter(user=visited_user)
+    
+    date_count_list = [date_count[date] for date in finaldate]
     uppercontext = {
         'user_posts': user_posts,   
         'extracted_category': extracted_category,
         'actualdata': actualdata,
         'finaldate': finaldate,
+        'date_count_list':date_count_list,
         'visited_user_profiles': visited_user_profiles
     }
     return render(request, 'user_timeline.html', uppercontext)

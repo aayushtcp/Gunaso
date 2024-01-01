@@ -1,4 +1,4 @@
 function explore(){
-    // location.href = "#explore";
-    alert(location.href);
+    location.href = "#explore";
+    // alert(location.href);
 }
