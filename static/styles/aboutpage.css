@@ -21,15 +21,7 @@
     --footer: #18113c;
 }
 
-h1{
-    color: red;
-}
-
-h2{
-    color: yellow;
-}
-
-.about-main{
+.about-main {
     margin-left: 4.9rem;
 }
 
@@ -43,7 +35,7 @@ h2{
     width: 5em;
     height: 2em;
     line-height: 1.9em;
-    margin: 20px;
+    margin: 20px 0 20px 0;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color);
@@ -83,4 +75,64 @@ h2{
 .copybtn:active:before {
     background: #3a0ca3;
     transition: background 0s;
+}
+
+/* main css stars */
+
+
+/* responsive */
+
+.fullheight {
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fullheight .leftside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 150px;
+
+}
+
+.fullheight .leftside h1 {
+    width: max-content;
+    border-bottom: 3px solid var(--dark);
+}
+
+.fullheight .leftside p {
+    font-weight: bold;
+    width: 62%;
+}
+
+.explore{
+    background-color: red;
+}
+
+
+
+
+@media (max-width: 991px) {
+    .about-main {
+        margin: 0;
+    }
+    img{
+        width: 100%;
+    }
+
+    .fullheight {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .fullheight .leftside {
+        display: block;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .fullheight .leftside p {
+        width: 100%;
+    }
 }
