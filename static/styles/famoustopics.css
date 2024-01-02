@@ -7,17 +7,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
 :root {
-    --dark: #05386B;
+    /* --dark: #05386B; */
+    --dark: #754ffe;
     --darkgreen: #379683;
     --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
     --backupgreen: #8EE4AF;
     --para: #EDF5E1;
     /* MATHI KO IMP */
     --mainheading: #FFF;
     --hotish: #FF3FA4;
     --skyblue: #525FE1;
-    --deepdark: #1010;
+    --footer: #18113c;
 }
+
 
 /* Button */
 .copybtn {
@@ -197,8 +200,9 @@
 }
 
 .comment .imagepart {
+    flex-basis: 5%;
     height: 50px;
-    width: 50px;
+    width: 100%;
 }
 
 .comment .imagepart img {
@@ -207,6 +211,10 @@
     position: relative;
     top: 0;
     border-radius: 50%;
+}
+
+.textpart {
+    flex-basis: 90%;
 }
 
 /* for small screen cards */
