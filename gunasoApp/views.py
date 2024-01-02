@@ -114,7 +114,6 @@ def update_profile(request):
     '''to update user profile'''
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
-        userimageFU = request.FILES['image']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -132,14 +131,15 @@ def update_profile(request):
         # Update user profile
         request.user.username = username
         request.user.email = email
-        request.user.email = password
+        request.user.set_password(password)
         request.user.save()
         
         # Update profile picture
-        if userimageFU:
+        if 'image' in request.FILES:
+            userimageFU = request.FILES['image']
             profile.image = userimageFU
             profile.save()
-
+            
         messages.success(request, 'Profile updated successfully.')
         return redirect('update_profile')
     return render(request,'update_profile.html', {'user': request.user})
