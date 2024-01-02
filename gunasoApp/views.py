@@ -250,3 +250,7 @@ def contact(request):
         tosave.save()
         return render(request, 'contact.html')
     return render(request, 'contact.html')
+
+
+def services(rwquest):
+    return render(rwquest, 'services.html')
