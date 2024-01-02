@@ -75,14 +75,14 @@
                         </li>
 
                         {% if user.is_authenticated %}
-                        <button class="menu-item" id="logoutbtn" onclick="logoutfunc()">
+                        <button id="logoutbtn" onclick="logoutfunc()">
                             Logout
                         </button>
                         {% else %}
-                        <button class="menu-item" id="loginbtn" onclick="loginfunc()">
+                        <button id="loginbtn" onclick="loginfunc()">
                             Login
                         </button>
-                        <button class="menu-item" id="signupbtn" onclick="signupfunc()">
+                        <button id="signupbtn" onclick="signupfunc()">
                             Signup
                         </button>
                         {% endif %}
@@ -121,7 +121,7 @@
                     </li>
                     <li class="item">
                         <a href="{% url 'update_profile' %}" class="link flex">
-                            <i class='bx bx-search-alt' ></i>
+                            <i class='bx bx-search-alt'></i>
                             <span>Update Profile</span>
                         </a>
                     </li>
@@ -133,13 +133,13 @@
                     </div>
                     <li class="item">
                         <a href="{% url 'person' %}" class="link flex">
-                            <i class="ri-service-fill"></i> 
+                            <i class="ri-service-fill"></i>
                             <span>Explore Peoples</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="{% url 'topics' %}" class="link flex">
-                            <i class='bx bxs-user-circle' ></i>
+                            <i class='bx bxs-user-circle'></i>
                             <span>Celebraties</span>
                         </a>
                     </li>
@@ -157,13 +157,13 @@
                     </li>
                     <li class="item">
                         <a href="{% url 'logout' %}" class="link flex">
-                            <i class='bx bx-log-out-circle' ></i>
+                            <i class='bx bx-log-out-circle'></i>
                             <span>Logout</span>
                         </a>
                     </li>
                     <li class="item">
                         <a href="{% url 'developers' %}" class="link flex">
-                            <i class='bx bxl-dev-to' ></i>
+                            <i class='bx bxl-dev-to'></i>
                             <span>About Developers</span>
                         </a>
                     </li>
@@ -233,14 +233,14 @@
     <!-- Footer HTML Ends -->
 
     <script>
-        function logoutfunc(){
+        function logoutfunc() {
             location.href = "/logout";
         }
-        
-        function loginfunc(){
+
+        function loginfunc() {
             location.href = "/login";
         }
-        function signupfunc(){
+        function signupfunc() {
             location.href = "/signup";
         }
     </script>
