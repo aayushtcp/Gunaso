@@ -21,7 +21,10 @@ from collections import defaultdict
 
 def index(request):
     mainusers = IndexProfile.objects.all()[:4]
-    return render(request, 'index.html', {"username": request.user, "mainusers":mainusers})    
+    
+    alltopics = Topic.objects.all()
+    context = {"username": request.user, "mainusers":mainusers, "alltopics":alltopics}
+    return render(request, 'index.html',context)
 
 def about(request):
     return render(request, 'about.html')

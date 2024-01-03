@@ -114,24 +114,59 @@ img {
     display: flex;
     flex-direction: column;
 }
-.colorspan{
+
+.colorspan {
     color: var(--dark);
 }
 
-.cards{
+.cards {
     display: flex;
-    /* background-color: red; */
     justify-content: space-evenly;
     align-items: center;
     height: 30vh;
 }
-.cards .card{
+
+.cards .card {
     height: 27vh;
     width: 20%;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: rgba(117, 79, 254,0.858) -5px 5px, rgba(117, 79, 254, 0.3) -10px 10px, rgba(117, 79, 254, 0.2) -15px 15px, rgba(117, 79, 254, 0.1) -20px 20px, rgba(117, 79, 254, 0.05) -25px 25px;
+    box-shadow: rgba(117, 79, 254, 0.858) -5px 5px, rgba(117, 79, 254, 0.3) -10px 10px, rgba(117, 79, 254, 0.2) -15px 15px, rgba(117, 79, 254, 0.1) -20px 20px, rgba(117, 79, 254, 0.05) -25px 25px;
     background-color: violet;
+    text-decoration: none;
+    color: #fff;
+}
+
+.gridraja {
+    height: 80vh;
+    display: grid;
+    grid-template-areas: "leftside righttop"
+        "leftside rightbottom";
+    gap: 10px;
+    margin: auto;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+}
+
+.left {
+    transition: all ease 0.4s;
+    grid-area: leftside;
+}
+
+.left:hover,.rightbottom:hover,.righttop:hover{
+    transform: scale(1.02);
+}
+
+.righttop {
+    transition: all ease 0.4s;
+    grid-area: righttop;
+}
+
+.rightbottom {
+    transition: all ease 0.4s;
+    grid-area: rightbottom;
+    transition: all ease 0.4s;
 }
 
 /* for small screen cards */
@@ -139,19 +174,28 @@ img {
     .index-main {
         margin-left: 0;
     }
-    .cards{
+
+    .cards {
         padding-top: 10px;
         flex-direction: column;
         gap: 10px;
-        height:max-content;
+        height: max-content;
     }
-    .cards .card{
+
+    .cards .card {
         height: 27vh;
         width: 90%;
-    }   
+    }
+
+    .gridraja {
+        grid-template-areas: "leftside"
+            "righttop"
+            "rightbottom";
+        padding: 10px;
+    }
 }
 
-.cardbgimg{
+.cardbgimg, .left, .righttop, .rightbottom {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

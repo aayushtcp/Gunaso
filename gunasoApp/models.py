@@ -18,7 +18,6 @@ class UserPost(models.Model):
     
     
 # Models for profile picture of user
-
 class Profile(models.Model):
     # user = models.CharField(max_length=55, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Profile")
@@ -50,6 +49,9 @@ class Topic(models.Model):
     
     def __str__(self):
         return f'Topic of -- {self.name} -'
+    
+# class IndexTopic(models.Model):
+#     name = models.OneToOneField(Topic, on_delete = models.CASCADE, related_name="majortopicfilter")
     
     
 # For Topic Thoughts (Comments)

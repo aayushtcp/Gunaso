@@ -54,19 +54,22 @@
             <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
                 <h3>{{item.user}}</h3>
             </a>
-            
-            <!-- <div class="card">card</div>
-                <div class="card">card</div>
-                <div class="card">card</div> -->
-            </div>
-            {% endfor %}
+        </div>
+        {% endfor %}
         <h2>Famous <span class="colorspan">Topics:</span></h2>
         <!-- cards for celebraties section -->
-        <div class="topicscards cards">
-            <div class="card">card</div>
-            <div class="card">card</div>
-            <div class="card">card</div>
-            <div class="card">card</div>
+        <div class="gridraja">
+            {% for alltopics in alltopics %}
+            {% if forloop.counter <= 3 %}
+                <div class="left" style="background-image: url(/media/{{alltopics.image}})"></div>
+                {% if forloop.counter == 1 %}
+                    <div class="righttop" style="background-image: url(/media/{{alltopics.image}})"></div>
+                {% endif %}
+                {% if forloop.counter == 2 %}
+                    <div class="rightbottom" style="background-image: url(/media/{{alltopics.image}})"></div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
         </div>
     </div>
     <script src="{% static 'scripts/index.js' %}"></script>
