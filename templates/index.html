@@ -47,15 +47,7 @@
             <i class="ri-arrow-left-circle-line" id="prevbtn"></i>
             <i class="ri-arrow-right-circle-line" id="nextbtn"></i>
         </div>
-        <h2>Confession<span class="colorspan">To:</span></h2>
-        <!-- cards for topic section -->
-        {% for item in mainusers %}
-        <div class="topicscards cards">
-            <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
-                <h3>{{item.user}}</h3>
-            </a>
-        </div>
-        {% endfor %}
+
         <h2>Famous <span class="colorspan">Topics:</span></h2>
         <!-- cards for celebraties section -->
         <div class="gridraja">
@@ -82,6 +74,15 @@
                 {% endif %}
                 {% endfor %}
         </div>
+        <h2>Confession<span class="colorspan">To:</span></h2>
+        <!-- cards for topic section -->
+        {% for item in mainusers %}
+        <div class="topicscards cards">
+            <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
+                <h3>{{item.user}}</h3>
+            </a>
+        </div>
+        {% endfor %}
         {% include 'banner.html' %}
     </div>
     <script src="{% static 'scripts/index.js' %}"></script>
