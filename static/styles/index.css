@@ -195,6 +195,17 @@ img {
     }
 }
 
+.left, .righttop, .rightbottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    filter: brightness(80%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -80px 36px -1px inset;
+    color: #fff;
+    border: 2px solid var(--dark);
+}
+
 .cardbgimg, .left, .righttop, .rightbottom {
     background-size: cover;
     background-position: center;

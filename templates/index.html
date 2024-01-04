@@ -60,17 +60,29 @@
         <!-- cards for celebraties section -->
         <div class="gridraja">
             {% for alltopics in alltopics %}
-            {% if forloop.counter <= 3 %}
-                <div class="left" style="background-image: url(/media/{{alltopics.image}})"></div>
+            {% if forloop.counter <= 3 %} <a href="/topics/{{alltopics.slug}}" class="left"
+                style="background-image: url(/media/{{alltopics.image}})">
+                <h2>{{alltopics.name}}</h2>
+                <p>{{alltopics.introduction|truncatechars:40}}</p>
+                </a>
                 {% if forloop.counter == 1 %}
-                    <div class="righttop" style="background-image: url(/media/{{alltopics.image}})"></div>
+                <a href="/topics/{{alltopics.slug}}" class="righttop"
+                    style="background-image: url(/media/{{alltopics.image}})">
+                    <h2>{{alltopics.name}}</h2>
+                    <p>{{alltopics.introduction|truncatechars:40}}</p>
+                </a>
                 {% endif %}
                 {% if forloop.counter == 2 %}
-                    <div class="rightbottom" style="background-image: url(/media/{{alltopics.image}})"></div>
+                <a href="/topics/{{alltopics.slug}}" class="rightbottom"
+                    style="background-image: url(/media/{{alltopics.image}})">
+                    <h2>{{alltopics.name}}</h2>
+                    <p>{{alltopics.introduction|truncatechars:40}}</p>
+                </a>
                 {% endif %}
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+                {% endfor %}
         </div>
+        {% include 'banner.html' %}
     </div>
     <script src="{% static 'scripts/index.js' %}"></script>
     <script>

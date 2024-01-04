@@ -4,6 +4,20 @@ body.hidden-scrolling {
     overflow-y: hidden;
 }
 
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
 /* =============================== */
 /* Banner CSS starts */
 /* =============================== */
@@ -17,42 +31,31 @@ body.hidden-scrolling {
     justify-content: center;
     gap: 10px;
     animation: bannerloop 20s linear infinite;
+    margin: 1rem 0;
 }
 
-/* .index-banner h1 {
-    font-size: 48px;
-    color: var(--bcolor);
+.copybtn{
+    width: 150px;
 }
-
-.index-banner h3 {
-    color: var(--bcolor);
-}
-
-.index-banner p {
-    color: var(--bcolor);
-    text-align: center;
-    padding: 10px 40px;
-} */
-
 @keyframes bannerloop {
     0% {
-        background-color: #26fa9a;
+        background-color: var(--cooltexr);
     }
 
     25% {
-        background-color: #fcee67;
+        background-color: var(--backupgreen);
     }
 
     50% {
-        background-color: #ff4081;
+        background-color: var(--bcolor);
     }
 
     75% {
-        background-color: #18ffff;
+        background-color: var(--hotish);
     }
 
     100% {
-        background-color: #26fa9a;
+        background-color: var(--skyblue);
     }
 }
 
