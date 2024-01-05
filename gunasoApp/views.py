@@ -257,3 +257,6 @@ def contact(request):
 
 def services(rwquest):
     return render(rwquest, 'services.html')
+
+def gallary(rwquest):
+    return render(rwquest, 'gallary.html')

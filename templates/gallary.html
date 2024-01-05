@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/gallary.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="gallarymain">
+        <center>
+            <h1>Our <span class="colorspan">Images</span></h1>
+        </center>
+    </div>
+
+
+    <div class="full-img" id="fullImgBox">
+        <img src="{% static 'college1.jpg' %}" id="fullImg">
+        <span onclick="closefullImg()">Close</span>
+    </div>
+
+    <div class="img-gallery">
+        <img src="{% static 'images/profileimage.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/carouselthree.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/carouselone.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/carouseltwo.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/profileimage.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/profileimage.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/profileimage.jpg' %}" onclick="openfullImg(this.src)">
+        <img src="{% static 'images/profileimage.jpg' %}" onclick="openfullImg(this.src)">
+
+    </div>
+
+    <script src="{% static 'scripts/gallary.js' %}"></script>
+    {% endblock %}
+</body>
+
+</html>

@@ -43,6 +43,7 @@ urlpatterns = [
     path('developers/',views.developers, name='developers'),
     path('contact/',views.contact, name='contact'),
     path('services/',views.services, name='services'),
+    path('gallary/',views.gallary, name='gallary'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
     
