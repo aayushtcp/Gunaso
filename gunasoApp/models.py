@@ -92,3 +92,13 @@ class Contact(models.Model):
     def __str__(self):
         return "Contact from -- " + self.name
     
+    
+class Story(models.Model):
+    sno = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    storySubject = models.CharField(max_length = 255)
+    storyType = models.CharField(max_length = 50)
+    storyContent = models.TextField(blank=True)
+    
+    def __str__(self):
+        return f"Story By -- {self.user}"

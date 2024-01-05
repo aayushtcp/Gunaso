@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -264,3 +264,11 @@ def gallary(request):
 
 def anonymity(request):
     return render(request, 'anonymity.html')
+
+def writestory(request):
+    return render(request, 'writestory.html')
+
+def readstory(request):
+    stories = Story.objects.all()
+    context = {"stories":stories}
+    return render(request, 'readstory.html', context)

@@ -45,6 +45,8 @@ urlpatterns = [
     path('services/',views.services, name='services'),
     path('gallary/',views.gallary, name='gallary'),
     path('anonymity/',views.anonymity, name='anonymity'),
+    path('write-story/',views.writestory, name='writestory'),
+    path('read-story/',views.readstory, name='readstory'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
     
