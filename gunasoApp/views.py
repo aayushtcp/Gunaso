@@ -265,7 +265,16 @@ def gallary(request):
 def anonymity(request):
     return render(request, 'anonymity.html')
 
+@login_required(login_url='/login/')
 def writestory(request):
+    if request.method == 'POST':
+        user =request.user
+        storySubject = request.POST['subject']
+        storyType = request.POST['storytype']
+        storyContent = request.POST['storycontent']
+        saveStory = Story(user=user, storySubject= storySubject, storyType=storyType, storyContent=storyContent)
+        saveStory.save()
+        return render(request, 'writestory.html')
     return render(request, 'writestory.html')
 
 def readstory(request):

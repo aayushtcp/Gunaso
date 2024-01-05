@@ -37,6 +37,10 @@
 
 .sectionimg {
     grid-area: sectionimg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .sectionimg img {
