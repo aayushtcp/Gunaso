@@ -255,8 +255,12 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-def services(rwquest):
-    return render(rwquest, 'services.html')
+def services(request):
+    return render(request, 'services.html')
 
-def gallary(rwquest):
-    return render(rwquest, 'gallary.html')
+def gallary(request):
+    return render(request, 'gallary.html')
+
+
+def anonymity(request):
+    return render(request, 'anonymity.html')

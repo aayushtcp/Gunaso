@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+.anonymitymain {
+    margin-left: 4.9rem;
+}
+
+.sectionone {
+    height: 100vh;
+    display: grid;
+    gap: 10px;
+    grid-template-areas: "sectionimg sectionnav sectionnav"
+        "sectionimg points points"
+        "cards cards cards";
+}
+
+.sectionimg {
+    grid-area: sectionimg;
+}
+
+.sectionimg img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.sectionnav {
+    grid-area: sectionnav;
+    margin-right: 3rem;
+}
+
+.sectionnav h2 {
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--dark);
+    text-align: center;
+    color: #fff;
+}
+
+.sectionnav p {
+    padding: 15px;
+}
+
+.points {
+    padding: 1rem 3rem 1rem .3rem;
+    grid-area: points;
+}
+
+.points ol {
+    font-weight: bold;
+    color: #fff;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.points ol li {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--dark);
+}
+
+.cards {
+    grid-area: cards;
+    display: flex;
+    align-items: centrer;
+    justify-content: end;
+    gap: 30px;
+    padding-right: 2.6rem;
+}
+
+.cards .card {
+    padding: 8px;
+    border-radius: 5px;
+    width: 30%;
+    height: 30vh;
+    background-color: gainsboro;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+@media (max-width: 991px) {
+    .anonymitymain {
+        margin: 0;
+    }
+
+    .sectionnav h2{
+        margin: 0 0.3rem;
+    }
+
+    .sectionone {
+        height: max-content;
+        grid-template-areas: "sectionimg"
+            "sectionnav"
+            "points"
+            "cards";
+    }
+
+    .sectionnav {
+        margin-right: 0;
+    }
+
+    .points {
+        padding: 1rem .3rem;
+    }
+    .cards {
+        grid-area: cards;
+        display: flex;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .cards .card{
+        width: 90%;
+    }
+}

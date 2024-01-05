@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/anonymity.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="anonymitymain">
+
+        <section class="sectionone">
+            <div class="sectionimg">
+                <img src="{% static 'images/story4.png' %}" alt="">
+            </div>
+            <div class="sectionnav">
+                <h2>
+                    Your Security, Our Priority
+                </h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio at sunt optio nobis, earum nam
+                    quisquam numquam quasi recusandae culpa! Perferendis, dolor id. Nostrum porro debitis excepturi
+                    minima, magni error, ducimus asperiores adipisci sunt ex nemo harum! Voluptate, cumque.
+                </p>
+            </div>
+            <div class="points">
+                <ol type="square">
+                    <li>&#8226 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores rem libero
+                        architecto nostrum mollitia corporis molestias dolorum incidunt expedit</li>
+                    <li>&#8226 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores rem libero
+                        architecto nostrum mollitia corporis molestias dolorum incidunt expedit</li>
+                    <li>&#8226 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores rem libero
+                        architecto nostrum mollitia corporis molestias dolorum incidunt expedita</li>
+                </ol>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <i class="ri-git-repository-private-fill"></i>
+                    <h3>Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nobis, fuga facere corporis assumenda cupiditate soluta officiis sequi pariatur illo voluptates suscipit, doloremque repudiandae. Dignissimos id excepturi nihil perferendis ex?</p>
+                </div>
+                <div class="card">
+                    <i class="ri-git-repository-private-fill"></i>
+                    <h3>Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nobis, fuga facere corporis assumenda cupiditate soluta officiis sequi pariatur illo voluptates suscipit, doloremque repudiandae. Dignissimos id excepturi nihil perferendis ex?</p>
+                </div>
+                <div class="card">
+                    <i class="ri-git-repository-private-fill"></i>
+                    <h3>Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nobis, fuga facere corporis assumenda cupiditate soluta officiis sequi pariatur illo voluptates suscipit, doloremque repudiandae. Dignissimos id excepturi nihil perferendis ex?</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
