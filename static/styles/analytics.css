@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+.analyticsmain{
+    margin-left: 5rem;
+}
+.analyticsmain span{
+    color: var(--dark);
+}
+
+.flexcontain{
+    display: flex;
+    justify-content: space-around;
+}
+
+.chart{
+    display: flex;
+    justify-content: start;
+}
+
+.bio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bio .contents{
+    background-color: gainsboro;
+    padding: 40px;
+    border-radius: 6px;
+}
+
+.medal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 920px) {
+    .analyticsmain{
+        margin-left: 0;
+    }
+}

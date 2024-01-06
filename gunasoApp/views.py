@@ -286,3 +286,6 @@ def readstory(request):
     stories = Story.objects.all()[::-1]
     context = {"stories":stories}
     return render(request, 'readstory.html', context)
+
+def analytics(request):
+    return render(request, 'analytics.html')

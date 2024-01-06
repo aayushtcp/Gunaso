@@ -35,6 +35,7 @@ urlpatterns = [
     path('login/',views.handleLogin, name='login'),
     
     path('user/<str:category>/', views.user_timeline, name='user_timeline'), #category is username from url
+    path('analytics/', views.analytics, name='analytics'), #category is username from url for analytics
     
     path('logout/',views.handleLogout, name='logout'),
     
