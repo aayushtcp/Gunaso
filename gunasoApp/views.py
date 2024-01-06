@@ -274,10 +274,10 @@ def writestory(request):
         storyContent = request.POST['storycontent']
         saveStory = Story(user=user, storySubject= storySubject, storyType=storyType, storyContent=storyContent)
         saveStory.save()
-        return render(request, 'writestory.html')
+        return redirect('/read-story')
     return render(request, 'writestory.html')
 
 def readstory(request):
-    stories = Story.objects.all()
+    stories = Story.objects.all()[::-1]
     context = {"stories":stories}
     return render(request, 'readstory.html', context)

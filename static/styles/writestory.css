@@ -73,16 +73,105 @@
     transition: background 0s;
 }
 
-
 .writestorymain {
     margin-left: 4.9rem;
 }
-.writestorymain span{
+
+.writestorymain span {
     color: var(--dark);
 }
 
+.flexcontain{
+    display: flex;
+}
+
+.rules{
+    flex-basis: 50%;
+    padding: 10px;
+}
+
+.rules ul{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.rules ul li{
+    background-color: var(--dark);
+    padding: 15px;
+    border-radius: 6px;
+}
+.rulesimg{
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rules img{
+    height: 100%;
+    width:auto;
+}
+.mainfrom{
+    padding: 10px;
+    flex-basis:50%;
+    display: flex;
+    justify-content: center;
+}
+.mainfrom form{
+    padding: 15px;
+    width: 80%;
+    height: 65vh;
+    color: #fff;
+    background-color: var(--darkgreen);
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[name="subject"] {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 4px;
+    color: #fff;
+    border-radius: 5px;
+    height: 5vh;
+    background: #18113c;
+}
+textarea{
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 4px;
+    color: #fff;
+    border-radius: 5px;
+    height: 32vh;
+    background: #18113c;
+}
+select, option{
+    background-color:#18113c;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+form .col{
+    display: flex;
+    flex-direction: column;
+}
 @media (max-width: 991px) {
     .writestorymain {
         margin: 0;
+    }
+    .flexcontain{
+        flex-direction: column;
+    }
+    .mainfrom form{
+        padding: 15px;
+        width: 95%;
+        height: 58vh;
     }
 }

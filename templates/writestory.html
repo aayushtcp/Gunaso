@@ -17,32 +17,46 @@
     {% block content %}
     <div class="writestorymain">
         <h2>Write <span>Story</span></h2>
-        <h3>Some Rules:</h3>
-        <ul>
-            <li>Rule 1</li>
-            <li>Rule 2</li>
-            <li>Rule 3</li>
-            <li>Rule 4</li>
-        </ul>
-        <form action="" method="post">
-            {% csrf_token %}
-            <label for="">Write a Subject: </label>
-            <input type="text" name="subject" id="subject">
-            <br>
-            <label for="">Choose Story Type:</label>
-            <select name="storytype" id="">
-                <option value="lovestory">Love Story</option>
-                <option value="thriller">Thriller</option>
-                <option value="emotional">Emotional</option>
-                <option value="happy">Happy</option>
-                <option value="politics">Politics</option>
-                <option value="meetup">Meetup</option>
-            </select>
-            <br>
-            <label for="">Your Story:</label>
-            <textarea name="storycontent" id="" cols="30" rows="10"></textarea>
-            <input type="submit" class="copybtn" value="Post">
-        </form>
+        <div class="flexcontain">
+            <div class="rules">
+                <div class="rulesimg">    
+                    <img src="{% static 'images/story5.png' %}" alt="">
+                </div>
+                <h3>Some Rules:</h3>
+                <ul>
+                    <li>Rule 1</li>
+                    <li>Rule 2</li>
+                    <li>Rule 3</li>
+                    <li>Rule 4</li>
+                </ul>
+            </div>
+            <div class="mainfrom">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="col">
+                        <!-- <label for="">Write a Subject: </label> -->
+                        <input placeholder="Subject of Story" type="text" name="subject" id="subject">
+                    </div>
+                    <div class="col">
+                        <label for="">Choose Story Type:</label>
+                        <select name="storytype" id="">
+                            <option value="lovestory">Love Story</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="emotional">Emotional</option>
+                            <option value="happy">Happy</option>
+                            <option value="politics">Politics</option>
+                            <option value="meetup">Meetup</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <!-- <label for="">Your Story:</label> -->
+
+                        <textarea placeholder="Write a story..." name="storycontent" id="" cols="30" rows="10"></textarea>
+                        <input type="submit" class="copybtn" value="Post">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     {% endblock %}
 </body>
