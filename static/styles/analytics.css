@@ -32,6 +32,7 @@
 }
 
 .flexcontain{
+    padding: 20px;
     display: flex;
     justify-content: space-around;
 }
@@ -62,5 +63,15 @@
 @media (max-width: 920px) {
     .analyticsmain{
         margin-left: 0;
+    }
+    .flexcontain{
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .chart{
+        justify-content: center;
+    }
+    .analyticsmain>h2{
+        text-align: center;
     }
 }

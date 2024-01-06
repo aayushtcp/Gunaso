@@ -287,5 +287,44 @@ def readstory(request):
     context = {"stories":stories}
     return render(request, 'readstory.html', context)
 
+@login_required(login_url='/login/')
 def analytics(request):
-    return render(request, 'analytics.html')
+    data = []
+    date =[]
+    finaldate_set = set()
+    extracted_category  = request.user
+    user_posts = UserPost.objects.filter(category=request.user)
+
+    date_count = defaultdict(int)
+
+    for item in user_posts:
+        data.append(item.category)
+        date.append(item.created_at)
+        
+    # Remove Decimal objects by converting them to int
+    actualdata = len(data)
+    actualdate = [str(y) for y in date]
+    
+    for date_str in actualdate:
+        # Convert string to datetime object
+        try:
+            date_object = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f%z')
+        except ValueError:
+            date_object = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S%z')
+        # Get the formatted date with month name
+        formatted_date = date_object.strftime('%d %B %Y %H:%M:%S %z')
+        
+        finaldate_set.add(formatted_date[3:6])
+        date_count[formatted_date[3:6]] += 1 
+        
+    finaldate = list(finaldate_set)
+    date_count_list = [date_count[date] for date in finaldate]
+
+    uppercontext = {
+        'user_posts': user_posts,   
+        'extracted_category': extracted_category,
+        'actualdata': actualdata,
+        'finaldate': finaldate,
+        'date_count_list':date_count_list,
+    }
+    return render(request, 'analytics.html', uppercontext)
