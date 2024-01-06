@@ -116,6 +116,7 @@
     flex-basis:50%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .mainfrom form{
     padding: 15px;

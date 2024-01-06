@@ -96,6 +96,7 @@ class Contact(models.Model):
 class Story(models.Model):
     sno = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # slug = models.CharField(max_length=50)
     storySubject = models.CharField(max_length = 255)
     storyType = models.CharField(max_length = 50)
     storyContent = models.TextField(blank=True)

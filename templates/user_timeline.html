@@ -63,6 +63,22 @@
                         <h3>Bio:</h3>
                             <p>Bio hai yo chai mero</p>
                     </div>
+                    {% if actualdata > 0 and actualdata <= 20 %}
+                    <div class="gamyfication">
+                        <h4>Bronze Medal</h4>
+                        <img src="{% static 'images/bronze.png' %}" alt="">
+                    </div>
+                    {% elif actualdata > 20 and actualdata <= 100 %}
+                    <div class="gamyfication">
+                        <h4>Silver Medal</h4>
+                        <img src="{% static 'images/silver.png' %}" alt="">
+                    </div>
+                    {% elif actualdata > 100 and actualdata <= 500 %}
+                    <div class="gamyfication">
+                        <h4>Gold Medal</h4>
+                        <img src="{% static 'images/gold.png' %}" alt="">
+                    </div>
+                    {% endif %}
                     <a href="/">
                         <button class="copybtn" style="width: 6em;">Your Story</button>
                     </a>

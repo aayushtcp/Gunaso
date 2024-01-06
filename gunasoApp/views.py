@@ -196,6 +196,11 @@ def user_timeline(request, category):
     visited_user_profiles = Profile.objects.filter(user=visited_user)
     
     date_count_list = [date_count[date] for date in finaldate]
+    
+    ######################
+    #####           ######
+    ## for batch system ##
+    
     uppercontext = {
         'user_posts': user_posts,   
         'extracted_category': extracted_category,
