@@ -17,11 +17,17 @@
     {% block content %}
     <div class="readstorymain">
         <h2>Read <span>Story:</span></h2>
-
-        {% for item in stories %}
-        <h3>{{item.storySubject}}</h3>
-        <p>{{item.storyContent}}</p>
-        {% endfor %}
+        <div class="flexcontain">
+            {% for item in stories %}
+            <div class="storycard">
+                <h2>{{item.storySubject}}</h2>
+                <p>{{item.storyContent}}</p>
+                <div class="forbtn">
+                    <button class="copybtn">Read More</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     {% endblock %}
 </body>

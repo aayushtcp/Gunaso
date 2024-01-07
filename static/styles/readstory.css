@@ -31,7 +31,7 @@
     width: 6em;
     height: 2em;
     line-height: 1.9em;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 10px 0;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color);
@@ -82,8 +82,31 @@
     color: var(--dark);
 }
 
+.flexcontain{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 3rem;
+}
+
+.storycard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 6px;
+    height: 40vh;
+    background-color: gainsboro;
+}
+.forbtn {
+    margin-top: auto;
+}
 @media (max-width: 991px) {
     .readstorymain {
         margin: 0;
+    }
+    .flexcontain{
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px 15px;
     }
 }
