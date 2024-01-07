@@ -85,8 +85,17 @@
 .flexcontain{
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     padding: 10px 3rem;
+    margin-bottom: 4rem;
+}
+
+
+.flexcontain p{
+    color: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: var(--dark);
 }
 
 .storycard{
@@ -103,6 +112,10 @@
 }
 @media (max-width: 991px) {
     .storyviewmain {
-        margin: 0;
+        margin: 5px;
+    }
+
+    .flexcontain{
+        padding: 10px;
     }
 }
