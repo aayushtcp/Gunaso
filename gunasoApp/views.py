@@ -328,3 +328,9 @@ def analytics(request):
         'date_count_list':date_count_list,
     }
     return render(request, 'analytics.html', uppercontext)
+
+# to view the full story
+def storyview(request, slug):
+    fullstory  = Story.objects.filter(slug=slug).first()
+    context = {"fullstory": fullstory}
+    return render(request, 'storyview.html', context)

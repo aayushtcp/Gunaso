@@ -23,7 +23,9 @@
                 <h2>{{item.storySubject}}</h2>
                 <p>{{item.storyContent}}</p>
                 <div class="forbtn">
-                    <button class="copybtn">Read More</button>
+                    <a class="copybtn" href="/read-story/{{item.slug}}">
+                    Read More
+                    </a>
                 </div>
             </div>
             {% endfor %}
