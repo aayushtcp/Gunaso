@@ -108,3 +108,8 @@ class Story(models.Model):
         super().save(*args, **kwargs)
     def __str__(self):
         return f"Story By -- {self.user}"
+    
+    
+# class Myday(models.Model):
+#     user = models.ForeignKey(User, ondelete=models.CASCADE)
+#     file = models.ImageField(upload_to='status')

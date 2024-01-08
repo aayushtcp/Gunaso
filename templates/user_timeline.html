@@ -51,6 +51,11 @@
             </div>
             <div class="rightside">
                 <div class="chartcontain">
+                    <div class="myday">
+                        <div class="mydaycard">card</div>
+                        <div class="mydaycard">card</div>
+                        <div class="mydaycard">x</div>
+                    </div>
                     <center>
                         <h3>Received Messages: {{actualdata}}</h3>
                         <div id="container" style="width: 60%;">
@@ -87,7 +92,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-    <script>
+    <!-- <script>
         var ctx = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx, {
             type: 'pie',
@@ -141,7 +146,7 @@
             }
         }
         })
-    </script>
+    </script> -->
     {% endblock %}
 
 </body>

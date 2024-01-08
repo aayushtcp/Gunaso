@@ -51,6 +51,7 @@ urlpatterns = [
     path('read-story/',views.readstory, name='readstory'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
+    path('privacy-policy/',views.privacypolicy, name='privacypolicy'),
     
     path('postThoughts/',views.postThoughts, name='postThoughts'),
     

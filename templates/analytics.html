@@ -26,11 +26,29 @@
                         </div>
                     </center>
                 </div>
-                <div class="bio">
-                    <div class="contents">
-                        <h3>Bio:</h3>
-                        <p>This is my bio</p>
-                    </div>
+                <div class="ourtable">
+                    <table>
+                        <thead>
+                            <h3>Global <span>Score</span> Board</h3>
+                            <strong>(Top 5)</strong>
+                        </thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Name</th>
+                            <th>Confessions</th>
+                            <th>Medal</th>
+                        </tr>
+                        {% for user in top_users %}
+                        <tr>
+                            <th>{{ forloop.counter }}</th>
+                            <th>{{ user.username }}</th>
+                            <th>{{ user.post_count }}</th>
+                            {% if user.post_count < 5 %} <!-- <th>Bronze</th> -->
+                                <th> <img src="{% static 'images/bronze.png' %}" alt=""></th>
+                                {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
                 <div class="medal">
                     {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
@@ -54,7 +72,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-    <script>
+    <!-- <script>
         var ctx = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx, {
             type: 'pie',
@@ -108,7 +126,7 @@
             }
         }
         })
-    </script>
+    </script> -->
     {% endblock %}
 </body>
 

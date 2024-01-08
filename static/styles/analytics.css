@@ -59,6 +59,24 @@
     align-items: center;
 }
 
+.ourtable{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ourtable img{
+    height: 34px;
+    width: 30px;
+}
+
+table,tr,th{
+    background-color:gainsboro;
+    padding: 10px 20px;
+    border: 2px solid var(--dark);
+    border-collapse: collapse;
+}
+
 
 @media (max-width: 920px) {
     .analyticsmain{

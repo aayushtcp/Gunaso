@@ -180,6 +180,25 @@ textarea:focus {
     flex-basis: 90%;
 }
 
+.myday {
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 10px;
+    margin-left: 3rem;
+    padding: 10px;
+}
+
+.mydaycard {
+    background-color: gainsboro;
+    width: 4rem;
+    height: 4rem;
+    border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 /* for small screen cards */
 @media (max-width: 920px) {
     .famoustopicsmain {

@@ -16,6 +16,7 @@ from django.core.files.storage import default_storage
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
 from collections import defaultdict
+from django.db.models import Count
 # from .forms import UserProfileForm
 
 
@@ -294,6 +295,7 @@ def analytics(request):
     finaldate_set = set()
     extracted_category  = request.user
     user_posts = UserPost.objects.filter(category=request.user)
+    top_users = User.objects.annotate(post_count=Count('userpost')).order_by('-post_count')[:3]
 
     date_count = defaultdict(int)
 
@@ -326,6 +328,7 @@ def analytics(request):
         'actualdata': actualdata,
         'finaldate': finaldate,
         'date_count_list':date_count_list,
+        'top_users': top_users
     }
     return render(request, 'analytics.html', uppercontext)
 
@@ -334,3 +337,8 @@ def storyview(request, slug):
     fullstory  = Story.objects.filter(slug=slug).first()
     context = {"fullstory": fullstory}
     return render(request, 'storyview.html', context)
+
+
+
+def privacypolicy(request):
+    return render(request, 'privacypolicy.html')
