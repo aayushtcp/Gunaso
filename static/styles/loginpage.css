@@ -85,12 +85,6 @@
     align-items: center;
     gap: 8rem;
     margin-bottom: 4rem;
-    /* height: 70vh;
-    width: 25%;
-    margin: auto 70%;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: red; */
 }
 
 .maintwo{
@@ -120,6 +114,7 @@ form input{
     width: 64%;
     height: 45px;
     border: none;
+    outline: none;
     background-color: #fff;
     border-radius: 4px;
     font-size: 22px;

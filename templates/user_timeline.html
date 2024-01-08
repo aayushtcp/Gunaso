@@ -60,6 +60,7 @@
                     </center>
                 </div>
                 <div class="catandside">
+                    {% if user_posts%}
                     <div class="myday">
                         <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -70,6 +71,7 @@
                         <div class="mydaycard"></div>
                         <div class="mydaycard"></div>
                     </div>
+                    {% endif %}
                     <div class="categoriesdiv">
                         <h3>Bio:</h3>
                         <p>Bio hai yo chai mero</p>
