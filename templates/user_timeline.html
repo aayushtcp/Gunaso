@@ -29,7 +29,8 @@
                         {% csrf_token %}
                         <label for="">Your Thoughts</label>
                         <br>
-                        <textarea name="content" id="" placeholder="Say Something about {{extracted_category}}"></textarea>
+                        <textarea name="content" id=""
+                            placeholder="Say Something about {{extracted_category}}"></textarea>
                         <br>
                         <input type="submit" value="Post" class="copybtn">
                     </form>
@@ -51,11 +52,6 @@
             </div>
             <div class="rightside">
                 <div class="chartcontain">
-                    <div class="myday">
-                        <div class="mydaycard">card</div>
-                        <div class="mydaycard">card</div>
-                        <div class="mydaycard">x</div>
-                    </div>
                     <center>
                         <h3>Received Messages: {{actualdata}}</h3>
                         <div id="container" style="width: 60%;">
@@ -64,35 +60,42 @@
                     </center>
                 </div>
                 <div class="catandside">
+                    <div class="myday">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" id="file-input" name="file-input" />
+
+                            <label id="file-input-label" for="file-input">+</label>
+                        </form>
+                        <div class="mydaycard"></div>
+                        <div class="mydaycard"></div>
+                    </div>
                     <div class="categoriesdiv">
                         <h3>Bio:</h3>
-                            <p>Bio hai yo chai mero</p>
+                        <p>Bio hai yo chai mero</p>
                     </div>
-                    {% if actualdata > 0 and actualdata <= 20 %}
-                    <div class="gamyfication">
+                    {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
                         <h4>Bronze Medal</h4>
                         <img src="{% static 'images/bronze.png' %}" alt="">
-                    </div>
-                    {% elif actualdata > 20 and actualdata <= 100 %}
-                    <div class="gamyfication">
-                        <h4>Silver Medal</h4>
-                        <img src="{% static 'images/silver.png' %}" alt="">
-                    </div>
-                    {% elif actualdata > 100 and actualdata <= 500 %}
-                    <div class="gamyfication">
-                        <h4>Gold Medal</h4>
-                        <img src="{% static 'images/gold.png' %}" alt="">
-                    </div>
-                    {% endif %}
-                    <a href="/">
-                        <button class="copybtn" style="width: 6em;">Your Story</button>
-                    </a>
                 </div>
+                {% elif actualdata > 20 and actualdata <= 100 %} <div class="gamyfication">
+                    <h4>Silver Medal</h4>
+                    <img src="{% static 'images/silver.png' %}" alt="">
             </div>
+            {% elif actualdata > 100 and actualdata <= 500 %} <div class="gamyfication">
+                <h4>Gold Medal</h4>
+                <img src="{% static 'images/gold.png' %}" alt="">
         </div>
+        {% endif %}
+        <a href="/">
+            <button class="copybtn" style="width: 6em;">Your Story</button>
+        </a>
+    </div>
+    </div>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-    <!-- <script>
+    <script>
         var ctx = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx, {
             type: 'pie',
@@ -104,35 +107,35 @@
             // data: ['40', '10', '30'],
             data: {{ date_count_list| safe}},
             backgroundColor: [
-                'rgba(255, 63, 164, 1)',
-                'rgba(117, 79, 254, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 135, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(151, 102, 132, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(54, 162, 135, 1)',
-                'rgba(25, 206, 86, 1)',
-                'rgba(211, 192, 192, 1)',
-                'rgba(234, 102, 132, 1)',
-                'rgba(153, 99, 132, 1)',
-                'rgba(255, 159, 64, 1)',
-                'green',
-                'yellow',
-            ],
+            'rgba(255, 63, 164, 1)',
+            'rgba(117, 79, 254, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 135, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(151, 102, 132, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 135, 1)',
+            'rgba(25, 206, 86, 1)',
+            'rgba(211, 192, 192, 1)',
+            'rgba(234, 102, 132, 1)',
+            'rgba(153, 99, 132, 1)',
+            'rgba(255, 159, 64, 1)',
+            'green',
+            'yellow',
+        ],
 
-                borderColor: [
-                    'rgba(54, 162, 135, 1)',
-                    'rgba(25, 206, 86, 1)',
-                    'rgba(211, 192, 192, 1)',
-                    'rgba(234, 102, 132, 1)',
-                    'rgba(153, 99, 132, 1)',
-                    'rgba(255, 159, 64, 1)',
+            borderColor: [
+            'rgba(54, 162, 135, 1)',
+            'rgba(25, 206, 86, 1)',
+            'rgba(211, 192, 192, 1)',
+            'rgba(234, 102, 132, 1)',
+            'rgba(153, 99, 132, 1)',
+            'rgba(255, 159, 64, 1)',
 
-                ],
+        ],
 
-                    borderWidth: 0
+            borderWidth: 0
                 }]
             },
 
@@ -146,7 +149,7 @@
             }
         }
         })
-    </script> -->
+    </script>
     {% endblock %}
 
 </body>

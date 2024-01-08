@@ -111,5 +111,5 @@ class Story(models.Model):
     
     
 # class Myday(models.Model):
-#     user = models.ForeignKey(User, ondelete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "status")
 #     file = models.ImageField(upload_to='status')
