@@ -51,60 +51,123 @@
                 <!-- Your Thoughts System Ends-->
             </div>
             <div class="rightside">
-                <div class="chartcontain">
-                    <center>
-                        <h3>Received Messages: {{actualdata}}</h3>
-                        <div id="container" style="width: 50%;">
-                            <canvas id="myChart1"></canvas>
+                <div class="flexwrapper">
+                    <div class="one">
+                        <center>
+                            <h3>Received Messages: {{actualdata}}</h3>
+                            <div id="container" style="width: 90%;">
+                                <canvas id="myChart1"></canvas>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="one">
+                        {% if user_posts%}
+                        <h3>Feature <span class="imgspan">Image</span></h3>
+                        <div class="myday">
+                            {% if not myfeature %}
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" id="file-input" name="file-input" />
+                                <label id="file-input-label" for="file-input">+</label>
+                            </form>
+                            {% endif %}
+                            {% for myfeature in myfeature %}
+                            <div class="mydaycard" onclick="openFullScreen()"
+                                style="background-image: url({{myfeature.file.url}});">
+                            </div>
+                            {% endfor %}
+                            {% for myfeature in myfeature %}
+                            <div id="fullscreen-overlay" class="fullscreen-overlay">
+                                <span class="close-btn" onclick="closeFullScreen()">X</span>
+                                <img src="{{myfeature.file.url}}" alt="Large Image">
+                            </div>
+                            {% endfor %}
                         </div>
-                    </center>
-                </div>
-                <div class="catandside">
-                    <!-- <div class="categoriesdiv">
-                        <h3>Bio:</h3>
-                        <p>Bio hai yo chai mero</p>
-                    </div> -->
-                    {% if user_posts%}
-                    <h3>Feature <span class="imgspan">Image</span></h3>
-                    <div class="myday">
-                        {% if not myfeature %}
-                        <form action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input type="file" id="file-input" name="file-input" />
-                            <label id="file-input-label" for="file-input">+</label>
-                        </form>
                         {% endif %}
-                        {% for myfeature in myfeature %}
-                        <div class="mydaycard" onclick="openFullScreen()"
-                            style="background-image: url({{myfeature.file.url}});">
-                        </div>
-                        {% endfor %}
-                        {% for myfeature in myfeature %}
-                        <div id="fullscreen-overlay" class="fullscreen-overlay">
-                            <span class="close-btn" onclick="closeFullScreen()">X</span>
-                            <img src="{{myfeature.file.url}}" alt="Large Image">
-                        </div>
-                        {% endfor %}
+                    </div>
+                    <div class="onebottom">
+                        <center>
+                            {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
+                                <img src="{% static 'images/bronze.png' %}" alt="">
+                                <h4>Bronze Medal</h4>
+                    </div>
+                    {% elif actualdata > 20 and actualdata <= 100 %} <div class="gamyfication">
+                        <img src="{% static 'images/silver.png' %}" alt="">
+                        <h4>Silver Medal</h4>
+                </div>
+                {% elif actualdata > 100 and actualdata <= 500 %} <div class="gamyfication">
+                    <img src="{% static 'images/gold.png' %}" alt="">
+                    <h4>Gold Medal</h4>
+            </div>
+            {% endif %}
+            </center>
+        </div>
+        <div class="onebottom">
+            <div class="biocontent">
+                <strong>Bio:</strong>
+                <p>Shojo, Santaaa, Sushil Programmer - Xarkke</p>
+            </div>
+        </div>
+    </div>
+    <div class="particularstory">
+        <center>
+            <a href="/">
+                <button class="copybtn" style="width: 6em;">Your Story</button>
+            </a>
+        </center>
+    </div>
+    <!-- <div class="chartcontain">
+            <center>
+                <h3>Received Messages: {{actualdata}}</h3>
+                <div id="container" style="width: 50%;">
+                    <canvas id="myChart1"></canvas>
+                </div>
+            </center>
+        </div>
+        <div class="catandside">
+            {% if user_posts%}
+            <h3>Feature <span class="imgspan">Image</span></h3>
+            <div class="myday">
+                {% if not myfeature %}
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" id="file-input" name="file-input" />
+                    <label id="file-input-label" for="file-input">+</label>
+                </form>
+                {% endif %}
+                {% for myfeature in myfeature %}
+                <div class="mydaycard" onclick="openFullScreen()" style="background-image: url({{myfeature.file.url}});">
+                </div>
+                {% endfor %}
+                {% for myfeature in myfeature %}
+                <div id="fullscreen-overlay" class="fullscreen-overlay">
+                    <span class="close-btn" onclick="closeFullScreen()">X</span>
+                    <img src="{{myfeature.file.url}}" alt="Large Image">
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
+            <h4>Bronze Medal</h4>
+            <img src="{% static 'images/bronze.png' %}" alt="">
+            </div>
+            {% elif actualdata > 20 and actualdata <= 100 %} <div class="gamyfication">
+                <h4>Silver Medal</h4>
+                <img src="{% static 'images/silver.png' %}" alt="">
+                </div>
+                {% elif actualdata > 100 and actualdata <= 500 %} <div class="gamyfication">
+                    <h4>Gold Medal</h4>
+                    <img src="{% static 'images/gold.png' %}" alt="">
+                    </div>
                     </div>
                     {% endif %}
 
-                    {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
-                        <h4>Bronze Medal</h4>
-                        <img src="{% static 'images/bronze.png' %}" alt="">
-                </div>
-                {% elif actualdata > 20 and actualdata <= 100 %} <div class="gamyfication">
-                    <h4>Silver Medal</h4>
-                    <img src="{% static 'images/silver.png' %}" alt="">
-            </div>
-            {% elif actualdata > 100 and actualdata <= 500 %} <div class="gamyfication">
-                <h4>Gold Medal</h4>
-                <img src="{% static 'images/gold.png' %}" alt="">
-        </div>
-        {% endif %}
-        <a href="/">
-            <button class="copybtn" style="width: 6em;">Your Story</button>
-        </a>
-    </div>
+                    <div class="categoriesdiv">
+                        <h3>Bio:</h3>
+                        <p>Bio hai yo chai mero</p>
+                    </div>
+                    </div> -->
     </div>
     </div>
     </div>
@@ -112,7 +175,7 @@
         function openFullScreen() {
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');
             fullscreenOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden';
         }
 
         function closeFullScreen() {

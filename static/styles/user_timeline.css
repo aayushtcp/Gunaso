@@ -41,6 +41,7 @@
     font-weight: 500;
     color: var(--para);
 }
+
 .copybtn:hover {
     color: #fff;
 }
@@ -70,7 +71,59 @@
 
 .leftside {
     padding: 0 10px 10px 10px;
-    flex-basis: 70%;
+    flex-basis: 65%;
+}
+
+.flexwrapper {
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    padding: 10px;
+    gap: 20px 10px;
+}
+.onebottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flexwrapper .one {
+    /* background-color: violet; */
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
+.biocontent {
+    background-color: gainsboro;
+    border-radius: 6px;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.particularstory {
+    padding: 20px;
+    border-radius: 6px;
+    margin-left: 2rem;
+}
+
+.particularstory .copybtn{
+    font-weight: bold;
+    font-size: 20px;
+    height: 10vh;
+    padding: 0 20px;
+    line-height: 1.2em;
+    text-align: center;
+    z-index: 1;
+}
+
+.flexwrapper .onebottom .gamyfication img {
+    z-index: -1;
+    height: 12vh;
 }
 
 .leftside img {
@@ -89,7 +142,7 @@
 
 .rightside {
     padding-top: 13px;
-    flex-basis: 30%;
+    flex-basis: 35%;
     border-radius: 6px;
 }
 
@@ -122,14 +175,6 @@ textarea:focus {
     align-items: center;
 }
 
-.categoriesdiv {
-    margin-top: 1rem;
-    border-radius: 6px;
-    padding: 15px;
-    background-color: gainsboro;
-    text-align: center;
-    width: 70%;
-}
 .comment {
     display: flex;
     gap: 15px;
@@ -183,8 +228,8 @@ textarea:focus {
 .mydaycard {
     cursor: pointer;
     background-color: gainsboro;
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -193,9 +238,11 @@ textarea:focus {
     background-position: center;
     background-repeat: no-repeat;
 }
-.catandside .imgspan{
+
+.catandside .imgspan {
     color: var(--dark);
 }
+
 .fullscreen-overlay {
     display: none;
     position: fixed;
@@ -206,6 +253,7 @@ textarea:focus {
     background: rgba(0, 0, 0, 0.9);
     align-items: center;
     justify-content: center;
+    z-index: 11111;
 }
 
 .fullscreen-overlay img {
@@ -241,20 +289,4 @@ textarea:focus {
     .rightside {
         display: none;
     }
-}
-
-.gamyfication {
-    height: 10.2vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.gamyfication h4 {
-    padding: 5px;
-}
-
-.gamyfication img {
-    height: 7vh;
 }
