@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -198,9 +198,11 @@ def user_timeline(request, category):
     
     date_count_list = [date_count[date] for date in finaldate]
     
-    ######################
-    #####           ######
-    ## for batch system ##
+    #############################
+    #####                  ######
+    ## for user feature system ##
+    #                           #
+    myfeature = MyFeature.objects.filter(user = visited_user)
     
     uppercontext = {
         'user_posts': user_posts,   
@@ -208,7 +210,8 @@ def user_timeline(request, category):
         'actualdata': actualdata,
         'finaldate': finaldate,
         'date_count_list':date_count_list,
-        'visited_user_profiles': visited_user_profiles
+        'visited_user_profiles': visited_user_profiles,
+        'myfeature': myfeature
     }
     return render(request, 'user_timeline.html', uppercontext)
 
@@ -295,8 +298,7 @@ def analytics(request):
     finaldate_set = set()
     extracted_category  = request.user
     user_posts = UserPost.objects.filter(category=request.user)
-    top_users = User.objects.annotate(post_count=Count('userpost')).order_by('-post_count')[:3]
-
+    top_user_posts = UserPost.objects.values('category').annotate(post_count=Count('category')).order_by('-post_count')[:3]
     date_count = defaultdict(int)
 
     for item in user_posts:
@@ -328,7 +330,7 @@ def analytics(request):
         'actualdata': actualdata,
         'finaldate': finaldate,
         'date_count_list':date_count_list,
-        'top_users': top_users
+        'top_user_posts': top_user_posts
     }
     return render(request, 'analytics.html', uppercontext)
 

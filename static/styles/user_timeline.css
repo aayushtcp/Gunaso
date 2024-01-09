@@ -217,8 +217,11 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 /* for small screen cards */
 @media (max-width: 920px) {
