@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/readstory.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="readstorymain">
+        <h2>Read <span>Story:</span></h2>
+        <div class="flexcontain">
+            {% for item in particularStory %}
+            <div class="storycard">
+                <h2>{{item.storySubject}}</h2>
+                <p>
+                    {{item.storyContent|truncatechars:400}}
+                </p>
+                <div class="forbtn">
+                    <a href="/read-story/{{item.slug}}">
+                        <button class="copybtn">
+                            Read More
+                        </button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

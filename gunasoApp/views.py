@@ -340,6 +340,10 @@ def storyview(request, slug):
     context = {"fullstory": fullstory}
     return render(request, 'storyview.html', context)
 
+def yourstory(request):
+    particularStory  = Story.objects.filter(user = request.user)
+    context = {"particularStory":particularStory}
+    return render(request, 'yourstory.html', context)
 
 
 def privacypolicy(request):
