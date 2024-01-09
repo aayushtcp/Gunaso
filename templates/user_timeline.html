@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body">
     {% block content %}
     <div class="famoustopicsmain">
         <div class="containflex">
@@ -54,31 +54,40 @@
                 <div class="chartcontain">
                     <center>
                         <h3>Received Messages: {{actualdata}}</h3>
-                        <div id="container" style="width: 60%;">
+                        <div id="container" style="width: 50%;">
                             <canvas id="myChart1"></canvas>
                         </div>
                     </center>
                 </div>
                 <div class="catandside">
+                    <!-- <div class="categoriesdiv">
+                        <h3>Bio:</h3>
+                        <p>Bio hai yo chai mero</p>
+                    </div> -->
                     {% if user_posts%}
+                    <h3>Feature <span class="imgspan">Image</span></h3>
                     <div class="myday">
+                        {% if not myfeature %}
                         <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="file" id="file-input" name="file-input" />
                             <label id="file-input-label" for="file-input">+</label>
                         </form>
+                        {% endif %}
                         {% for myfeature in myfeature %}
-                        <div class="mydaycard" onclick="openfullImg()"
+                        <div class="mydaycard" onclick="openFullScreen()"
                             style="background-image: url({{myfeature.file.url}});">
                         </div>
                         {% endfor %}
-                        <!-- <div class="mydaycard"></div> -->
+                        {% for myfeature in myfeature %}
+                        <div id="fullscreen-overlay" class="fullscreen-overlay">
+                            <span class="close-btn" onclick="closeFullScreen()">X</span>
+                            <img src="{{myfeature.file.url}}" alt="Large Image">
+                        </div>
+                        {% endfor %}
                     </div>
                     {% endif %}
-                    <div class="categoriesdiv">
-                        <h3>Bio:</h3>
-                        <p>Bio hai yo chai mero</p>
-                    </div>
+
                     {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
                         <h4>Bronze Medal</h4>
                         <img src="{% static 'images/bronze.png' %}" alt="">
@@ -100,12 +109,21 @@
     </div>
     </div>
     <script>
-        function openfullImg(){
-            alert("wucx");
+        function openFullScreen() {
+            var fullscreenOverlay = document.getElementById('fullscreen-overlay');
+            fullscreenOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
         }
+
+        function closeFullScreen() {
+            var fullscreenOverlay = document.getElementById('fullscreen-overlay');
+            fullscreenOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-    <!-- <script>
+    <script>
         var ctx = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx, {
             type: 'pie',
@@ -159,9 +177,9 @@
             }
         }
         })
-    </script> -->
+    </script>
     {% endblock %}
 
-</body>
+    </body>
 
 </html>
