@@ -181,6 +181,7 @@
                 </span>
                 <div class="data_text">
                     <span class="name">{{request.user}}</span>
+                    <br>
                     <span class="email">{{request.user.email}}</span>
                 </div>
                 {% else %}
@@ -209,9 +210,9 @@
             <ul>
                 <h3 class="footer-h3">About Us</h3>
                 <li><a href="">Who are we?</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Our Services</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'services' %}">Our Services</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
         <div class="fthree">
@@ -226,8 +227,8 @@
             <ul>
                 <h3 class="footer-h3">Know More</h3>
                 <li><a href="{% url 'privacypolicy' %}">Privacy Policy</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Developers</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'developers' %}">Developers</a></li>
             </ul>
         </div>
     </footer>

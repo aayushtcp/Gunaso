@@ -23,7 +23,12 @@
                 <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image">
                 {% endfor %}
                 <!-- Your Thoughts System Starts -->
-                <h2>People Thoughts</h2>
+                {% if request.user.username == extracted_category %}
+                <h2>Confessions for You:</h2>
+                {% else %}
+                <h2>People Thoughts:</h2>
+                {% endif %}
+                {% if request.user.username != extracted_category %}
                 <section class="thoughtsform">
                     <form action="" method="post">
                         {% csrf_token %}
@@ -32,9 +37,10 @@
                         <textarea name="content" id=""
                             placeholder="Say Something about {{extracted_category}}"></textarea>
                         <br>
-                        <input type="submit" value="Post" class="copybtn">
+                        <input type="submit" value="Post" class="postbtn">
                     </form>
                 </section>
+                {% endif %}
                 <div class="commentbox">
                     {% for post in user_posts %}
                     <div class="comment">
@@ -140,10 +146,8 @@
             type: 'pie',
             data: {
                 labels: {{ finaldate| safe}},
-        // labels: ["Message"],
         datasets: [{
             label: 'Details',
-            // data: ['40', '10', '30'],
             data: {{ date_count_list| safe}},
             backgroundColor: [
             'rgba(255, 63, 164, 1)',

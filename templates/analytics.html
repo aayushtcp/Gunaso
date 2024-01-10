@@ -43,7 +43,7 @@
                             <th>{{ forloop.counter }}</th>
                             <th>{{ user.category }}</th>
                             <th>{{ user.post_count }}</th>
-                            {% if user.post_count < 5 %} <!-- <th>Bronze</th> -->
+                            {% if user.post_count <= 5 %} <!-- <th>Bronze</th> -->
                                 <th> <img src="{% static 'images/bronze.png' %}" alt=""></th>
                                 {% endif %}
                         </tr>

@@ -388,7 +388,7 @@ button:active:before {
 /* =============================== */
 .footer {
     padding: 2rem 0 0;
-    height: 50vh;
+    height: 40vh;
     background-color: var(--footer);
     margin-left: 4.4rem;
     color: var(--para);
@@ -586,7 +586,7 @@ body {
 
 .menu_title {
     position: relative;
-    height: 50px;
+    height: 45px;
     width: 55px;
 }
 
@@ -651,7 +651,7 @@ body {
 
 .sidebar_profile {
     padding-top: 5px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     gap: 15px;
     border-top: 2px solid rgba(100, 100, 100, 0.3);
 }
