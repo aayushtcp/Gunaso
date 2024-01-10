@@ -83,6 +83,10 @@ ul {
     font-weight: 600;
 }
 
+.glicch{
+    text-shadow: red -3px 0, cyan 3px 0, black -2px 0;
+}
+
 .header .nav-menu {
     padding: 0 15px;
 }

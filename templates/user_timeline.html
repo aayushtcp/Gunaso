@@ -138,9 +138,11 @@
     </div>
     <div class="particularstory">
         <center>
+            {% if request.user.username == extracted_category %}
             <a href="{% url 'yourstory' %}">
                 <button class="copybtn" style="width: 6em;">Your Story</button>
             </a>
+            {% endif %}
         </center>
     </div>
     </div>

@@ -25,7 +25,8 @@
                 <div class="logo">
                     <a href="/">
                         <!-- <img class="logo_img" src="{% static 'hcc.png' %}" alt=""> -->
-                        <span class="img_side_text">Gunaso</span>
+                        <!-- <span class="img_side_text">Gunaso</span> -->
+                        <h2 id="myHeading" class="glicch">Gunaso</h2>
                     </a>
                 </div>
                 <div class="open-nav-menu">
@@ -235,6 +236,16 @@
     <hr>
     <!-- Footer HTML Ends -->
 
+    <!-- <script>
+        setInterval(function() {
+          var heading = document.getElementById("myHeading");
+          if (heading) {
+            heading.classList.toggle("glicch");
+          } else {
+            console.error("Element with ID 'myHeading' not found.");
+          }
+        }, 56);
+      </script> -->
     <script>
         function logoutfunc() {
             location.href = "/logout";
