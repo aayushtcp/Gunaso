@@ -43,9 +43,18 @@
                             <th>{{ forloop.counter }}</th>
                             <th>{{ user.category }}</th>
                             <th>{{ user.post_count }}</th>
-                            {% if user.post_count <= 5 %} <!-- <th>Bronze</th> -->
+                            
+                            {% if user.post_count > 0 and user.post_count <= 20 %}
                                 <th> <img src="{% static 'images/bronze.png' %}" alt=""></th>
-                                {% endif %}
+
+                            {% elif user.post_count > 20 and user.post_count <= 100 %} 
+                                <th> <img src="{% static 'images/silver.png' %}" alt=""></th>
+
+                            {% elif user.post_count > 100 and user.post_count <= 500 %} 
+                                <th> <img src="{% static 'images/gold.png' %}" alt=""></th>
+
+                            {% endif %}
+
                         </tr>
                         {% endfor %}
                     </table>

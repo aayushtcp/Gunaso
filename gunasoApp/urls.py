@@ -50,6 +50,7 @@ urlpatterns = [
     path('read-story/<str:slug>',views.storyview, name='storyview'),
     path('read-story/',views.readstory, name='readstory'),
     path('yourstory/',views.yourstory, name='yourstory'),
+    path('deleteConfession/<int:id>/', views.deleteConfession, name='deleteConfession'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
     path('privacy-policy/',views.privacypolicy, name='privacypolicy'),

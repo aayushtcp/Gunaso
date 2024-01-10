@@ -249,6 +249,28 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.deletepost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 4px;
+    transition: 0.4s all ease-in-out;
+}
+.deletepost a{
+    text-decoration: none;
+    color: #fff;
+}
+.deletepost i {
+    cursor: pointer;
+}
+
+.deletepost i:hover {
+    color: red;
 }
 
 .mydaycard {

@@ -34,7 +34,8 @@ body.hidden-scrolling {
     margin: 1rem 0;
 }
 .bannerpar{
-    text-align: justify;
+    text-align: center;
+    padding:  0 300px;
 }
 
 .copybtn{

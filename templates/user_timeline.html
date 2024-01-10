@@ -51,6 +51,15 @@
                             <h4>Anonymous</h4>
                             <p>{{ post.content }}</p>
                         </div>
+                        {% if request.user.username == extracted_category %}
+                            <div class="deletepost">
+                                <a href="/deleteConfession/{{post.id}}">
+                                     <i class="fa-solid fa-trash-can"></i>
+                                </a>
+                            </div>
+                        </form>
+                        
+                            {% endif %}
                     </div>
                     {% endfor %}
                 </div>
@@ -67,16 +76,21 @@
                         </center>
                     </div>
                     <div class="one">
-                        {% if user_posts%}
                         <h3>Feature <span class="imgspan">Image</span></h3>
                         <div class="myday">
                             {% if not myfeature %}
-                            <form action="" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <input type="file" id="file-input" name="file-input" />
-                                <label id="file-input-label" for="file-input">+</label>
-                            </form>
+                                {% if request.user.username != extracted_category %}
+                                <h3>No Feature</h3>
+                                {% else %}
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" id="file-input" accept="image/*" name="file-input" onchange="displayImage(this)" />
+                                    <label id="file-input-label" for="file-input">+</label>
+                                    <input type="submit" value="Post" class="postbtn">
+                                </form>
+                                {% endif %}
                             {% endif %}
+
                             {% for myfeature in myfeature %}
                             <div class="mydaycard" onclick="openFullScreen()"
                                 style="background-image: url({{myfeature.file.url}});">
@@ -89,7 +103,6 @@
                             </div>
                             {% endfor %}
                         </div>
-                        {% endif %}
                     </div>
                     <div class="onebottom">
                         <center>
@@ -136,6 +149,17 @@
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');
             fullscreenOverlay.style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+        function displayImage(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('file-input-label').style.backgroundImage = 'url(' + e.target.result + ')';
+                    document.getElementById('file-input-label').innerHTML = " ";
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
     </script>

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.core.mail import send_mail
 import re
 
@@ -187,10 +188,21 @@ def user_timeline(request, category):
         
     finaldate = list(finaldate_set)
     
+    if request.user.username == extracted_category:
+        if request.method == 'POST':
+            # for feature image setup
+            if 'file-input' in request.FILES:
+                userimageFeature= request.FILES['file-input']
+                feature = MyFeature(user = request.user, file = userimageFeature)
+                feature.save()
+                return redirect('user_timeline', category=extracted_category)
+            return redirect('user_timeline', category=extracted_category)
     if request.method == 'POST':
         content = request.POST.get('content')
         hm = UserPost(user = request.user,category = extracted_category, content = content)
         hm.save()
+        
+        messages.success(request, 'Thought posted successfully.')
         return redirect('user_timeline', category=extracted_category)
     
     visited_user = User.objects.get(username=extracted_category)
@@ -345,6 +357,12 @@ def yourstory(request):
     context = {"particularStory":particularStory}
     return render(request, 'yourstory.html', context)
 
+
+def deleteConfession(request, id):
+    dele = UserPost.objects.filter(id=id)
+    dele.delete()
+    messages.success(request, "Deleted")
+    return redirect('/')
 
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
