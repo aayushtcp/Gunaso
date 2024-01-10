@@ -361,7 +361,13 @@ def yourstory(request):
 def deleteConfession(request, id):
     dele = UserPost.objects.filter(id=id)
     dele.delete()
-    messages.success(request, "Deleted")
+    messages.success(request, "Deleted the post")
+    return redirect('/')
+
+def deleteFeature(request, id):
+    dele = MyFeature.objects.filter(id=id)
+    dele.delete()
+    messages.success(request, "Deleted Featured Image")
     return redirect('/')
 
 def privacypolicy(request):
