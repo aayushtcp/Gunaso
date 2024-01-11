@@ -262,6 +262,15 @@ textarea:focus {
     padding-right: 4px;
     transition: 0.4s all ease-in-out;
 }
+.deleteconfession{
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--footer);
+    color: #fff;
+}
 .containflex a{
     text-decoration: none;
     color: #fff;
@@ -270,8 +279,9 @@ textarea:focus {
     cursor: pointer;
 }
 
-.containflex i:hover {
-    color: red;
+.deleteconfession:hover {
+    background-color: var(--hotish);
+    color: var(--footer);
 }
 
 .mydaycard {

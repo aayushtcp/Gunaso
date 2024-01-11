@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound
 from django.core.mail import send_mail
 import re
 
@@ -18,6 +18,7 @@ from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
 from collections import defaultdict
 from django.db.models import Count
+from django.urls import resolve
 # from .forms import UserProfileForm
 
 
@@ -364,11 +365,32 @@ def yourstory(request):
     context = {"particularStory":particularStory}
     return render(request, 'yourstory.html', context)
 
-
-def deleteConfession(request, id):
-    dele = UserPost.objects.filter(id=id)
-    dele.delete()
-    messages.success(request, "Deleted the post")
+@login_required(login_url='/login/')
+def deleteConfession(request,category,post_id):
+    current_path = request.path
+    path_parts = current_path.split('/')
+    path_parts = [part for part in path_parts if part]
+    
+    extracted_category = path_parts[-3] if path_parts else None
+    print("theurl:------", extracted_category)
+    print("the_user_is:------", request.user)
+            
+            
+    # Get the specific post by post_id
+    try:
+        post = UserPost.objects.get(id=post_id)
+    except UserPost.DoesNotExist:
+        return HttpResponseNotFound("Post not found.")
+    # ! BUGGGGGGGGGGGG here
+    # post = UserPost.objects.filter(category=category)
+    # Check if the logged-in user is the owner of the post
+    if request.user.username != extracted_category:
+        return HttpResponseForbidden("You do not have permission to delete this post.")
+    else:
+        # Only proceed with deletion if the user is the owner
+        post.delete()
+        messages.success(request, "Deleted the post")
+        return redirect('/')
     return redirect('/')
 
 def deleteFeature(request, id):

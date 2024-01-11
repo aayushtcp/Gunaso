@@ -135,14 +135,14 @@ ul {
 
 .contentlogo .text:before {
     left: 3px;
-    text-shadow: -2px 0 var(--dark);
-    animation: glitch-1 1s linear infinite reverse;
+    text-shadow: -2px 0 var(--hotish);
+    animation: glitch-1 2.5s linear infinite reverse;
 }
 
 .contentlogo .text:after {
     left: -3px;
-    text-shadow: -2px 0 var(--hotish);
-    animation: glitch-2 1s linear infinite reverse;
+    text-shadow: -2px 0 var(--dark);
+    animation: glitch-2 2.5s linear infinite reverse;
 }
 
 @keyframes glitch-1 {
