@@ -97,18 +97,6 @@ img {
     text-align: center;
 }
 
-.error {
-    color: red;
-}
-
-.success {
-    color: black;
-}
-
-.warning {
-    color: rgba(190, 255, 27, 0.923);
-}
-
 .index-main {
     margin-left: 4.7244rem;
     display: flex;

@@ -44,6 +44,7 @@ def prehandleLogin(request):
 # Signup
 def handleSignup(request):
     if request.method == 'POST':
+        first_name = request.POST['intro']
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
@@ -65,6 +66,7 @@ def handleSignup(request):
             messages.error(request, "Username already exists")
             return redirect('/signup')
         myuser = User.objects.create_user(username, email, password)
+        myuser.first_name = first_name  #first name is for intro(bio)
         myuser.save()
         
         # !login directly user starts
@@ -218,6 +220,7 @@ def user_timeline(request, category):
     ## for user feature system ##
     #                           #
     myfeature = MyFeature.objects.filter(user = visited_user)
+    myintro = User.objects.filter(username = visited_user)
     
     uppercontext = {
         'user_posts': user_posts,   
@@ -226,7 +229,8 @@ def user_timeline(request, category):
         'finaldate': finaldate,
         'date_count_list':date_count_list,
         'visited_user_profiles': visited_user_profiles,
-        'myfeature': myfeature
+        'myfeature': myfeature,
+        'myintro': myintro
     }
     return render(request, 'user_timeline.html', uppercontext)
 

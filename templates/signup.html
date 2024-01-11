@@ -29,19 +29,21 @@
     <div class="main">
         <div class="mainone">
             <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <h2>Signup:</h2>
                 <ul class="messages">
                     {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                         {% endfor %}
                 </ul>
-                {% csrf_token %}
                 <!-- <label for="image">Profile Picture:</label> -->
                 <div class="profilepiccontainer" id="profilePicContainer">
                     <!-- Display uploaded image here -->
                 </div>  
                 <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)">
                 <!-- <input type="file" name="image" id="id_image" accept="image/*" required> -->
+                <label>Your Intro:</label>
+                <input class="generalinp" type="text" name="intro">
                 <div class="combobox">
                     <div class="formrow">
                         <label>Username:</label>

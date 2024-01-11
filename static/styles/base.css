@@ -58,7 +58,7 @@ ul {
     top: 0;
     z-index: 99;
     padding: 0px;
-    background-color: gainsboro;
+    background-color: rgb(224, 247, 251);
 }
 
 .header-main {
@@ -90,12 +90,13 @@ ul {
     justify-content: center;
     align-items: center;
     z-index: -11;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .contentlogo .text {
     position: relative;
-    color:gainsboro;;
+    color: black;
+    ;
     font-weight: 700;
     font-size: 20px;
     transform: scale(2);
@@ -112,20 +113,24 @@ ul {
     position: absolute;
     width: 100%;
     height: 7px;
-    background: gainsboro;;
+    background: rgb(224, 247, 251);
     overflow: hidden;
     top: 0;
 }
+
 /* for message redirect starts */
-.error{
+.error {
     color: red;
 }
-.success{
+
+.success {
     color: green;
 }
-.warning{
+
+.warning {
     color: yellow;
 }
+
 /* for message redirect ends */
 
 .contentlogo .text:before {
@@ -190,7 +195,8 @@ ul {
     0% {
         clip: rect(129px, auto, 36px, 30px);
     }
-/* 
+
+    /* 
     10% {
         clip: rect(85px, auto, 66px, 30px);
     }
@@ -212,6 +218,7 @@ ul {
     60% {
         clip: rect(106px, auto, 99px, 30px);
     }
+
     70% {
         clip: rect(20px, auto, 78px, 30px);
     }
@@ -323,7 +330,7 @@ ul {
 }
 
 .header .open-nav-menu {
-    height: 34px;
+    height: 40px;
     width: 40px;
     margin-right: 15px;
     display: none;
@@ -334,8 +341,8 @@ ul {
 
 .header .open-nav-menu span {
     display: block;
-    height: 3px;
-    width: 24px;
+    height: 5px;
+    width: 30px;
     background-color: #000000;
     position: relative;
 }
@@ -352,11 +359,11 @@ ul {
 }
 
 .header .open-nav-menu span:before {
-    top: -7px;
+    top: -9px;
 }
 
 .header .open-nav-menu span:after {
-    top: 7px;
+    top: 9px;
 }
 
 .header .close-nav-menu {
@@ -390,6 +397,10 @@ ul {
 /* responsive */
 
 @media (max-width: 991px) {
+    .contentlogo {
+        margin-left: 7px;
+    }
+
     .header .menu-overlay.active {
         visibility: visible;
         opacity: 1;

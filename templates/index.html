@@ -16,15 +16,11 @@
 
 <body>
     <div class="index-main">
-
-        <!-- <ul class="messages">
+        <center>
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{ message }}</li>
                 {% endfor %}
-        </ul> -->
-        <!-- <center>
-            <h2>Welcome to <span class="colorspan">Gunaso</span></h2>
-        </center> -->
+        </center>
         <div id="carousel" class="carousel">
             <div class="each-img">
                 <img src="{% static 'images/carouselone.jpg' %}" alt="Image 1">

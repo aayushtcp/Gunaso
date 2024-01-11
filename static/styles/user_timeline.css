@@ -128,6 +128,9 @@ hr {
     padding: 20px;
     word-wrap: break-word;
 }
+.biocontent p {
+    word-wrap: break-word;
+}
 
 .particularstory {
     padding: 20px;

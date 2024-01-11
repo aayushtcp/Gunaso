@@ -131,8 +131,10 @@
         </div>
         <div class="onebottom">
             <div class="biocontent">
-                <strong>Bio:</strong>
-                <p>Shojo, Santaaa, Sushil Programmer - Xarkke</p>
+                <strong>Intro:</strong>
+                {% for myintro in myintro %}
+                <p>{{myintro.first_name}}</p>
+                {% endfor %}
             </div>
         </div>
     </div>
