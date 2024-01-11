@@ -83,7 +83,7 @@
 /* responsive */
 
 .fullheight {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     padding: 10px 100px;
 }
@@ -112,6 +112,7 @@
 }
 
 .cards {
+    margin: 20vh 0;
     display: flex;
     gap: 10px;
     justify-content: space-evenly;
@@ -146,8 +147,8 @@
 }
 
 .tutorial {
-    position: relative;
-    margin: 20px;
+    /* position: relative; */
+    margin: 7rem 0 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,6 +179,7 @@
     }
 
     .fullheight .leftside {
+
         display: block;
         flex-direction: column;
         padding: 20px;
@@ -188,6 +190,7 @@
     }
 
     .cards {
+        margin: 6rem 0 0 0;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -200,5 +203,8 @@
     .myframe {
         width: 100%;
         height: 50vh;
+    }
+    .tutorial {
+        margin: 20px;
     }
 }

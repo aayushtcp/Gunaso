@@ -71,10 +71,15 @@
                 <div class="flexwrapper">
                     <div class="one">
                         <center>
+                            {% if actualdata <= 0 %}
+                            <h3 class="firsth3" >Post must be one</h3>
+                            <h3>or more than one</h3>
+                            {% else %}
                             <h3>Received Messages: {{actualdata}}</h3>
                             <div id="container" style="width: 90%;">
                                 <canvas id="myChart1"></canvas>
                             </div>
+                            {% endif %}
                         </center>
                     </div>
                     <div class="one">
@@ -116,7 +121,11 @@
                     </div>
                     <div class="onebottom">
                         <center>
-                            {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
+                            {% if actualdata <= 0 %}
+                            <div class="gamyfication">
+                                <img src="{% static 'images/nomedal.png' %}" alt="">
+                                <h4>No Medal</h4>
+                            {% elif actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
                                 <img src="{% static 'images/bronze.png' %}" alt="">
                                 <h4>Bronze Medal</h4>
                     </div>
