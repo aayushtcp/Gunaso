@@ -25,8 +25,12 @@
                 <div class="logo">
                     <a href="/">
                         <!-- <img class="logo_img" src="{% static 'hcc.png' %}" alt=""> -->
-                        <!-- <span class="img_side_text">Gunaso</span> -->
-                        <h2 id="myHeading" class="glicch">Gunaso</h2>
+                        <!-- <h2 id="myHeading" class="glicch">Gunaso</h2> -->
+                        <div class="contentlogo">
+                            <h2 class="text" data-text="Gunaso">
+                               Guanso
+                            </h2>
+                         </div>
                     </a>
                 </div>
                 <div class="open-nav-menu">
@@ -96,7 +100,7 @@
             </div>
         </div>
     </header>
-    <!-- <hr> -->
+    <!-- <hr class="headerhr"> -->
     <!-- header end -->
 
 
@@ -236,16 +240,16 @@
     <hr>
     <!-- Footer HTML Ends -->
 
-    <!-- <script>
+    <script>
         setInterval(function() {
           var heading = document.getElementById("myHeading");
           if (heading) {
-            heading.classList.toggle("glicch");
+            heading.classList.toggle("glicch"); 
           } else {
             console.error("Element with ID 'myHeading' not found.");
           }
         }, 56);
-      </script> -->
+      </script>
     <script>
         function logoutfunc() {
             location.href = "/logout";

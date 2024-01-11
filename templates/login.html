@@ -29,6 +29,12 @@
     <div class="main">
         <div class="mainone">
             <h2>Login:</h2>
+            <!-- message -->
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="formrow">
@@ -53,7 +59,7 @@
 </html>
 
 
-    <!-- <form action="{% url 'signup' %}" method="post">
+<!-- <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
         username: <input type="text" name="username" id="">
         <br><br>

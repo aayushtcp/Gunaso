@@ -54,13 +54,16 @@ def handleSignup(request):
         # check/verify
         if(password != cpassword):
             messages.error(request, "Password mismatch")
-            return redirect("/")
+            return redirect("/signup")
         
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
-            return redirect("/")
+            return redirect("/signup")
 
         # Create a new user
+        if(User.objects.filter(username = username)):
+            messages.error(request, "Username already exists")
+            return redirect('/signup')
         myuser = User.objects.create_user(username, email, password)
         myuser.save()
         
@@ -75,7 +78,7 @@ def handleSignup(request):
             return redirect("/")
         else:
             messages.error(request, "Username or password incorrect")
-            return redirect("/")
+            return redirect("/login")
         # return redirect("/")
         return render(request, 'login.html')
         # !login directly user ends
@@ -101,7 +104,7 @@ def handleLogin(request):
             return redirect("/")
         else:
             messages.error(request, "Username or password incorrect")
-            return redirect("/")
+            return redirect("/login")
     # return redirect("/")
     return render(request, 'login.html')
 

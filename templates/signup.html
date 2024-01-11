@@ -30,6 +30,11 @@
         <div class="mainone">
             <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
                 <h2>Signup:</h2>
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                </ul>
                 {% csrf_token %}
                 <!-- <label for="image">Profile Picture:</label> -->
                 <div class="profilepiccontainer" id="profilePicContainer">
