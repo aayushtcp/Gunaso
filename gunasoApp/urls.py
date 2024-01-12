@@ -55,6 +55,8 @@ urlpatterns = [
     path('deleteFeature/<int:id>/', views.deleteFeature, name='deleteFeature'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
+    path('update_intro/',views.editIntro, name='editIntro'),
+    
     path('privacy-policy/',views.privacypolicy, name='privacypolicy'),
     
     path('postThoughts/',views.postThoughts, name='postThoughts'),

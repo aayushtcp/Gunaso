@@ -53,10 +53,11 @@
                         </div>
                         {% if request.user.username == extracted_category %}
                         <div class="deletepost">
-                            <form action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/" method="post">
+                            <form action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/"
+                                method="post">
                                 {% csrf_token %}
                                 <!-- <i class="fa-solid fa-trash-can"></i> -->
-                                <input class="deleteconfession" type="submit"  value="X">
+                                <input class="deleteconfession" type="submit" value="X">
                             </form>
                         </div>
                         </form>
@@ -71,15 +72,14 @@
                 <div class="flexwrapper">
                     <div class="one">
                         <center>
-                            {% if actualdata <= 0 %}
-                            <h3 class="firsth3" >Post must be one</h3>
-                            <h3>or more than one</h3>
-                            {% else %}
-                            <h3>Received Messages: {{actualdata}}</h3>
-                            <div id="container" style="width: 90%;">
-                                <canvas id="myChart1"></canvas>
-                            </div>
-                            {% endif %}
+                            {% if actualdata <= 0 %} <h3 class="firsth3">Post must be one</h3>
+                                <h3>or more than one</h3>
+                                {% else %}
+                                <h3>Received Messages: {{actualdata}}</h3>
+                                <div id="container" style="width: 90%;">
+                                    <canvas id="myChart1"></canvas>
+                                </div>
+                                {% endif %}
                         </center>
                     </div>
                     <div class="one">
@@ -121,13 +121,12 @@
                     </div>
                     <div class="onebottom">
                         <center>
-                            {% if actualdata <= 0 %}
-                            <div class="gamyfication">
+                            {% if actualdata <= 0 %} <div class="gamyfication">
                                 <img src="{% static 'images/nomedal.png' %}" alt="">
                                 <h4>No Medal</h4>
-                            {% elif actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
-                                <img src="{% static 'images/bronze.png' %}" alt="">
-                                <h4>Bronze Medal</h4>
+                                {% elif actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
+                                    <img src="{% static 'images/bronze.png' %}" alt="">
+                                    <h4>Bronze Medal</h4>
                     </div>
                     {% elif actualdata > 20 and actualdata <= 100 %} <div class="gamyfication">
                         <img src="{% static 'images/silver.png' %}" alt="">
@@ -144,8 +143,32 @@
             <div class="biocontent">
                 <strong>Intro:</strong>
                 {% for myintro in myintro %}
-                <p>{{myintro.first_name}}</p>
+                <p>{{myintro.first_name}}
+                </p>
+                <button onclick="openPopup()" title="Edit intro" type="submit" style="margin: 0;">
+                    <i class="fas fa-edit"></i>
+                </button>
                 {% endfor %}
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    <div class="modelcontents">
+                        <form method="post" action="{% url 'editIntro' %}">
+                            {% csrf_token %}
+                            <label for="">New Intro:</label>
+                            <br>
+                            <input type="text" name="newintro" class="newintro">
+                            <br>
+                            <br>
+                            <center>
+                                <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
+                                <input type="submit" name="Edit" value="Edit" class="copybtn">
+                            </center>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- The Overlay -->
+                <div id="overlay" class="overlay"></div>
             </div>
         </div>
     </div>
@@ -161,6 +184,19 @@
     </div>
     </div>
     </div>
+    <script>
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
     <script>
         function openFullScreen() {
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');

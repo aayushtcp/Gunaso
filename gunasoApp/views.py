@@ -401,3 +401,16 @@ def deleteFeature(request, id):
 
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
+
+
+# edit intro code
+@login_required(login_url='/login/')
+def editIntro(request):
+    if request.method == 'POST':
+        newintro = request.POST['newintro']
+        request.user.first_name = newintro
+        request.user.save()
+        messages.success(request, "Updated intro")
+        return redirect('/')
+    return render(request,'user_timeline.html')
+        
