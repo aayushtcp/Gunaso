@@ -131,7 +131,8 @@ a {
     align-items: center;
     margin-left: 4rem;
 }
-.searchdiv form{
+
+.searchdiv form {
     display: flex;
     gap: 10px;
 }

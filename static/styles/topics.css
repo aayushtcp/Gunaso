@@ -129,7 +129,12 @@ a {
     margin-top: 1rem;
     display: flex;
     align-items: center;
-    margin-left: 2.5rem;
+    margin-left: 4rem;
+}
+
+.searchdiv form {
+    display: flex;
+    gap: 10px;
 }
 
 .searchdiv i {
@@ -153,6 +158,7 @@ a {
 .searchinp:focus {
     border: none;
 }
+
 
 .catandside {
     display: flex;

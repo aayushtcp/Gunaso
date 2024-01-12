@@ -40,6 +40,7 @@ urlpatterns = [
     path('logout/',views.handleLogout, name='logout'),
     
     path('searchperson/', views.searchperson, name="searchperson"),
+    path('searchtopic/', views.searchtopic, name="searchtopic"),
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
     path('developers/',views.developers, name='developers'),

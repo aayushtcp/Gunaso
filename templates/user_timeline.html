@@ -17,7 +17,8 @@
     {% block content %}
     <center>
         {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{ message }}</li>
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{
+            message }}</li>
             {% endfor %}
     </center>
     <div class="famoustopicsmain">
@@ -174,7 +175,8 @@
                             <br>
                             <br>
                             <center>
-                                <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
+                                <input type="button" name="cancel" value="Cancel" class="copybtn"
+                                    onclick="closePopup()">
                                 <input type="submit" name="Edit" value="Edit" class="copybtn">
                             </center>
                         </form>

@@ -443,3 +443,21 @@ def searchperson(request):
         allPerson = person.union(allPersonContent)
     params = {'allPerson': allPerson, 'query': query}
     return render(request, 'searchperson.html', params)
+
+
+# Search for topics
+def searchtopic(request):
+    query = request.GET.get('query', '')
+
+    if len(query) > 100:
+        allTopic = Topic.objects.none()
+    else:
+        try:
+            user_id = int(query)
+            topic = Topic.objects.filter(user_id=user_id)
+        except ValueError:
+            topic = Topic.objects.none()
+        allTopicContent = Topic.objects.filter(name__icontains=query)
+        allTopic = topic.union(allTopicContent)
+    params = {'allTopic': allTopic, 'query': query}
+    return render(request, 'topicsearch.html', params)
