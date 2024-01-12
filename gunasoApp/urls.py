@@ -39,6 +39,7 @@ urlpatterns = [
     
     path('logout/',views.handleLogout, name='logout'),
     
+    path('searchperson/', views.searchperson, name="searchperson"),
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
     path('developers/',views.developers, name='developers'),
@@ -52,7 +53,7 @@ urlpatterns = [
     path('yourstory/',views.yourstory, name='yourstory'),
     # path('user/<str:category>/deleteConfession/<int:id>/', views.deleteConfession, name='deleteConfession'),
     path('user/<str:category>/deleteConfession/<int:post_id>/', views.deleteConfession, name='delete_confession'),
-    path('deleteFeature/<int:id>/', views.deleteFeature, name='deleteFeature'),
+    path('user/<str:category>/deleteFeature/<int:post_id>/', views.deleteFeature, name='deleteFeature'),
     
     path('update_profile/',views.update_profile, name='update_profile'),
     path('update_intro/',views.editIntro, name='editIntro'),

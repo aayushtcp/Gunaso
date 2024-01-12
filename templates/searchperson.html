@@ -18,12 +18,17 @@
     <div class="famoustopicsmain">
         <div class="containflex">
             <div class="leftside">
-                <h2>Connect <span class="blue">with:</span></h2>
+                <h2>Search <span class="blue">Results:</span></h2>
+                {% if allPerson|length < 1 %}
+                <h2 style="margin-top: 1rem;">OOPS!</h2>
+                <p>No search results</p>
+                <h5 style="color:#ff7a7a;">Your search - <b>{{query}}</b> - did not match any documents.</h5>
+                {% endif %}
                 <div class="gridcontain">
-                    {% for allusers in allusers %}
-                    <a href="../user/{{allusers.user}}">
-                        <div class="card" style="background-image: url(../media/{{allusers.image}});">
-                            <h2>{{allusers.user}}</h2>
+                    {% for person in allPerson %}
+                    <a href="../user/{{person.user}}">
+                        <div class="card" style="background-image: url(../media/{{person.image}});">
+                            <h2>{{person.user}}</h2>
                         </div>
                     </a>
                     {% endfor %}

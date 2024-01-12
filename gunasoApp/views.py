@@ -372,20 +372,15 @@ def deleteConfession(request,category,post_id):
     path_parts = [part for part in path_parts if part]
     
     extracted_category = path_parts[-3] if path_parts else None
-    print("theurl:------", extracted_category)
-    print("the_user_is:------", request.user)
-            
-            
+                
     # Get the specific post by post_id
     try:
         post = UserPost.objects.get(id=post_id)
     except UserPost.DoesNotExist:
         return HttpResponseNotFound("Post not found.")
-    # ! BUGGGGGGGGGGGG here
-    # post = UserPost.objects.filter(category=category)
     # Check if the logged-in user is the owner of the post
     if request.user.username != extracted_category:
-        return HttpResponseForbidden("You do not have permission to delete this post.")
+        return HttpResponseForbidden("Hiro na ban randi ko ban.")
     else:
         # Only proceed with deletion if the user is the owner
         post.delete()
@@ -393,15 +388,31 @@ def deleteConfession(request,category,post_id):
         return redirect('/')
     return redirect('/')
 
-def deleteFeature(request, id):
-    dele = MyFeature.objects.filter(id=id)
-    dele.delete()
-    messages.success(request, "Deleted Featured Image")
+def deleteFeature(request,category,post_id):
+    current_path = request.path
+    path_parts = current_path.split('/')
+    path_parts = [part for part in path_parts if part]
+    
+    extracted_category = path_parts[-3] if path_parts else None
+            
+    # Get the specific post by post_id
+    try:
+        post = MyFeature.objects.get(id=post_id)
+    except UserPost.DoesNotExist:
+        return HttpResponseNotFound("Post not found.")
+    # Check if the logged-in user is the owner of the post
+    if request.user.username != extracted_category:
+        return HttpResponseForbidden("Hiro na ban randi ko ban.")
+    else:
+        # Only proceed with deletion if the user is the owner
+        post.delete()
+        messages.success(request, "Deleted the featured post")
+        return redirect(f'../../../../user/{request.user.username}')
     return redirect('/')
+
 
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
-
 
 # edit intro code
 @login_required(login_url='/login/')
@@ -410,7 +421,25 @@ def editIntro(request):
         newintro = request.POST['newintro']
         request.user.first_name = newintro
         request.user.save()
-        messages.success(request, "Updated intro")
+        messages.success(request, "Updated intro successfully!")
         return redirect('/')
     return render(request,'user_timeline.html')
         
+        
+        
+# Search for perosns
+def searchperson(request):
+    query = request.GET.get('query', '')
+
+    if len(query) > 100:
+        allPerson = Profile.objects.none()
+    else:
+        try:
+            user_id = int(query)
+            person = Profile.objects.filter(user_id=user_id)
+        except ValueError:
+            person = Profile.objects.none()
+        allPersonContent = Profile.objects.filter(user__username__icontains=query)
+        allPerson = person.union(allPersonContent)
+    params = {'allPerson': allPerson, 'query': query}
+    return render(request, 'searchperson.html', params)

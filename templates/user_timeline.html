@@ -15,6 +15,11 @@
 
 <body">
     {% block content %}
+    <center>
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{ message }}</li>
+            {% endfor %}
+    </center>
     <div class="famoustopicsmain">
         <div class="containflex">
             <div class="leftside">
@@ -109,11 +114,18 @@
                                 <span class="close-btn" onclick="closeFullScreen()">
                                     <i class="fa-solid fa-x"></i>
                                 </span>
+                                {% if request.user.username == extracted_category %}
                                 <span class="delete-btn">
-                                    <a href="/deleteFeature/{{myfeature.id}}">
+                                    <a href="/user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
+                                    <!-- <form action="../../user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/"
+                                    method="post">
+                                    {% csrf_token %}
+                                    <input class="deleteconfession" type="submit" value="X">
+                                </form> -->
                                 </span>
+                                {% endif %}
                                 <img src="{{myfeature.file.url}}" alt="Large Image">
                             </div>
                             {% endfor %}
@@ -145,9 +157,11 @@
                 {% for myintro in myintro %}
                 <p>{{myintro.first_name}}
                 </p>
+                {% if request.user.username == extracted_category %}
                 <button onclick="openPopup()" title="Edit intro" type="submit" style="margin: 0;">
                     <i class="fas fa-edit"></i>
                 </button>
+                {% endif %}
                 {% endfor %}
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
