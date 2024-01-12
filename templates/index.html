@@ -69,13 +69,13 @@
         </div>
         <h2>Confession<span class="colorspan">To:</span></h2>
         <!-- cards for topic section -->
-        {% for item in mainusers %}
         <div class="topicscards cards">
+            {% for item in mainusers %}
             <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
                 <h3>{{item.user}}</h3>
             </a>
+            {% endfor %}
         </div>
-        {% endfor %}
         {% include 'banner.html' %}
     </div>
     <script src="{% static 'scripts/index.js' %}"></script>

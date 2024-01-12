@@ -21,7 +21,7 @@ class UserPost(models.Model):
 # Models for profile picture of user
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Profile")
-    image = models.ImageField(upload_to="gunasoApp/images", blank=True, default="upload-image")
+    image = models.ImageField(upload_to="gunasoApp/images/loggeduserImages", blank=True, default="upload-image")
     
     def __str__(self):
         # return f'{self.user.username} -  Profile'

@@ -199,3 +199,11 @@ img {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.cards h3{
+    display: flex;
+    color:red;
+    justify-content: center;
+    align-items: end;
+    height: 105%;
+}
