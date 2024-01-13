@@ -21,6 +21,13 @@ from django.db.models import Count
 from django.urls import resolve
 # from .forms import UserProfileForm
 
+# esewa
+# Hash secret  key esewa integration V2
+import uuid
+import hmac
+import hashlib
+import base64
+
 
 def index(request):
     mainusers = IndexProfile.objects.all()[:4]
@@ -30,6 +37,45 @@ def index(request):
     return render(request, 'index.html',context)
 
 def about(request):
+    user = request.user 
+    
+    if request.method == 'POST':
+        amtt = request.POST['paisa']
+        res = int(amtt)
+        def genSha256(key, message):
+            # partnersappro = launchPartner.objects.filter(slug=slug).first()
+            key = key.encode('utf-8')
+            message = message.encode('utf-8')
+
+            hmac_sha256 = hmac.new(key, message, hashlib.sha256)
+            digest = hmac_sha256.digest()
+
+            # Convert the digest to a Base64-encoded string
+            signature = base64.b64encode(digest).decode('utf-8')
+
+            return signature
+
+        # total_amount = res
+        total_amount = res
+        secret_key = "8gBm/:&EnhH.1/q"
+        uid= uuid.uuid4()
+        data_to_sign = f"total_amount={total_amount},transaction_uuid={uid},product_code=EPAYTEST"
+
+        result = genSha256(secret_key, data_to_sign)
+        
+        # to save in DB
+        user = user
+        # unit_khapat = 200.00
+        # transaction = Transaction(user = user, amount=amtt, unit_khapat=unit_khapat)
+        # transaction.save()
+        context = {
+                'amtt': amtt,
+                "res":res,
+                'total_amount': total_amount,
+                'uid': uid,
+                'signature': result
+        }
+        return render(request, "foresewa.html", context)
     return render(request, 'about.html')
 
 

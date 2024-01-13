@@ -57,6 +57,17 @@
             <iframe class="myframe" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
             </iframe>
         </div>
+
+        <div class="payments">
+            <h2>Help us to Improve</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="number" name="paisa">
+                <br>
+                <input style="background-color: #60bb46;" class="copybtn" type="submit" value="Esewa">
+                <input style="background-color: #5d2e8e;" class="copybtn" type="submit" value="Khalti">
+            </form>
+        </div>
     </div>
 
     <script src="{% static 'scripts/about.js' %}"></script>
