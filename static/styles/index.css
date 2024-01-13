@@ -207,3 +207,12 @@ img {
     align-items: end;
     height: 105%;
 }
+
+/* margins */
+.titles{
+    margin: 2rem 0 1rem;
+    text-align: center;
+}
+.index-banner{
+    margin-top: 2rem;
+}

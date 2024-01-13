@@ -31,7 +31,7 @@ body.hidden-scrolling {
     justify-content: center;
     gap: 10px;
     animation: bannerloop 20s linear infinite;
-    margin: 1rem 0;
+    /* margin: 1rem 0; */
 }
 .bannerpar{
     text-align: center;
