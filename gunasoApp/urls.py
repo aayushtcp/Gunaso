@@ -23,47 +23,49 @@ from django.contrib.auth.models import User
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
-    # path('profile/<str:slug>/', views.profile, name='profile'),
     path('profile/<str:username>/', views.profile, name='user_profile'),
-    # path('profile/', views.profile, name='profile'),
-    # path('presignup/', views.prehandleSignup, name='presignup'),
-    # path('prelogin/', views.prehandleLogin, name='prelogin'),
-    # path('prelogin/', views.user_timeline, name='user_timeline'),
     
     # Login system urls
     path('signup/',views.handleSignup, name='signup'),
     path('login/',views.handleLogin, name='login'),
+    path('logout/',views.handleLogout, name='logout'),
     
     path('user/<str:category>/', views.user_timeline, name='user_timeline'), #category is username from url
     path('analytics/', views.analytics, name='analytics'), #category is username from url for analytics
-    
-    path('logout/',views.handleLogout, name='logout'),
-    
+        
     path('searchperson/', views.searchperson, name="searchperson"),
     path('searchtopic/', views.searchtopic, name="searchtopic"),
+    
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
+    
     path('developers/',views.developers, name='developers'),
     path('contact/',views.contact, name='contact'),
-    path('services/',views.services, name='services'),
+    # path('services/',views.services, name='services'),
+
+    # gallary and anonymity (only forntend)
     path('gallary/',views.gallary, name='gallary'),
     path('anonymity/',views.anonymity, name='anonymity'),
+    path('privacy-policy/',views.privacypolicy, name='privacypolicy'),
+
+    # read and write story system with slugify
     path('write-story/',views.writestory, name='writestory'),
     path('read-story/<str:slug>',views.storyview, name='storyview'),
     path('read-story/',views.readstory, name='readstory'),
     path('yourstory/',views.yourstory, name='yourstory'),
-    # path('user/<str:category>/deleteConfession/<int:id>/', views.deleteConfession, name='deleteConfession'),
+
+    # for delete
     path('user/<str:category>/deleteConfession/<int:post_id>/', views.deleteConfession, name='delete_confession'),
     path('user/<str:category>/deleteFeature/<int:post_id>/', views.deleteFeature, name='deleteFeature'),
     
+    # Update systems
     path('update_profile/',views.update_profile, name='update_profile'),
     path('update_intro/',views.editIntro, name='editIntro'),
     
-    path('privacy-policy/',views.privacypolicy, name='privacypolicy'),
-    
+    # celebraties/topics confessions/thoughts/comments
     path('postThoughts/',views.postThoughts, name='postThoughts'),
     
+    # celebraties/topics particular slug
     path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
-    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

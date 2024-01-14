@@ -59,7 +59,7 @@
                         </li>
 
                         <li class="menu-item">
-                            <a href="{% url 'services' %}">Services</a>
+                            <a href="{% url 'writestory' %}">write-Story</a>
                         </li>
                         <li class="menu-item">
                             <a href="/user/{{request.user}}">My Profile</a>
@@ -74,11 +74,11 @@
                         </li>
 
                         <li class="menu-item menu-item-has-children">
-                            <a href="#" data-toggle="sub-menu">Topics <i class="plus"></i></a>
+                            <a href="#" data-toggle="sub-menu">Confess <i class="plus"></i></a>
                             <ul class="sub-menu">
                                 <li class="menu-item"><a href="/persons">Explore Peoples</a></li>
                                 <li class="menu-item"><a href="/topics">Celebraties</a></li>
-                                <li class="menu-item"><a href="/write-story">Write Story</a></li>
+                                <!-- <li class="menu-item"><a href="/write-story">Write Story</a></li> -->
                             </ul>
                         </li>
 
@@ -108,9 +108,10 @@
     <nav class="sidebar hoverable close">
         <div class="logo_items flex">
             <span class="nav_image">
-                <img src="{% static 'images/headlogocopy.png' %}" alt="logo_img" />
+                <img src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt="logo_img" />
+                <!-- E:\gunasoProject\static\images\logos\g-high-resolution-logo-transparent.png -->
             </span>
-            <span class="logo_name">Guanso</span>
+            <span class="logo_name">Gunaso</span>
             <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
             <i class="bx bx-x" id="sidebar-close"></i>
         </div>
@@ -136,7 +137,7 @@
                 </ul>
                 <ul class="menu_item">
                     <div class="menu_title flex">
-                        <span class="title">Topics</span>
+                        <span class="title">Confess</span>
                         <span class="line"></span>
                     </div>
                     <li class="item">
@@ -155,7 +156,7 @@
                 </ul>
                 <ul class="menu_item">
                     <div class="menu_title flex">
-                        <span class="title">Setting</span>
+                        <span class="title">More</span>
                         <span class="line"></span>
                     </div>
                     <li class="item">
@@ -182,7 +183,7 @@
                 <!-- <h3>mugi</h3> -->
                 {% if user.is_authenticated %}
                 <span class="nav_image">
-                    <img src="{{request.user.Profile.image.url}}" alt="logo_img" />
+                    <img src="{{request.user.Profile.image.url}}" alt="logo_img" style="border-radius: 50%; height: 35px; width:35px;" />
                     <!-- <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" /> -->
                 </span>
                 <div class="data_text">
@@ -203,7 +204,7 @@
     <footer class="footer">
         <div class="fone">
             <!-- <h2>Logo</h2> -->
-            <img src="{%static 'images/headlogocopy.png'%}" alt="lyamma lyamm logo" class="footer-logo">
+            <img src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt="lyamma lyamm logo" class="footer-logo">
             <p>Gunaso for Everyone<br> <span>Pokham afna man ka kura!</span></p>
             <div class="footer-links">
                 <a href=""><i class="fa-brands fa-square-facebook"></i></a>
@@ -215,9 +216,8 @@
         <div class="ftwo">
             <ul>
                 <h3 class="footer-h3">About Us</h3>
-                <li><a href="">Who are we?</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
-                <li><a href="{% url 'services' %}">Our Services</a></li>
+                <li><a href="{% url 'writestory' %}">Write-Story</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
@@ -233,7 +233,7 @@
             <ul>
                 <h3 class="footer-h3">Know More</h3>
                 <li><a href="{% url 'privacypolicy' %}">Privacy Policy</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'readstory' %}">Read-Story</a></li>
                 <li><a href="{% url 'developers' %}">Developers</a></li>
             </ul>
         </div>
