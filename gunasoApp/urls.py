@@ -18,9 +18,12 @@ from django.urls import path, include
 from gunasoApp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 from django.contrib.auth.models import User
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('profile/<str:username>/', views.profile, name='user_profile'),
