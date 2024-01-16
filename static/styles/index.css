@@ -166,7 +166,7 @@ img {
     .cards {
         padding-top: 10px;
         flex-direction: column;
-        gap: 10px;
+        gap: 30px;
         height: max-content;
     }
 
@@ -176,6 +176,8 @@ img {
     }
 
     .gridraja {
+        /* padding: 0; */
+        width: 100%;
         grid-template-areas: "leftside"
             "righttop"
             "rightbottom";
