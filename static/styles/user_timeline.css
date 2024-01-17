@@ -20,14 +20,6 @@
     --footer: #18113c;
 }
 
-/* body {
-    background: linear-gradient(to right, rgba(117, 79, 254, 0.7), rgba(255, 63, 164, 0.7));
-} */
-
-/* .header-main {
-    background: inherit;
-} */
-
 footer {
     margin-top: 4rem;
 }
@@ -68,18 +60,7 @@ hr {
     display: flex;
     flex-direction: column;
     gap: .4rem;
-    /* max-height: 70vh;
-    overflow: scroll;
-    scrollbar-width: thin; */
 }
-
-/* .commentbox::-webkit-scrollbar {
-    width: 0;
-}
-
-.commentbox::-webkit-scrollbar-thumb {
-    background-color: #888;
-} */
 
 .comment {
     padding: 8px;
@@ -128,6 +109,7 @@ hr {
     padding: 20px;
     word-wrap: break-word;
 }
+
 .biocontent p {
     word-wrap: break-word;
 }
@@ -262,7 +244,8 @@ textarea:focus {
     padding-right: 4px;
     transition: 0.4s all ease-in-out;
 }
-.deleteconfession{
+
+.deleteconfession {
     cursor: pointer;
     float: right;
     font-weight: bold;
@@ -272,20 +255,24 @@ textarea:focus {
     background-color: var(--footer);
     color: #fff;
 }
-.containflex a{
+
+.containflex a {
     text-decoration: none;
     color: #fff;
 }
+
 .deletepost i {
     cursor: pointer;
 }
 
-.deletepost i:hover{
+.deletepost i:hover {
     color: red;
 }
-.firsth3{
+
+.firsth3 {
     padding-bottom: 10px;
 }
+
 .deleteconfession:hover {
     background-color: var(--hotish);
     color: var(--footer);
@@ -339,6 +326,7 @@ textarea:focus {
     padding: 6px 15px;
     border-radius: 6px;
 }
+
 .delete-btn {
     position: absolute;
     top: 60px;
@@ -381,12 +369,14 @@ textarea:focus {
     z-index: 1000;
     width: 20vw;
     /* background-color: green; */
-  }
-  .modal form{
+}
+
+.modal form {
     padding: 20px;
     /* background-color: red; */
-  }
-  .modal form .newintro{
+}
+
+.modal form .newintro {
     border: none;
     outline: none;
     height: 7vh;
@@ -396,9 +386,9 @@ textarea:focus {
     color: #fff;
     font-size: 20px;
     padding-left: 3px;
-  }
+}
 
-.modal form .copybtn{
+.modal form .copybtn {
     cursor: pointer;
     padding: 6px 8px;
     background-color: var(--dark);
@@ -408,27 +398,15 @@ textarea:focus {
     border-radius: 6px;
 }
 
-/* .modelcontents{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-} */
-
-/* .cut{
-    padding: 3px;
-    cursor: pointer;
-    float: right;
-    color: red;
-} */
-.btngroup{
+.btngroup {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px 0;
 }
-  /* Styles for the overlay background */
-  .overlay {
+
+/* Styles for the overlay background */
+.overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -437,4 +415,4 @@ textarea:focus {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 900;
-  }
+}

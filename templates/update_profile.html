@@ -28,13 +28,11 @@
             <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
                 <h2>Update Profile:</h2>
                 {% csrf_token %}
-                <!-- <label for="image">Profile Picture:</label> -->
                 <div class="profilepiccontainer" id="profilePicContainer">
                     <!-- Display uploaded image here -->
                 </div>
                 <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput"
                     onchange="displayImage(this)">
-                <!-- <input type="file" name="image" id="id_image" accept="image/*" required> -->
                 <div class="combobox">
                     <div class="formrow">
                         <label>Username:</label>

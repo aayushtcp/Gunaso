@@ -2,7 +2,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +30,6 @@
             </div>
             <div class="rightside">
                 <div class="searchdiv">
-                    <!-- <h3>Search</h3> -->
-                    <!-- <i class='bx bx-search-alt'></i> -->
                     <form method="get" action="{% url 'searchtopic' %}">
                         <input class="searchinp" type="search" placeholder="Search Topic"
                             aria-label="Search" name="query" id="query">
@@ -59,7 +56,7 @@
                     </div>
                     <div class="categoriesdiv">
                         <h3>Explore Confessions</h3>
-                        <p>Delve into a diverse tapestry of authentic human stories – from heartfelt reflections to intriguing confessions.</p>
+                        <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to intriguing confessions.</p>
                     </div>
                 </div>
             </div>
@@ -67,5 +64,4 @@
     </div>
     {% endblock %}
 </body>
-
 </html>

@@ -162,10 +162,6 @@ def handleLogout(request):
     messages.success(request, "Logout successful")
     return redirect("/")
 
-
-def profile(request):
-    return render(request,'profile.html')
-
 @login_required(login_url='/login/')
 def update_profile(request):
     '''to update user profile'''
@@ -263,7 +259,7 @@ def user_timeline(request, category):
     date_count_list = [date_count[date] for date in finaldate]
     
     #############################
-    #####                  ######
+    #####                   #####
     ## for user feature system ##
     #                           #
     myfeature = MyFeature.objects.filter(user = visited_user)
@@ -364,7 +360,7 @@ def analytics(request):
     finaldate_set = set()
     extracted_category  = request.user
     user_posts = UserPost.objects.filter(category=request.user)
-    top_user_posts = UserPost.objects.values('category').annotate(post_count=Count('category')).order_by('-post_count')[:3]
+    top_user_posts = UserPost.objects.values('category').annotate(post_count=Count('category')).order_by('-post_count')[:5]
     date_count = defaultdict(int)
 
     for item in user_posts:

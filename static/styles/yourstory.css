@@ -8,7 +8,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
 :root {
-    /* --dark: #05386B; */
     --dark: #754ffe;
     --darkgreen: #379683;
     --bcolor: #5CDB95;
@@ -78,18 +77,18 @@
     margin-left: 4.9rem;
 }
 
-.readstorymain span{
+.readstorymain span {
     color: var(--dark);
 }
 
-.flexcontain{
+.flexcontain {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px 3rem;
 }
 
-.storycard{
+.storycard {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -98,14 +97,17 @@
     height: 40vh;
     background-color: gainsboro;
 }
+
 .forbtn {
     margin-top: auto;
 }
+
 @media (max-width: 991px) {
     .readstorymain {
         margin: 0;
     }
-    .flexcontain{
+
+    .flexcontain {
         grid-template-columns: repeat(1, 1fr);
         padding: 10px 15px;
     }

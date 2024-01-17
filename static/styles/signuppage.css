@@ -22,7 +22,6 @@
 
 /* Button */
 .copybtn {
-    /* --color: #560bad; */
     cursor: pointer;
     background-color: var(--dark);
     font-family: inherit;

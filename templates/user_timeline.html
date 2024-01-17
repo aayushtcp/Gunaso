@@ -62,7 +62,6 @@
                             <form action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/"
                                 method="post">
                                 {% csrf_token %}
-                                <!-- <i class="fa-solid fa-trash-can"></i> -->
                                 <input class="deleteconfession" type="submit" value="X">
                             </form>
                         </div>
@@ -120,11 +119,6 @@
                                     <a href="/user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
-                                    <!-- <form action="../../user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/"
-                                    method="post">
-                                    {% csrf_token %}
-                                    <input class="deleteconfession" type="submit" value="X">
-                                </form> -->
                                 </span>
                                 {% endif %}
                                 <img src="{{myfeature.file.url}}" alt="Large Image">

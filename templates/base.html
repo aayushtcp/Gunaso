@@ -22,8 +22,6 @@
             <div class="header-main">
                 <div class="logo">
                     <a href="/">
-                        <!-- <img class="logo_img" src="{% static 'hcc.png' %}" alt=""> -->
-                        <!-- <h2 id="myHeading" class="glicch">Gunaso</h2> -->
                         <div class="contentlogo">
                             <h2 class="text" data-text="Gunaso">
                                Guanso
@@ -38,8 +36,6 @@
                 <!-- navigation menu start -->
                 <nav class="nav-menu">
                     <div class="close-nav-menu">
-                        <!-- <img src="{% static 'close.svg' %}" alt="close"> -->
-                        <!-- <i class="fa-thin fa-xmark"></i> -->
                         <h4 class="headerh4">X</h4>
                     </div>
                     <ul class="menu">
@@ -76,7 +72,6 @@
                             <ul class="sub-menu">
                                 <li class="menu-item"><a href="/persons">Explore Peoples</a></li>
                                 <li class="menu-item"><a href="/topics">Celebraties</a></li>
-                                <!-- <li class="menu-item"><a href="/write-story">Write Story</a></li> -->
                             </ul>
                         </li>
 
@@ -98,7 +93,6 @@
             </div>
         </div>
     </header>
-    <!-- <hr class="headerhr"> -->
     <!-- header end -->
 
 
@@ -107,7 +101,6 @@
         <div class="logo_items flex">
             <span class="nav_image">
                 <img src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt="logo_img" />
-                <!-- E:\gunasoProject\static\images\logos\g-high-resolution-logo-transparent.png -->
             </span>
             <span class="logo_name">Gunaso</span>
             <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
@@ -140,7 +133,6 @@
                     </div>
                     <li class="item">
                         <a href="{% url 'person' %}" class="link flex">
-                            <!-- <i class="ri-service-fill"></i> -->
                             <i class="fa-brands fa-wpexplorer"></i>
                             <span>Explore Peoples</span>
                         </a>
@@ -178,11 +170,9 @@
                 </ul>
             </div>
             <div class="sidebar_profile flex">
-                <!-- <h3>mugi</h3> -->
                 {% if user.is_authenticated %}
                 <span class="nav_image">
                     <img src="{{request.user.Profile.image.url}}" alt="logo_img" style="border-radius: 50%; height: 35px; width:35px;" />
-                    <!-- <img src="{% static 'images/profileimage.jpg' %}" alt="logo_img" /> -->
                 </span>
                 <div class="data_text">
                     <span class="name">{{request.user}}</span>

@@ -19,16 +19,8 @@
     --deepdark: #1010;
 }
 
-/* body {
-    background-image: url(../../static/images/signuppage.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center; 
-} */
-
 /* Button */
 .copybtn {
-    /* --color: #560bad; */
     cursor: pointer;
     background-color: var(--dark);
     font-family: inherit;

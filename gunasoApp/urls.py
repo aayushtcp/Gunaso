@@ -26,7 +26,6 @@ urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
-    path('profile/<str:username>/', views.profile, name='user_profile'),
     
     # Login system urls
     path('signup/',views.handleSignup, name='signup'),
@@ -36,9 +35,11 @@ urlpatterns = [
     path('user/<str:category>/', views.user_timeline, name='user_timeline'), #category is username from url
     path('analytics/', views.analytics, name='analytics'), #category is username from url for analytics
         
+    # search systems
     path('searchperson/', views.searchperson, name="searchperson"),
     path('searchtopic/', views.searchtopic, name="searchtopic"),
     
+    # person and topics list url
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
     

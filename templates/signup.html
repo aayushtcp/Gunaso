@@ -15,17 +15,6 @@
 
 <body>
     {% block content %}
-    <!-- <h1>Login</h1>
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-
-        Username: <input type="text" name="loginusername" id="">
-        <br><br>
-        Password: <input type="password" name="loginpassword" id="">
-        <br><br>
-        <input type="submit" value="Login" class="copybtn">
-    </form> -->
-    <!-- <hr> -->
     <div class="main">
         <div class="mainone">
             <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
@@ -36,12 +25,10 @@
                     <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                         {% endfor %}
                 </ul>
-                <!-- <label for="image">Profile Picture:</label> -->
                 <div class="profilepiccontainer" id="profilePicContainer">
                     <!-- Display uploaded image here -->
                 </div>  
                 <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)">
-                <!-- <input type="file" name="image" id="id_image" accept="image/*" required> -->
                 <label>Your Intro:</label>
                 <input class="generalinp" type="text" name="intro">
                 <div class="combobox">

@@ -22,14 +22,13 @@
                 {% endfor %}
         </center>
         <div id="carousel" class="carousel">
+
             <div class="each-img">
                 <img src="{% static 'images/carouselone.jpg' %}" alt="Image 1">
             </div>
 
             <div class="each-img">
-
                 <img src="{% static 'images/carouseltwo.jpg' %}" alt="Image 2">
-
             </div>
 
             <div class="each-img">
@@ -82,13 +81,6 @@
         document.getElementById("show-logout").onclick = function () {
             location.href = "/logout";
         };
-
-
-        // function fromimg(){
-        //     let value = document.getElementById("tanam").innerHTML
-        //     location.href = "/user/{{user}}";
-        // }
-
     </script>
     {% endblock %}
 </body>

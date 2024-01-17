@@ -2,6 +2,7 @@
 
 :root {
     /* --dark: #05386B; */
+    /* --color: #560bad; */
     --dark: #754ffe;
     --darkgreen: #379683;
     --bcolor: #5CDB95;
@@ -607,17 +608,6 @@ button:active:before {
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body {
-  min-height: 100vh;
-  background: #eef5fe;
-} */
-/* Pre css */
 .flex {
     display: flex;
     align-items: center;

@@ -8,7 +8,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
 :root {
-    /* --dark: #05386B; */
     --dark: #754ffe;
     --darkgreen: #379683;
     --bcolor: #5CDB95;
@@ -81,45 +80,50 @@
     color: var(--dark);
 }
 
-.flexcontain{
+.flexcontain {
     display: flex;
 }
 
-.rules{
+.rules {
     flex-basis: 50%;
     padding: 10px;
 }
 
-.rules ul{
+.rules ul {
     color: #fff;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.rules ul li{
+
+.rules ul li {
     background-color: var(--dark);
     padding: 15px;
     border-radius: 6px;
     font-weight: bold;
 }
-.rulesimg{
+
+.rulesimg {
     height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.rules img{
+
+.rules img {
     height: 100%;
-    width:auto;
+    width: auto;
 }
-.mainfrom{
+
+.mainfrom {
     padding: 10px;
-    flex-basis:50%;
+    flex-basis: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.mainfrom form{
+
+.mainfrom form {
     padding: 15px;
     width: 80%;
     height: 65vh;
@@ -142,7 +146,8 @@ input[name="subject"] {
     height: 5vh;
     background: #18113c;
 }
-textarea{
+
+textarea {
     outline: none;
     border: none;
     font-size: 16px;
@@ -152,26 +157,31 @@ textarea{
     height: 32vh;
     background: #18113c;
 }
-select, option{
-    background-color:#18113c;
+
+select, option {
+    background-color: #18113c;
     color: #fff;
     border-radius: 5px;
     outline: none;
     border: none;
     padding: 10px;
 }
-form .col{
+
+form .col {
     display: flex;
     flex-direction: column;
 }
+
 @media (max-width: 991px) {
     .writestorymain {
         margin: 0;
     }
-    .flexcontain{
+
+    .flexcontain {
         flex-direction: column;
     }
-    .mainfrom form{
+
+    .mainfrom form {
         padding: 15px;
         width: 95%;
         height: 58vh;
