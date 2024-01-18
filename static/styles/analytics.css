@@ -36,7 +36,10 @@
     display: flex;
     justify-content: space-around;
 }
-
+.alsovertical{
+    display: flex;
+    
+}
 .chart{
     display: flex;
     justify-content: start;

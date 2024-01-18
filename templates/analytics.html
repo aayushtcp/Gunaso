@@ -19,12 +19,20 @@
         <h2>Your <span>Details</span></h1>
             <div class="flexcontain">
                 <div class="chart">
+                    {% if actualdata <= 0 %}
+                    <center class="alsovertical">
+                        <div class="contents">
+                            <h4>Not Sufficient Data for Pie-Chart</h4>
+                        </div>
+                    </center>
+                    {% else %}
                     <center>
                         <h3>Received Messages: {{actualdata}}</h3>
                         <div id="container" style="width: 100%;">
                             <canvas id="myChart1"></canvas>
                         </div>
                     </center>
+                    {%endif%}
                 </div>
                 <div class="ourtable">
                     <table>
@@ -59,6 +67,14 @@
                         {% endfor %}
                     </table>
                 </div>
+                {% if actualdata <= 0 %}
+                <center>
+                    <div class="gamyfication">
+                    <h4>No Medal</h4>
+                    <img src="{% static 'images/nomedal.png' %}" alt="">
+                </center>
+                </div>
+                {% else %}
                 <div class="medal">
                     {% if actualdata > 0 and actualdata <= 20 %} <div class="gamyfication">
                         <center>
@@ -73,7 +89,8 @@
             {% elif actualdata > 100 and actualdata <= 500 %} <div class="gamyfication">
                 <h4>Gold Medal</h4>
                 <img src="{% static 'images/gold.png' %}" alt="">
-    </div>
+            </div>
+            {% endif %}
     {% endif %}
     </div>
     </div>

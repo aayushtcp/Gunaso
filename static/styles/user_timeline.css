@@ -274,7 +274,7 @@ textarea:focus {
 }
 
 .deleteconfession:hover {
-    background-color: var(--hotish);
+    background-color:red;
     color: var(--footer);
 }
 
