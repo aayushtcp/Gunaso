@@ -19,26 +19,26 @@
         <div class="containflex">
             <div class="leftside">
                 <h2>Search <span class="blue">Results:</span></h2>
-                {% if allPerson|length < 1 %}
-                <h2 style="margin-top: 1rem;">OOPS!</h2>
-                <p>No search results</p>
-                <h5 style="color:#ff7a7a;">Your search - <b>{{query}}</b> - did not match any documents.</h5>
-                {% endif %}
-                <div class="gridcontain">
-                    {% for person in allPerson %}
-                    <a href="../user/{{person.user}}">
-                        <div class="card" style="background-image: url(../media/{{person.image}});">
-                            <h2>{{person.user}}</h2>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
+                {% if allPerson|length < 1 %} <h2 style="margin-top: 1rem;">OOPS!</h2>
+                    <p>No search results</p>
+                    <h5 style="color:#ff7a7a;">Your search - <b>{{query}}</b> - did not match any documents.</h5>
+                    <button onclick="history.back(-2)" class="copybtn">Go Back</button>
+                    {% endif %}
+                    <div class="gridcontain">
+                        {% for person in allPerson %}
+                        <a href="../user/{{person.user}}">
+                            <div class="card" style="background-image: url(../media/{{person.image}});">
+                                <h2>{{person.user}}</h2>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
             </div>
             <div class="rightside">
                 <div class="searchdiv">
                     <form method="get" action="{% url 'searchperson' %}">
-                        <input class="searchinp" type="search" placeholder="Search Person"
-                            aria-label="Search" name="query" id="query">
+                        <input class="searchinp" type="search" placeholder="Search Person" aria-label="Search"
+                            name="query" id="query">
                         <button class="copybtn" type="submit" style="margin: 0;">
                             <i class='bx bx-search-alt'></i>
                         </button>
