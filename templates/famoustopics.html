@@ -31,9 +31,11 @@
                         <label for="">Your Thoughts</label>
                         <br>
                         <input type="hidden" name="postsno" value="{{topic.sno}}">
-                        <textarea name="comment" id="" placeholder="Say Something about {{topic.name}}"></textarea>
+                        <textarea name="comment" id="content" onkeyup="onKey()"
+                            placeholder="Say Something about {{topic.name}}"></textarea>
                         <br>
-                        <input type="submit" value="Post" class="copybtn">
+                        <h3 id="messagejs"></h3>
+                        <input type="submit" value="Post" class="copybtn postbtn">
                     </form>
                 </section>
                 <div class="commentbox">
@@ -76,12 +78,45 @@
                     </div>
                     <div class="categoriesdiv">
                         <h3>Side Widget</h3>
-                        <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to intriguing confessions.</p>
+                        <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to
+                            intriguing confessions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        
+        // script to stop bad comments starts
+        
+        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
+        function onKey() {
+            const contentValue = document.querySelector("#content").value.toLowerCase();
+            const messageElement = document.querySelector("#messagejs");
+            const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+            if (hasBadWord) {
+                messageElement.innerText = "Bad Word Detected";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+            } else {
+                messageElement.innerText = "";
+                document.querySelector(".postbtn").style.cursor = "pointer";
+            }
+        }
+
+        function validateForm() {
+            const contentValue = document.querySelector("#content").value.toLowerCase();
+
+            if (badWords.some(word => contentValue.includes(word))) {
+                document.querySelector("#messagejs").innerText = "Bad Word Detected";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+                return false;
+            }
+
+            return true;
+        }
+        // script to stop bad comments ends
+    </script>
     {% endblock %}
 </body>
 
