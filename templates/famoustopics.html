@@ -26,7 +26,7 @@
                 <!-- Your Thoughts System Starts -->
                 <h2>People Thoughts</h2>
                 <section class="thoughtsform">
-                    <form action="{% url 'postThoughts' %}" method="post">
+                    <form action="{% url 'postThoughts' %}" method="post" onsubmit="return validateForm()">
                         {% csrf_token %}
                         <label for="">Your Thoughts</label>
                         <br>

@@ -19,19 +19,22 @@
         <h2>Write <span>Story:</span></h2>
         <div class="flexcontain">
             <div class="rules">
-                <div class="rulesimg">    
+                <div class="rulesimg">
                     <img src="{% static 'images/story5.png' %}" alt="">
                 </div>
                 <h3>Some Rules:</h3>
                 <ul>
                     <li>Be Honest: Share your story authentically and from the heart.</li>
-                    <li>Respect Privacy: Avoid sharing personal details that could compromise your safety or the safety of others.</li>
-                    <li>No Harmful Intent: Refrain from promoting harm, hate, or any form of violence in your narratives.</li>
-                    <li>Judgment-Free Zone: Embrace diversity and be mindful of others' feelings when sharing your story.</li>
+                    <li>Respect Privacy: Avoid sharing personal details that could compromise your safety or the safety
+                        of others.</li>
+                    <li>No Harmful Intent: Refrain from promoting harm, hate, or any form of violence in your
+                        narratives.</li>
+                    <li>Judgment-Free Zone: Embrace diversity and be mindful of others' feelings when sharing your
+                        story.</li>
                 </ul>
             </div>
             <div class="mainfrom">
-                <form action="" method="post">
+                <form action="" method="post" onsubmit="return validateForm()">
                     {% csrf_token %}
                     <div class="col">
                         <!-- <label for="">Write a Subject: </label> -->
@@ -49,13 +52,53 @@
                         </select>
                     </div>
                     <div class="col">
-                        <textarea placeholder="Write a story..." name="storycontent" id="" cols="30" rows="10"></textarea>
+                        <textarea placeholder="Write a story..." name="storycontent" onkeyup="onKey()" id="storycontent"
+                            cols="30" rows="10"></textarea>
+                        <h3 id="messagejs"></h3>
                         <input type="submit" class="copybtn" value="Post">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+
+        // script to stop bad comments starts
+
+        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
+
+        function onKey() {
+            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
+            const subjectValue = document.querySelector("#subject").value.toLowerCase();
+            const messageElement = document.querySelector("#messagejs");
+
+            const hasBadWordContent = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+            const hasBadWordSubject = badWords.some(word => new RegExp(`\\b${word}\\b`).test(subjectValue));
+
+            if (hasBadWordContent || hasBadWordSubject) {
+                messageElement.innerText = "Bad Word Detected";
+                document.querySelector(".copybtn").style.cursor = "not-allowed";
+            } else {
+                messageElement.innerText = "";
+                document.querySelector(".copybtn").style.cursor = "pointer";
+            }
+        }
+
+        function validateForm() {
+            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
+            const subjectValue = document.querySelector("#subject").value.toLowerCase();
+
+            if (badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue) || new RegExp(`\\b${word}\\b`).test(subjectValue))) {
+                document.querySelector("#messagejs").innerText = "Bad Word Detected";
+                document.querySelector(".copybtn").style.cursor = "not-allowed";
+                return false;
+            }
+            return true;
+        }
+        // script to stop bad comments ends
+
+
+    </script>
     {% endblock %}
 </body>
 

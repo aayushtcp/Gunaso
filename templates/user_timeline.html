@@ -26,7 +26,11 @@
             <div class="leftside">
                 <h2>Confess to {{extracted_category}}</h2>
                 {% for profiles in visited_user_profiles %}
-                <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image">
+                <!-- <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image"
+                    onclick="openFullScreen2()"> -->
+                <div class="profileimg" onclick="profileimg()" style="background-image: url('{{profiles.image.url }}');">
+
+                </div>
                 {% endfor %}
                 <!-- Your Thoughts System Starts -->
                 {% if request.user.username == extracted_category %}
@@ -196,19 +200,6 @@
     </div>
     </div>
     <script>
-        // Function to open the popup
-        function openPopup() {
-            document.getElementById('myModal').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        // Function to close the popup
-        function closePopup() {
-            document.getElementById('myModal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-    </script>
-    <script>
         function openFullScreen() {
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');
             fullscreenOverlay.style.display = 'flex';
@@ -231,27 +222,39 @@
                 reader.readAsDataURL(file);
             }
         }
+        // Script to stop bad comments and check content length
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
-
-        // script to stop bad comments starts
 
         function onKey() {
             const contentValue = document.querySelector("#content").value.toLowerCase();
             const messageElement = document.querySelector("#messagejs");
-            const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
 
-            if (hasBadWord) {
-                messageElement.innerText = "Bad Word Detected";
+            if (contentLength < 30) {
+                messageElement.innerText = "Confession must be above 30 characters";
                 document.querySelector(".postbtn").style.cursor = "not-allowed";
             } else {
-                messageElement.innerText = "";
-                document.querySelector(".postbtn").style.cursor = "pointer";
+                const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+                if (hasBadWord) {
+                    messageElement.innerText = "Bad Word Detected";
+                    document.querySelector(".postbtn").style.cursor = "not-allowed";
+                } else {
+                    messageElement.innerText = "";
+                    document.querySelector(".postbtn").style.cursor = "pointer";
+                }
             }
         }
 
         function validateForm() {
             const contentValue = document.querySelector("#content").value.toLowerCase();
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces
 
+            if (contentLength < 30) {
+                document.querySelector("#messagejs").innerText = "Confession must be above 30 characters";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+                return false;
+            }
             if (badWords.some(word => contentValue.includes(word))) {
                 document.querySelector("#messagejs").innerText = "Bad Word Detected";
                 document.querySelector(".postbtn").style.cursor = "not-allowed";
@@ -260,9 +263,16 @@
 
             return true;
         }
-        // script to stop bad comments ends
+
+        function profileimg(){
+            document.querySelector(".profileimg").style.height = "100vh";
+            document.querySelector(".profileimg").style.width = "110%";
+            document.querySelector(".profileimg").style.backgroundSize = "contain";
+            // document.querySelector(".rightside").style.display = "none";
+        }
+
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
     <script>
         var ctx = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx, {
@@ -315,7 +325,7 @@
             }
         }
         })
-    </script>
+    </script> -->
     {% endblock %}
 
     </body>
