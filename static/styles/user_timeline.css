@@ -368,12 +368,10 @@ textarea:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 20vw;
-    /* background-color: green; */
 }
 
 .modal form {
     padding: 20px;
-    /* background-color: red; */
 }
 
 .modal form .newintro {
@@ -424,6 +422,6 @@ textarea:focus {
     border-radius: 10px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     transition: 1s all ease;
 }

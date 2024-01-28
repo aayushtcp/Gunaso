@@ -28,7 +28,8 @@
                 {% for profiles in visited_user_profiles %}
                 <!-- <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image"
                     onclick="openFullScreen2()"> -->
-                <div class="profileimg" onclick="profileimg()" style="background-image: url('{{profiles.image.url }}');">
+                <div class="profileimg" onclick="toggleProfileImg()"
+                    style="background-image: url('{{profiles.image.url }}');">
 
                 </div>
                 {% endfor %}
@@ -264,13 +265,31 @@
             return true;
         }
 
-        function profileimg(){
-            document.querySelector(".profileimg").style.height = "100vh";
-            document.querySelector(".profileimg").style.width = "110%";
-            document.querySelector(".profileimg").style.backgroundSize = "contain";
-            // document.querySelector(".rightside").style.display = "none";
+        // profile image click animation starts
+        function profileimg() {
+            if (window.innerWidth >= 600) {
+                document.querySelector(".profileimg").style.height = "100vh";
+                document.querySelector(".profileimg").style.width = "105%";
+                document.querySelector(".profileimg").style.backgroundSize = "cover";
+            }
         }
 
+        function toggleProfileImg() {
+            var profileImg = document.querySelector(".profileimg");
+            var rightSide = document.querySelector(".rightside");
+
+            if (profileImg.style.height === "100vh") {
+                profileImg.style.height = "";
+                profileImg.style.width = "";
+                profileImg.style.backgroundSize = "";
+                // Show the right side if it was hidden
+                // rightSide.style.display = "";
+            } else {
+                profileimg();
+                // Hide the right side
+                // rightSide.style.display = "none";
+            }
+        }
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
     <script>
