@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound
+from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest
 from django.core.mail import send_mail
 import re
 
@@ -28,7 +28,9 @@ import hmac
 import hashlib
 import base64
 
-
+# to prevent nude and unusual images
+from nudenet import NudeDetector
+# from nudepy import NudeDetector
 def index(request):
     mainusers = IndexProfile.objects.all()[:4]
     
@@ -99,7 +101,26 @@ def handleSignup(request):
         # for profile images
         userimage = request.FILES['image']
     
-        # check/verify
+        # Use NudeNet to detect nudity
+        detector = NudeDetector()
+        
+        # Save the uploaded image to a temporary file
+        with open('temp_image.jpg', 'wb') as temp_image:
+            for chunk in userimage.chunks():
+                temp_image.write(chunk)
+
+        # Use the detector to scan the temporary file
+        result = detector.detect('temp_image.jpg')
+        if result and 'score' in result[0]:
+            score = result[0]['score']
+            print(f"Nudity score: {score}")
+            if (score > 0.500):
+                messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                return redirect("/signup")
+                
+        # Check if explicit content is detected
+        if result and 'label' in result[0] and result[0]['label'] == 'EXPLICIT':
+            return HttpResponseBadRequest('Sorry, the uploaded image contains explicit content.')
         if(password != cpassword):
             messages.error(request, "Password mismatch")
             return redirect("/signup")
