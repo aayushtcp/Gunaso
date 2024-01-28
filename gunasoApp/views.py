@@ -93,11 +93,11 @@ def prehandleLogin(request):
 # Signup
 def handleSignup(request):
     if request.method == 'POST':
-        first_name = request.POST['intro']
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-        cpassword = request.POST['cpassword']
+        first_name = request.POST['intro'].strip()
+        username = request.POST['username'].strip()
+        password = request.POST['password'].strip()
+        email = request.POST['email'].strip()
+        cpassword = request.POST['cpassword'].strip()
         # for profile images
         userimage = request.FILES['image']
     
@@ -215,10 +215,10 @@ def update_profile(request):
     '''to update user profile'''
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        cpassword = request.POST['cpassword']
+        username = request.POST['username'].strip()
+        email = request.POST['email'].strip()
+        password = request.POST['password'].strip()
+        cpassword = request.POST['cpassword'].strip()
         
         # check/verify
         if(password != cpassword):
@@ -512,7 +512,8 @@ def privacypolicy(request):
 @login_required(login_url='/login/')
 def editIntro(request):
     if request.method == 'POST':
-        newintro = request.POST['newintro']
+        newintro = request.POST['newintro'].strip()
+        print(newintro)
         request.user.first_name = newintro
         request.user.save()
         messages.success(request, "Updated intro successfully!")
