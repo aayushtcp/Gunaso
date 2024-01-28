@@ -30,7 +30,7 @@ import base64
 
 # to prevent nude and unusual images
 from nudenet import NudeDetector
-# from nudepy import NudeDetector
+
 def index(request):
     mainusers = IndexProfile.objects.all()[:4]
     
@@ -101,6 +101,8 @@ def handleSignup(request):
         # for profile images
         userimage = request.FILES['image']
     
+
+        # ------------------------for nuditity------------------------------------------------------------
         # Use NudeNet to detect nudity
         detector = NudeDetector()
         
@@ -108,19 +110,43 @@ def handleSignup(request):
         with open('temp_image.jpg', 'wb') as temp_image:
             for chunk in userimage.chunks():
                 temp_image.write(chunk)
-
         # Use the detector to scan the temporary file
         result = detector.detect('temp_image.jpg')
         if result and 'score' in result[0]:
             score = result[0]['score']
             print(f"Nudity score: {score}")
-            if (score > 0.500):
-                messages.error(request, "Sorry, the uploaded image contains explicit content.")
-                return redirect("/signup")
+            if (score > 0.75):
+                imageclass = result[0]['class']
+                print(f"Class: {imageclass}")
+                if imageclass not in [
+                    "FEMALE_GENITALIA_COVERED",
+                    "FACE_FEMALE",
+                    "FEET_EXPOSED",
+                    "BELLY_COVERED",
+                    "FEET_COVERED",
+                    "ARMPITS_COVERED",
+                    "FACE_MALE",
+                    "MALE_GENITALIA_EXPOSED",
+                    "ANUS_COVERED",
+                    "FEMALE_BREAST_COVERED",
+                    "BUTTOCKS_COVERED"
+                    ]:
+                    print("Removing....")
+                    messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                    return redirect("/signup")
+                # if (imageclass != "FACE_FEMALE" or "FACE_MALE" or "FEET_EXPOSED" or "BELLY_COVERED" or "FEET_COVERED" or "ARMPITS_COVERED"):
+                #     messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                #     return redirect("/signup")
+                # else:
                 
         # Check if explicit content is detected
-        if result and 'label' in result[0] and result[0]['label'] == 'EXPLICIT':
-            return HttpResponseBadRequest('Sorry, the uploaded image contains explicit content.')
+        # if result and 'label' in result[0] and result[0]['label'] == 'EXPLICIT':
+        #     return HttpResponseBadRequest('Sorry, the uploaded image contains explicit content.')
+        # ------------------------------------------------------------------------------------------------
+        # c= NudeClassifier()
+        # data = c.classify(userimage)
+        # print(data)
+        
         if(password != cpassword):
             messages.error(request, "Password mismatch")
             return redirect("/signup")
@@ -165,8 +191,9 @@ def handleLogin(request):
     if request.method == "POST":
         loginusername = request.POST['loginusername']
         loginpassword = request.POST['loginpassword']
-        
-        user = authenticate(username= loginusername, password= loginpassword)
+        finalusername = loginusername.strip()
+        finalpass = loginpassword.strip()
+        user = authenticate(username= finalusername, password= finalpass)
         
         if user is not None:
             login(request, user)
@@ -203,9 +230,13 @@ def update_profile(request):
             return redirect("update_profile")
         
         # Update user profile
-        request.user.username = username
-        request.user.email = email
-        request.user.set_password(password)
+        if (username):
+            request.user.username = username
+        if (email):
+            request.user.email = email
+        if (password):
+            request.user.set_password(password)
+            
         request.user.save()
         
         # Update profile picture

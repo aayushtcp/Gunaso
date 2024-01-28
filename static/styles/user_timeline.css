@@ -423,6 +423,7 @@ textarea:focus {
     border-radius: 10px;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: violet;
     background-size: cover;
     transition: 1s all ease;
 }
