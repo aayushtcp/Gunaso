@@ -331,7 +331,7 @@ def user_timeline(request, visitedUser):
     }
     return render(request, 'user_timeline.html', uppercontext)
 
-
+@login_required(login_url='/login/')
 def famoustopics(request, slug):
     topic = Topic.objects.filter(slug=slug).first()
     comments = TopicComment.objects.filter(topic=topic)[::-1]

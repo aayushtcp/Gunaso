@@ -21,7 +21,10 @@
                 <h2>{{topic.name}}</h2>
                 <p>{{topic.date}}</p>
                 <p class="tags">#{{topic.tagone}} #{{topic.tagtwo}}</p>
-                <img src="/media/{{topic.image}}" alt="">
+                <!-- <img src="/media/{{topic.image}}" alt=""> -->
+                <div class="profileimg" onclick="toggleProfileImg()"
+                    style="background-image: url('../media/{{ topic.image }}');">
+                </div>
                 <p>{{topic.introduction}}</p>
                 <!-- Your Thoughts System Starts -->
                 <h2>People Thoughts</h2>
@@ -86,9 +89,9 @@
         </div>
     </div>
     <script>
-        
+
         // script to stop bad comments starts
-        
+
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
         function onKey() {
             const contentValue = document.querySelector("#content").value.toLowerCase();
@@ -116,6 +119,31 @@
             return true;
         }
         // script to stop bad comments ends
+        // profile image click animation starts
+        function profileimg() {
+            if (window.innerWidth >= 600) {
+                document.querySelector(".profileimg").style.height = "100vh";
+                // document.querySelector(".profileimg").style.width = "90%";
+                document.querySelector(".profileimg").style.backgroundSize = "cover";
+            }
+        }
+
+        function toggleProfileImg() {
+            var profileImg = document.querySelector(".profileimg");
+            var rightSide = document.querySelector(".rightside");
+
+            if (profileImg.style.height === "100vh") {
+                profileImg.style.height = "";
+                profileImg.style.width = "";
+                profileImg.style.backgroundSize = "";
+                // Show the right side if it was hidden
+                // rightSide.style.display = "";
+            } else {
+                profileimg();
+                // Hide the right side
+                // rightSide.style.display = "none";
+            }
+        }
     </script>
     {% endblock %}
 </body>

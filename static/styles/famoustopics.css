@@ -232,3 +232,14 @@
         display: none;
     }
 }
+/* for profile img */
+.profileimg{
+    width: 100%;
+    height: 50vh;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: violet;
+    background-size: cover;
+    transition: 1s all ease;
+}

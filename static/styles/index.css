@@ -74,7 +74,10 @@ img {
     color: #868383;
     font-size: 2.3rem;
 }
-
+#prevbtn:hover,
+#nextbtn:hover{
+    color: #fff;
+}
 #prevbtn {
     left: 20px;
 }
