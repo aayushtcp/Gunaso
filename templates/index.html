@@ -67,7 +67,7 @@
         </div>
         <h2 class="titles">Confession <span class="colorspan">To:</span></h2>
         <!-- cards for topic section -->
-        <div class="topicscards cards">
+        <div class="topicscards cards" data-aos="fade-up">
             {% for item in mainusers %}
             <a class="cardbgimg card" href="/user/{{item.user}}" style="background-image: url(media/{{item.image}});">
                 <h3>{{item.user}}</h3>

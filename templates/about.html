@@ -17,12 +17,12 @@
     {% block content %}
     <div class="about-main">
         <section class="fullheight">
-            <div class="leftside">
+            <div class="leftside" data-aos="fade-up">
                 <h1>About Us</h1>
                 <p>Welcome to Guanso, where stories come to life, and connections are forged through the power of words. Established with a passion for fostering genuine human connections.</p>
                 <button title="Read More" class="copybtn" onclick="explore()">Learn More</button>
             </div>
-            <div class="rightside">
+            <div class="rightside" data-aos="fade-up">
                 <div class="imagecontain">
                     <img src="{% static 'images/aboutimage.png' %}" alt="">
                 </div>
@@ -31,19 +31,19 @@
 
         <section class="explore fullheight" id="explore">
             <div class="cards">
-                <div class="card bluecard">
+                <div class="card bluecard" data-aos="fade-up">
                     <i class="ri-eye-line"></i>
                     <h3>Our Vision</h3>
                     <p>
                         Cultivate a world celebrating authentic self-expression, fostering connections that empower sharing stories without fear or judgment, transcending boundaries.</p>
                 </div>
                 
-                <div class="card">
+                <div class="card" data-aos="fade-up"  data-aos-duration="1000">
                     <i class="ri-focus-2-fill"></i>
                     <h3>Our Mission</h3>
                     <p>Empower through narratives. Secure. Inclusive. Valued stories. Understanding. Empathy. Meaningful connections.</p>
                 </div>
-                <div class="card bluecard">
+                <div class="card bluecard" data-aos="fade-up"  data-aos-duration="1500">
                     <i class="ri-global-fill"></i>
                     <h3>Our Goals</h3>
                     <p>Secure, inclusive self-expression. Value every story, foster connections. Strive for continuous improvement, unify diverse narratives.</p>
@@ -74,4 +74,4 @@
     {% endblock %}
 </body>
 
-</html>
+</html> 

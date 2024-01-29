@@ -20,7 +20,7 @@
                 <h2>All <span class="blue">Topics:</span></h2>
                 <div class="gridcontain">
                     {% for alltopics in alltopics %}
-                    <a href="{{alltopics.slug}}">
+                    <a href="{{alltopics.slug}}" data-aos="fade-up">
                         <div class="card" style="background-image: url(../media/{{alltopics.image}});">
                             <h2>{{alltopics.name}}</h2>
                         </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="rightside">
-                <div class="searchdiv">
+                <div class="searchdiv" data-aos="fade-down">
                     <form method="get" action="{% url 'searchtopic' %}">
                         <input class="searchinp" type="search" placeholder="Search Topic"
                             aria-label="Search" name="query" id="query">
@@ -38,7 +38,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="catandside">
+                <div class="catandside" data-aos="fade-down">
                     <div class="categoriesdiv">
                         <h3>Quick Links</h3>
                         <div class="uls">
@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="categoriesdiv">
+                    <div class="categoriesdiv" data-aos="fade-up">
                         <h3>Explore Confessions</h3>
                         <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to intriguing confessions.</p>
                     </div>

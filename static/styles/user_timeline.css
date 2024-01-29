@@ -204,6 +204,10 @@ textarea:focus {
 .textpart {
     flex-basis: 90%;
 }
+.textpart p {
+    word-break: break-all;
+    white-space: normal;
+}
 
 .myday {
     display: flex;

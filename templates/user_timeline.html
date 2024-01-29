@@ -26,8 +26,6 @@
             <div class="leftside">
                 <h2>Confess to {{extracted_category}}</h2>
                 {% for profiles in visited_user_profiles %}
-                <!-- <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image"
-                    onclick="openFullScreen2()"> -->
                 <div class="profileimg" onclick="toggleProfileImg()"
                     style="background-image: url('{{profiles.image.url }}');">
 
@@ -55,7 +53,7 @@
                 {% endif %}
                 <div class="commentbox">
                     {% for post in user_posts %}
-                    <div class="comment">
+                    <div class="comment" data-aos="fade-up">
                         <div class="imagepart">
                             <img src="{% static 'images/noone.png' %}" alt="userimg">
                         </div>
@@ -80,7 +78,7 @@
                 <!-- Your Thoughts System Ends-->
             </div>
             <div class="rightside">
-                <div class="flexwrapper">
+                <div class="flexwrapper" data-aos="fade-up">
                     <div class="one">
                         <center>
                             {% if actualdata <= 0 %} <h3 class="firsth3">Post must be one</h3>
@@ -200,6 +198,19 @@
     </div>
     </div>
     </div>
+    <script>
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
     <script>
         function openFullScreen() {
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');

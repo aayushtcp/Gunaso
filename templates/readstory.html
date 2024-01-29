@@ -17,7 +17,7 @@
         <h2>Read <span>Story:</span></h2>
         <div class="flexcontain">
             {% for item in stories %}
-            <div class="storycard">
+            <div class="storycard" data-aos="fade-up">
                 <h2>{{item.storySubject}}</h2>
                 <p>
                     {{item.storyContent|truncatechars:400}}

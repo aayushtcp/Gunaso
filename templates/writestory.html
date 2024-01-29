@@ -19,7 +19,7 @@
         <h2>Write <span>Story:</span></h2>
         <div class="flexcontain">
             <div class="rules">
-                <div class="rulesimg">
+                <div class="rulesimg" data-aos="fade-down">
                     <img src="{% static 'images/story5.png' %}" alt="">
                 </div>
                 <h3>Some Rules:</h3>
@@ -33,7 +33,7 @@
                         story.</li>
                 </ul>
             </div>
-            <div class="mainfrom">
+            <div class="mainfrom" data-aos="fade-up">
                 <form action="" method="post" onsubmit="return validateForm()">
                     {% csrf_token %}
                     <div class="col">
