@@ -251,11 +251,13 @@ def update_profile(request):
 
     
 @login_required(login_url='/login/')
-def user_timeline(request, category):
+def user_timeline(request, visitedUser):
     data = []
     date =[]
     finaldate_set = set()
-    user_posts = UserPost.objects.filter(category=category)
+    visited_user = get_object_or_404(User, username=visitedUser)
+    user_posts = UserPost.objects.filter(visitedUser=visited_user)
+
     current_path = request.path
     path_parts = current_path.split('/')
     # Filter out empty parts
@@ -267,7 +269,7 @@ def user_timeline(request, category):
     date_count = defaultdict(int)
 
     for item in user_posts:
-        data.append(item.category)
+        data.append(item.visitedUser)
         date.append(item.created_at)
         
     # Remove Decimal objects by converting them to int
@@ -295,19 +297,18 @@ def user_timeline(request, category):
                 userimageFeature= request.FILES['file-input']
                 feature = MyFeature(user = request.user, file = userimageFeature)
                 feature.save()
-                return redirect('user_timeline', category=extracted_category)
-            return redirect('user_timeline', category=extracted_category)
+                return redirect('user_timeline', visitedUser=extracted_category)
+            return redirect('user_timeline', visitedUser=extracted_category)
     if request.method == 'POST':
         content = request.POST.get('content')
-        hm = UserPost(user = request.user,category = extracted_category, content = content)
+        hm = UserPost(user=request.user, visitedUser=visited_user, content=content)
         hm.save()
-        
         messages.success(request, 'Thought posted successfully.')
-        return redirect('user_timeline', category=extracted_category)
+        return redirect('user_timeline', visitedUser=visited_user)
+        
     
     visited_user = User.objects.get(username=extracted_category)
     visited_user_profiles = Profile.objects.filter(user=visited_user)
-    visited_user_id = visited_user_profiles.id
 
     date_count_list = [date_count[date] for date in finaldate]
     
@@ -325,7 +326,6 @@ def user_timeline(request, category):
         'finaldate': finaldate,
         'date_count_list':date_count_list,
         'visited_user_profiles': visited_user_profiles,
-        'visited_user_id':visited_user_id,
         'myfeature': myfeature,
         'myintro': myintro
     }
@@ -462,7 +462,7 @@ def yourstory(request):
     return render(request, 'yourstory.html', context)
 
 @login_required(login_url='/login/')
-def deleteConfession(request,category,post_id):
+def deleteConfession(request,visitedUser,post_id):
     current_path = request.path
     path_parts = current_path.split('/')
     path_parts = [part for part in path_parts if part]
@@ -484,7 +484,7 @@ def deleteConfession(request,category,post_id):
         return redirect('/')
     return redirect('/')
 
-def deleteFeature(request,category,post_id):
+def deleteFeature(request,visitedUser,post_id):
     current_path = request.path
     path_parts = current_path.split('/')
     path_parts = [part for part in path_parts if part]

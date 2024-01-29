@@ -17,14 +17,14 @@
     {% block content %}
     <center>
         {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{
-            message }}</li>
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{ message }}</li>
             {% endfor %}
+    </center>
     </center>
     <div class="famoustopicsmain">
         <div class="containflex">
             <div class="leftside">
-                <h2>Confess to {{extracted_category}} & his id is:{{visited_user_id}}</h2>
+                <h2>Confess to {{extracted_category}}</h2>
                 {% for profiles in visited_user_profiles %}
                 <!-- <img src="{{profiles.image.url }}" alt="{{ profiles.user.username }}'s Profile Image"
                     onclick="openFullScreen2()"> -->
@@ -269,7 +269,7 @@
         function profileimg() {
             if (window.innerWidth >= 600) {
                 document.querySelector(".profileimg").style.height = "100vh";
-                document.querySelector(".profileimg").style.width = "105%";
+                document.querySelector(".profileimg").style.width = "90%";
                 document.querySelector(".profileimg").style.backgroundSize = "cover";
             }
         }

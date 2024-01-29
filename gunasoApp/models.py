@@ -8,8 +8,10 @@ from django.utils.text import slugify
 # Create your models here.
 
 class UserPost(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category  =models.CharField(max_length=30, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    visitedUser = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='visited_posts')
+    # category  =models.CharField(max_length=30, blank=True)
+
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
