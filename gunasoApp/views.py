@@ -307,7 +307,8 @@ def user_timeline(request, category):
     
     visited_user = User.objects.get(username=extracted_category)
     visited_user_profiles = Profile.objects.filter(user=visited_user)
-    
+    visited_user_id = visited_user_profiles.id
+
     date_count_list = [date_count[date] for date in finaldate]
     
     #############################
@@ -324,6 +325,7 @@ def user_timeline(request, category):
         'finaldate': finaldate,
         'date_count_list':date_count_list,
         'visited_user_profiles': visited_user_profiles,
+        'visited_user_id':visited_user_id,
         'myfeature': myfeature,
         'myintro': myintro
     }
