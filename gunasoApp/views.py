@@ -363,6 +363,11 @@ def topics(request):
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
 
+def groups(request):
+    allgroups = Topic.objects.all()
+    context = {"allgroups":allgroups}
+    return render(request, 'groups.html', context)
+
 def developers(request):
     developers = Developer.objects.all()
     context = {"developers":developers}
@@ -410,15 +415,16 @@ def readstory(request):
 @login_required(login_url='/login/')
 def analytics(request):
     data = []
-    date =[]
+    date = []
     finaldate_set = set()
-    extracted_category  = request.user
-    user_posts = UserPost.objects.filter(category=request.user)
-    top_user_posts = UserPost.objects.values('category').annotate(post_count=Count('category')).order_by('-post_count')[:5]
+    extracted_category = request.user
+    user_posts = UserPost.objects.filter(visitedUser=request.user)
+    
+    top_user_posts = UserPost.objects.values('visitedUser__username').annotate(post_count=Count('visitedUser')).order_by('-post_count')[:5]
     date_count = defaultdict(int)
 
     for item in user_posts:
-        data.append(item.category)
+        data.append(item.visitedUser.username)
         date.append(item.created_at)
         
     # Remove Decimal objects by converting them to int
@@ -439,13 +445,13 @@ def analytics(request):
         
     finaldate = list(finaldate_set)
     date_count_list = [date_count[date] for date in finaldate]
-
+    
     uppercontext = {
         'user_posts': user_posts,   
         'extracted_category': extracted_category,
         'actualdata': actualdata,
         'finaldate': finaldate,
-        'date_count_list':date_count_list,
+        'date_count_list': date_count_list,
         'top_user_posts': top_user_posts
     }
     return render(request, 'analytics.html', uppercontext)

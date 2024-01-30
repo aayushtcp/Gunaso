@@ -42,6 +42,7 @@ urlpatterns = [
     # person and topics list url
     path('persons/',views.persons, name='person'),
     path('topics/',views.topics, name='topics'),
+    path('groups/',views.groups, name='groups'),
     
     path('developers/',views.developers, name='developers'),
     path('contact/',views.contact, name='contact'),
