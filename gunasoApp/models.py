@@ -4,6 +4,7 @@ from django.db import models
 
 from django.utils.timezone import localtime, now
 from django.utils.text import slugify
+from datetime import date
 
 # Create your models here.
 
@@ -117,3 +118,17 @@ class MyFeature(models.Model):
     
     def __str__(self):
         return f'{self.user}\'s -  Feature'
+    
+    
+# for group system
+class ConfessGroup(models.Model):
+    sno = models.AutoField(primary_key=True)
+    Groupname = models.CharField(max_length=30)
+    creationDate = models.DateField(auto_now_add=True)
+    tagline = models.CharField(max_length=212, blank=True)
+    slug = models.CharField(max_length=130, default="slugthis")
+    image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
+    introduction = models.TextField(blank=True)
+    
+    def __str__(self):
+        return f'Group: {self.Groupname} -- {self.slug}'
