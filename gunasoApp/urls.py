@@ -72,5 +72,9 @@ urlpatterns = [
     
     # celebraties/topics particular slug
     path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
+    
+    # for groups
+    path('groups/<str:slug>',views.groupsparticular, name='groupsparticular'),
+    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

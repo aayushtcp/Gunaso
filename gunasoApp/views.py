@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -364,9 +364,17 @@ def topics(request):
     return render(request, 'topics.html', context) #edit this later
 
 def groups(request):
-    allgroups = Topic.objects.all()
+    allgroups = ConfessGroup.objects.all()
     context = {"allgroups":allgroups}
     return render(request, 'groups.html', context)
+
+@login_required(login_url='/login/')
+def groupsparticular(request, slug):
+    return render(request, 'about.html')
+    # allgroups = ConfessGroup.objects.filter(slug=slug).first()
+    # comments = TopicComment.objects.filter(topic=topic)[::-1]
+    # context = {"topic": topic, "comments": comments}
+    # return render(request, 'famoustopics.html', context)
 
 def developers(request):
     developers = Developer.objects.all()
