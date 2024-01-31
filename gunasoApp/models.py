@@ -126,9 +126,14 @@ class ConfessGroup(models.Model):
     Groupname = models.CharField(max_length=30)
     creationDate = models.DateField(auto_now_add=True)
     tagline = models.CharField(max_length=212, blank=True)
-    slug = models.CharField(max_length=130, default="slugthis")
+    slug = models.CharField(max_length=130,unique=True, blank=True)
     image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
     introduction = models.TextField(blank=True)
     
+    # to slugify the group
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.Groupname)
+        super().save(*args, **kwargs)
     def __str__(self):
         return f'Group: {self.Groupname} -- {self.slug}'
