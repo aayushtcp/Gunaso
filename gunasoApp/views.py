@@ -292,9 +292,42 @@ def user_timeline(request, visitedUser):
     
     if request.user.username == extracted_category:
         if request.method == 'POST':
+            userimageFeature= request.FILES['file-input']
             # for feature image setup
             if 'file-input' in request.FILES:
-                userimageFeature= request.FILES['file-input']
+                # ------------------------for nuditity------------------------------------------------------------
+                # Use NudeNet to detect nudity
+                detector = NudeDetector()
+                
+                # Save the uploaded image to a temporary file
+                with open('temp_image.jpg', 'wb') as temp_image:
+                    for chunk in userimageFeature.chunks():
+                        temp_image.write(chunk)
+                # Use the detector to scan the temporary file
+                result = detector.detect('temp_image.jpg')
+                if result and 'score' in result[0]:
+                    score = result[0]['score']
+                    print(f"Nudity score: {score}")
+                    if (score > 0.75):
+                        imageclass = result[0]['class']
+                        print(f"Class: {imageclass}")
+                        if imageclass not in [
+                            "FEMALE_GENITALIA_COVERED",
+                            "FACE_FEMALE",
+                            "FEET_EXPOSED",
+                            "BELLY_COVERED",
+                            "FEET_COVERED",
+                            "ARMPITS_COVERED",
+                            "FACE_MALE",
+                            "MALE_GENITALIA_EXPOSED",
+                            "ANUS_COVERED",
+                            "FEMALE_BREAST_COVERED",
+                            "BUTTOCKS_COVERED"
+                            ]:
+                            print("Removing....")
+                            messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                            return redirect("user_timeline", visitedUser=extracted_category)
+                # ------------------------------------------------------------------------------------------------
                 feature = MyFeature(user = request.user, file = userimageFeature)
                 feature.save()
                 return redirect('user_timeline', visitedUser=extracted_category)
@@ -534,7 +567,9 @@ def editIntro(request):
         request.user.save()
         messages.success(request, "Updated intro successfully!")
         return redirect('/')
-    return render(request,'user_timeline.html')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+        # return render(request,'user_timeline.html')
         
         
         

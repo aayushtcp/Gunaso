@@ -60,8 +60,8 @@ urlpatterns = [
     path('yourstory/',views.yourstory, name='yourstory'),
 
     # for delete
-    path('user/<str:category>/deleteConfession/<int:post_id>/', views.deleteConfession, name='delete_confession'),
-    path('user/<str:category>/deleteFeature/<int:post_id>/', views.deleteFeature, name='deleteFeature'),
+    path('user/<str:visitedUser>/deleteConfession/<int:post_id>/', views.deleteConfession, name='delete_confession'),
+    path('user/<str:visitedUser>/deleteFeature/<int:post_id>/', views.deleteFeature, name='deleteFeature'),
     
     # Update systems
     path('update_profile/',views.update_profile, name='update_profile'),
