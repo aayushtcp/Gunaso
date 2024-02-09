@@ -265,7 +265,9 @@ ul {
     opacity: 0;
     visibility: hidden;
 }
-
+.generalspan{
+    color: var(--dark);
+}
 @media (min-width: 992px) {
     .header .menu>.menu-item-has-children:hover>.sub-menu {
         transform: translateY(0);

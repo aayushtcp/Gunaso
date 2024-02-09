@@ -74,7 +74,10 @@ urlpatterns = [
     path('topics/<str:slug>',views.famoustopics, name='famoustopics'),
     
     # for groups
-    path('groups/<str:slug>',views.groupsparticular, name='groupsparticular'),
+        # create form of group
+        path('create-group/',views.createGroup, name='createGroup'),
+        # particular group slug system
+        path('groups/<str:slug>',views.groupsparticular, name='groupsparticular'),
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/createGroup.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="createGroupMain">
+        <h2 style="margin-left: 10px;">Create <span class="generalspan">Group:</span></h2>
+
+        <div class="flexwrapper">
+            <div class="contents">
+                <h2>Some Rules:</h2>
+                <ul>
+                    <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
+                        accusantium eligendi.</li>
+                    <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
+                        accusantium eligendi.</li>
+                    <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
+                        accusantium eligendi.</li>
+                    <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
+                        accusantium eligendi.</li>
+                </ul>
+            </div>
+            <div class="mainform">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Fill the Form</legend>
+                        <div class="formrow">
+                            <label>Group Name:</label>
+                            <br>
+                            <input type="text" name="groupName" id="">
+                        </div>
+                        <div class="formrow">
+                            <label>Group Intro:</label>
+                            <br>
+                            <textarea name="groupIntro" id="groupIntro" placeholder="Write a Group Intro" cols="40"
+                                rows="3"></textarea>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        {% include 'banner.html' %}
+    </div>
+    <script>
+
+        // script to stop bad comments starts
+        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
+
+        function onKey() {
+            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
+            const subjectValue = document.querySelector("#subject").value.toLowerCase();
+            const messageElement = document.querySelector("#messagejs");
+
+            const hasBadWordContent = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+            const hasBadWordSubject = badWords.some(word => new RegExp(`\\b${word}\\b`).test(subjectValue));
+
+            if (hasBadWordContent || hasBadWordSubject) {
+                messageElement.innerText = "Bad Word Detected";
+                document.querySelector(".copybtn").style.cursor = "not-allowed";
+            } else {
+                messageElement.innerText = "";
+                document.querySelector(".copybtn").style.cursor = "pointer";
+            }
+        }
+
+        function validateForm() {
+            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
+            const subjectValue = document.querySelector("#subject").value.toLowerCase();
+
+            if (badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue) || new RegExp(`\\b${word}\\b`).test(subjectValue))) {
+                document.querySelector("#messagejs").innerText = "Bad Word Detected";
+                document.querySelector(".copybtn").style.cursor = "not-allowed";
+                return false;
+            }
+            return true;
+        }
+        // script to stop bad comments ends
+
+
+    </script>
+    {% endblock %}
+</body>
+
+</html>

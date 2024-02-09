@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+
+.createGroupMain {
+    margin-left: 4.6rem;
+    margin-top: 1rem;
+}
+
+.flexwrapper {
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+}
+
+.contents {
+    flex-basis: 50%;
+    margin-left: 10px;
+    /* background-color: red; */
+}
+.formrow{
+    padding: 15px;
+}
+
+.mainform {
+    flex-basis: 50%;
+    /* background-color: green; */
+    display: flex;
+    flex-direction:column;
+    width: 30%;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainform form {
+    background-color: gainsboro;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.mainform input, textarea {
+    background-color: var(--footer);
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 5px;
+    /* height: 6vh; */
+    width: 100%;
+    font-size: 20px;
+    border-radius: 5px;
+    caret-color: #fff;
+}
+
+.mainform input {
+    height: 6vh;
+}
+
+.mainform textarea {
+    height: 18vh;
+    resize: none;
+}
+.contents ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.contents ul li {
+    background-color: var(--dark);
+    color: #fff;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+@media (max-width: 991px) {
+    .createGroupMain {
+        margin: 0;
+    }
+}

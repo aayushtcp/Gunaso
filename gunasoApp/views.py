@@ -434,6 +434,10 @@ def topics(request):
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
 
+def createGroup(request):
+    '''Create a new group form'''
+    return render(request, 'createGroup.html',{})
+
 def groups(request):
     allgroups = ConfessGroup.objects.all()
     context = {"allgroups":allgroups}
