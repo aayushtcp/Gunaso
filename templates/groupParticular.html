@@ -49,24 +49,23 @@
                             <h4>Anonymous</h4>
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
                                 exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
+                            <p class="replycommenttrigger" onclick="replyPOP()">Reply</p>
                         </div>
                     </div>
+
                     <h3>Replies:</h3>
+                    <form class="replyform" action="" method="post" onsubmit="return validateForm()">
+                        {% csrf_token %}
+                        <textarea name="comment" id="content" onkeyup="onKey()"
+                            placeholder="Reply on {{allgroups.Groupname}}"></textarea>
+                        <br>
+                        <!-- <h3 id="messagejs"></h3> -->
+                        <input type="submit" value="Post" class="copybtn postbtn">
+                    </form>
                     <div class="replycomment comment">
+
                         <div class="imagepart">
                             <img src="{% static 'images/noone.png' %}" alt="userimg">
-                            <!-- <i class="ri-user-3-fill"></i> -->
-                        </div>
-                        <div class="textpart">
-                            <h4>Anonymous</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
-                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="imagepart">
-                            <img src="{% static 'images/noone.png' %}" alt="userimg">
-                            <!-- <i class="ri-user-3-fill"></i> -->
                         </div>
                         <div class="textpart">
                             <h4>Anonymous</h4>
@@ -75,54 +74,68 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- <div class="commentbox">
                     {% for comment in comments %}
                     <div class="comment">
                         <div class="imagepart">
                             <img src="{% static 'images/noone.png' %}" alt="userimg">
-                            <!-- <i class="ri-user-3-fill"></i> -->
+                        </div>
+                        <div class="textpart">
+                            <h4>Anonymous</h4>
+                            <p>{{comment.comment}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> -->
+                <!-- Your Thoughts System Ends-->
             </div>
-            <div class="textpart">
-                <h4>Anonymous</h4>
-                <p>{{comment.comment}}</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div> -->
-    <!-- Your Thoughts System Ends-->
-    </div>
-    <div class="rightside">
-        <div class="searchdiv">
-            <!-- <h3>Search</h3> -->
-            <i class='bx bx-search-alt'></i>
-            <input class="searchinp" placeholder="Search..." type="text">
-        </div>
-        <div class="catandside">
-            <div class="categoriesdiv">
-                <h3>Categories</h3>
-                <div class="uls">
-                    <ul class="lineone">
-                        <li><a href="#">Politics</a></li>
-                        <li><a href="#">Celebraties</a></li>
-                        <li><a href="#">More People</a></li>
-                    </ul>
-                    <ul class="lineone">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/">Contact Us</a></li>
-                    </ul>
+            <div class="rightside">
+                <div class="searchdiv">
+                    <!-- <h3>Search</h3> -->
+                    <i class='bx bx-search-alt'></i>
+                    <input class="searchinp" placeholder="Search..." type="text">
+                </div>
+                <div class="catandside">
+                    <div class="categoriesdiv">
+                        <h3>Categories</h3>
+                        <div class="uls">
+                            <ul class="lineone">
+                                <li><a href="#">Politics</a></li>
+                                <li><a href="#">Celebraties</a></li>
+                                <li><a href="#">More People</a></li>
+                            </ul>
+                            <ul class="lineone">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="categoriesdiv">
+                        <h3>About</h3>
+                        <p>{{allgroups.introduction}}</p>
+                    </div>
                 </div>
             </div>
-            <div class="categoriesdiv">
-                <h3>About</h3>
-                <p>{{allgroups.introduction}}</p>
-            </div>
         </div>
-    </div>
     </div>
     </div>
     <script>
-
+        function replyPOP() {
+            let overlay = document.querySelector(".replyform");
+            if (overlay.style.display === "block") {
+                overlay.style.display = "none";
+                document.querySelector(".replycommenttrigger").innerHTML= "Reply";
+            } else {
+                overlay.style.display = "block";
+                document.querySelector(".replycommenttrigger").innerHTML= "Close";
+            }
+        }
+        function closePOP() {
+            let overlay = document.querySelector(".replyform");
+            overlay.style.display = "none";
+        }
         // script to stop bad comments starts
 
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
