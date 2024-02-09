@@ -56,6 +56,24 @@ class Topic(models.Model):
 # class IndexTopic(models.Model):
 #     name = models.OneToOneField(Topic, on_delete = models.CASCADE, related_name="majortopicfilter")
     
+# for group system
+class ConfessGroup(models.Model):
+    sno = models.AutoField(primary_key=True)
+    Groupname = models.CharField(max_length=30)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "owner", blank=True, default="")
+    creationDate = models.DateField(auto_now_add=True)
+    # tagline = models.CharField(max_length=212, blank=True)
+    slug = models.CharField(max_length=130,unique=True, blank=True)
+    image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
+    introduction = models.TextField(blank=True)
+    
+    # to slugify the group
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.Groupname)
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return f'Group: {self.Groupname} -- {self.slug}'
     
 # For Topic Thoughts (Comments)
 class TopicComment(models.Model):
@@ -63,6 +81,18 @@ class TopicComment(models.Model):
     comment = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    timestamp = models.DateTimeField(default=now)
+    
+    def __str__(self):
+        return self.comment[0:13] + ' ' + 'by -- ' + self.user.email
+    
+# For Groups Thoughts (Comments)
+class GroupsComments(models.Model):
+    sno = models.AutoField(primary_key=True)
+    comment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(ConfessGroup, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(default=now)
     
@@ -119,22 +149,3 @@ class MyFeature(models.Model):
     def __str__(self):
         return f'{self.user}\'s -  Feature'
     
-    
-# for group system
-class ConfessGroup(models.Model):
-    sno = models.AutoField(primary_key=True)
-    Groupname = models.CharField(max_length=30)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "owner", blank=True, default="")
-    creationDate = models.DateField(auto_now_add=True)
-    # tagline = models.CharField(max_length=212, blank=True)
-    slug = models.CharField(max_length=130,unique=True, blank=True)
-    image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
-    introduction = models.TextField(blank=True)
-    
-    # to slugify the group
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.Groupname)
-        super().save(*args, **kwargs)
-    def __str__(self):
-        return f'Group: {self.Groupname} -- {self.slug}'

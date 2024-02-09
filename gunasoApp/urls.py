@@ -69,6 +69,7 @@ urlpatterns = [
     
     # celebraties/topics confessions/thoughts/comments
     path('postThoughts/',views.postThoughts, name='postThoughts'),
+    path('postThoughtsGroup/',views.postThoughtsGroup, name='postThoughtsGroup'),
     
     # celebraties/topics particular slug
     path('topics/<str:slug>',views.famoustopics, name='famoustopics'),

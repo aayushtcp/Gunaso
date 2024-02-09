@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/groupParticular.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="famoustopicsmain">
+        <div class="containflex">
+            <div class="leftside">
+                <h2>{{allgroups.Groupname}}</h2>
+                <!-- <img src="/media/{{topic.image}}" alt=""> -->
+                <div class="profileimg" onclick="toggleProfileImg()"
+                    style="background-image: url('../media/{{ allgroups.image }}');">
+                </div>
+                <p>{{topic.introduction}}</p>
+                <!-- Your Thoughts System Starts -->
+                <h2>People Thoughts</h2>
+                <section class="thoughtsform">
+                    <form action="{% url 'postThoughtsGroup' %}" method="post" onsubmit="return validateForm()">
+                        {% csrf_token %}
+                        <label for="">Your Thoughts</label>
+                        <br>
+                        <input type="hidden" name="postsno" value="{{allgroups.sno}}">
+                        <textarea name="comment" id="content" onkeyup="onKey()"
+                            placeholder="Say Something on {{allgroups.Groupname}}"></textarea>
+                        <br>
+                        <h3 id="messagejs"></h3>
+                        <input type="submit" value="Post" class="copybtn postbtn">
+                    </form>
+                </section>
+                <div class="commentbox">
+                    <div class="comment">
+                        <div class="imagepart">
+                            <img src="{% static 'images/noone.png' %}" alt="userimg">
+                            <!-- <i class="ri-user-3-fill"></i> -->
+                        </div>
+                        <div class="textpart">
+                            <h4>Anonymous</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
+                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
+                        </div>
+                    </div>
+                    <h3>Replies:</h3>
+                    <div class="replycomment comment">
+                        <div class="imagepart">
+                            <img src="{% static 'images/noone.png' %}" alt="userimg">
+                            <!-- <i class="ri-user-3-fill"></i> -->
+                        </div>
+                        <div class="textpart">
+                            <h4>Anonymous</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
+                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="imagepart">
+                            <img src="{% static 'images/noone.png' %}" alt="userimg">
+                            <!-- <i class="ri-user-3-fill"></i> -->
+                        </div>
+                        <div class="textpart">
+                            <h4>Anonymous</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
+                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="commentbox">
+                    {% for comment in comments %}
+                    <div class="comment">
+                        <div class="imagepart">
+                            <img src="{% static 'images/noone.png' %}" alt="userimg">
+                            <!-- <i class="ri-user-3-fill"></i> -->
+            </div>
+            <div class="textpart">
+                <h4>Anonymous</h4>
+                <p>{{comment.comment}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div> -->
+    <!-- Your Thoughts System Ends-->
+    </div>
+    <div class="rightside">
+        <div class="searchdiv">
+            <!-- <h3>Search</h3> -->
+            <i class='bx bx-search-alt'></i>
+            <input class="searchinp" placeholder="Search..." type="text">
+        </div>
+        <div class="catandside">
+            <div class="categoriesdiv">
+                <h3>Categories</h3>
+                <div class="uls">
+                    <ul class="lineone">
+                        <li><a href="#">Politics</a></li>
+                        <li><a href="#">Celebraties</a></li>
+                        <li><a href="#">More People</a></li>
+                    </ul>
+                    <ul class="lineone">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="categoriesdiv">
+                <h3>About</h3>
+                <p>{{allgroups.introduction}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script>
+
+        // script to stop bad comments starts
+
+        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
+        function onKey() {
+            const contentValue = document.querySelector("#content").value.toLowerCase();
+            const messageElement = document.querySelector("#messagejs");
+            const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+            if (hasBadWord) {
+                messageElement.innerText = "Bad Word Detected";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+            } else {
+                messageElement.innerText = "";
+                document.querySelector(".postbtn").style.cursor = "pointer";
+            }
+        }
+
+        function validateForm() {
+            const contentValue = document.querySelector("#content").value.toLowerCase();
+
+            if (badWords.some(word => contentValue.includes(word))) {
+                document.querySelector("#messagejs").innerText = "Bad Word Detected";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+                return false;
+            }
+
+            return true;
+        }
+        // script to stop bad comments ends
+        // profile image click animation starts
+        function profileimg() {
+            if (window.innerWidth >= 600) {
+                document.querySelector(".profileimg").style.height = "100vh";
+                // document.querySelector(".profileimg").style.width = "90%";
+                document.querySelector(".profileimg").style.backgroundSize = "cover";
+            }
+        }
+
+        function toggleProfileImg() {
+            var profileImg = document.querySelector(".profileimg");
+            var rightSide = document.querySelector(".rightside");
+
+            if (profileImg.style.height === "100vh") {
+                profileImg.style.height = "";
+                profileImg.style.width = "";
+                profileImg.style.backgroundSize = "";
+                // Show the right side if it was hidden
+                // rightSide.style.display = "";
+            } else {
+                profileimg();
+                // Hide the right side
+                // rightSide.style.display = "none";
+            }
+        }
+    </script>
+    {% endblock %}
+</body>
+
+</html>

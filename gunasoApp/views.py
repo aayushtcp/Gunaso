@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -409,6 +409,13 @@ def famoustopics(request, slug):
     context = {"topic": topic, "comments": comments}
     return render(request, 'famoustopics.html', context)
 
+# @login_required(login_url='/login/')
+# def groupParticular(request, slug):
+#     groupdetails = ConfessGroup.objects.filter(slug=slug).first()
+#     # comments = TopicComment.objects.filter(topic=topic)[::-1]
+#     # context = {"topic": topic, "comments": comments}
+#     return render(request, 'groupParticular.html')
+
 
 # Posting Thougths in Topic API
 def postThoughts(request):
@@ -422,6 +429,19 @@ def postThoughts(request):
         comment = TopicComment(comment =comment, user=user,topic=topic)
         comment.save()
     return redirect(f'/topics/{topic.slug}')
+                  
+def postThoughtsGroup(request):
+    if request.method == 'POST':
+        comment =request.POST['comment']
+        user =request.user
+        postsno=request.POST['postsno']
+        confessgroup = ConfessGroup.objects.get(sno = postsno)
+        # parent = request.POST['']
+        
+        comment = GroupsComments(comment =comment, user=user,topic=confessgroup)
+        print(comment)
+        # comment.save()
+    return redirect(f'/groups/{confessgroup.slug}')
                   
                   
 def persons(request):
@@ -493,11 +513,11 @@ def groups(request):
 
 @login_required(login_url='/login/')
 def groupsparticular(request, slug):
-    return render(request, 'about.html')
-    # allgroups = ConfessGroup.objects.filter(slug=slug).first()
+    allgroups = ConfessGroup.objects.filter(slug=slug).first()
     # comments = TopicComment.objects.filter(topic=topic)[::-1]
     # context = {"topic": topic, "comments": comments}
-    # return render(request, 'famoustopics.html', context)
+    context = {"allgroups": allgroups}
+    return render(request, 'groupParticular.html', context)
 
 def developers(request):
     developers = Developer.objects.all()

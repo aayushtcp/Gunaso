@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserPost, Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature, ConfessGroup
+from .models import UserPost, Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature, ConfessGroup, GroupsComments
 # Register your models here.
 
 admin.site.register(UserPost)
@@ -12,3 +12,4 @@ admin.site.register(Contact)
 admin.site.register(Story)
 admin.site.register(MyFeature)
 admin.site.register(ConfessGroup)
+admin.site.register(GroupsComments)
