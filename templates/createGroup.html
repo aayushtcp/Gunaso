@@ -30,38 +30,70 @@
                         accusantium eligendi.</li>
                     <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
                         accusantium eligendi.</li>
+                    <li>&#8226 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed aut alias quia? Sint,
+                        accusantium eligendi.</li>
                 </ul>
             </div>
             <div class="mainform">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <fieldset>
                         <legend>Fill the Form</legend>
+                        <div class="formrow" style="margin-left: 15px; padding: 0;">
+                            <label>Image:</label>
+                        </div>
+                        <div class="formrow rowflex">
+
+                            <input style="width:60%" type="file" name="groupimg" onchange="displayImage(this)">
+                            <div class="imagecontainer" id="imagecontainer"></div>
+                        </div>
+                        <center>
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                            </ul>
+                        </center>
                         <div class="formrow">
                             <label>Group Name:</label>
                             <br>
-                            <input type="text" name="groupName" id="">
+                            <input type="text" onkeyup="onKey()" name="groupName" id="groupName">
                         </div>
                         <div class="formrow">
                             <label>Group Intro:</label>
                             <br>
-                            <textarea name="groupIntro" id="groupIntro" placeholder="Write a Group Intro" cols="40"
-                                rows="3"></textarea>
+                            <textarea name="groupIntro" onkeyup="onKey()" id="groupIntro"
+                                placeholder="Write a Group Intro" cols="40" rows="3"></textarea>
                         </div>
+                        <button type="submit" class="copybtn">Create</button>
+                        <h3 id="messagejs"></h3>
                     </fieldset>
                 </form>
             </div>
         </div>
         {% include 'banner.html' %}
     </div>
+
+    <script>
+        function displayImage(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagecontainer').style.backgroundImage = 'url(' + e.target.result + ')';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
     <script>
 
         // script to stop bad comments starts
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
 
         function onKey() {
-            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
-            const subjectValue = document.querySelector("#subject").value.toLowerCase();
+            const subjectValue = document.querySelector("#groupIntro").value.toLowerCase();
+            const contentValue = document.querySelector("#groupName").value.toLowerCase();
             const messageElement = document.querySelector("#messagejs");
 
             const hasBadWordContent = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));

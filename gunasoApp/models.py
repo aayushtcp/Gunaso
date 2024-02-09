@@ -124,8 +124,9 @@ class MyFeature(models.Model):
 class ConfessGroup(models.Model):
     sno = models.AutoField(primary_key=True)
     Groupname = models.CharField(max_length=30)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "owner", blank=True, default="")
     creationDate = models.DateField(auto_now_add=True)
-    tagline = models.CharField(max_length=212, blank=True)
+    # tagline = models.CharField(max_length=212, blank=True)
     slug = models.CharField(max_length=130,unique=True, blank=True)
     image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
     introduction = models.TextField(blank=True)
