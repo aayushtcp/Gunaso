@@ -242,6 +242,40 @@ def update_profile(request):
         # Update profile picture
         if 'image' in request.FILES:
             userimageFU = request.FILES['image']
+            # ------------------------for nuditity------------------------------------------------------------
+            # Use NudeNet to detect nudity
+            detector = NudeDetector()
+            
+            # Save the uploaded image to a temporary file
+            with open('temp_image.jpg', 'wb') as temp_image:
+                for chunk in userimageFU.chunks():
+                    temp_image.write(chunk)
+            # Use the detector to scan the temporary file
+            result = detector.detect('temp_image.jpg')
+            if result and 'score' in result[0]:
+                score = result[0]['score']
+                if (score > 0.75):
+                    imageclass = result[0]['class']
+                    if (imageclass == "FACE_FEMALE" and score > 0.87):
+                        messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                        return redirect("update_profile")
+                    if imageclass not in [
+                        "FEMALE_GENITALIA_COVERED",
+                        "FACE_FEMALE",
+                        "FEET_EXPOSED",
+                        "BELLY_COVERED",
+                        "FEET_COVERED",
+                        "ARMPITS_COVERED",
+                        "FACE_MALE",
+                        "MALE_GENITALIA_EXPOSED",
+                        "ANUS_COVERED",
+                        "FEMALE_BREAST_COVERED",
+                        "BUTTOCKS_COVERED"
+                        ]:
+                        messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                        return redirect("update_profile")
+
+            # ------------------------------------------------------------------------------------------------
             profile.image = userimageFU
             profile.save()
             
@@ -311,6 +345,10 @@ def user_timeline(request, visitedUser):
                     if (score > 0.75):
                         imageclass = result[0]['class']
                         print(f"Class: {imageclass}")
+                        if (imageclass == "FACE_FEMALE" and score > 0.87):
+                            print("Removing face female....")
+                            messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                            return redirect("user_timeline", visitedUser=extracted_category)
                         if imageclass not in [
                             "FEMALE_GENITALIA_COVERED",
                             "FACE_FEMALE",

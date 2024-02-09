@@ -429,5 +429,5 @@ textarea:focus {
     background-position: center;
     background-color: violet;
     background-size: cover;
-    transition: 1s all ease;
+    transition: 1s all ease-in-out;
 }
