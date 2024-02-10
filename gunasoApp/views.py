@@ -439,8 +439,8 @@ def postThoughtsGroup(request):
         # parent = request.POST['']
         
         comment = GroupsComments(comment =comment, user=user,topic=confessgroup)
-        print(comment)
-        # comment.save()
+        # print(comment)
+        comment.save()
     return redirect(f'/groups/{confessgroup.slug}')
                   
                   
@@ -514,9 +514,8 @@ def groups(request):
 @login_required(login_url='/login/')
 def groupsparticular(request, slug):
     allgroups = ConfessGroup.objects.filter(slug=slug).first()
-    # comments = TopicComment.objects.filter(topic=topic)[::-1]
-    # context = {"topic": topic, "comments": comments}
-    context = {"allgroups": allgroups}
+    comments = GroupsComments.objects.filter(topic=allgroups)[::-1]
+    context = {"allgroups": allgroups, "comments": comments}
     return render(request, 'groupParticular.html', context)
 
 def developers(request):

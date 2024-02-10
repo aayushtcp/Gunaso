@@ -40,6 +40,7 @@
                     </form>
                 </section>
                 <div class="commentbox">
+                    {% for comment in comments %}
                     <div class="comment">
                         <div class="imagepart">
                             <img src="{% static 'images/noone.png' %}" alt="userimg">
@@ -47,16 +48,17 @@
                         </div>
                         <div class="textpart">
                             <h4>Anonymous</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
-                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
-                            <p class="replycommenttrigger" onclick="replyPOP()">Reply</p>
+                            <p>{{comment.comment}}</p>
+                            <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}" onclick="replyPOP({{ comment.sno }})">Reply</p>
+
                         </div>
                     </div>
 
                     <h3>Replies:</h3>
-                    <form class="replyform" action="" method="post" onsubmit="return validateFormreply()">
+                    <form class="replyform" id="replyform{{ comment.sno }}" action="" method="post"
+                        onsubmit="return validateFormreply()">
                         {% csrf_token %}
-                        <textarea name="comment" id="contentreply" onkeyup="onKey2()"
+                        <textarea name="comment" id="contentreply{{ comment.sno }}" onkeyup="onKey2()"
                             placeholder="Reply on {{allgroups.Groupname}}"></textarea>
                         <br>
                         <h3 id="messagejsreply"></h3>
@@ -73,6 +75,7 @@
                                 exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
 
                 <!-- <div class="commentbox">
@@ -122,20 +125,24 @@
     </div>
     </div>
     <script>
-        function replyPOP() {
-            let overlay = document.querySelector(".replyform");
-            if (overlay.style.display === "block") {
-                overlay.style.display = "none";
-                document.querySelector(".replycommenttrigger").innerHTML = "Reply";
-            } else {
+        function replyPOP(commentId) {
+            let overlay = document.querySelector(`#replyform${commentId}`);
+            let triggerBtn = document.querySelector(`#replytrigger${commentId}`);
+
+            if (overlay.style.display === "none" || overlay.style.display === "") {
                 overlay.style.display = "block";
-                document.querySelector(".replycommenttrigger").innerHTML = "Close";
+                triggerBtn.innerHTML = "Close";
+            } else {
+                overlay.style.display = "none";
+                triggerBtn.innerHTML = "Reply";
             }
         }
-        function closePOP() {
-            let overlay = document.querySelector(".replyform");
+
+        function closePOP(commentId) {
+            let overlay = document.querySelector(`#replyform${commentId}`);
             overlay.style.display = "none";
         }
+
         // script to stop bad comments starts
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
 
@@ -159,23 +166,23 @@
                 }
             }
         }
-        function onKey2() {
-            const contentValue = document.querySelector("#contentreply").value.toLowerCase();
-            const messageElement = document.querySelector("#messagejsreply");
-            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
+        function onKey2(commentId) {
+            const contentValue = document.querySelector(`#contentreply${commentId}`).value.toLowerCase();
+            const messageElement = document.querySelector(`#messagejsreply${commentId}`);
+            const contentLength = contentValue.replace(/\s/g, '').length;
 
             if (contentLength < 30) {
                 messageElement.innerText = "Reply must be above 20 characters";
-                document.querySelector(".replybtn").style.cursor = "not-allowed";
+                document.querySelector(`#replyform${commentId} .replybtn`).style.cursor = "not-allowed";
             } else {
                 const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
 
                 if (hasBadWord) {
                     messageElement.innerText = "Bad Word Detected";
-                    document.querySelector(".replybtn").style.cursor = "not-allowed";
+                    document.querySelector(`#replyform${commentId} .replybtn`).style.cursor = "not-allowed";
                 } else {
                     messageElement.innerText = "";
-                    document.querySelector(".replybtn").style.cursor = "pointer";
+                    document.querySelector(`#replyform${commentId} .replybtn`).style.cursor = "pointer";
                 }
             }
         }
