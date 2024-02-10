@@ -54,13 +54,13 @@
                     </div>
 
                     <h3>Replies:</h3>
-                    <form class="replyform" action="" method="post" onsubmit="return validateForm()">
+                    <form class="replyform" action="" method="post" onsubmit="return validateFormreply()">
                         {% csrf_token %}
-                        <textarea name="comment" id="content" onkeyup="onKey()"
+                        <textarea name="comment" id="contentreply" onkeyup="onKey2()"
                             placeholder="Reply on {{allgroups.Groupname}}"></textarea>
                         <br>
-                        <!-- <h3 id="messagejs"></h3> -->
-                        <input type="submit" value="Post" class="copybtn postbtn">
+                        <h3 id="messagejsreply"></h3>
+                        <input type="submit" value="Post" class="copybtn postbtn replybtn">
                     </form>
                     <div class="replycomment comment">
 
@@ -126,10 +126,10 @@
             let overlay = document.querySelector(".replyform");
             if (overlay.style.display === "block") {
                 overlay.style.display = "none";
-                document.querySelector(".replycommenttrigger").innerHTML= "Reply";
+                document.querySelector(".replycommenttrigger").innerHTML = "Reply";
             } else {
                 overlay.style.display = "block";
-                document.querySelector(".replycommenttrigger").innerHTML= "Close";
+                document.querySelector(".replycommenttrigger").innerHTML = "Close";
             }
         }
         function closePOP() {
@@ -137,31 +137,79 @@
             overlay.style.display = "none";
         }
         // script to stop bad comments starts
-
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
+
         function onKey() {
             const contentValue = document.querySelector("#content").value.toLowerCase();
             const messageElement = document.querySelector("#messagejs");
-            const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
 
-            if (hasBadWord) {
-                messageElement.innerText = "Bad Word Detected";
+            if (contentLength < 30) {
+                messageElement.innerText = "Confession must be above 30 characters";
                 document.querySelector(".postbtn").style.cursor = "not-allowed";
             } else {
-                messageElement.innerText = "";
-                document.querySelector(".postbtn").style.cursor = "pointer";
+                const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+                if (hasBadWord) {
+                    messageElement.innerText = "Bad Word Detected";
+                    document.querySelector(".postbtn").style.cursor = "not-allowed";
+                } else {
+                    messageElement.innerText = "";
+                    document.querySelector(".postbtn").style.cursor = "pointer";
+                }
             }
         }
+        function onKey2() {
+            const contentValue = document.querySelector("#contentreply").value.toLowerCase();
+            const messageElement = document.querySelector("#messagejsreply");
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
 
+            if (contentLength < 30) {
+                messageElement.innerText = "Reply must be above 20 characters";
+                document.querySelector(".replybtn").style.cursor = "not-allowed";
+            } else {
+                const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+                if (hasBadWord) {
+                    messageElement.innerText = "Bad Word Detected";
+                    document.querySelector(".replybtn").style.cursor = "not-allowed";
+                } else {
+                    messageElement.innerText = "";
+                    document.querySelector(".replybtn").style.cursor = "pointer";
+                }
+            }
+        }
+        // (down) function that validates form
         function validateForm() {
             const contentValue = document.querySelector("#content").value.toLowerCase();
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces
 
+            if (contentLength < 30) {
+                document.querySelector("#messagejs").innerText = "Confession must be above 30 characters";
+                document.querySelector(".postbtn").style.cursor = "not-allowed";
+                return false;
+            }
             if (badWords.some(word => contentValue.includes(word))) {
                 document.querySelector("#messagejs").innerText = "Bad Word Detected";
                 document.querySelector(".postbtn").style.cursor = "not-allowed";
                 return false;
             }
+            return true;
+        }
+        function validateFormreply() {
+            const contentValue = document.querySelector("#contentreply").value.toLowerCase();
+            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces
 
+            if (contentLength < 30) {
+                document.querySelector("#messagejs").innerText = "Reply must be above 20 characters";
+                document.querySelector(".replybtn").style.cursor = "not-allowed";
+                return false;
+            }
+            if (badWords.some(word => contentValue.includes(word))) {
+                document.querySelector("#messagejs").innerText = "Bad Word Detected";
+                document.querySelector(".replybtn").style.cursor = "not-allowed";
+                return false;
+            }
             return true;
         }
         // script to stop bad comments ends
