@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load extras %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,13 @@
 <body>
     {% block content %}
     <div class="famoustopicsmain">
+        <center>
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+        </center>
         <div class="containflex">
             <div class="leftside">
                 <h2>{{allgroups.Groupname}}</h2>
@@ -32,6 +40,7 @@
                         <label for="">Your Thoughts</label>
                         <br>
                         <input type="hidden" name="postsno" value="{{allgroups.sno}}">
+                        <input type="hidden" name="parentsno" value="">
                         <textarea name="comment" id="content" onkeyup="onKey()"
                             placeholder="Say Something on {{allgroups.Groupname}}"></textarea>
                         <br>
@@ -49,21 +58,25 @@
                         <div class="textpart">
                             <h4>Anonymous</h4>
                             <p>{{comment.comment}}</p>
-                            <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}" onclick="replyPOP({{ comment.sno }})">Reply</p>
-
+                            <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}"
+                                onclick="replyPOP({{ comment.sno }})">Reply</p>
                         </div>
                     </div>
 
-                    <h3>Replies:</h3>
-                    <form class="replyform" id="replyform{{ comment.sno }}" action="" method="post"
-                        onsubmit="return validateFormreply()">
+
+                    <form class="replyform" id="replyform{{ comment.sno }}" action="{% url 'postThoughtsGroup' %}"
+                        method="post" onsubmit="return validateFormreply()">
                         {% csrf_token %}
                         <textarea name="comment" id="contentreply{{ comment.sno }}" onkeyup="onKey2()"
                             placeholder="Reply on {{allgroups.Groupname}}"></textarea>
+                        <input type="hidden" name="parentsno" value="{{comment.sno}}">
+                        <input type="hidden" name="postsno" value="{{allgroups.sno}}">
                         <br>
                         <h3 id="messagejsreply"></h3>
                         <input type="submit" value="Post" class="copybtn postbtn replybtn">
                     </form>
+
+                    {% for reply in reply_dict|get_val:comment.sno %}
                     <div class="replycomment comment">
 
                         <div class="imagepart">
@@ -71,10 +84,10 @@
                         </div>
                         <div class="textpart">
                             <h4>Anonymous</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, necessitatibus nisi
-                                exercitationem quidem ipsam voluptatem optio voluptate numquam minus velit!</p>
+                            <p>{{reply.comment}}</p>
                         </div>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
 
@@ -129,18 +142,8 @@
             let overlay = document.querySelector(`#replyform${commentId}`);
             let triggerBtn = document.querySelector(`#replytrigger${commentId}`);
 
-            if (overlay.style.display === "none" || overlay.style.display === "") {
-                overlay.style.display = "block";
-                triggerBtn.innerHTML = "Close";
-            } else {
-                overlay.style.display = "none";
-                triggerBtn.innerHTML = "Reply";
-            }
-        }
-
-        function closePOP(commentId) {
-            let overlay = document.querySelector(`#replyform${commentId}`);
-            overlay.style.display = "none";
+            overlay.style.display = overlay.style.display === "none" || overlay.style.display === "" ? "block" : "none";
+            triggerBtn.innerHTML = overlay.style.display === "none" ? "Reply" : "Close";
         }
 
         // script to stop bad comments starts

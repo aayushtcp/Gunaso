@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest
 from django.core.mail import send_mail
 import re
-
+from gunasoApp.templatetags import extras
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -434,14 +434,23 @@ def postThoughtsGroup(request):
     if request.method == 'POST':
         comment =request.POST['comment']
         user =request.user
-        postsno=request.POST['postsno']
+        postsno=request.POST.get('postsno')
         confessgroup = ConfessGroup.objects.get(sno = postsno)
-        # parent = request.POST['']
-        
-        comment = GroupsComments(comment =comment, user=user,topic=confessgroup)
+        parentsno = request.POST['parentsno']
+        if parentsno == "":
+            comment = GroupsComments(comment=comment, user=user, topic=confessgroup)
+            comment.save()
+            # messages.success(request,"Confession has been added successfully")
+        else:
+            parent = GroupsComments.objects.get(sno=parentsno)
+            comment = GroupsComments(comment=comment, user=user, topic=confessgroup, parent=parent)
+            comment.save()
+            # messages.success(request,"Reply has been added successfully")
+
+            
         # print(comment)
-        comment.save()
     return redirect(f'/groups/{confessgroup.slug}')
+
                   
                   
 def persons(request):
@@ -514,8 +523,18 @@ def groups(request):
 @login_required(login_url='/login/')
 def groupsparticular(request, slug):
     allgroups = ConfessGroup.objects.filter(slug=slug).first()
-    comments = GroupsComments.objects.filter(topic=allgroups)[::-1]
-    context = {"allgroups": allgroups, "comments": comments}
+    comments = GroupsComments.objects.filter(topic=allgroups, parent=None)[::-1]
+    replies = GroupsComments.objects.filter(topic=allgroups).exclude(parent = None)
+    # print(comments, replies)
+    reply_dict={}
+    for reply in replies:
+        if reply.parent.sno not in reply_dict.keys():
+            reply_dict[reply.parent.sno]= [reply]
+        else:
+            reply_dict[reply.parent.sno].append(reply)
+            
+    print(reply_dict)
+    context = {"allgroups": allgroups, "comments": comments, "reply_dict": reply_dict}
     return render(request, 'groupParticular.html', context)
 
 def developers(request):

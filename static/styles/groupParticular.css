@@ -140,11 +140,12 @@ textarea {
     width: 70%;
     height: 20vh;
 } */
-.replyform{
+.replyform {
     display: none;
     transition: 1s all ease;
     margin-left: 70px;
 }
+
 .searchdiv {
     margin-top: 1rem;
     display: flex;
@@ -232,7 +233,10 @@ textarea {
     margin-left: 70px;
     border-radius: 5px;
     color: var(--mainheading);
-    background-color: var(--cooltexr);
+    background-color: var(--footer);
+}
+.replycomment p{
+    color: var(--hotish);
 }
 
 .textpart {
@@ -245,7 +249,7 @@ textarea {
 
 .replycommenttrigger {
     cursor: pointer;
-    width: 7%;
+    width: max-content;
     text-decoration: none;
     color: #fff;
     background-color: var(--footer);
@@ -268,6 +272,12 @@ textarea {
 
     .rightside {
         display: none;
+    }
+
+    /* reply comment css */
+
+    .replycomment,.replyform {
+        margin-left: 40px;
     }
 }
 
