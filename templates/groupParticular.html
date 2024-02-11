@@ -41,8 +41,10 @@
                         <br>
                         <input type="hidden" name="postsno" value="{{allgroups.sno}}">
                         <input type="hidden" name="parentsno" value="">
-                        <textarea name="comment" id="content" onkeyup="onKey()"
+                        <textarea name="comment" id="content" class="mention-textarea" onkeyup="onKey()"
                             placeholder="Say Something on {{allgroups.Groupname}}"></textarea>
+
+
                         <br>
                         <h3 id="messagejs"></h3>
                         <input type="submit" value="Post" class="copybtn postbtn">
@@ -145,7 +147,6 @@
             overlay.style.display = overlay.style.display === "none" || overlay.style.display === "" ? "block" : "none";
             triggerBtn.innerHTML = overlay.style.display === "none" ? "Reply" : "Close";
         }
-
         // script to stop bad comments starts
         const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
 
@@ -154,20 +155,21 @@
             const messageElement = document.querySelector("#messagejs");
             const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
 
-            if (contentLength < 30) {
-                messageElement.innerText = "Confession must be above 30 characters";
+            // if (contentLength < 30) {
+            //     messageElement.innerText = "Confession must be above 30 characters";
+            //     document.querySelector(".postbtn").style.cursor = "not-allowed";
+            // }
+            // else {
+            const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
+
+            if (hasBadWord) {
+                messageElement.innerText = "Bad Word Detected";
                 document.querySelector(".postbtn").style.cursor = "not-allowed";
             } else {
-                const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
-
-                if (hasBadWord) {
-                    messageElement.innerText = "Bad Word Detected";
-                    document.querySelector(".postbtn").style.cursor = "not-allowed";
-                } else {
-                    messageElement.innerText = "";
-                    document.querySelector(".postbtn").style.cursor = "pointer";
-                }
+                messageElement.innerText = "";
+                document.querySelector(".postbtn").style.cursor = "pointer";
             }
+            // }
         }
         function onKey2(commentId) {
             const contentValue = document.querySelector(`#contentreply${commentId}`).value.toLowerCase();

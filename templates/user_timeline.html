@@ -16,10 +16,13 @@
 <body">
     {% block content %}
     <center>
-        <!-- {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="background-color: rgb(224, 247, 251);">{{
-            message }}</li>
-            {% endfor %} -->
+        <ul class="messages">
+            {% for message in messages %}
+            {% if message != "Post deleted successfully." %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endif %}
+                {% endfor %}
+        </ul>
     </center>
     </center>
     <div class="famoustopicsmain">
@@ -64,13 +67,9 @@
                         </div>
                         {% if request.user.username == extracted_category %}
                         <div class="deletepost">
-                            <form action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/"
-                                method="post">
-                                {% csrf_token %}
-                                <input class="deleteconfession" type="submit" value="X">
-                            </form>
+                            <input class="deleteconfession" onclick="openDelPop()" type="submit" value="X">
                         </div>
-                        </form>
+                        <!-- </form> -->
 
                         {% endif %}
                     </div>
@@ -104,11 +103,6 @@
                                 <input type="file" id="file-input" accept="image/*" name="file-input"
                                     onchange="displayImage(this)" />
                                 <label id="file-input-label" for="file-input">+</label>
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                                        {% endfor %}
-                                </ul>
                                 <input type="submit" value="Post" class="postbtn">
                             </form>
                             {% endif %}
@@ -185,6 +179,22 @@
             </form>
         </div>
     </div>
+    {% for post in user_posts %}
+    <div id="myModal2" class="modal">
+        <div class="modelcontents">
+            <form method="post" action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/">
+                {% csrf_token %}
+                <label for="">Are you sure?</label>
+                <br>
+                <center>
+                    <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
+                    <input type="submit" name="Edit" value="Yes" class="copybtn">
+                </center>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
     <!-- The Overlay -->
     <div id="overlay" class="overlay"></div>
 
@@ -206,6 +216,11 @@
     {% endfor %}
     </div>
     <script>
+        // to del personal confessions
+        function openDelPop() {
+            document.getElementById('myModal2').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
         // Function to open the popup
         function openPopup() {
             document.getElementById('myModal').style.display = 'block';
@@ -215,6 +230,7 @@
         // Function to close the popup
         function closePopup() {
             document.getElementById('myModal').style.display = 'none';
+            document.getElementById('myModal2').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
     </script>

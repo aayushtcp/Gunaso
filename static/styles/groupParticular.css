@@ -235,7 +235,8 @@ textarea {
     color: var(--mainheading);
     background-color: var(--footer);
 }
-.replycomment p{
+
+.replycomment p {
     color: var(--hotish);
 }
 
@@ -259,6 +260,10 @@ textarea {
     transition: 1s all ease;
 }
 
+.highlight {
+    background-color: yellow;
+}
+
 /* for small screen cards */
 @media (max-width: 920px) {
     .famoustopicsmain {
@@ -276,7 +281,7 @@ textarea {
 
     /* reply comment css */
 
-    .replycomment,.replyform {
+    .replycomment, .replyform {
         margin-left: 40px;
     }
 }

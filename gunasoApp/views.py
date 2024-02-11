@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest
+from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest,HttpResponseRedirect
 from django.core.mail import send_mail
 import re
 from gunasoApp.templatetags import extras
@@ -522,6 +522,7 @@ def groups(request):
 
 @login_required(login_url='/login/')
 def groupsparticular(request, slug):
+    users = User.objects.all()
     allgroups = ConfessGroup.objects.filter(slug=slug).first()
     comments = GroupsComments.objects.filter(topic=allgroups, parent=None)[::-1]
     replies = GroupsComments.objects.filter(topic=allgroups).exclude(parent = None)
@@ -534,7 +535,7 @@ def groupsparticular(request, slug):
             reply_dict[reply.parent.sno].append(reply)
             
     print(reply_dict)
-    context = {"allgroups": allgroups, "comments": comments, "reply_dict": reply_dict}
+    context = {"allgroups": allgroups, "comments": comments, "reply_dict": reply_dict, 'users': users}
     return render(request, 'groupParticular.html', context)
 
 def developers(request):
@@ -651,12 +652,12 @@ def deleteConfession(request,visitedUser,post_id):
         return HttpResponseNotFound("Post not found.")
     # Check if the logged-in user is the owner of the post
     if request.user.username != extracted_category:
-        return HttpResponseForbidden("Hiro na ban randi ko ban.")
+        return HttpResponseForbidden("Hiro na ban")
     else:
         # Only proceed with deletion if the user is the owner
         post.delete()
-        messages.success(request, "Deleted the post")
-        return redirect('/')
+        messages.success(request, "Post deleted successfully.")
+        return redirect(f"../../")
     return redirect('/')
 
 def deleteFeature(request,visitedUser,post_id):
