@@ -228,7 +228,10 @@ def update_profile(request):
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
             return redirect("update_profile")
-        
+        # Create a new user
+        if(User.objects.filter(username = username)):
+            messages.error(request, "Username already in use")
+            return redirect('/update_profile')
         # Update user profile
         if (username):
             request.user.username = username
@@ -747,11 +750,11 @@ def clipping(request, *args, **kwargs):
         visited_user = get_object_or_404(User, username=visited_username)
         saveClipping = Clipping(user=user, visitedUser=visited_user)
         saveClipping.save()
-
+        
         messages.success(request, "Clipped Successfully")
-        return redirect('/persons')
+        return redirect('/myclippings')
     
-    return render(request, 'writestory.html')
+    return HttpResponseNotFound("HaHa Don't Try To Be Cool")
 
 @login_required(login_url='/login/')
 def groupClipping(request, *args, **kwargs):
@@ -764,18 +767,24 @@ def groupClipping(request, *args, **kwargs):
         saveClipping.save()
 
         messages.success(request, "Group Clipped Successfully")
-        return redirect('/groups')
+        return redirect('/myclippings')
     
     return HttpResponseNotFound("HaHa Don't Try To Be Cool")
 
 
 # To show clippings
+@login_required(login_url='/login/')
 def showClippings(request):
     '''To show Clippings (both user and group) '''
     clippedUsers = Clipping.objects.filter(user=request.user)
     clippedGroups = Groupclipping.objects.filter(user=request.user)
+    
+    user_profiles = Profile.objects.filter(user__in=[user_clipping.visitedUser for user_clipping in clippedUsers])
+
     context = {
-                'clippedUsers':clippedUsers,
-                'clippedGroups':clippedGroups
-              }
-    return render(request, 'clippings.html', context) 
+        'clippedUsers': clippedUsers,
+        'clippedGroups': clippedGroups,
+        'user_profiles': user_profiles,
+    }
+
+    return render(request, 'clippings.html', context)

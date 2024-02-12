@@ -16,22 +16,56 @@
 <body>
     {% block content %}
     <div class="clippingsmain">
+        {% if clippedGroups %}
         <h2>Clipped <span class="generalspan">Users:</span></h2>
+        {% endif %}
         <div class="usergrid">
-            {% for item in clippedUsers %}
-            <div class="card">
-                <h2>{{item.visitedUser}}</h2>
+            {% for profile in user_profiles %}
+            <div data-aos="fade-up">
+                <div class="card" style="background-image: url('{{ profile.image.url }}');">
+                    <h4>{{profile.user}}</h4>
+                </div>
+                <div class="linksbtns">
+                    <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a>
+                    {% if user.is_authenticated %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="visitedUser" value="{{allusers.user}}">
+                        <input type="hidden" name="user" value="{{user}}">
+                        <input class="clipuserbtn" type="submit" value="UnSave User" name="" id="">
+                        <!-- <input class="clipuserbtn" type="submit" value="UnSave User" name="" id=""> -->
+                    </form>
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
+        {% if clippedGroups %}
         <h2>Clipped <span class="generalspan">Groups:</span></h2>
+        {% endif %}
         <div class="groupgrid">
             {% for group in clippedGroups %}
-            <div class="card">
-                <h2>{{group.visitedGroup}}</h2>
+            <!-- <div class="card" style="background-image: url(../media/{{group.visitedGroup.image}});">
+            </div> -->
+            <div data-aos="fade-up">
+                <div class="card" style="background-image: url(../media/{{group.visitedGroup.image}});">
+                </div>
+                <div class="linksbtns">
+                    <a class="usernameanchor" href="../groups/{{group.slug}}">{{group.visitedGroup.Groupname}}</a>
+                    {% if user.is_authenticated %}
+                    <form action="" method="post">
+                        {{ action }}
+                        {% csrf_token %}
+                        <input type="hidden" name="visitedGroup" value="{{group.Groupname}}">
+                        <input class="clipuserbtn" type="submit" value="UnClip Group" name="" id="">
+                    </form>
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
+
+        
         <h2>Clipped <span class="generalspan">Topics:</span></h2>
         <div class="topicsgrid">
             <div class="cardvertical"></div>
