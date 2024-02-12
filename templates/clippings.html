@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/clippings.css' %}">
+    {% endblock base_style%}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="clippingsmain">
+        <h2>Clipped <span class="generalspan">Users:</span></h2>
+        <div class="usergrid">
+            {% for item in clippedUsers %}
+            <div class="card">
+                <h2>{{item.visitedUser}}</h2>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Clipped <span class="generalspan">Groups:</span></h2>
+        <div class="groupgrid">
+            {% for group in clippedGroups %}
+            <div class="card">
+                <h2>{{group.visitedGroup}}</h2>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Clipped <span class="generalspan">Topics:</span></h2>
+        <div class="topicsgrid">
+            <div class="cardvertical"></div>
+            <div class="cardvertical"></div>
+            <div class="cardvertical"></div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

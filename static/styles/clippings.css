@@ -1,0 +1,70 @@
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+.clippingsmain {
+    margin-left: 4.779rem;
+}
+
+.usergrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 1rem 0;
+    padding: 5px 15px;
+}
+
+.groupgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 1rem 0;
+    padding: 5px 15px;
+}
+
+.topicsgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 1rem 0;
+    padding: 5px 15px;
+}
+
+.cardvertical {
+    height: 80vh;
+    background-color: violet;
+    border-radius: 6px;
+}
+
+.card {
+    height: 30vh;
+    background-color: violet;
+    border-radius: 6px;
+}
+
+
+@media (max-width: 920px) {
+    .clippingsmain {
+        margin-left: 0;
+    }
+
+    .usergrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .groupgrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}

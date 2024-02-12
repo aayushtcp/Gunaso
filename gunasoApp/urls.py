@@ -84,4 +84,7 @@ urlpatterns = [
     path('persons/<str:user>/clip-system/<str:visitedUser>/',views.clipping, name='clipping'),
     # for clipping system group
     path('groups/<str:user>/clip-system-group/<str:visitedGroup>/', views.groupClipping, name='groupClipping'),
+    
+    # to show clippings
+    path('myclippings/', views.showClippings, name='showClippings'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

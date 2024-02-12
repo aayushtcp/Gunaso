@@ -759,7 +759,6 @@ def groupClipping(request, *args, **kwargs):
     if request.method == 'POST':
         user = request.user
         visited_group_name = request.POST['visitedGroup']
-        print("Visited Group Name:", visited_group_name)
         visited_group = get_object_or_404(ConfessGroup, Groupname=visited_group_name)
         saveClipping = Groupclipping(user=user, visitedGroup=visited_group)
         saveClipping.save()
@@ -767,4 +766,16 @@ def groupClipping(request, *args, **kwargs):
         messages.success(request, "Group Clipped Successfully")
         return redirect('/groups')
     
-    return render(request, 'writestory.html')
+    return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+
+
+# To show clippings
+def showClippings(request):
+    '''To show Clippings (both user and group) '''
+    clippedUsers = Clipping.objects.filter(user=request.user)
+    clippedGroups = Groupclipping.objects.filter(user=request.user)
+    context = {
+                'clippedUsers':clippedUsers,
+                'clippedGroups':clippedGroups
+              }
+    return render(request, 'clippings.html', context) 
