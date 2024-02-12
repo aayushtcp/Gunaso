@@ -27,7 +27,7 @@
                             <div class="linksbtns">
                                 <a class="usernameanchor" href="../user/{{allusers.user}}">{{allusers.user}}</a>
                                 {% if user.is_authenticated %}
-                                <form action="persons/<str:user>/clip-system/<str:visitedUser>/" method="post">
+                                <form action="{{user}}/clip-system/{{allusers.user}}/" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="visitedUser" value="{{allusers.user}}">
                                     <input type="hidden" name="user" value="{{user}}">

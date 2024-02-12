@@ -200,12 +200,51 @@ a {
     color: #000;
     cursor: pointer;
 }
-.card form{
+
+.card form {
     /* float: right; */
     font-size: 30px;
     color: #ffffff;
     filter: brightness(300%);
     background-color: red;
+}
+
+.usernameanchor {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: 3px;
+    font-size: 16px;
+    background-color: var(--skyblue);
+    padding: 5px 10px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: inherit;
+    color: #ffffff;
+}
+
+.linksbtns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gridcontain form {
+    width: 100%;
+}
+
+form .clipuserbtn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: rgb(7, 1, 32);
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: inherit;
+    color: #ffffff;
 }
 
 /* for small screen cards */
@@ -230,8 +269,9 @@ a {
     .card {
         height: 25vh;
     }
+
     .card h2 {
         font-size: 18px;
     }
-    
+
 }

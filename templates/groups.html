@@ -26,13 +26,22 @@
                 <h2>Explore <span class="blue">Groups:</span></h2>
                 <div class="gridcontain">
                     {% for allgroups in allgroups %}
-                    <!--! Edit the link later -->
-                    <a href="/groups/{{allgroups.slug}}" data-aos="fade-up">
+                    <div data-aos="fade-up">
                         <div class="card" style="background-image: url(../media/{{allgroups.image}});">
-                            <h2>{{allgroups.Groupname}}</h2>
                         </div>
-                    </a>
-                    <!--! Edit the link later -->
+                        <div class="linksbtns">
+                            <a class="usernameanchor" href="/groups/{{allgroups.slug}}">{{allgroups.Groupname}}</a>
+                            {% if user.is_authenticated %}
+                            <form action="/groups/{{user}}/clip-system-group/{{allgroups.slug}}/" method="post">
+                                {{ action }}
+                                {% csrf_token %}
+                                <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
+                                <input class="clipuserbtn" type="submit" value="Clip Group" name="" id="">
+                            </form>
+
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>

@@ -154,6 +154,18 @@ class MyFeature(models.Model):
 class Clipping(models.Model):
     sno = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user")
+    visitedUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user_visited")
+    timestamp = models.DateTimeField(default=now)
+    
+    def __str__(self):
+        return f'{self.user}\'s -  Clipping'
+    
+# for user clipping system
+class Groupclipping(models.Model):
+    sno = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user_forgroup")
+    visitedGroup = models.ForeignKey(ConfessGroup, on_delete=models.CASCADE, related_name = "clipping_group_visited")
+    timestamp = models.DateTimeField(default=now)
     
     def __str__(self):
         return f'{self.user}\'s -  Clipping'

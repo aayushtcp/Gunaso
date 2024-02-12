@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments,Clipping,Groupclipping
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -742,13 +742,29 @@ def searchtopic(request):
 def clipping(request, *args, **kwargs):
     '''User clipping user or topic or group SYSTEM '''
     if request.method == 'POST':
-        user =request.user
-        # storySubject = request.POST['subject']
-        # storyType = request.POST['storytype']
-        # storyContent = request.POST['storycontent']
-        # saveStory = Story(user=user, storySubject= storySubject, storyType=storyType, storyContent=storyContent)
-        # saveStory.save()
+        user = request.user
+        visited_username = request.POST['visitedUser']
+        visited_user = get_object_or_404(User, username=visited_username)
+        saveClipping = Clipping(user=user, visitedUser=visited_user)
+        saveClipping.save()
+
         messages.success(request, "Clipped Successfully")
-        return redirect('/')
-    return render(request, 'writestory.html')
+        return redirect('/persons')
     
+    return render(request, 'writestory.html')
+
+@login_required(login_url='/login/')
+def groupClipping(request, *args, **kwargs):
+    '''User Group clipping user or topic or group SYSTEM '''
+    if request.method == 'POST':
+        user = request.user
+        visited_group_name = request.POST['visitedGroup']
+        print("Visited Group Name:", visited_group_name)
+        visited_group = get_object_or_404(ConfessGroup, Groupname=visited_group_name)
+        saveClipping = Groupclipping(user=user, visitedGroup=visited_group)
+        saveClipping.save()
+
+        messages.success(request, "Group Clipped Successfully")
+        return redirect('/groups')
+    
+    return render(request, 'writestory.html')
