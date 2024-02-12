@@ -736,3 +736,19 @@ def searchtopic(request):
         allTopic = topic.union(allTopicContent)
     params = {'allTopic': allTopic, 'query': query}
     return render(request, 'topicsearch.html', params)
+
+
+@login_required(login_url='/login/')
+def clipping(request, *args, **kwargs):
+    '''User clipping user or topic or group SYSTEM '''
+    if request.method == 'POST':
+        user =request.user
+        # storySubject = request.POST['subject']
+        # storyType = request.POST['storytype']
+        # storyContent = request.POST['storycontent']
+        # saveStory = Story(user=user, storySubject= storySubject, storyType=storyType, storyContent=storyContent)
+        # saveStory.save()
+        messages.success(request, "Clipped Successfully")
+        return redirect('/')
+    return render(request, 'writestory.html')
+    

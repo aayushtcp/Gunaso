@@ -80,5 +80,6 @@ urlpatterns = [
         # particular group slug system
         path('groups/<str:slug>',views.groupsparticular, name='groupsparticular'),
     
-
+    # for clipping system
+    path('persons/<str:user>/clip-system/<str:visitedUser>/',views.clipping, name='clipping'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

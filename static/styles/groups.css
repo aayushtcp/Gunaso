@@ -200,6 +200,13 @@ a {
     color: #000;
     cursor: pointer;
 }
+.card form{
+    /* float: right; */
+    font-size: 30px;
+    color: #ffffff;
+    filter: brightness(300%);
+    background-color: red;
+}
 
 /* for small screen cards */
 @media (max-width: 920px) {

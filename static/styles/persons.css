@@ -93,7 +93,8 @@
 .card {
     padding: 6px;
     height: 30vh;
-    border-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px -80px 36px -1px inset;
     background-color: violet;
 
@@ -107,10 +108,44 @@ a {
     text-decoration: none;
 }
 
-.card h2 {
-    text-align: center;
-    position: relative;
+.usernameanchor {
+    /* position: relative;
     top: 170px;
+    left: 70px; */
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: 3px;
+    font-size: 16px;
+    background-color: var(--skyblue);
+    padding: 5px 10px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: inherit;
+    color: #ffffff;
+}
+
+.linksbtns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gridcontain form {
+    width: 100%;
+}
+
+form .clipuserbtn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: rgb(7, 1, 32);
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: inherit;
     color: #ffffff;
 }
 

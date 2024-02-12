@@ -1,69 +1,85 @@
 {% extends 'base.html' %}
 {% load static %}
 <!DPCTYPE html>
-<html lang="en">
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block base_style%}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'styles/persons.css' %}">
-    {% endblock base_style%}
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block base_style%}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'styles/persons.css' %}">
+        {% endblock base_style%}
+        <title>Document</title>
+    </head>
 
-<body>
-    {% block content %}
-    <div class="famoustopicsmain">
-        <div class="containflex">
-            <div class="leftside">
-                <h2>Connect <span class="blue">with:</span></h2>
-                <div class="gridcontain">
-                    {% for allusers in allusers %}
-                    <a href="../user/{{allusers.user}}" data-aos="fade-up">
-                        <div class="card" style="background-image: url(../media/{{allusers.image}});">
-                            <h2>{{allusers.user}}</h2>
+    <body>
+        {% block content %}
+        <div class="famoustopicsmain">
+            <div class="containflex">
+                <div class="leftside">
+                    <h2>Connect <span class="blue">with:</span></h2>
+                    <div class="gridcontain">
+                        {% for allusers in allusers %}
+                        <div data-aos="fade-up">
+                            <div class="card" style="background-image: url(../media/{{allusers.image}});">
+                            </div>
+                            <div class="linksbtns">
+                                <a class="usernameanchor" href="../user/{{allusers.user}}">{{allusers.user}}</a>
+                                {% if user.is_authenticated %}
+                                <form action="persons/<str:user>/clip-system/<str:visitedUser>/" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="visitedUser" value="{{allusers.user}}">
+                                    <input type="hidden" name="user" value="{{user}}">
+                                    <input class="clipuserbtn" type="submit" value="Clip User" name="" id="">
+                                </form>
+                                {% endif %}
+                            </div>
                         </div>
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="rightside">
-                <div class="searchdiv" data-aos="fade-down">
-                    <form method="get" action="{% url 'searchperson' %}">
-                        <input class="searchinp" type="search" placeholder="Search Person"
-                            aria-label="Search" name="query" id="query">
-                        <button class="copybtn" type="submit" style="margin: 0;">
-                            <i class='bx bx-search-alt'></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="catandside">
-                    <div class="categoriesdiv" data-aos="fade-down">
-                        <h3>Quick Links</h3>
-                        <div class="uls">
-                            <ul class="lineone">
-                                <li><a href="/read-story">Read Story</a></li>
-                                <li><a href="/topics">Celebraties</a></li>
-                                <li><a href="#">More People</a></li>
-                            </ul>
-                            <ul class="lineone">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="/contact">Contact Us</a></li>
-                            </ul>
-                        </div>
+                        <!-- <a href="../user/{{allusers.user}}" data-aos="fade-up">
+                            <div class="card" style="background-image: url(../media/{{allusers.image}});">
+                                <h2>{{allusers.user}}</h2>
+                            </div>
+                        </a> -->
+                        {% endfor %}
                     </div>
-                    <div class="categoriesdiv" data-aos="fade-up">
-                        <h3>Explore Confessions</h3>
-                        <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to intriguing confessions.</p>
+                </div>
+                <div class="rightside">
+                    <div class="searchdiv" data-aos="fade-down">
+                        <form method="get" action="{% url 'searchperson' %}">
+                            <input class="searchinp" type="search" placeholder="Search Person" aria-label="Search"
+                                name="query" id="query">
+                            <button class="copybtn" type="submit" style="margin: 0;">
+                                <i class='bx bx-search-alt'></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="catandside">
+                        <div class="categoriesdiv" data-aos="fade-down">
+                            <h3>Quick Links</h3>
+                            <div class="uls">
+                                <ul class="lineone">
+                                    <li><a href="/read-story">Read Story</a></li>
+                                    <li><a href="/topics">Celebraties</a></li>
+                                    <li><a href="#">More People</a></li>
+                                </ul>
+                                <ul class="lineone">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/about">About</a></li>
+                                    <li><a href="/contact">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="categoriesdiv" data-aos="fade-up">
+                            <h3>Explore Confessions</h3>
+                            <p>Delve into a diverse tapestry of authentic human stories - from heartfelt reflections to
+                                intriguing confessions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endblock %}
-</body>
+        {% endblock %}
+    </body>
 
-</html>
+    </html>

@@ -149,3 +149,11 @@ class MyFeature(models.Model):
     def __str__(self):
         return f'{self.user}\'s -  Feature'
     
+    
+# for user clipping system
+class Clipping(models.Model):
+    sno = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user")
+    
+    def __str__(self):
+        return f'{self.user}\'s -  Clipping'
