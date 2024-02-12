@@ -457,9 +457,15 @@ def postThoughtsGroup(request):
                   
                   
 def persons(request):
-    allusers = Profile.objects.all() #[:4]
-    context = {"allusers":allusers}
-    return render(request, 'persons.html',context)
+    clipped_users_fetch = Clipping.objects.filter(user=request.user)
+    all_users = Profile.objects.all()
+    saved_users = clipped_users_fetch.values_list('visitedUser', flat=True)
+    context = {
+        "all_users": all_users,
+        "saved_users": saved_users,
+    }
+    return render(request, 'persons.html', context)
+
 
 def topics(request):
     alltopics = Topic.objects.all()
@@ -519,8 +525,10 @@ def createGroup(request):
     return render(request, 'createGroup.html',{})
 
 def groups(request):
+    clippedGroups_fetch = Groupclipping.objects.filter(user=request.user)
+    savedGroups = clippedGroups_fetch.values_list('visitedGroup', flat=True)
     allgroups = ConfessGroup.objects.all()
-    context = {"allgroups":allgroups}
+    context = {"allgroups":allgroups,"savedGroups":savedGroups}
     return render(request, 'groups.html', context)
 
 @login_required(login_url='/login/')

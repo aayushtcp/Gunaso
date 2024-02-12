@@ -32,12 +32,21 @@
                         <div class="linksbtns">
                             <a class="usernameanchor" href="/groups/{{allgroups.slug}}">{{allgroups.Groupname}}</a>
                             {% if user.is_authenticated %}
+                            {% if allgroups.sno not in savedGroups %}
                             <form action="/groups/{{user}}/clip-system-group/{{allgroups.slug}}/" method="post">
                                 {{ action }}
                                 {% csrf_token %}
                                 <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
                                 <input class="clipuserbtn" type="submit" value="Clip Group" name="" id="">
                             </form>
+                            {% else %}
+                            <form action="" method="post">
+                                {{ action }}
+                                {% csrf_token %}
+                                <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
+                                <input class="clipuserbtn" type="submit" value="UnClip Group" name="" id="">
+                            </form>
+                            {% endif %}
 
                             {% endif %}
                         </div>

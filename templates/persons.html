@@ -20,30 +20,35 @@
                 <div class="leftside">
                     <h2>Connect <span class="blue">with:</span></h2>
                     <div class="gridcontain">
-                        {% for allusers in allusers %}
+                        {% for profile in all_users %}
                         <div data-aos="fade-up">
-                            <div class="card" style="background-image: url(../media/{{allusers.image}});">
+                            <div class="card" style="background-image: url(../media/{{ profile.image }});">
                             </div>
                             <div class="linksbtns">
-                                <a class="usernameanchor" href="../user/{{allusers.user}}">{{allusers.user}}</a>
+                                <a class="usernameanchor" href="../user/{{ profile.user }}">{{ profile.user }}</a>
                                 {% if user.is_authenticated %}
-                                <form action="{{user}}/clip-system/{{allusers.user}}/" method="post">
+                                {% if profile.user.id not in saved_users %}
+                                <form action="{{ user }}/clip-system/{{ profile.user }}" method="post">
                                     {% csrf_token %}
-                                    <input type="hidden" name="visitedUser" value="{{allusers.user}}">
-                                    <input type="hidden" name="user" value="{{user}}">
+                                    <input type="hidden" name="visitedUser" value="{{ profile.user }}">
+                                    <input type="hidden" name="user" value="{{ user }}">
                                     <input class="clipuserbtn" type="submit" value="Save User" name="" id="">
-                                    <!-- <input class="clipuserbtn" type="submit" value="UnSave User" name="" id=""> -->
                                 </form>
+                                {% else %}
+                                <form action="{{ user }}/clip-system/{{ profile.user }}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="visitedUser" value="{{ profile.user }}">
+                                    <input type="hidden" name="user" value="{{ user }}">
+                                    <input class="clipuserbtn" type="submit" value="UnSave User" name="" id="">
+                                </form>
+                                {% endif %}
                                 {% endif %}
                             </div>
                         </div>
-                        <!-- <a href="../user/{{allusers.user}}" data-aos="fade-up">
-                            <div class="card" style="background-image: url(../media/{{allusers.image}});">
-                                <h2>{{allusers.user}}</h2>
-                            </div>
-                        </a> -->
                         {% endfor %}
                     </div>
+
+
                 </div>
                 <div class="rightside">
                     <div class="searchdiv" data-aos="fade-down">
