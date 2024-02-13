@@ -745,7 +745,7 @@ button:active:before {
 
 .link:hover {
     color: #fff;
-    background-color: var(--dark);
+    background-color: var(--skyblue);
 }
 
 .link span {

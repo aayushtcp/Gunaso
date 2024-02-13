@@ -228,7 +228,7 @@ def update_profile(request):
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
             return redirect("update_profile")
-        # Create a new user
+        # check the existing user
         if(User.objects.filter(username = username)):
             messages.error(request, "Username already in use")
             return redirect('/update_profile')
@@ -301,7 +301,7 @@ def user_timeline(request, visitedUser):
     path_parts = [part for part in path_parts if part]  
     # Get the last element (last word) if the path is not empty
     extracted_category = path_parts[-1] if path_parts else None
-    print("The last word: ==" + extracted_category)
+    print("The last word: == " + extracted_category)
     
     date_count = defaultdict(int)
 
