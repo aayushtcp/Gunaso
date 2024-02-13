@@ -23,7 +23,6 @@
             {% for profile in user_profiles %}
             <div data-aos="fade-up">
                 <div class="card" style="background-image: url('{{ profile.image.url }}');">
-                    <h4>{{profile.user}}</h4>
                 </div>
                 <div class="linksbtns">
                     <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a>
@@ -33,7 +32,6 @@
                         <input type="hidden" name="visitedUser" value="{{allusers.user}}">
                         <input type="hidden" name="user" value="{{user}}">
                         <input class="clipuserbtn" type="submit" value="UnSave User" name="" id="">
-                        <!-- <input class="clipuserbtn" type="submit" value="UnSave User" name="" id=""> -->
                     </form>
                     {% endif %}
                 </div>
@@ -65,12 +63,32 @@
             {% endfor %}
         </div>
 
-        
+        {% if clippedStory %}
         <h2>Clipped <span class="generalspan">Topics:</span></h2>
+        {% endif %}
         <div class="topicsgrid">
-            <div class="cardvertical"></div>
-            <div class="cardvertical"></div>
-            <div class="cardvertical"></div>
+            {% for story in clippedStory %}
+            <div class="cardvertical">
+                <div class="contents">
+                    <h3>{{story.visitedStory.storySubject}}</h3>
+                    <p>{{story.visitedStory.storyContent|truncatechars:1030}} </p>
+                </div>
+                <div class="linksbtns">
+                    <!-- <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a> -->
+                    {% if user.is_authenticated %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="visitedUser" value="{{allusers.user}}">
+                        <input type="hidden" name="user" value="{{user}}">
+                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit" name="" id="">UnSave Story</button>
+                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit" name="" id=""><a href="/read-story/{{story.visitedStory.slug}}">Read Story</a></button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <!-- <div class="cardvertical"></div>
+            <div class="cardvertical"></div> -->
         </div>
     </div>
     {% endblock %}

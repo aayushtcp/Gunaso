@@ -160,11 +160,21 @@ class Clipping(models.Model):
     def __str__(self):
         return f'{self.user}\'s -  Clipping'
     
-# for user clipping system
+# for user group clipping system
 class Groupclipping(models.Model):
     sno = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user_forgroup")
     visitedGroup = models.ForeignKey(ConfessGroup, on_delete=models.CASCADE, related_name = "clipping_group_visited")
+    timestamp = models.DateTimeField(default=now)
+    
+    def __str__(self):
+        return f'{self.user}\'s -  Clipping'
+    
+# for user story clipping system
+class Storyclipping(models.Model):
+    sno = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "clipping_user_forstory")
+    visitedStory = models.ForeignKey(Story, on_delete=models.CASCADE, related_name = "clipping_story_visited")
     timestamp = models.DateTimeField(default=now)
     
     def __str__(self):

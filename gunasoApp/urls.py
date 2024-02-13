@@ -84,6 +84,8 @@ urlpatterns = [
     path('persons/<str:user>/clip-system/<str:visitedUser>/',views.clipping, name='clipping'),
     # for clipping system group
     path('groups/<str:user>/clip-system-group/<str:visitedGroup>/', views.groupClipping, name='groupClipping'),
+    # for clipping system story
+    path('read-story/<str:user>/clip-system-story/<str:visitedStory>/', views.storyClipping, name='storyClipping'),
     
     # to show clippings
     path('myclippings/', views.showClippings, name='showClippings'),

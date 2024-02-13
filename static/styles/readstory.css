@@ -99,6 +99,8 @@
 }
 .forbtn {
     margin-top: auto;
+    display: flex;
+    gap: 20px;
 }
 @media (max-width: 991px) {
     .readstorymain {

@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.utils import timezone
-from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments,Clipping,Groupclipping
+from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments,Clipping,Groupclipping,Storyclipping
 from django.contrib.auth.decorators import login_required
 # from .models import Gunaso
 from django.core.files.base import ContentFile
@@ -786,13 +786,31 @@ def showClippings(request):
     '''To show Clippings (both user and group) '''
     clippedUsers = Clipping.objects.filter(user=request.user)
     clippedGroups = Groupclipping.objects.filter(user=request.user)
+    clippedStory = Storyclipping.objects.filter(user =request.user)
     
     user_profiles = Profile.objects.filter(user__in=[user_clipping.visitedUser for user_clipping in clippedUsers])
 
     context = {
         'clippedUsers': clippedUsers,
         'clippedGroups': clippedGroups,
+        'clippedStory': clippedStory,
         'user_profiles': user_profiles,
     }
 
     return render(request, 'clippings.html', context)
+
+@login_required(login_url='/login/')
+def storyClipping(request, *args, **kwargs):
+    '''User Story clipping SYSTEM '''
+    if request.method == 'POST':
+        user = request.user
+        visited_story_name = request.POST['visitedStory']
+        visited_story = get_object_or_404(Story, storySubject=visited_story_name)
+        saveClipping = Storyclipping(user=user, visitedStory=visited_story)
+        # print(saveClipping)
+        saveClipping.save()
+
+        messages.success(request, "Story Clipped Successfully")
+        return redirect('/myclippings')
+    
+    return HttpResponseNotFound("HaHa Don't Try To Be Cool")

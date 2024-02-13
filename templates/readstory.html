@@ -28,6 +28,14 @@
                             Read More
                         </button>
                     </a>
+                    {% if user.is_authenticated %}
+                    <form action="{user}}/clip-system-story/{{item.slug}}/" method="post">
+                        {% csrf_token %}
+                        <!-- <input type="hidden" name="user" value="{{request.user}}"> -->
+                        <input type="hidden"  value="{{item.storySubject}}" name="visitedStory">
+                        <input type="submit" class="copybtn" value="Clip Story">
+                    </form>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

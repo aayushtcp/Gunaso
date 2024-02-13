@@ -43,19 +43,36 @@
 
 .cardvertical {
     height: 80vh;
-    background-color: violet;
+    background-color: var(--footer);
+    color: var(--mainheading);
     border-radius: 6px;
+    padding: 15px;
+    text-align: justify;
+    /* overflow: hidden; */
+}
+
+.contents {
+    background-color: var(--dark);
+    padding: 15px;
+    border-radius: 6px;
+    height: 90%;
+    overflow: scroll;
+}
+
+.contents::-webkit-scrollbar {
+    display: none;
 }
 
 .card {
     height: 30vh;
     background-color: violet;
-    border-radius: 6px;   
+    border-radius: 6px;
 }
-.card, .cardvertical{
+
+.card, .cardvertical {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; 
+    background-size: cover;
 }
 
 .usernameanchor {
@@ -80,14 +97,17 @@
     flex-direction: column;
     gap: 5px;
 }
-a{
+
+a {
     text-decoration: none;
     color: var(--mainheading);
 }
+
 .groupgrid form,
-.usergrid form{
+.usergrid form {
     width: 100%;
 }
+
 form .clipuserbtn {
     border: none;
     cursor: pointer;
@@ -101,6 +121,7 @@ form .clipuserbtn {
     width: inherit;
     color: #ffffff;
 }
+
 @media (max-width: 920px) {
     .clippingsmain {
         margin-left: 0;
@@ -113,10 +134,16 @@ form .clipuserbtn {
     .groupgrid {
         grid-template-columns: repeat(1, 1fr);
     }
-    .topicsgrid{
+
+    .topicsgrid {
         grid-template-columns: repeat(1, 1fr);
     }
-    .cardvertical{
+
+    .cardvertical {
         height: 50vh;
+    }
+
+    .contents {
+        height: 85%;
     }
 }
