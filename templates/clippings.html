@@ -16,7 +16,7 @@
 <body>
     {% block content %}
     <div class="clippingsmain">
-        {% if clippedGroups %}
+        {% if clippedUsers %}
         <h2>Clipped <span class="generalspan">Users:</span></h2>
         {% endif %}
         <div class="usergrid">
@@ -27,10 +27,10 @@
                 <div class="linksbtns">
                     <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a>
                     {% if user.is_authenticated %}
-                    <form action="" method="post">
+                    <form action="../persons/{{user}}/unclip-system/{{ profile.user }}/" method="post">
                         {% csrf_token %}
-                        <input type="hidden" name="visitedUser" value="{{allusers.user}}">
-                        <input type="hidden" name="user" value="{{user}}">
+                        <input type="hidden" name="visitedUser" value="{{ profile.user }}">
+                        <input type="hidden" name="user" value="{{ user }}">
                         <input class="clipuserbtn" type="submit" value="UnSave User" name="" id="">
                     </form>
                     {% endif %}
@@ -51,7 +51,7 @@
                 <div class="linksbtns">
                     <a class="usernameanchor" href="../groups/{{group.slug}}">{{group.visitedGroup.Groupname}}</a>
                     {% if user.is_authenticated %}
-                    <form action="" method="post">
+                    <form action="../groups/{{user}}/unclip-group-system/{{group.visitedGroup.Groupname}}/" method="post">
                         {{ action }}
                         {% csrf_token %}
                         <input type="hidden" name="visitedGroup" value="{{group.Groupname}}">
@@ -64,24 +64,24 @@
         </div>
 
         {% if clippedStory %}
-        <h2>Clipped <span class="generalspan">Topics:</span></h2>
+        <h2>Clipped <span class="generalspan">Stories:</span></h2>
         {% endif %}
         <div class="topicsgrid">
             {% for story in clippedStory %}
             <div class="cardvertical">
                 <div class="contents">
-                    <h3>{{story.visitedStory.storySubject}}</h3>
+                    <h2>{{story.visitedStory.storySubject}}</h2>
                     <p>{{story.visitedStory.storyContent|truncatechars:1030}} </p>
                 </div>
                 <div class="linksbtns">
                     <!-- <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a> -->
                     {% if user.is_authenticated %}
-                    <form action="" method="post">
+                    <form action="../read-story/{{user}}/unclip-story-system/{{story.visitedStory.storySubject}}/" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="visitedUser" value="{{allusers.user}}">
                         <input type="hidden" name="user" value="{{user}}">
                         <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit" name="" id="">UnSave Story</button>
-                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit" name="" id=""><a href="/read-story/{{story.visitedStory.slug}}">Read Story</a></button>
+                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" name="" id=""><a href="/read-story/{{story.visitedStory.slug}}">Read Story</a></button>
                     </form>
                     {% endif %}
                 </div>

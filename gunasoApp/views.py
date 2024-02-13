@@ -589,8 +589,11 @@ def writestory(request):
     return render(request, 'writestory.html')
 
 def readstory(request):
+    clippedStory_fetch = Storyclipping.objects.filter(user =request.user)
+    saved_story = clippedStory_fetch.values_list('visitedStory', flat=True)
     stories = Story.objects.all()[::-1]
-    context = {"stories":stories}
+    # print(saved_story)
+    context = {"stories":stories, 'saved_story':saved_story}
     return render(request, 'readstory.html', context)
 
 @login_required(login_url='/login/')
@@ -702,7 +705,6 @@ def privacypolicy(request):
 def editIntro(request):
     if request.method == 'POST':
         newintro = request.POST['newintro'].strip()
-        print(newintro)
         request.user.first_name = newintro
         request.user.save()
         messages.success(request, "Updated intro successfully!")
@@ -761,8 +763,20 @@ def clipping(request, *args, **kwargs):
         
         messages.success(request, "Clipped Successfully")
         return redirect('/myclippings')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
     
-    return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+@login_required(login_url='/login/')
+def unclipping(request, visitedUser, *args, **kwargs):
+    '''User Un-clipping user SYSTEM '''
+    if request.method == 'POST':
+        current_user = request.user
+        clipping_to_delete = get_object_or_404(Clipping, user=current_user, visitedUser__username=visitedUser)
+        # Delete the clipping
+        clipping_to_delete.delete()
+        return redirect('/persons')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
 
 @login_required(login_url='/login/')
 def groupClipping(request, *args, **kwargs):
@@ -776,9 +790,50 @@ def groupClipping(request, *args, **kwargs):
 
         messages.success(request, "Group Clipped Successfully")
         return redirect('/myclippings')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
     
-    return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+@login_required(login_url='/login/')
+def group_unclipping(request, visitedGroup, *args, **kwargs):
+    '''Group Un-clipping user SYSTEM '''
+    if request.method == 'POST':
+        current_user = request.user
+        clipping_to_delete_group = get_object_or_404(Groupclipping, user=current_user, visitedGroup__Groupname=visitedGroup)
+        # Delete the group clipping
+        clipping_to_delete_group.delete()
+        return redirect('/groups')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
 
+@login_required(login_url='/login/')
+def storyClipping(request, *args, **kwargs):
+    '''User Story clipping SYSTEM '''
+    if request.method == 'POST':
+        user = request.user
+        visited_story_name = request.POST['visitedStory']
+        visited_story = get_object_or_404(Story, storySubject=visited_story_name)
+        saveClipping = Storyclipping(user=user, visitedStory=visited_story)
+        # print(saveClipping)
+        saveClipping.save()
+
+        messages.success(request, "Story Clipped Successfully")
+        return redirect('/myclippings')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+    
+    
+@login_required(login_url='/login/')
+def story_unclipping(request, visitedStory, *args, **kwargs):
+    '''Story Un-clipping user SYSTEM '''
+    if request.method == 'POST':
+        current_user = request.user
+        clipping_to_delete_story = get_object_or_404(Storyclipping, user=current_user, visitedStory__storySubject=visitedStory)
+        # Delete the story clipping
+        clipping_to_delete_story.delete()
+        messages.success(request,"Story Unclipped Successfully")
+        return redirect('/read-story')
+    else:
+        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
 
 # To show clippings
 @login_required(login_url='/login/')
@@ -798,19 +853,3 @@ def showClippings(request):
     }
 
     return render(request, 'clippings.html', context)
-
-@login_required(login_url='/login/')
-def storyClipping(request, *args, **kwargs):
-    '''User Story clipping SYSTEM '''
-    if request.method == 'POST':
-        user = request.user
-        visited_story_name = request.POST['visitedStory']
-        visited_story = get_object_or_404(Story, storySubject=visited_story_name)
-        saveClipping = Storyclipping(user=user, visitedStory=visited_story)
-        # print(saveClipping)
-        saveClipping.save()
-
-        messages.success(request, "Story Clipped Successfully")
-        return redirect('/myclippings')
-    
-    return HttpResponseNotFound("HaHa Don't Try To Be Cool")

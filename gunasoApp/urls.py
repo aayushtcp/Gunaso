@@ -87,6 +87,14 @@ urlpatterns = [
     # for clipping system story
     path('read-story/<str:user>/clip-system-story/<str:visitedStory>/', views.storyClipping, name='storyClipping'),
     
+    # for all unclip system
+    # unclip user
+    path('persons/<str:user>/unclip-system/<str:visitedUser>/',views.unclipping, name='unclipping'),
+    # unclip Group
+    path('groups/<str:user>/unclip-group-system/<str:visitedGroup>/',views.group_unclipping, name='group_unclipping'),
+    # unclip Story
+    path('read-story/<str:user>/unclip-story-system/<str:visitedStory>/',views.story_unclipping, name='story_unclipping'),
+    
     # to show clippings
     path('myclippings/', views.showClippings, name='showClippings'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

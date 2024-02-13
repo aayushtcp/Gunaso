@@ -40,7 +40,7 @@
                                 <input class="clipuserbtn" type="submit" value="Clip Group" name="" id="">
                             </form>
                             {% else %}
-                            <form action="" method="post">
+                            <form action="../groups/{{user}}/unclip-group-system/{{allgroups.Groupname}}/" method="post">
                                 {{ action }}
                                 {% csrf_token %}
                                 <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">

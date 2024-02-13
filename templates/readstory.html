@@ -29,12 +29,21 @@
                         </button>
                     </a>
                     {% if user.is_authenticated %}
-                    <form action="{user}}/clip-system-story/{{item.slug}}/" method="post">
+                    {% if item.sno not in saved_story %}
+                    <form action="{% url 'storyClipping' user=user visitedStory=item.slug %}" method="post">
+                        {{ action }}
                         {% csrf_token %}
-                        <!-- <input type="hidden" name="user" value="{{request.user}}"> -->
-                        <input type="hidden"  value="{{item.storySubject}}" name="visitedStory">
+                        <input type="hidden" value="{{item.storySubject}}" name="visitedStory">
                         <input type="submit" class="copybtn" value="Clip Story">
                     </form>
+                    {% else %}
+                    <form action="../read-story/{{user}}/unclip-story-system/{{item.storySubject}}/" method="post">
+                        {{ action }}
+                        {% csrf_token %}
+                        <input type="hidden"  value="{{item.storySubject}}" name="visitedStory">
+                        <input type="submit" style="padding: 0 10px; width: max-content;" class="copybtn" value="Unclip Story">
+                    </form>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

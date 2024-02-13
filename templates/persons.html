@@ -35,7 +35,7 @@
                                     <input class="clipuserbtn" type="submit" value="Save User" name="" id="">
                                 </form>
                                 {% else %}
-                                <form action="" method="post">
+                                <form action="../persons/{{user}}/unclip-system/{{ profile.user }}/" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="visitedUser" value="{{ profile.user }}">
                                     <input type="hidden" name="user" value="{{ user }}">
