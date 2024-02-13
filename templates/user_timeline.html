@@ -207,7 +207,10 @@
         {% if request.user.username == extracted_category %}
         <span class="delete-btn">
             <a style="color: white;" href="/user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/">
-                <i class="fa-solid fa-trash-can"></i>
+                <!-- <i class="fa-solid fa-trash-can"></i> -->
+                <lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="hover"
+                    style="width:20px;height:20px; color: white;">
+                </lord-icon>
             </a>
         </span>
         {% endif %}
@@ -216,6 +219,7 @@
     {% endfor %}
     </div>
     <script>
+        
         // to del personal confessions
         function openDelPop() {
             document.getElementById('myModal2').style.display = 'block';

@@ -4,7 +4,8 @@
 
 <head>
     <title>Gunaso</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'images/logos/g-high-resolution-logo-white-transparent.png' %}">
+    <link rel="icon" type="image/x-icon"
+        href="{% static 'images/logos/g-high-resolution-logo-white-transparent.png' %}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% block base_style%}
@@ -25,9 +26,9 @@
                     <a href="/">
                         <div class="contentlogo">
                             <h2 class="text" data-text="Gunaso">
-                               Guanso
+                                Guanso
                             </h2>
-                         </div>
+                        </div>
                     </a>
                 </div>
                 <div class="open-nav-menu">
@@ -77,7 +78,7 @@
                                 <li class="menu-item"><a href="{% url 'groups' %}">Groups</a></li>
                                 <li class="menu-item"><a href="{% url 'showClippings' %}">Your Clippings</a></li>
                             </ul>
-                        </li>   
+                        </li>
 
                         {% if user.is_authenticated %}
                         <button id="logoutbtn" onclick="logoutfunc()">
@@ -119,7 +120,12 @@
                     </div>
                     <li class="item">
                         <a href="/user/{{request.user}}" class="link flex">
-                            <i class="ri-user-fill"></i>
+                            <!-- <i class="ri-user-fill"></i> -->
+                            <i style="color: #fff;">
+                                <lord-icon src="https://cdn.lordicon.com/hrjifpbq.json" trigger="hover"
+                                    style="width:35px;height:35px" colors="primary:#fff,secondary:#fff">
+                                </lord-icon>
+                            </i>
                             <span>My Profile</span>
                         </a>
                     </li>
@@ -176,7 +182,8 @@
             <div class="sidebar_profile flex">
                 {% if user.is_authenticated %}
                 <span class="nav_image">
-                    <img src="{{request.user.Profile.image.url}}" alt="logo_img" style="border-radius: 50%; height: 35px; width:35px;" />
+                    <img src="{{request.user.Profile.image.url}}" alt="logo_img"
+                        style="border-radius: 50%; height: 35px; width:35px;" />
                 </span>
                 <div class="data_text">
                     <span class="name">{{request.user}}</span>
@@ -196,7 +203,8 @@
     <footer class="footer">
         <div class="fone">
             <!-- <h2>Logo</h2> -->
-            <img src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt="lyamma lyamm logo" class="footer-logo">
+            <img src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt="lyamma lyamm logo"
+                class="footer-logo">
             <p>Gunaso for Everyone<br> <span>Pokham afna man ka kura!</span></p>
             <div class="footer-links">
                 <a href=""><i class="fa-brands fa-square-facebook"></i></a>
@@ -231,25 +239,27 @@
     </footer>
     <hr>
     <!-- Footer HTML Ends -->
+    <!-- script for animated icons -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <!-- script for aos -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init(
-          {
-          duration: 800
-          }
+            {
+                duration: 800
+            }
         );
-      </script>
+    </script>
     <script>
-        setInterval(function() {
-          var heading = document.getElementById("myHeading");
-          if (heading) {
-            heading.classList.toggle("glicch"); 
-          } else {
-            console.error("Element with ID 'myHeading' not found.");
-          }
+        setInterval(function () {
+            var heading = document.getElementById("myHeading");
+            if (heading) {
+                heading.classList.toggle("glicch");
+            } else {
+                console.error("Element with ID 'myHeading' not found.");
+            }
         }, 56);
-      </script>
+    </script>
     <script>
         function logoutfunc() {
             location.href = "/logout";

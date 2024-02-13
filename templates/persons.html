@@ -22,7 +22,7 @@
                     <div class="gridcontain">
                         {% for profile in all_users %}
                         <div data-aos="fade-up">
-                            <div class="card" style="background-image: url(../media/{{ profile.image }});">
+                            <div class="card" style="background-image: url(../media/{{profile.image}});">
                             </div>
                             <div class="linksbtns">
                                 <a class="usernameanchor" href="../user/{{ profile.user }}">{{ profile.user }}</a>
@@ -39,7 +39,8 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="visitedUser" value="{{ profile.user }}">
                                     <input type="hidden" name="user" value="{{ user }}">
-                                    <input style="background-color:chocolate; color: #fff;" class="clipuserbtn" type="submit" value="UnSave User" name="" id="">
+                                    <input style="background-color:chocolate; color: #fff;" class="clipuserbtn"
+                                        type="submit" value="UnSave User" name="" id="">
                                 </form>
                                 {% endif %}
                                 {% endif %}
