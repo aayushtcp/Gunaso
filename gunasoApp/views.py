@@ -455,16 +455,23 @@ def postThoughtsGroup(request):
     return redirect(f'/groups/{confessgroup.slug}')
 
                   
-                  
+# @login_required(login_url='/login/')             
 def persons(request):
-    clipped_users_fetch = Clipping.objects.filter(user=request.user)
-    all_users = Profile.objects.all()
-    saved_users = clipped_users_fetch.values_list('visitedUser', flat=True)
-    context = {
-        "all_users": all_users,
-        "saved_users": saved_users,
-    }
-    return render(request, 'persons.html', context)
+    if request.user.is_anonymous:
+        all_users = Profile.objects.all()
+        uppercontext = {
+            "all_users": all_users,
+        }
+        return render(request, 'persons.html', uppercontext)
+    else:
+        clipped_users_fetch = Clipping.objects.filter(user=request.user)
+        all_users = Profile.objects.all()
+        saved_users = clipped_users_fetch.values_list('visitedUser', flat=True)
+        context = {
+            "all_users": all_users,
+            "saved_users": saved_users,
+        }
+        return render(request, 'persons.html', context)
 
 
 def topics(request):
@@ -784,7 +791,7 @@ def groupClipping(request, *args, **kwargs):
     if request.method == 'POST':
         user = request.user
         visited_group_name = request.POST['visitedGroup']
-        visited_group = get_object_or_404(ConfessGroup, Groupname=visited_group_name)
+        visited_group = get_object_or_404(ConfessGroup, slug=visited_group_name)
         saveClipping = Groupclipping(user=user, visitedGroup=visited_group)
         saveClipping.save()
 
@@ -798,7 +805,7 @@ def group_unclipping(request, visitedGroup, *args, **kwargs):
     '''Group Un-clipping user SYSTEM '''
     if request.method == 'POST':
         current_user = request.user
-        clipping_to_delete_group = get_object_or_404(Groupclipping, user=current_user, visitedGroup__Groupname=visitedGroup)
+        clipping_to_delete_group = get_object_or_404(Groupclipping, user=current_user, visitedGroup__slug=visitedGroup)
         # Delete the group clipping
         clipping_to_delete_group.delete()
         return redirect('/groups')
@@ -811,7 +818,7 @@ def storyClipping(request, *args, **kwargs):
     if request.method == 'POST':
         user = request.user
         visited_story_name = request.POST['visitedStory']
-        visited_story = get_object_or_404(Story, storySubject=visited_story_name)
+        visited_story = get_object_or_404(Story, slug=visited_story_name)
         saveClipping = Storyclipping(user=user, visitedStory=visited_story)
         # print(saveClipping)
         saveClipping.save()
@@ -827,7 +834,7 @@ def story_unclipping(request, visitedStory, *args, **kwargs):
     '''Story Un-clipping user SYSTEM '''
     if request.method == 'POST':
         current_user = request.user
-        clipping_to_delete_story = get_object_or_404(Storyclipping, user=current_user, visitedStory__storySubject=visitedStory)
+        clipping_to_delete_story = get_object_or_404(Storyclipping, user=current_user, visitedStory__slug=visitedStory)
         # Delete the story clipping
         clipping_to_delete_story.delete()
         messages.success(request,"Story Unclipped Successfully")

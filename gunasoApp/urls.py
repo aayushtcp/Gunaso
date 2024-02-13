@@ -87,7 +87,7 @@ urlpatterns = [
     # for clipping system story
     path('read-story/<str:user>/clip-system-story/<str:visitedStory>/', views.storyClipping, name='storyClipping'),
     
-    # for all unclip system
+    # for all unclip system------------------------------------------------------------------------------------------
     # unclip user
     path('persons/<str:user>/unclip-system/<str:visitedUser>/',views.unclipping, name='unclipping'),
     # unclip Group

@@ -36,15 +36,15 @@
                             <form action="/groups/{{user}}/clip-system-group/{{allgroups.slug}}/" method="post">
                                 {{ action }}
                                 {% csrf_token %}
-                                <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
+                                <input type="hidden" name="visitedGroup" value="{{allgroups.slug}}">
                                 <input class="clipuserbtn" type="submit" value="Clip Group" name="" id="">
                             </form>
                             {% else %}
-                            <form action="../groups/{{user}}/unclip-group-system/{{allgroups.Groupname}}/" method="post">
+                            <form action="../groups/{{user}}/unclip-group-system/{{allgroups.slug}}/" method="post">
                                 {{ action }}
                                 {% csrf_token %}
                                 <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
-                                <input class="clipuserbtn" type="submit" value="UnClip Group" name="" id="">
+                                <input class="clipuserbtn" type="submit" style="background-color: chocolate;" value="UnClip Group" name="" id="">
                             </form>
                             {% endif %}
 

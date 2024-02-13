@@ -62,7 +62,6 @@ class ConfessGroup(models.Model):
     Groupname = models.CharField(max_length=30)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "owner", blank=True, default="")
     creationDate = models.DateField(auto_now_add=True)
-    # tagline = models.CharField(max_length=212, blank=True)
     slug = models.CharField(max_length=130,unique=True, blank=True)
     image = models.ImageField(upload_to="gunasoApp/images/groupImages", blank=True, default="upload-image")
     introduction = models.TextField(blank=True)
@@ -70,8 +69,18 @@ class ConfessGroup(models.Model):
     # to slugify the group
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.Groupname)
+            base_slug = slugify(self.Groupname)
+            unique_slug = base_slug
+            index = 1
+
+            while ConfessGroup.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{index}"
+                index += 1
+
+            self.slug = unique_slug
+
         super().save(*args, **kwargs)
+
     def __str__(self):
         return f'Group: {self.Groupname} -- {self.slug}'
     
@@ -134,12 +143,23 @@ class Story(models.Model):
     storyType = models.CharField(max_length = 50, blank=True)
     storyContent = models.TextField(blank=True)
     
+    # to slugify the group
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.storySubject)
+            base_slug = slugify(self.storySubject)
+            unique_slug = base_slug
+            index = 1
+
+            while Story.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{index}"
+                index += 1
+
+            self.slug = unique_slug
+
         super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"Story By -- {self.user}"
+        return f'Group: {self.storySubject} -- {self.slug}'
     
     
 class MyFeature(models.Model):

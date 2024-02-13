@@ -51,7 +51,7 @@
                 <div class="linksbtns">
                     <a class="usernameanchor" href="../groups/{{group.slug}}">{{group.visitedGroup.Groupname}}</a>
                     {% if user.is_authenticated %}
-                    <form action="../groups/{{user}}/unclip-group-system/{{group.visitedGroup.Groupname}}/" method="post">
+                    <form action="../groups/{{user}}/unclip-group-system/{{group.visitedGroup.slug}}/" method="post">
                         {{ action }}
                         {% csrf_token %}
                         <input type="hidden" name="visitedGroup" value="{{group.Groupname}}">
@@ -76,7 +76,7 @@
                 <div class="linksbtns">
                     <!-- <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a> -->
                     {% if user.is_authenticated %}
-                    <form action="../read-story/{{user}}/unclip-story-system/{{story.visitedStory.storySubject}}/" method="post">
+                    <form action="../read-story/{{user}}/unclip-story-system/{{story.visitedStory.slug}}/" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="visitedUser" value="{{allusers.user}}">
                         <input type="hidden" name="user" value="{{user}}">

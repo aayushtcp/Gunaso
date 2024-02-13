@@ -86,7 +86,9 @@
 
 .gridcontain {
     display: grid;
-    gap: 10px;
+    /* gap: 10px; */
+    grid-row-gap: 3rem;
+    grid-column-gap:10px;
     grid-template-columns: repeat(4, 1fr)
 }
 
