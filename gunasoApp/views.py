@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest,HttpResponseRedirect
 from django.core.mail import send_mail
 import re
-from gunasoApp.templatetags import extras
+from gunasoApp.templatetags import extras,filters
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -435,11 +435,12 @@ def postThoughts(request):
                   
 def postThoughtsGroup(request):
     if request.method == 'POST':
-        comment =request.POST['comment']
-        user =request.user
-        postsno=request.POST.get('postsno')
-        confessgroup = ConfessGroup.objects.get(sno = postsno)
+        comment = request.POST['comment']
+        user = request.user
+        postsno = request.POST.get('postsno')
+        confessgroup = ConfessGroup.objects.get(sno=postsno)
         parentsno = request.POST['parentsno']
+
         if parentsno == "":
             comment = GroupsComments(comment=comment, user=user, topic=confessgroup)
             comment.save()
@@ -450,8 +451,7 @@ def postThoughtsGroup(request):
             comment.save()
             # messages.success(request,"Reply has been added successfully")
 
-            
-        # print(comment)
+        # Print mentioned users
     return redirect(f'/groups/{confessgroup.slug}')
 
                   

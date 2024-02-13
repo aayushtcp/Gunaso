@@ -49,7 +49,7 @@
                 <div class="card" style="background-image: url(../media/{{group.visitedGroup.image}});">
                 </div>
                 <div class="linksbtns">
-                    <a class="usernameanchor" href="../groups/{{group.slug}}">{{group.visitedGroup.Groupname}}</a>
+                    <a class="usernameanchor" href="../groups/{{group.visitedGroup.slug}}">{{group.visitedGroup.Groupname}}</a>
                     {% if user.is_authenticated %}
                     <form action="../groups/{{user}}/unclip-group-system/{{group.visitedGroup.slug}}/" method="post">
                         {{ action }}

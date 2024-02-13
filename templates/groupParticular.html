@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load extras %}
+{% load filters %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +60,7 @@
                         </div>
                         <div class="textpart">
                             <h4>Anonymous</h4>
-                            <p>{{comment.comment}}</p>
+                            <p>{{ comment.comment|mention_bold|safe }}</p>
                             <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}"
                                 onclick="replyPOP({{ comment.sno }})">Reply</p>
                         </div>
