@@ -12,7 +12,6 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import UserPost,Profile, IndexProfile, Topic, TopicComment, Developer, Contact, Story, MyFeature,ConfessGroup,GroupsComments,Clipping,Groupclipping,Storyclipping
 from django.contrib.auth.decorators import login_required
-# from .models import Gunaso
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.contrib.auth.forms import UserCreationForm
@@ -20,7 +19,6 @@ from datetime import datetime
 from collections import defaultdict
 from django.db.models import Count
 from django.urls import resolve
-# from .forms import UserProfileForm
 
 # esewa
 # Hash secret  key esewa integration V2
@@ -31,6 +29,10 @@ import base64
 
 # to prevent nude and unusual images
 from nudenet import NudeDetector
+
+# custom 404 view
+def not_found(request,exception):
+    return render(request, '404.html')
 
 def index(request):
     mainusers = IndexProfile.objects.all()[:4]
@@ -46,7 +48,6 @@ def about(request):
         amtt = request.POST['paisa']
         res = int(amtt)
         def genSha256(key, message):
-            # partnersappro = launchPartner.objects.filter(slug=slug).first()
             key = key.encode('utf-8')
             message = message.encode('utf-8')
 
@@ -68,8 +69,7 @@ def about(request):
         
         # to save in DB
         user = user
-        # unit_khapat = 200.00
-        # transaction = Transaction(user = user, amount=amtt, unit_khapat=unit_khapat)
+        #! transaction = Transaction(user = user, amount=amtt, unit_khapat=unit_khapat)
         # transaction.save()
         context = {
                 'amtt': amtt,
@@ -135,18 +135,6 @@ def handleSignup(request):
                     print("Removing....")
                     messages.error(request, "Sorry, the uploaded image contains explicit content.")
                     return redirect("/signup")
-                # if (imageclass != "FACE_FEMALE" or "FACE_MALE" or "FEET_EXPOSED" or "BELLY_COVERED" or "FEET_COVERED" or "ARMPITS_COVERED"):
-                #     messages.error(request, "Sorry, the uploaded image contains explicit content.")
-                #     return redirect("/signup")
-                # else:
-                
-        # Check if explicit content is detected
-        # if result and 'label' in result[0] and result[0]['label'] == 'EXPLICIT':
-        #     return HttpResponseBadRequest('Sorry, the uploaded image contains explicit content.')
-        # ------------------------------------------------------------------------------------------------
-        # c= NudeClassifier()
-        # data = c.classify(userimage)
-        # print(data)
         
         if(password != cpassword):
             messages.error(request, "Password mismatch")
@@ -176,13 +164,6 @@ def handleSignup(request):
         else:
             messages.error(request, "Username or password incorrect")
             return redirect("/login")
-        # return redirect("/")
-        return render(request, 'login.html')
-        # !login directly user ends
-
-        messages.success(request, "User created sucessfully!")
-        print(f"Hello {username}")
-        return redirect('/')
     else:
         HttpResponse("Hiro na ban")
     return render(request,'signup.html')
@@ -203,7 +184,6 @@ def handleLogin(request):
         else:
             messages.error(request, "Username or password incorrect")
             return redirect("/login")
-    # return redirect("/")
     return render(request, 'login.html')
 
 def handleLogout(request):
@@ -386,11 +366,8 @@ def user_timeline(request, visitedUser):
     visited_user_profiles = Profile.objects.filter(user=visited_user)
 
     date_count_list = [date_count[date] for date in finaldate]
-    
-    #############################
-    #####                   #####
-    ## for user feature system ##
-    #                           #
+
+    # For user Feature System (Image)
     myfeature = MyFeature.objects.filter(user = visited_user)
     myintro = User.objects.filter(username = visited_user)
     
@@ -412,14 +389,6 @@ def famoustopics(request, slug):
     comments = TopicComment.objects.filter(topic=topic)[::-1]
     context = {"topic": topic, "comments": comments}
     return render(request, 'famoustopics.html', context)
-
-# @login_required(login_url='/login/')
-# def groupParticular(request, slug):
-#     groupdetails = ConfessGroup.objects.filter(slug=slug).first()
-#     # comments = TopicComment.objects.filter(topic=topic)[::-1]
-#     # context = {"topic": topic, "comments": comments}
-#     return render(request, 'groupParticular.html')
-
 
 # Posting Thougths in Topic API
 def postThoughts(request):
@@ -452,7 +421,6 @@ def postThoughtsGroup(request):
             comment.save()
             # messages.success(request,"Reply has been added successfully")
 
-        # Print mentioned users
     return redirect(f'/groups/{confessgroup.slug}')
 
                   
@@ -680,7 +648,6 @@ def deleteConfession(request,visitedUser,post_id):
         post.delete()
         messages.success(request, "Post deleted successfully.")
         return redirect(f"../../")
-    return redirect('/')
 
 def deleteFeature(request,visitedUser,post_id):
     current_path = request.path
@@ -702,7 +669,6 @@ def deleteFeature(request,visitedUser,post_id):
         post.delete()
         messages.success(request, "Deleted the featured post")
         return redirect(f'../../../../user/{request.user.username}')
-    return redirect('/')
 
 
 def privacypolicy(request):
@@ -720,7 +686,6 @@ def editIntro(request):
     else:
         return HttpResponseNotFound("HaHa Don't Try To Be Cool")
         # return render(request,'user_timeline.html')
-        
         
         
 # Search for perosns
@@ -866,7 +831,7 @@ def showClippings(request):
     return render(request, 'clippings.html', context)
 
 
-# for push notification
+# for push notification (Note: I am copy pasting official docs code)
 def send_push_notification(request):
     # Get the user you want to send the notification to
     user = request.user

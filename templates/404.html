@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load webpush_notifications %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/404.css' %}">
+    {% endblock base_style%}
+    <title>404 | Gunaso</title>
+</head>
+{% block content %}
+
+<body>
+    <div class="main404">
+        <div class="maincontainer">
+            <h1>Sorry, this page isn't available.</h1>
+            <img src="https://i.pinimg.com/originals/0e/c0/db/0ec0dbf1e9a008acb9955d3246970e15.gif">
+            <h3>The link you followed may be broken, or the page may have been removed. <a href="/">Go back to Gunaso.</a></h3>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

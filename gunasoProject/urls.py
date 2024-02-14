@@ -21,3 +21,4 @@ urlpatterns = [
     path('', include('gunasoApp.urls')),
     path('webpush/', include('webpush.urls')),
 ]
+handler404 = 'gunasoApp.views.not_found'

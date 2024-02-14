@@ -1,0 +1,38 @@
+
+:root {
+    /* --dark: #05386B; */
+    /* --color: #560bad; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+.main404{
+    margin-left: 5rem;
+}
+.maincontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 3rem; */
+    margin: 2rem 0 22vh;
+}
+img{
+    width: 30%;
+    height: 40vh;
+}
+@media (max-width: 991px) {
+    .main404{
+        margin: 0;
+    }
+
+}
