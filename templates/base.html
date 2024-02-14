@@ -19,7 +19,7 @@
     {% webpush_header %}
 </head>
 
-<body>  
+<body>
     <!-- header start -->
     <header class="header">
         <div class="container_nav">
@@ -209,6 +209,7 @@
                 class="footer-logo">
             <p>Gunaso for Everyone<br> <span>Pokham afna man ka kura!</span></p>
             <div class="footer-links">
+                {% webpush_button %}
                 <a href=""><i class="fa-brands fa-square-facebook"></i></a>
                 <a href=""><i class="fa-brands fa-square-instagram"></i></a>
                 <a href=""><i class="fa-brands fa-square-twitter"></i></a>
@@ -257,12 +258,34 @@
             var heading = document.getElementById("myHeading");
             if (heading) {
                 heading.classList.toggle("glicch");
-            } else {
-                console.error("Element with ID 'myHeading' not found.");
             }
         }, 56);
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var button = document.getElementById('webpush-subscribe-button');
+                var message = button.innerHTML;
+                console.log(`The message: ${message}`);
+
+                // Check if the button's innerText is "Subscribe to Push Messaging" and it has not been clicked before
+                if (button && button.innerText.trim() === 'Subscribe to Push Messaging' && !button.hasAttribute('data-clicked')) {
+                    // First click
+                    button.click();
+
+                    // Set a flag to indicate that the button has been clicked
+                    button.setAttribute('data-clicked', 'true');
+
+                    // Delay for 200 milliseconds and then trigger the second click
+                    setTimeout(function () {
+                        button.click();
+                    }, 200);
+                }
+            }, 260);
+        });
+
+
+
         function logoutfunc() {
             location.href = "/logout";
         }

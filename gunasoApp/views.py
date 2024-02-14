@@ -405,23 +405,44 @@ def postThoughts(request):
                   
 def postThoughtsGroup(request):
     if request.method == 'POST':
-        comment = request.POST['comment']
+        comment_text  = request.POST['comment']
         user = request.user
         postsno = request.POST.get('postsno')
         confessgroup = ConfessGroup.objects.get(sno=postsno)
         parentsno = request.POST['parentsno']
 
         if parentsno == "":
-            comment = GroupsComments(comment=comment, user=user, topic=confessgroup)
+            comment = GroupsComments(comment=comment_text, user=user, topic=confessgroup)
             comment.save()
             # messages.success(request,"Confession has been added successfully")
+            
+            # Check for '@' and print words
+            if '@' in comment_text:
+                mentioned_words = [word for word in comment_text.split() if word.startswith('@')]
+                print("Mentioned words1:", mentioned_words)
+                for userfornotify in mentioned_words:
+                    actual_username = userfornotify[1:]
+                    print(f"{actual_username}")
+                try:
+                    user_to_notify = User.objects.get(username=actual_username)
+                    payload = {"head": f"Mentioned in {confessgroup}!", "body": "You are Mentioned!"}
+                    send_user_notification(user=user_to_notify, payload=payload, ttl=1000)
+                    print("Mentioned userfornotify runned successfully....")
+                except User.DoesNotExist:
+                    print(f"User with username {actual_username} does not exist.")
+
         else:
             parent = GroupsComments.objects.get(sno=parentsno)
             comment = GroupsComments(comment=comment, user=user, topic=confessgroup, parent=parent)
             comment.save()
             # messages.success(request,"Reply has been added successfully")
+                        # Check for '@' and print words
+            if '@' in comment_text:
+                mentioned_words = [word for word in comment_text.split() if word.startswith('@')]
+                print("Mentioned words:", mentioned_words)
 
     return redirect(f'/groups/{confessgroup.slug}')
+
 
                   
 # @login_required(login_url='/login/')             
