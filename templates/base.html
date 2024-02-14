@@ -1,4 +1,5 @@
 {% load static %}
+{% load webpush_notifications %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    {% webpush_header %}
 </head>
 
-<body>
+<body>  
     <!-- header start -->
     <header class="header">
         <div class="container_nav">

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+# from django_jinja.builtins import DEFAULT_EXTENSIONS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpush',
     'gunasoApp',
 ]
 
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # 'gunasoApp.context_processors.custom_context',
+                # 'webpush.jinja2.WebPushExtension'
             ],
         },
     },
@@ -135,3 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #! Developer added
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": "BNHdpCB7gZ-pZTmszRUjRmpNl4NwvW34x4c9HPLL98JRr2-K0b9jgT_mWVs7ZNdIfLdGBCgxHdKjxp-qIEU80Ck",
+    "VAPID_PRIVATE_KEY":"PrN5bPaimjKlhY_gTWxMZS1dV8lXeecwoqYzAs_c3jQ",
+    "VAPID_ADMIN_EMAIL": "hakukale063@gmail.com"
+}

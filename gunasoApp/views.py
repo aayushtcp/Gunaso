@@ -4,6 +4,7 @@ from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,Http
 from django.core.mail import send_mail
 import re
 from gunasoApp.templatetags import extras,filters
+from webpush import send_user_notification
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -767,7 +768,10 @@ def clipping(request, *args, **kwargs):
         visited_user = get_object_or_404(User, username=visited_username)
         saveClipping = Clipping(user=user, visitedUser=visited_user)
         saveClipping.save()
-        
+        # for push notification start---------------------------------+
+        payload = {"head": "Clipping!", "body": "User Clipped Successfully"}
+        send_user_notification(user=user, payload=payload, ttl=1000)
+        # ------------------------------------------------------------+
         messages.success(request, "Clipped Successfully")
         return redirect('/myclippings')
     else:
@@ -860,3 +864,22 @@ def showClippings(request):
     }
 
     return render(request, 'clippings.html', context)
+
+
+# for push notification
+def send_push_notification(request):
+    # Get the user you want to send the notification to
+    user = request.user
+
+    # Send a simple notification
+    send_user_notification(
+        user=user,
+        payload={
+            'head': 'Notification Title',
+            'body': 'Notification Body',
+            'icon': '',  # Optional: Provide a path to an icon
+        },
+        ttl=1000  # Time to live for the notification in milliseconds
+    )
+
+    return HttpResponse("Push notification sent!")

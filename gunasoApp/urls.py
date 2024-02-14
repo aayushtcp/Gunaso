@@ -97,4 +97,5 @@ urlpatterns = [
     
     # to show clippings
     path('myclippings/', views.showClippings, name='showClippings'),
+    path('save_webpush_info/', views.send_push_notification, name='save_webpush_info'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
