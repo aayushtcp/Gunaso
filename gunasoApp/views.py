@@ -462,7 +462,7 @@ def persons(request):
             "saved_users": saved_users,
         }
         return render(request, 'persons.html', context)
-
+    
 
 def topics(request):
     alltopics = Topic.objects.all()
@@ -522,11 +522,16 @@ def createGroup(request):
     return render(request, 'createGroup.html',{})
 
 def groups(request):
-    clippedGroups_fetch = Groupclipping.objects.filter(user=request.user)
-    savedGroups = clippedGroups_fetch.values_list('visitedGroup', flat=True)
-    allgroups = ConfessGroup.objects.all()
-    context = {"allgroups":allgroups,"savedGroups":savedGroups}
-    return render(request, 'groups.html', context)
+    if request.user.is_anonymous:
+        allgroups = ConfessGroup.objects.all()
+        context = {"allgroups":allgroups}
+        return render(request, 'groups.html', context)
+    else:
+        clippedGroups_fetch = Groupclipping.objects.filter(user=request.user)
+        savedGroups = clippedGroups_fetch.values_list('visitedGroup', flat=True)
+        allgroups = ConfessGroup.objects.all()
+        context = {"allgroups":allgroups,"savedGroups":savedGroups}
+        return render(request, 'groups.html', context)
 
 @login_required(login_url='/login/')
 def groupsparticular(request, slug):
@@ -788,7 +793,8 @@ def groupClipping(request, *args, **kwargs):
         messages.success(request, "Group Clipped Successfully")
         return redirect('/myclippings')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+        message_error = "Are you trying to edit URL manually?" 
+        return render(request,'404.html',{'message_error':message_error})
     
 @login_required(login_url='/login/')
 def group_unclipping(request, visitedGroup, *args, **kwargs):

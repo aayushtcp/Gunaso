@@ -184,9 +184,10 @@
         <div class="modelcontents">
             <form method="post" action="../../user/{{extracted_category}}/deleteConfession/{{post.id}}/">
                 {% csrf_token %}
-                <label for="">Are you sure?</label>
-                <br>
                 <center>
+                    <h3>Are You Sure?</h3>
+                    <br>
+                    <hr>
                     <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
                     <input type="submit" name="Edit" value="Yes" class="copybtn">
                 </center>

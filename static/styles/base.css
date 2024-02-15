@@ -47,8 +47,18 @@ ul {
 .menu-item a {
     text-decoration: none;
 }
-
+a{
+    text-decoration: none;
+}
 /*header*/
+input,
+textarea,
+button,
+select,
+a,
+i {
+    -webkit-tap-highlight-color: transparent;
+}
 
 .header {
     position: sticky;

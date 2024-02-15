@@ -204,6 +204,7 @@ textarea:focus {
 .textpart {
     flex-basis: 90%;
 }
+
 .textpart p {
     word-break: break-all;
     white-space: normal;
@@ -278,7 +279,7 @@ textarea:focus {
 }
 
 .deleteconfession:hover {
-    background-color:red;
+    background-color: red;
     color: var(--footer);
 }
 
@@ -358,8 +359,17 @@ textarea:focus {
     .rightside {
         display: none;
     }
+
+    #myModal2 {
+        width: max-content;
+    }
 }
 
+#myModal2 input{
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
 .modal {
     display: none;
     position: fixed;
@@ -420,7 +430,7 @@ textarea:focus {
 }
 
 /* for profile img */
-.profileimg{
+.profileimg {
     width: 100%;
     height: 50vh;
     cursor: pointer;
