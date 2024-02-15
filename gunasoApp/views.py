@@ -433,7 +433,7 @@ def postThoughtsGroup(request):
 
         else:
             parent = GroupsComments.objects.get(sno=parentsno)
-            comment = GroupsComments(comment=comment, user=user, topic=confessgroup, parent=parent)
+            comment = GroupsComments(comment=comment_text, user=user, topic=confessgroup, parent=parent)
             comment.save()
             # messages.success(request,"Reply has been added successfully")
                         # Check for '@' and print words
