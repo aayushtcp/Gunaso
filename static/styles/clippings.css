@@ -102,7 +102,21 @@ a {
     text-decoration: none;
     color: var(--mainheading);
 }
-
+.clippingsmain center{
+    height: 73vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.clippingsmain center img{
+    border-radius: 7px;
+    width: 250px;
+    height: 200px;
+}
+.buttoncollection button{
+    width: 100px;
+}
 .groupgrid form,
 .usergrid form {
     width: 100%;
@@ -125,6 +139,9 @@ form .clipuserbtn {
 @media (max-width: 920px) {
     .clippingsmain {
         margin-left: 0;
+    }
+    .clippingsmain center h1{
+        font-size: 28px;
     }
 
     .usergrid {

@@ -177,16 +177,23 @@
                         </a>
                     </li>
                     <li class="item">
+                        {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}" class="link flex">
                             <i class='bx bx-log-out-circle'></i>
                             <span>Logout</span>
                         </a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="link flex">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Login</span>
+                        </a>
+                        {% endif %}
                     </li>
                     <li class="item">
                         <a href="{% url 'developers' %}" class="link flex">
                             <i>
                                 <lord-icon src="https://cdn.lordicon.com/eodeknny.json" trigger="hover"
-                                    style="width:30px;height:30px" colors="primary:#fff,secondary:#fff">
+                                    style="width:29px;height:29px; margin-left: 5px;" colors="primary:#fff,secondary:#fff">
                                 </lord-icon>
                             </i>
                             <span>About Developers</span>
@@ -206,7 +213,14 @@
                     <span class="email">{{request.user.email}}</span>
                 </div>
                 {% else %}
-                <span class="name">Login</span>
+                <span class="nav_image">
+                    <img src="{% static 'images/nologgedin.jpg' %}" alt="logo_img"
+                        style="border-radius: 50%; height: 35px; width:35px;" />
+                </span>
+                <div class="data_text">
+                    <span class="name" style="font-size: 14px;">Not  <br>Logged in</span>
+                    <br>
+                </div>
                 {% endif %}
             </div>
         </div>

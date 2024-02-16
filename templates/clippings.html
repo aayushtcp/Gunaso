@@ -16,6 +16,19 @@
 <body>
     {% block content %}
     <div class="clippingsmain">
+        {% if not clippedGroups and not clippedUsers and not clippedStory %}
+        <center>
+            <h1>You Have No <span class="generalspan"> Clippings </span>Yet!</h1>
+            <img src="https://images.squarespace-cdn.com/content/v1/5c52add271069943f80a4056/1631106708272-OP1U0YT86KXCGZJFW67R/81ab5ced3a9d44710524bd4c68bf5311.gif" alt="noClippings">
+            <div class="buttoncollection">
+                <button class="copybtn"><a href="/persons">Peoples</a></button>
+                <button class="copybtn"><a href="/groups">Groups</a></button>
+                <button class="copybtn"><a href="/read-story">Stories</a></button>
+            </div>
+
+        </center>
+        {% endif %}
+
         {% if clippedUsers %}
         <h2>Clipped <span class="generalspan">Users:</span></h2>
         {% endif %}
@@ -49,7 +62,8 @@
                 <div class="card" style="background-image: url(../media/{{group.visitedGroup.image}});">
                 </div>
                 <div class="linksbtns">
-                    <a class="usernameanchor" href="../groups/{{group.visitedGroup.slug}}">{{group.visitedGroup.Groupname}}</a>
+                    <a class="usernameanchor"
+                        href="../groups/{{group.visitedGroup.slug}}">{{group.visitedGroup.Groupname}}</a>
                     {% if user.is_authenticated %}
                     <form action="../groups/{{user}}/unclip-group-system/{{group.visitedGroup.slug}}/" method="post">
                         {{ action }}
@@ -76,12 +90,15 @@
                 <div class="linksbtns">
                     <!-- <a class="usernameanchor" href="../user/{{profile.user}}">{{profile.user}}'s Profile</a> -->
                     {% if user.is_authenticated %}
-                    <form action="../read-story/{{user}}/unclip-story-system/{{story.visitedStory.slug}}/" method="post">
+                    <form action="../read-story/{{user}}/unclip-story-system/{{story.visitedStory.slug}}/"
+                        method="post">
                         {% csrf_token %}
                         <input type="hidden" name="visitedUser" value="{{allusers.user}}">
                         <input type="hidden" name="user" value="{{user}}">
-                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit" name="" id="">UnSave Story</button>
-                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" name="" id=""><a href="/read-story/{{story.visitedStory.slug}}">Read Story</a></button>
+                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" type="submit"
+                            name="" id="">UnSave Story</button>
+                        <button class="copybtn" style="margin: 15px 0; width: max-content; padding:0 8px;" name=""
+                            id=""><a href="/read-story/{{story.visitedStory.slug}}">Read Story</a></button>
                     </form>
                     {% endif %}
                 </div>

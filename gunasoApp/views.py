@@ -469,6 +469,7 @@ def topics(request):
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
 
+@login_required(login_url='/login/')
 def createGroup(request):
     '''Create a new group form'''
     if request.method == 'POST':
@@ -591,12 +592,17 @@ def writestory(request):
     return render(request, 'writestory.html')
 
 def readstory(request):
-    clippedStory_fetch = Storyclipping.objects.filter(user =request.user)
-    saved_story = clippedStory_fetch.values_list('visitedStory', flat=True)
-    stories = Story.objects.all()[::-1]
-    # print(saved_story)
-    context = {"stories":stories, 'saved_story':saved_story}
-    return render(request, 'readstory.html', context)
+    if request.user.is_anonymous:
+        stories = Story.objects.all()[::-1]
+        context = {"stories":stories}
+        return render(request, 'readstory.html', context)
+    else:
+        clippedStory_fetch = Storyclipping.objects.filter(user =request.user)
+        saved_story = clippedStory_fetch.values_list('visitedStory', flat=True)
+        stories = Story.objects.all()[::-1]
+        # print(saved_story)
+        context = {"stories":stories, 'saved_story':saved_story}
+        return render(request, 'readstory.html', context)
 
 @login_required(login_url='/login/')
 def analytics(request):
