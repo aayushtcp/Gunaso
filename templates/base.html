@@ -294,7 +294,8 @@
                 var button = document.getElementById('webpush-subscribe-button');
                 var message = button.innerHTML;
                 console.log(`The message: ${message}`);
-
+                button.style.display = "none";
+                document.getElementById('webpush-message').style.display = "none";
                 // Check if the button's innerText is "Subscribe to Push Messaging" and it has not been clicked before
                 if (button && button.innerText.trim() === 'Subscribe to Push Messaging' && !button.hasAttribute('data-clicked')) {
                     // First click

@@ -86,9 +86,9 @@
 
 .gridcontain {
     display: grid;
-    /* gap: 10px; */
-    grid-row-gap: 3rem;
-    grid-column-gap:10px;
+    gap: 10px;
+    /* grid-row-gap: 1rem; */
+    /* grid-column-gap:10px; */
     grid-template-columns: repeat(4, 1fr)
 }
 
@@ -99,7 +99,6 @@
     border-top-right-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px -80px 36px -1px inset;
     background-color: violet;
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

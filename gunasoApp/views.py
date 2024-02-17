@@ -425,7 +425,7 @@ def postThoughtsGroup(request):
                     print(f"{actual_username}")
                 try:
                     user_to_notify = User.objects.get(username=actual_username)
-                    payload = {"head": f"Mentioned in {confessgroup}!", "body": "You are Mentioned!"}
+                    payload = {"head": f"Mentioned in {confessgroup}!", "body": "You are Mentioned!",  "icon": "../static/images/logos/g-favicon-color.png"}
                     send_user_notification(user=user_to_notify, payload=payload, ttl=1000)
                     print("Mentioned userfornotify runned successfully....")
                 except User.DoesNotExist:
@@ -465,6 +465,7 @@ def persons(request):
     
 
 def topics(request):
+    """"""
     alltopics = Topic.objects.all()
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
@@ -766,7 +767,7 @@ def clipping(request, *args, **kwargs):
         saveClipping = Clipping(user=user, visitedUser=visited_user)
         saveClipping.save()
         # for push notification start---------------------------------+
-        payload = {"head": "Clipping!", "body": "User Clipped Successfully"}
+        payload = {"head": "Clipping!", "body": "User Clipped Successfully", "icon": "../static/images/logos/g-favicon-color.png"}
         send_user_notification(user=user, payload=payload, ttl=1000)
         # ------------------------------------------------------------+
         messages.success(request, "Clipped Successfully")
@@ -875,7 +876,7 @@ def send_push_notification(request):
         payload={
             'head': 'Notification Title',
             'body': 'Notification Body',
-            'icon': '',  # Optional: Provide a path to an icon
+            'icon': '../static/images/logos/g-high-resolution-logo-white-transparent.png',  # Optional: Provide a path to an icon
         },
         ttl=1000  # Time to live for the notification in milliseconds
     )
