@@ -159,6 +159,26 @@ a {
     border: none;
 }
 
+.usernameanchor {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: 3px;
+    font-size: 16px;
+    background-color: var(--skyblue);
+    padding: 5px 10px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: inherit;
+    color: #ffffff;
+}
+
+.linksbtns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 
 .catandside {
     display: flex;
@@ -212,6 +232,7 @@ a {
     .gridcontain {
         grid-template-columns: repeat(2, 1fr)
     }
+
     .card {
         height: 25vh;
     }

@@ -19,7 +19,9 @@
         {% if not clippedGroups and not clippedUsers and not clippedStory %}
         <center>
             <h1>You Have No <span class="generalspan"> Clippings </span>Yet!</h1>
-            <img src="https://images.squarespace-cdn.com/content/v1/5c52add271069943f80a4056/1631106708272-OP1U0YT86KXCGZJFW67R/81ab5ced3a9d44710524bd4c68bf5311.gif" alt="noClippings">
+            <img id="myImage" onerror="handleImageError()"
+                src="https://images.squarespace-cdn.com/content/v1/5c52add271069943f80a4056/1631106708272-OP1U0YT86KXCGZJFW67R/81ab5ced3a9d44710524bd4c68bf5311.gif"
+                alt="noClippings">
             <div class="buttoncollection">
                 <button class="copybtn"><a href="/persons">Peoples</a></button>
                 <button class="copybtn"><a href="/groups">Groups</a></button>
@@ -108,6 +110,13 @@
             <div class="cardvertical"></div> -->
         </div>
     </div>
+    <script>
+        function handleImageError() {
+            var image = document.getElementById('myImage');
+            image.src = '{% static "images/imgerror.png" %}'; // You can replace this with a placeholder image or any other image URL
+            image.alt = 'Error: Image failed to load';
+        }
+    </script>
     {% endblock %}
 </body>
 

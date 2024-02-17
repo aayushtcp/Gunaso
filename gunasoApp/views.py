@@ -436,7 +436,7 @@ def postThoughtsGroup(request):
             comment = GroupsComments(comment=comment_text, user=user, topic=confessgroup, parent=parent)
             comment.save()
             # messages.success(request,"Reply has been added successfully")
-                        # Check for '@' and print words
+            # Check for '@' and print words
             if '@' in comment_text:
                 mentioned_words = [word for word in comment_text.split() if word.startswith('@')]
                 print("Mentioned words:", mentioned_words)
@@ -755,6 +755,24 @@ def searchtopic(request):
         allTopic = topic.union(allTopicContent)
     params = {'allTopic': allTopic, 'query': query}
     return render(request, 'topicsearch.html', params)
+
+
+# Search for groups
+def searchgroup(request):
+    query = request.GET.get('query', '')
+
+    if len(query) > 100:
+        allGroup = ConfessGroup.objects.none()
+    else:
+        try:
+            user_id = int(query)
+            group = ConfessGroup.objects.filter(user_id=user_id)
+        except ValueError:
+            group = ConfessGroup.objects.none()
+        allGroupContent = ConfessGroup.objects.filter(Groupname__icontains=query)
+        allGroup = group.union(allGroupContent)
+    params = {'allGroup': allGroup, 'query': query}
+    return render(request, 'groupsearch.html', params)
 
 
 @login_required(login_url='/login/')

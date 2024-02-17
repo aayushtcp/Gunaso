@@ -38,6 +38,7 @@ urlpatterns = [
     # search systems
     path('searchperson/', views.searchperson, name="searchperson"),
     path('searchtopic/', views.searchtopic, name="searchtopic"),
+    path('searchgroup/', views.searchgroup, name="searchgroup"),
     
     # person and topics list url
     path('persons/',views.persons, name='person'),

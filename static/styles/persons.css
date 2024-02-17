@@ -110,9 +110,6 @@ a {
 }
 
 .usernameanchor {
-    /* position: relative;
-    top: 170px;
-    left: 70px; */
     display: flex;
     justify-content: center;
     font-weight: bold;
