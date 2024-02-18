@@ -26,11 +26,13 @@
                 {% endif %}
                 <div class="gridcontain">
                     {% for topic in allTopic %}
-                    <a href="../user/{{person.user}}">
+                    <div data-aos="fade-up">
                         <div class="card" style="background-image: url(../media/{{topic.image}});">
-                            <h2>{{topic.name}}</h2>
                         </div>
-                    </a>
+                        <div class="linksbtns">
+                            <a class="usernameanchor" href="../topics/{{topic.slug}}">{{ topic.name }}</a>
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>

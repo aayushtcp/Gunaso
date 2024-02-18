@@ -24,19 +24,29 @@
                     <h5 style="color:#ff7a7a;">Your search - <b>{{query}}</b> - did not match any documents.</h5>
                     {% endif %}
                     <div class="gridcontain">
-                        {% for group in allGroup %}
+                        {% for allgroups in allGroup %}
                         <div>
-                            <div class="card" style="background-image: url(../media/{{group.image}});">
+                            <div class="card" style="background-image: url(../media/{{allgroups.image}});">
                             </div>
                             <div class="linksbtns">
-                                <a class="usernameanchor" href="/groups/{{group.slug}}">{{group.Groupname}}</a>
+                                <a class="usernameanchor" href="/groups/{{allgroups.slug}}">{{allgroups.Groupname}}</a>
                                 {% if user.is_authenticated %}
+                                {% if allgroups.sno not in savedGroups %}
                                 <form action="/groups/{{user}}/clip-system-group/{{allgroups.slug}}/" method="post">
                                     {{ action }}
                                     {% csrf_token %}
                                     <input type="hidden" name="visitedGroup" value="{{allgroups.slug}}">
                                     <input class="clipuserbtn" type="submit" value="Clip Group" name="" id="">
                                 </form>
+                                {% else %}
+                                <form action="../groups/{{user}}/unclip-group-system/{{allgroups.slug}}/" method="post">
+                                    {{ action }}
+                                    {% csrf_token %}
+                                    <input type="hidden" name="visitedGroup" value="{{allgroups.Groupname}}">
+                                    <input class="clipuserbtn" type="submit" style="background-color: chocolate;" value="UnClip Group" name="" id="">
+                                </form>
+                                {% endif %}
+    
                                 {% endif %}
                             </div>
                         </div>

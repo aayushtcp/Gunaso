@@ -32,12 +32,22 @@
                             <div class="linksbtns">
                                 <a class="usernameanchor" href="../user/{{ profile.user }}">{{ profile.user }}</a>
                                 {% if user.is_authenticated %}
-                                <form action="{{ user }}/clip-system/{{ profile.user }}/" method="post">
+                                {% if profile.user.id not in saved_users %}
+                                <form action="../persons/{{ user }}/clip-system/{{ profile.user }}/" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="visitedUser" value="{{ profile.user }}">
                                     <input type="hidden" name="user" value="{{ user }}">
                                     <input class="clipuserbtn" type="submit" value="Save User" name="" id="">
                                 </form>
+                                {% else %}
+                                <form action="../persons/{{user}}/unclip-system/{{ profile.user }}/" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="visitedUser" value="{{ profile.user }}">
+                                    <input type="hidden" name="user" value="{{ user }}">
+                                    <input style="background-color:chocolate; color: #fff;" class="clipuserbtn"
+                                        type="submit" value="UnSave User" name="" id="">
+                                </form>
+                                {% endif %}
                                 {% endif %}
                             </div>
                         </div>
