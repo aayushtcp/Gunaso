@@ -208,7 +208,6 @@
         {% if request.user.username == extracted_category %}
         <span class="delete-btn">
             <a style="color: white;" href="/user/{{extracted_category}}/deleteFeature/{{myfeature.id}}/">
-                <!-- <i class="fa-solid fa-trash-can"></i> -->
                 <lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="hover"
                     style="width:20px;height:20px; color: white;">
                 </lord-icon>
@@ -219,8 +218,8 @@
     </div>
     {% endfor %}
     </div>
+    <script src="{% static 'scripts/comments.js' %}"></script>
     <script>
-        
         // to del personal confessions
         function openDelPop() {
             document.getElementById('myModal2').style.display = 'block';
@@ -238,8 +237,6 @@
             document.getElementById('myModal2').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
-    </script>
-    <script>
         function openFullScreen() {
             var fullscreenOverlay = document.getElementById('fullscreen-overlay');
             fullscreenOverlay.style.display = 'flex';
@@ -251,6 +248,7 @@
             fullscreenOverlay.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+        // to display the image in divs
         function displayImage(input) {
             var file = input.files[0];
             if (file) {
@@ -260,73 +258,6 @@
                     document.getElementById('file-input-label').innerHTML = " ";
                 };
                 reader.readAsDataURL(file);
-            }
-        }
-        // Script to stop bad comments and check content length
-        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
-
-        function onKey() {
-            const contentValue = document.querySelector("#content").value.toLowerCase();
-            const messageElement = document.querySelector("#messagejs");
-            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces from length
-
-            if (contentLength < 30) {
-                messageElement.innerText = "Confession must be above 30 characters";
-                document.querySelector(".postbtn").style.cursor = "not-allowed";
-            } else {
-                const hasBadWord = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
-
-                if (hasBadWord) {
-                    messageElement.innerText = "Bad Word Detected";
-                    document.querySelector(".postbtn").style.cursor = "not-allowed";
-                } else {
-                    messageElement.innerText = "";
-                    document.querySelector(".postbtn").style.cursor = "pointer";
-                }
-            }
-        }
-
-        function validateForm() {
-            const contentValue = document.querySelector("#content").value.toLowerCase();
-            const contentLength = contentValue.replace(/\s/g, '').length; // Exclude spaces
-
-            if (contentLength < 30) {
-                document.querySelector("#messagejs").innerText = "Confession must be above 30 characters";
-                document.querySelector(".postbtn").style.cursor = "not-allowed";
-                return false;
-            }
-            if (badWords.some(word => contentValue.includes(word))) {
-                document.querySelector("#messagejs").innerText = "Bad Word Detected";
-                document.querySelector(".postbtn").style.cursor = "not-allowed";
-                return false;
-            }
-
-            return true;
-        }
-
-        // profile image click animation starts
-        function profileimg() {
-            if (window.innerWidth >= 600) {
-                document.querySelector(".profileimg").style.height = "100vh";
-                // document.querySelector(".profileimg").style.width = "90%";
-                document.querySelector(".profileimg").style.backgroundSize = "cover";
-            }
-        }
-
-        function toggleProfileImg() {
-            var profileImg = document.querySelector(".profileimg");
-            var rightSide = document.querySelector(".rightside");
-
-            if (profileImg.style.height === "100vh") {
-                profileImg.style.height = "";
-                profileImg.style.width = "";
-                profileImg.style.backgroundSize = "";
-                // Show the right side if it was hidden
-                // rightSide.style.display = "";
-            } else {
-                profileimg();
-                // Hide the right side
-                // rightSide.style.display = "none";
             }
         }
     </script>

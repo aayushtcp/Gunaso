@@ -38,7 +38,7 @@
                     {% csrf_token %}
                     <div class="col">
                         <!-- <label for="">Write a Subject: </label> -->
-                        <input placeholder="Subject of Story" type="text" name="subject" id="subject">
+                        <input placeholder="Subject of Story" onkeyup="storySubjectValid()" type="text" name="subject" id="subject">
                     </div>
                     <div class="col">
                         <label for="">Choose Story Type:</label>
@@ -52,53 +52,17 @@
                         </select>
                     </div>
                     <div class="col">
-                        <textarea placeholder="Write a story..." name="storycontent" onkeyup="onKey()" id="storycontent"
+                        <textarea placeholder="Write a story..." name="storycontent" onkeyup="onKeystory()" id="storycontent"
                             cols="30" rows="10"></textarea>
                         <h3 id="messagejs"></h3>
-                        <input type="submit" class="copybtn" value="Post">
+                        <input type="submit" class="copybtn storypostbtn" value="Post">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script>
-
-        // script to stop bad comments starts
-
-        const badWords = ["fuck", "bitch", "dick", "ass", "asshole", "pussy", "lado", "puti", "chikne", "machikne", "machikney", "machikni", "randi", "radi"];
-
-        function onKey() {
-            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
-            const subjectValue = document.querySelector("#subject").value.toLowerCase();
-            const messageElement = document.querySelector("#messagejs");
-
-            const hasBadWordContent = badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue));
-            const hasBadWordSubject = badWords.some(word => new RegExp(`\\b${word}\\b`).test(subjectValue));
-
-            if (hasBadWordContent || hasBadWordSubject) {
-                messageElement.innerText = "Bad Word Detected";
-                document.querySelector(".copybtn").style.cursor = "not-allowed";
-            } else {
-                messageElement.innerText = "";
-                document.querySelector(".copybtn").style.cursor = "pointer";
-            }
-        }
-
-        function validateForm() {
-            const contentValue = document.querySelector("#storycontent").value.toLowerCase();
-            const subjectValue = document.querySelector("#subject").value.toLowerCase();
-
-            if (badWords.some(word => new RegExp(`\\b${word}\\b`).test(contentValue) || new RegExp(`\\b${word}\\b`).test(subjectValue))) {
-                document.querySelector("#messagejs").innerText = "Bad Word Detected";
-                document.querySelector(".copybtn").style.cursor = "not-allowed";
-                return false;
-            }
-            return true;
-        }
-        // script to stop bad comments ends
-
-
-    </script>
+    <script src="{% static 'scripts/writestory.js' %}"></script>
+    <script src="{% static 'scripts/comments.js' %}"></script>
     {% endblock %}
 </body>
 
