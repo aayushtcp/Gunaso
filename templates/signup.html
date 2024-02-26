@@ -28,31 +28,32 @@
                 <div class="profilepiccontainer" id="profilePicContainer">
                     <!-- Display uploaded image here -->
                 </div>  
-                <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)">
+                <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)" required>
                 <label>Your Intro:</label>
-                <input class="generalinp" type="text" name="intro">
+                <input class="generalinp" onkeyup="introValid()" type="text" name="intro" id="intro">
                 <div class="combobox">
                     <div class="formrow">
                         <label>Username:</label>
-                        <input class="generalinp" type="text" name="username" id="">
+                        <input class="generalinp" onkeyup="usernameValid()" type="text" name="username" id="username" required>
                     </div>
                     <div class="formrow">
                         <label>Email:</label>
-                        <input class="generalinp" type="text" name="email" id="">
+                        <input class="generalinp" type="text" name="email" id="email" onkeyup="emailValid()" id="">
                     </div>
                 </div>
 
                 <div class="combobox">
                     <div class="formrow">
                         <label>Password:</label>
-                        <input class="generalinp" type="password" name="password" id="">
+                        <input class="generalinp" onkeyup="passwordValid()" type="password" name="password" id="password">
                     </div>
                     <div class="formrow">
                         <label>Confirm Password:</label>
-                        <input class="generalinp" type="password" name="cpassword" id="">
+                        <input class="generalinp" type="password" onkeyup="passwordMatchValid()" name="cpassword" id="cpassword">
                     </div>
                 </div>
-                <input type="submit" value="Signup" class="copybtn">
+                <input type="submit" value="Signup" class="copybtn" id="signupbtn">
+                <div id="quickmessage"></div>
             </form>
         </div>
         <div class="maintwo">
@@ -60,18 +61,7 @@
         </div>
     </div>
 
-    <script>
-        function displayImage(input) {
-            var file = input.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('profilePicContainer').style.backgroundImage = 'url(' + e.target.result + ')';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
+    <script src="{% static 'scripts/signup.js' %}"></script>
     {% endblock %}
 </body>
 
