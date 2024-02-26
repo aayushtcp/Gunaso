@@ -1,3 +1,18 @@
+// for login page starts----------------------------
+function loginSubmit(){
+  const logusername = document.querySelector("#logusername").value;
+  const logpassword = document.querySelector("#logpassword").value;
+
+  if (!logusername || !logpassword) {
+    alert("Please fill your username and password");
+    return false;
+  }
+
+  return true;
+}
+// for login page ends----------------------------
+
+
 // to display image in div
 function displayImage(input) {
   var file = input.files[0];
@@ -11,6 +26,21 @@ function displayImage(input) {
   }
 }
 
+// Full form validation of signup
+function onSignupSubmit() {
+  const intro = document.querySelector("#intro").value.trim();
+  const username = document.querySelector("#username").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
+  const cpassword = document.querySelector("#cpassword").value.trim();
+
+  if (!intro || !username || !email || !password || !cpassword) {
+    alert("Please fill all form before submitting.");
+    return false;
+  }
+
+  return true;
+}
 // for all validation
 let message = document.getElementById("quickmessage");
 let submitButton = document.querySelector(".copybtn");

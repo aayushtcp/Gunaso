@@ -71,10 +71,33 @@ function storySubjectValid() {
       "Please enter your subject";
     document.querySelector(".storypostbtn").disabled = true;
     document.querySelector(".storypostbtn").style.cursor = "not-allowed";
-  } else if (subjectLength < 20) {
+  } else if (subjectLength < 4) {
     document.querySelector("#messagejs").innerHTML =
-      "Subject must be at least 20 characters";
+      "Subject must be at least 4 characters";
     document.querySelector(".storypostbtn").disabled = true;
     document.querySelector(".storypostbtn").style.cursor = "not-allowed";
+  } else {
+    document.querySelector("#messagejs").innerHTML = "";
+    document.querySelector(".storypostbtn").disabled = false;
+    document.querySelector(".storypostbtn").style.cursor = "pointer";
+  }
+}
+
+// Full form validation of story
+function validateStoryForm() {
+  const subjectValue = document
+    .querySelector("#subject")
+    .value.trim()
+    .toLowerCase();
+  const contentValue = document
+    .querySelector("#storycontent")
+    .value.trim()
+    .toLowerCase();
+
+  if (!subjectValue || !contentValue) {
+    alert("Please fill in both subject and content before submitting.");
+    return false;
+  } else {
+    return true;
   }
 }

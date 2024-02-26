@@ -34,15 +34,15 @@
                 </ul>
             </div>
             <div class="mainfrom" data-aos="fade-up">
-                <form action="" method="post" onsubmit="return validateForm()">
+                <form action="" method="post" onsubmit="return validateStoryForm()">
                     {% csrf_token %}
                     <div class="col">
                         <!-- <label for="">Write a Subject: </label> -->
-                        <input placeholder="Subject of Story" onkeyup="storySubjectValid()" type="text" name="subject" id="subject">
+                        <input placeholder="Subject of Story" onkeyup="storySubjectValid()" type="text" name="subject" id="subject" required>
                     </div>
                     <div class="col">
                         <label for="">Choose Story Type:</label>
-                        <select name="storytype" id="">
+                        <select name="storytype" id="" required>
                             <option value="lovestory">Love Story</option>
                             <option value="thriller">Thriller</option>
                             <option value="emotional">Emotional</option>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col">
                         <textarea placeholder="Write a story..." name="storycontent" onkeyup="onKeystory()" id="storycontent"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10" required></textarea>
                         <h3 id="messagejs"></h3>
                         <input type="submit" class="copybtn storypostbtn" value="Post">
                     </div>

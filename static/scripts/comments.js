@@ -22,7 +22,10 @@ function onKey() {
   const messageElement = document.querySelector("#messagejs");
   const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces from length
 
-  if (contentLength < 30) {
+  if (contentLength <= 0) {
+    messageElement.innerText = "";
+    document.querySelector(".postbtn").style.cursor = "not-allowed";
+  } else if (contentLength < 30) {
     messageElement.innerText = "Confession must be above 30 characters";
     document.querySelector(".postbtn").style.cursor = "not-allowed";
   } else {
@@ -66,7 +69,11 @@ function onKey2() {
   const messageElement = document.querySelector("#messagejsreply");
   const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces from length
 
-  if (contentLength < 10) {
+  if (contentLength <= 0) {
+    messageElement.innerText = "";
+    document.querySelector(".replybtn").style.cursor = "not-allowed";
+    document.querySelector(".replybtn").disabled = true;
+  } else if (contentLength < 10) {
     messageElement.innerText = "Confession Reply must be above 10 characters";
     document.querySelector(".replybtn").style.cursor = "not-allowed";
     document.querySelector(".replybtn").disabled = true;

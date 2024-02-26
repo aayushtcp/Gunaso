@@ -24,15 +24,15 @@
                 <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
             </ul>
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'login' %}" method="post" onsubmit="return loginSubmit()">
                 {% csrf_token %}
                 <div class="formrow">
                     <label>Username:</label>
-                    <input type="text" name="loginusername" id="">
+                    <input type="text" name="loginusername" id="logusername">
                 </div>
                 <div class="formrow">
                     <label>Password:</label>
-                    <input type="password" name="loginpassword" id="">
+                    <input type="password" name="loginpassword" id="logpassword">
                 </div>
                 <input type="submit" value="Login" class="copybtn">
                 <div id="quickmessage"></div>
