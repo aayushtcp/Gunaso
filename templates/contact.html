@@ -49,28 +49,28 @@
                             If you want to ask a questions or if you need general enquiry from
                             us then you can get in touch with us.
                         </p>
-                        <form action="" method="post">
+                        <form action="" method="post" onsubmit="return contactSubmit()">
                             {% csrf_token %}
                             <div class="input-box" data-aos="fade-up">
-                                <input type="text" name="name" placeholder="Enter your name"
-                                    onkeyup="validName(this)" />
+                                <input type="text" id="fullName" name="name" placeholder="Enter your name"
+                                    onkeyup="validName(this)" required />
                             </div>
                             <div id="nameError"></div>
                             <div class="input-box" data-aos="fade-up">
-                                <input type="email" name="email" placeholder="Enter your email" />
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required/>
                             </div>
                             <div class="input-box" data-aos="fade-up">
-                                <input type="phone" name="phone" placeholder="Enter your phone number"
-                                    onkeyup="validPhone(this)" />
+                                <input type="phone" id="phone" name="phone" placeholder="Enter your phone number"
+                                    onkeyup="validPhone(this)" required/>
                             </div>
                             <div id="phoneError"></div>
                             <div class="input-box message-box" data-aos="fade-up">
-                                <textarea name="content" placeholder="Please enter your message..."
-                                    onkeyup="validMessage(this)"></textarea>
+                                <textarea name="content" id="content" placeholder="Please enter your message..."
+                                    onkeyup="validMessage(this)" required></textarea>
                             </div>
                             <div id="contentError"></div>
                             <div class="cbutton">
-                                <input type="submit" value="Submit" />
+                                <input type="submit" id="contactsubmitbtn" value="Submit" />
                             </div>
                         </form>
                     </div>

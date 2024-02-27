@@ -65,8 +65,9 @@ function validateForm() {
 // to validate the subject of story
 function storySubjectValid() {
   let subject = document.getElementById("subject").value.toLowerCase();
+  let trimmedSubject = subject.trim();
   const subjectLength = subject.replace(/\s/g, "").length;
-  if (!subject) {
+  if (!trimmedSubject) {
     document.querySelector("#messagejs").innerText =
       "Please enter your subject";
     document.querySelector(".storypostbtn").disabled = true;

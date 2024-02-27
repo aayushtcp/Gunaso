@@ -61,37 +61,37 @@ function validateForm() {
   return true;
 }
 
-// reply of group comments form validations
-function onKey2() {
-  const contentValue = document
-    .querySelector(".contentreply")
-    .value.toLowerCase();
-  const messageElement = document.querySelector("#messagejsreply");
-  const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces from length
+// // reply of group comments form validations
+// function onKey2() {
+//   const contentValue = document
+//     .querySelector(".contentreply")
+//     .value.toLowerCase();
+//   const messageElement = document.querySelector("#messagejsreply");
+//   const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces from length
 
-  if (contentLength <= 0) {
-    messageElement.innerText = "";
-    document.querySelector(".replybtn").style.cursor = "not-allowed";
-    document.querySelector(".replybtn").disabled = true;
-  } else if (contentLength < 10) {
-    messageElement.innerText = "Confession Reply must be above 10 characters";
-    document.querySelector(".replybtn").style.cursor = "not-allowed";
-    document.querySelector(".replybtn").disabled = true;
-  } else {
-    const hasBadWord = badWords.some((word) =>
-      new RegExp(`\\b${word}\\b`).test(contentValue)
-    );
+//   if (contentLength <= 0) {
+//     messageElement.innerText = "";
+//     document.querySelector(".replybtn").style.cursor = "not-allowed";
+//     document.querySelector(".replybtn").disabled = true;
+//   } else if (contentLength < 10) {
+//     messageElement.innerText = "Confession Reply must be above 10 characters";
+//     document.querySelector(".replybtn").style.cursor = "not-allowed";
+//     document.querySelector(".replybtn").disabled = true;
+//   } else {
+//     const hasBadWord = badWords.some((word) =>
+//       new RegExp(`\\b${word}\\b`).test(contentValue)
+//     );
 
-    if (hasBadWord) {
-      messageElement.innerText = "Bad Word Detected";
-      document.querySelector(".replybtn").style.cursor = "not-allowed";
-      document.querySelector(".replybtn").disabled = true;
-    } else {
-      messageElement.innerText = "";
-      document.querySelector(".replybtn").style.cursor = "pointer";
-    }
-  }
-}
+//     if (hasBadWord) {
+//       messageElement.innerText = "Bad Word Detected";
+//       document.querySelector(".replybtn").style.cursor = "not-allowed";
+//       document.querySelector(".replybtn").disabled = true;
+//     } else {
+//       messageElement.innerText = "";
+//       document.querySelector(".replybtn").style.cursor = "pointer";
+//     }
+//   }
+// }
 
 // for main image animation on click
 // profile image click animation starts

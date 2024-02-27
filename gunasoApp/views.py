@@ -465,7 +465,6 @@ def persons(request):
     
 
 def topics(request):
-    """"""
     alltopics = Topic.objects.all()
     context = {"alltopics":alltopics}
     return render(request, 'topics.html', context) #edit this later
@@ -714,11 +713,10 @@ def editIntro(request):
         newintro = request.POST['newintro'].strip()
         request.user.first_name = newintro
         request.user.save()
-        messages.success(request, "Updated intro successfully!")
-        return redirect('/')
+        messages.success(request, "Intro Updated Successfully!")
+        return redirect(f'../../../../user/{request.user.username}')
     else:
         return HttpResponseNotFound("HaHa Don't Try To Be Cool")
-        # return render(request,'user_timeline.html')
         
         
 # Search for perosns

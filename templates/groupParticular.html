@@ -68,8 +68,8 @@
                     <form class="replyform" id="replyform{{ comment.sno }}" action="{% url 'postThoughtsGroup' %}"
                         method="post" onsubmit="return validateFormreply()">
                         {% csrf_token %}
-                        <textarea name="comment" class="contentreply" id="contentreply{{ comment.sno }}" onkeyup="onKey2()"
-                            placeholder="Reply on {{allgroups.Groupname}}"></textarea>
+                        <textarea name="comment" class="contentreply" id="contentreply{{ comment.sno }}"
+                            onkeyup="onKey2({{comment.sno}})" placeholder="Reply on {{allgroups.Groupname}}"></textarea>
                         <input type="hidden" name="parentsno" value="{{comment.sno}}">
                         <input type="hidden" name="postsno" value="{{allgroups.sno}}">
                         <br>
@@ -127,13 +127,50 @@
     <script src="{% static 'scripts/comments.js' %}"></script>
     <script>
         function replyPOP(commentId) {
+            
             let overlay = document.querySelector(`#replyform${commentId}`);
             let triggerBtn = document.querySelector(`#replytrigger${commentId}`);
 
             overlay.style.display = overlay.style.display === "none" || overlay.style.display === "" ? "block" : "none";
             triggerBtn.innerHTML = overlay.style.display === "none" ? "Reply" : "Close";
         }
+
+        // reply of group comments form validations
+        function onKey2(commentId) {
+            const contentValue = document.querySelector(`#contentreply${commentId}`).value.toLowerCase();
+
+            const messageElement = document.querySelector("#messagejsreply");
+            const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces from length
+
+            const replyBtn = document.querySelector(`#replyform${commentId} .replybtn`);
+
+            if (contentLength <= 0) {
+                messageElement.innerText = "";
+                replyBtn.style.cursor = "not-allowed";
+                replyBtn.disabled = true;
+            } else if (contentLength < 10) {
+                messageElement.innerText = "Confession Reply must be above 10 characters";
+                replyBtn.style.cursor = "not-allowed";
+                replyBtn.disabled = true;
+            } else {
+                const hasBadWord = badWords.some((word) =>
+                    new RegExp(`\\b${word}\\b`).test(contentValue)
+                );
+
+                if (hasBadWord) {
+                    messageElement.innerText = "Bad Word Detected";
+                    replyBtn.style.cursor = "not-allowed";
+                    replyBtn.disabled = true;
+                } else {
+                    messageElement.innerText = "";
+                    replyBtn.style.cursor = "pointer";
+                    replyBtn.disabled = false; // Make sure to enable the button when conditions are met
+                }
+            }
+        }
+
     </script>
+
     {% endblock %}
 </body>
 

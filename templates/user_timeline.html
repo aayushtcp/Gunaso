@@ -165,16 +165,17 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modelcontents">
-            <form method="post" action="{% url 'editIntro' %}">
+            <form method="post" action="{% url 'editIntro' %}" onsubmit="return introFormValid()">
                 {% csrf_token %}
+                <div id="quickmessage"></div>
                 <label for="">New Intro:</label>
                 <br>
-                <input type="text" name="newintro" class="newintro">
+                <input onkeyup="introValid()" type="text" name="newintro" class="newintro" id="intro" required>
                 <br>
                 <br>
                 <center>
                     <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
-                    <input type="submit" name="Edit" value="Edit" class="copybtn">
+                    <input type="submit" name="Edit" value="Edit" id="editbtn" class="copybtn">
                 </center>
             </form>
         </div>
@@ -219,6 +220,7 @@
     {% endfor %}
     </div>
     <script src="{% static 'scripts/comments.js' %}"></script>
+    <script src="{% static 'scripts/signup.js' %}"></script>
     <script>
         // to del personal confessions
         function openDelPop() {
@@ -234,7 +236,6 @@
         // Function to close the popup
         function closePopup() {
             document.getElementById('myModal').style.display = 'none';
-            document.getElementById('myModal2').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
         function openFullScreen() {

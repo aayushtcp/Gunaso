@@ -1,9 +1,11 @@
 // for login page starts----------------------------
-function loginSubmit(){
+function loginSubmit() {
   const logusername = document.querySelector("#logusername").value;
   const logpassword = document.querySelector("#logpassword").value;
+  let clearuname = logusername.replace(/\s/g, '');
+  let clearupassword = logpassword.replace(/\s/g, '');
 
-  if (!logusername || !logpassword) {
+  if (!clearuname || !clearupassword) {
     alert("Please fill your username and password");
     return false;
   }
@@ -11,7 +13,6 @@ function loginSubmit(){
   return true;
 }
 // for login page ends----------------------------
-
 
 // to display image in div
 function displayImage(input) {
@@ -44,9 +45,10 @@ function onSignupSubmit() {
 // for all validation
 let message = document.getElementById("quickmessage");
 let submitButton = document.querySelector(".copybtn");
+let editbtn = document.querySelector("#editbtn");
 // to valiadte ussername
 function usernameValid() {
-  let username = document.getElementById("username").value;
+  let username = document.getElementById("username").value.trim();
   if (!username) {
     message.innerHTML = "Please enter your username";
     submitButton.style.cursor = "not-allowed";
@@ -71,17 +73,27 @@ function introValid() {
   let intro = document.getElementById("intro").value;
   if (!intro) {
     message.innerHTML = "Please enter your intro";
-    submitButton.disabled = true;
-    submitButton.style.cursor = "not-allowed";
+    editbtn.disabled = true;
+    editbtn.style.cursor = "not-allowed";
   } else if (intro.length > 40) {
     message.innerHTML = "Intro should not be more than 40 characters";
-    submitButton.disabled = true;
-    submitButton.style.cursor = "not-allowed";
+    editbtn.disabled = true;
+    editbtn.style.cursor = "not-allowed";
   } else {
     message.innerHTML = "";
-    submitButton.disabled = false;
-    submitButton.style.cursor = "pointer";
+    editbtn.disabled = false;
+    editbtn.style.cursor = "pointer";
   }
+}
+function introFormValid() {
+  let intro = document.getElementById("intro").value;
+  let clearIntro = intro.replace(/\s/g, '');
+  if (!clearIntro) {
+    message.innerHTML = "No intro was provided";
+    return false;
+  }
+
+  return true;
 }
 
 // to verify the email
