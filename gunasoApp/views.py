@@ -731,12 +731,17 @@ def searchperson(request):
             person = Profile.objects.filter(user_id=user_id)
         except ValueError:
             person = Profile.objects.none()
-            
-        clipped_users_fetch = Clipping.objects.filter(user=request.user)
-        saved_users = clipped_users_fetch.values_list('visitedUser', flat=True)
-        allPersonContent = Profile.objects.filter(user__username__icontains=query)
-        allPerson = person.union(allPersonContent)
-    params = {'allPerson': allPerson, 'query': query, 'saved_users':saved_users}
+        
+        if request.user.is_anonymous:
+            allPersonContent = Profile.objects.filter(user__username__icontains=query)
+            allPerson = person.union(allPersonContent)
+            params = {'allPerson': allPerson, 'query': query}
+        else:
+            clipped_users_fetch = Clipping.objects.filter(user=request.user)
+            saved_users = clipped_users_fetch.values_list('visitedUser', flat=True)
+            allPersonContent = Profile.objects.filter(user__username__icontains=query)
+            allPerson = person.union(allPersonContent)
+            params = {'allPerson': allPerson, 'query': query, 'saved_users':saved_users}
     return render(request, 'searchperson.html', params)
 
 
@@ -770,11 +775,17 @@ def searchgroup(request):
             group = ConfessGroup.objects.filter(user_id=user_id)
         except ValueError:
             group = ConfessGroup.objects.none()
-        clippedGroups_fetch = Groupclipping.objects.filter(user=request.user)
-        savedGroups = clippedGroups_fetch.values_list('visitedGroup', flat=True)
-        allGroupContent = ConfessGroup.objects.filter(Groupname__icontains=query)
-        allGroup = group.union(allGroupContent)
-    params = {'allGroup': allGroup, 'query': query, 'savedGroups':savedGroups}
+            
+        if request.user.is_anonymous:
+            allGroupContent = ConfessGroup.objects.filter(Groupname__icontains=query)
+            allGroup = group.union(allGroupContent)
+            params = {'allGroup': allGroup, 'query': query}
+        else:
+            clippedGroups_fetch = Groupclipping.objects.filter(user=request.user)
+            savedGroups = clippedGroups_fetch.values_list('visitedGroup', flat=True)
+            allGroupContent = ConfessGroup.objects.filter(Groupname__icontains=query)
+            allGroup = group.union(allGroupContent)
+            params = {'allGroup': allGroup, 'query': query, 'savedGroups':savedGroups}
     return render(request, 'groupsearch.html', params)
 
 
