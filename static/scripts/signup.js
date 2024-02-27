@@ -28,13 +28,13 @@ function displayImage(input) {
 
 // Full form validation of signup
 function onSignupSubmit() {
-  const intro = document.querySelector("#intro").value.trim();
+  // const intro = document.querySelector("#intro").value.trim();
   const username = document.querySelector("#username").value.trim();
   const email = document.querySelector("#email").value.trim();
   const password = document.querySelector("#password").value.trim();
   const cpassword = document.querySelector("#cpassword").value.trim();
 
-  if (!intro || !username || !email || !password || !cpassword) {
+  if (!username || !email || !password || !cpassword) {
     alert("Please fill all form before submitting.");
     return false;
   }

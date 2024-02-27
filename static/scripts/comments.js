@@ -98,7 +98,6 @@ function onKey2() {
 function profileimg() {
   if (window.innerWidth >= 600) {
     document.querySelector(".profileimg").style.height = "100vh";
-    // document.querySelector(".profileimg").style.width = "90%";
     document.querySelector(".profileimg").style.backgroundSize = "cover";
   }
 }
