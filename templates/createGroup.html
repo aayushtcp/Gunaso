@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <div class="mainform">
-                <form action="" method="post" enctype="multipart/form-data" onsubmit="return submitCreateGroup()">
+                <form action="{% url 'createGroup' %}" method="post" enctype="multipart/form-data" onsubmit="return submitCreateGroup()">
                     {% csrf_token %}
                     <fieldset>
                         <legend>Fill the Form</legend>

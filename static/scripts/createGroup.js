@@ -42,6 +42,7 @@ function validateGroupName() {
     } else {
       messageElement.innerText = "";
       document.querySelector(".groupbtn").style.cursor = "pointer";
+      document.querySelector(".groupbtn").disabled = false;
     }
   }
 }
@@ -73,6 +74,7 @@ function validateGroupIntro() {
     } else {
       messageElement.innerText = "";
       document.querySelector(".groupbtn").style.cursor = "pointer";
+      document.querySelector(".groupbtn").disabled = false;
     }
   }
 }
