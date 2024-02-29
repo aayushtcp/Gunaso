@@ -82,11 +82,11 @@ def about(request):
     return render(request, 'about.html')
 
 
-def prehandleSignup(request):
-    return render(request, 'signup.html')
+# def prehandleSignup(request):
+#     return render(request, 'signup.html')
 
-def prehandleLogin(request):
-    return render(request, 'login.html')
+# def prehandleLogin(request):
+#     return render(request, 'login.html')
 
 
 
@@ -115,10 +115,8 @@ def handleSignup(request):
         result = detector.detect('temp_image.jpg')
         if result and 'score' in result[0]:
             score = result[0]['score']
-            print(f"Nudity score: {score}")
             if (score > 0.75):
                 imageclass = result[0]['class']
-                print(f"Class: {imageclass}")
                 if imageclass not in [
                     "FEMALE_GENITALIA_COVERED",
                     "FACE_FEMALE",
@@ -132,16 +130,19 @@ def handleSignup(request):
                     "FEMALE_BREAST_COVERED",
                     "BUTTOCKS_COVERED"
                     ]:
-                    print("Removing....")
                     messages.error(request, "Sorry, the uploaded image contains explicit content.")
                     return redirect("/signup")
-        
-        if(password != cpassword):
+                
+        if not (first_name or username or password or email or cpassword):
+            messages.error(request, "Sorry, the uploaded image contains explicit content.")
+            return redirect("/signup")
+
+        elif password != cpassword:
             messages.error(request, "Password mismatch")
             return redirect("/signup")
-        
-        if(len(username) >10):
-            messages.warning(request, "Username is greater than 10 characters")
+
+        elif len(username) > 15:
+            messages.warning(request, "Username is greater than 15 characters")
             return redirect("/signup")
 
         # Create a new user
@@ -443,8 +444,7 @@ def postThoughtsGroup(request):
 
     return redirect(f'/groups/{confessgroup.slug}')
 
-
-                  
+           
 # @login_required(login_url='/login/')             
 def persons(request):
     if request.user.is_anonymous:
