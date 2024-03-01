@@ -28,46 +28,10 @@ body {
     line-height: 1.5;
     font-family: "Raleway", sans-serif;
     font-weight: 400;
-    /* background-color: var(--bcolor); */
     background-color: var(--mainheading);
 }
 
-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
 
-.carousel {
-    width: 100%;
-    height: 70vh;
-    gap: 10px;
-    display: flex;
-    justify-content: flex-start;
-    overflow: hidden;
-    position: relative;
-}
-
-
-.each-img {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    transition: .5s ease-in-out;
-    left: 0;
-    right: 0;
-}
-
-
-
-@media (max-width: 920px) {
-    .carousel {
-        height: 40vh;
-        gap: 10px;
-        width: 100%;
-    }
-
-}
 
 .messages {
     margin-bottom: 10px;
@@ -80,130 +44,15 @@ img {
     flex-direction: column;
 }
 
-.colorspan {
-    color: var(--dark);
-}
-
-.cards {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 30vh;
-}
-
-.cards .card {
-    height: 27vh;
-    width: 20%;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: rgba(117, 79, 254, 0.858) -5px 5px, rgba(117, 79, 254, 0.3) -10px 10px, rgba(117, 79, 254, 0.2) -15px 15px, rgba(117, 79, 254, 0.1) -20px 20px, rgba(117, 79, 254, 0.05) -25px 25px;
-    background-color: violet;
-    text-decoration: none;
-    color: #fff;
-}
-
-.gridraja {
-    height: 80vh;
-    display: grid;
-    grid-template-areas: "leftside righttop"
-        "leftside rightbottom";
-    gap: 10px;
-    margin: auto;
-    width: 80%;
-    position: relative;
-    overflow: hidden;
-}
-
-.left {
-    transition: all ease 0.4s;
-    grid-area: leftside;
-}
-
-.left:hover, .rightbottom:hover, .righttop:hover {
-    transform: scale(1.02);
-}
-
-.righttop {
-    transition: all ease 0.4s;
-    grid-area: righttop;
-}
-
-.rightbottom {
-    transition: all ease 0.4s;
-    grid-area: rightbottom;
-    transition: all ease 0.4s;
-}
-
-/* for small screen cards */
-@media (max-width: 920px) {
-    .index-main {
-        margin-left: 0;
-    }
-
-    .cards {
-        padding-top: 10px;
-        flex-direction: column;
-        gap: 30px;
-        height: max-content;
-    }
-
-    .cards .card {
-        height: 27vh;
-        width: 90%;
-    }
-
-    .gridraja {
-        /* padding: 0; */
-        width: 100%;
-        grid-template-areas: "leftside"
-            "righttop"
-            "rightbottom";
-        padding: 10px;
-    }
-}
-
-.left, .righttop, .rightbottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-    filter: brightness(80%);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -80px 36px -1px inset;
-    color: #fff;
-    border: 2px solid var(--dark);
-}
-
-.cardbgimg, .left, .righttop, .rightbottom {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.cards h3 {
-    display: flex;
-    color: red;
-    justify-content: center;
-    align-items: end;
-    height: 105%;
-}
-
-/* margins */
-.titles {
-    margin: 2rem 0 1rem;
-    text-align: center;
-}
-
-.index-banner {
-    margin-top: 2rem;
-}
-
-
-
 /* new index css */
 .hero {
     position: relative;
     height: 60vh;
     width: 100%;
+}
+
+a {
+    color: #000;
 }
 
 .hero img {
@@ -241,8 +90,23 @@ img {
     width: 200px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: var(--footer);
+    background-color: gainsboro;
+    color: var(--footer);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card i {
+    font-size: 30px;
 }
 
 .card:hover, .bigcard:hover, .testimonialwrapper:hover {
@@ -264,7 +128,8 @@ img {
     place-items: center;
     gap: 15px;
 }
-.usercards  .cardcontainer{
+
+.usercards .cardcontainer {
     background-color: gainsboro;
     border-radius: 10px;
     padding: 5px;
@@ -291,7 +156,8 @@ img {
     background-color: gainsboro;
     padding: 10px;
     border-radius: 10px;
-    max-width: 700px;
+    min-width: 700px;
+    min-height: 40vh;
 }
 
 .topics-card .bigcard {
@@ -301,9 +167,13 @@ img {
     cursor: pointer;
     background-color: var(--dark);
     transition: 0.4s ease;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-.bogcard .text {
+.bigcard .text {
     max-width: 700px;
 }
 
@@ -354,7 +224,7 @@ img {
 }
 
 .rollcardcontainer .rollcard {
-    background-color: violet;
+    background-color: var(--hotish);
     border-radius: 10px;
     padding: 10px;
     min-width: 400px;
@@ -395,61 +265,77 @@ img {
 .testimonial .textpart {
     flex: 2;
 }
+
 /* new index for mobile devices css */
 @media (max-width: 920px) {
     .index-main {
         margin-left: 0;
     }
+
     .overlapcards {
         display: none;
     }
+
     .contents {
         width: 70%;
         text-align: center;
     }
+
     .contents h2, .contents p {
         margin: 0;
         width: 100%;
         padding: 0 1px;
     }
+
     .usercards {
-        padding:1px;
+        padding: 1px;
         grid-template-columns: repeat(2, 1fr);
     }
+
     .card {
         width: 180px;
         height: 28vh;
     }
+
     .wrapper {
         margin-top: 1rem;
     }
+
     .topics-card {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .topics-card .cardcontainer {
+        min-width: 200px;
+    }
+
     .rollwrapper {
         padding: 0 10px;
         position: relative;
         margin-bottom: 2rem;
     }
+
     .rollcardcontainer .rollcard {
         min-width: 300px;
     }
+
     .testimonial {
         padding: 1px 10px;
     }
-    
+
     .testimonialwrapper {
         flex-direction: column;
     }
+
     .testimonial .textpart {
         margin-top: 30px;
         text-align: center;
     }
-    
+
     #prevbtn {
         left: 20px;
     }
-    
+
     #nextbtn {
         right: 20px;
     }

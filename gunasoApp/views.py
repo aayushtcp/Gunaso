@@ -35,7 +35,8 @@ def not_found(request,exception):
     return render(request, '404.html')
 
 def index(request):
-    mainusers = IndexProfile.objects.all()[:4]
+    # mainusers = IndexProfile.objects.all()[:8]
+    mainusers = Profile.objects.all()[:4]
     
     alltopics = Topic.objects.all()
     context = {"username": request.user, "mainusers":mainusers, "alltopics":alltopics}

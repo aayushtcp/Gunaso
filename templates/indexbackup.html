@@ -31,11 +31,22 @@
                 <h2>Lorem Lorem</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur magni incidunt fuga quos veniam
                     alias corporis quo quas nesciunt a.</p>
-                <button class="copybtn postbtn">Explore</button>
+                    <a href="/persons">
+                        <button class="copybtn postbtn">Explore</button>
+                    </a>
                 <div class="overlapcards">
-                    <div class="card">Card</div>
-                    <div class="card">Card</div>
-                    <div class="card">Card</div>
+                    <div class="card">
+                        <h3>Love</h3>
+                        <i class="fa-solid fa-heart fa-beat"></i>
+                    </div>
+                    <div class="card">
+                        <h3>Politics</h3>
+                        <i class="fa-solid fa-landmark fa-beat"></i>
+                    </div>
+                    <div class="card">
+                        <h3>Feelings</h3>
+                        <i class="fa-solid fa-heart-crack fa-beat"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,54 +57,16 @@
                 <h2>Famous <span class="generalspan">Users</span></h2>
             </center>
             <div class="usercards">
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
+                {% for item in mainusers %}
+                <a href="/user/{{item.user}}/">
+                    <div class="cardcontainer">
+                        <div class="card" style="background-image: url(/media/{{item.image}});"></div>
+                        <div class="text">
+                            <h3>{{item.user}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="card"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
 
@@ -103,42 +76,17 @@
                 <h2>Famous <span class="generalspan">Topics</span></h2>
             </center>
             <div class="topics-card">
-                <div class="cardcontainer">
-                    <div class="bigcard"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
-                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
-                            a veniam facilis.</p>
+                {% for item in alltopics %}
+                <a href="topics/{{item.slug}}">
+                    <div class="cardcontainer">
+                        <div class="bigcard" style="background-image: url(/media/{{item.image}});"></div>
+                        <div class="text">
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.introduction|truncatechars:150}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="bigcard"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
-                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
-                            a veniam facilis.</p>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="bigcard"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
-                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
-                            a veniam facilis.</p>
-                    </div>
-                </div>
-                <div class="cardcontainer">
-                    <div class="bigcard"></div>
-                    <div class="text">
-                        <h3>Aayush Dhakal</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
-                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
-                            a veniam facilis.</p>
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
 
