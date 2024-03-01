@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+:root {
+    /* --dark: #05386B; */
+    --dark: #754ffe;
+    --darkgreen: #379683;
+    --bcolor: #5CDB95;
+    --cooltexr: #4a4b65;
+    --backupgreen: #8EE4AF;
+    --para: #EDF5E1;
+    /* MATHI KO IMP */
+    --mainheading: #FFF;
+    --hotish: #FF3FA4;
+    --skyblue: #525FE1;
+    --footer: #18113c;
+}
+
+body {
+    line-height: 1.5;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    /* background-color: var(--bcolor); */
+    background-color: var(--mainheading);
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel {
+    width: 100%;
+    height: 70vh;
+    gap: 10px;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.each-img {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    transition: .5s ease-in-out;
+    left: 0;
+    right: 0;
+}
+
+
+
+#prevbtn,
+#nextbtn {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 2rem;
+    text-transform: capitalize;
+    z-index: 9;
+    top: 50%;
+    color: #868383;
+    font-size: 2.3rem;
+}
+
+#prevbtn:hover,
+#nextbtn:hover {
+    color: #fff;
+}
+
+#prevbtn {
+    left: 20px;
+}
+
+#nextbtn {
+    right: 20px;
+}
+
+@media (max-width: 920px) {
+    .carousel {
+        height: 40vh;
+        gap: 10px;
+        width: 100%;
+    }
+
+}
+
+.messages {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.index-main {
+    margin-left: 4.7244rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.colorspan {
+    color: var(--dark);
+}
+
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30vh;
+}
+
+.cards .card {
+    height: 27vh;
+    width: 20%;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(117, 79, 254, 0.858) -5px 5px, rgba(117, 79, 254, 0.3) -10px 10px, rgba(117, 79, 254, 0.2) -15px 15px, rgba(117, 79, 254, 0.1) -20px 20px, rgba(117, 79, 254, 0.05) -25px 25px;
+    background-color: violet;
+    text-decoration: none;
+    color: #fff;
+}
+
+.gridraja {
+    height: 80vh;
+    display: grid;
+    grid-template-areas: "leftside righttop"
+        "leftside rightbottom";
+    gap: 10px;
+    margin: auto;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+}
+
+.left {
+    transition: all ease 0.4s;
+    grid-area: leftside;
+}
+
+.left:hover, .rightbottom:hover, .righttop:hover {
+    transform: scale(1.02);
+}
+
+.righttop {
+    transition: all ease 0.4s;
+    grid-area: righttop;
+}
+
+.rightbottom {
+    transition: all ease 0.4s;
+    grid-area: rightbottom;
+    transition: all ease 0.4s;
+}
+
+/* for small screen cards */
+@media (max-width: 920px) {
+    .index-main {
+        margin-left: 0;
+    }
+
+    .cards {
+        padding-top: 10px;
+        flex-direction: column;
+        gap: 30px;
+        height: max-content;
+    }
+
+    .cards .card {
+        height: 27vh;
+        width: 90%;
+    }
+
+    .gridraja {
+        /* padding: 0; */
+        width: 100%;
+        grid-template-areas: "leftside"
+            "righttop"
+            "rightbottom";
+        padding: 10px;
+    }
+}
+
+.left, .righttop, .rightbottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    filter: brightness(80%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -80px 36px -1px inset;
+    color: #fff;
+    border: 2px solid var(--dark);
+}
+
+.cardbgimg, .left, .righttop, .rightbottom {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cards h3 {
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: end;
+    height: 105%;
+}
+
+/* margins */
+.titles {
+    margin: 2rem 0 1rem;
+    text-align: center;
+}
+
+.index-banner {
+    margin-top: 2rem;
+}
+
+
+
+/* new index css */
+.hero {
+    position: relative;
+    height: 60vh;
+    width: 100%;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+
+.contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.contents h2, .contents p {
+    margin: 0;
+    padding: 0 100px;
+}
+
+.overlapcards {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+    gap: 50px;
+}
+
+.card {
+    height: 30vh;
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--footer);
+    transition: 0.4s ease;
+}
+
+.card:hover, .bigcard:hover,.testimonialwrapper:hover {
+    transform: translateY(-10px);
+}
+
+.wrapper {
+    margin-top: 10rem;
+}
+
+.wrapper center {
+    margin-bottom: 2rem;
+}
+
+.usercards {
+    padding: 0 200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    gap: 15px;
+}
+
+.usercards .text {
+    text-align: center;
+}
+
+.topics-card{
+    display: grid;
+    padding: 15px;
+    place-items: center;
+    gap: 25px;
+    grid-template-columns: repeat(2,1fr);
+}
+.downwrapper, .rollwrapper{
+    margin-top: 3rem;
+}
+.topics-card .cardcontainer{
+    background-color: gainsboro;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 700px;
+}
+.topics-card .bigcard {
+    height: 40vh;
+    width: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--dark);
+    transition: 0.4s ease;
+}
+.bogcard .text{
+    max-width: 700px;
+}
+/* for rolling card container */
+.rollwrapper {
+    padding: 0 150px;
+    position: relative;
+    scroll-behavior: smooth;
+    transition: 0.4s ease;
+}
+
+.rollcardcontainer {
+    display: flex;
+    height: 50vh;
+    background-color: var(--footer);
+    border-radius: 10px;
+    gap: 15px;
+    overflow: hidden;
+    padding: 15px;
+    scroll-behavior: smooth;
+}
+
+.rollcardcontainer .rollcard {
+    background-color: var(--dark);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 400px;
+}
+
+
+/* for testimonial */
+.testimonial{
+    padding: 10px 12rem;
+}
+.testimonialwrapper{
+    max-height: 50vh;
+    width: 100%;
+    background-color: gainsboro;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 1rem;
+    transition: 0.4s ease;
+}
+.testimonial .imgpart{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.testimonial .imgpart img{
+    object-fit: cover;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.testimonial .textpart{
+    flex: 2;
+}
+

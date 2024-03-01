@@ -39,7 +39,7 @@ def index(request):
     
     alltopics = Topic.objects.all()
     context = {"username": request.user, "mainusers":mainusers, "alltopics":alltopics}
-    return render(request, 'index.html',context)
+    return render(request, 'indexbackup.html',context)
 
 def about(request):
     user = request.user 

@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load webpush_notifications %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block base_style%}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/indexbackup.css' %}">
+    {% endblock base_style%}
+    <title>Index | Gunaso</title>
+</head>
+{% block content %}
+
+<body>
+    <div class="index-main">
+        <center>
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}
+                style="background-color: rgb(224, 247, 251);">{{ message }}</li>
+                {% endfor %}
+        </center>
+
+        <!-- top hero part -->
+        <div class="hero">
+            <img src="{% static 'images/carouseltwo.jpg' %}" alt="">
+            <div class="contents">
+                <h2>Lorem Lorem</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur magni incidunt fuga quos veniam
+                    alias corporis quo quas nesciunt a.</p>
+                <button class="copybtn postbtn">Explore</button>
+                <div class="overlapcards">
+                    <div class="card">Card</div>
+                    <div class="card">Card</div>
+                    <div class="card">Card</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- top users cards -->
+        <div class="wrapper">
+            <center>
+                <h2>Famous <span class="generalspan">Users</span></h2>
+            </center>
+            <div class="usercards">
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="card"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topic/Celebraties cards section -->
+        <div class="downwrapper">
+            <center>
+                <h2>Famous <span class="generalspan">Topics</span></h2>
+            </center>
+            <div class="topics-card">
+                <div class="cardcontainer">
+                    <div class="bigcard"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
+                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
+                            a veniam facilis.</p>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="bigcard"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
+                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
+                            a veniam facilis.</p>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="bigcard"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
+                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
+                            a veniam facilis.</p>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                    <div class="bigcard"></div>
+                    <div class="text">
+                        <h3>Aayush Dhakal</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repellendus laborum, repudiandae
+                            sequi perferendis quae maxime incidunt. Perspiciatis mollitia doloremque veritatis pariatur
+                            a veniam facilis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- horizontal rollable section -->
+        <center>
+            <h2>User <span class="generalspan">Views</span></h2>
+        </center>
+        <div class="rollwrapper">
+            <i class="fa-solid fa-angle-left" id="prevbtn" onclick="scrollToLeft()"></i>
+            <i class="fa-solid fa-angle-right" id="nextbtn" onclick="scrollToRight()"></i>
+
+
+            <section class="rollcardcontainer">
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.1</p>
+                </div>
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.2</p>
+                </div>
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.3</p>
+                </div>
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.4</p>
+                </div>
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.5</p>
+                </div>
+                <div class="rollcard">
+                    <p>Lorem ipsum dolor sit amet.6</p>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- Abovefooter section -->
+
+        <div class="testimonial">
+            <div class="testimonialwrapper">
+
+                <div class="imgpart">
+                    <img src="{% static 'images/profileimage.jpg' %}" alt="">
+                </div>
+                <div class="textpart">
+                    <h3>Lorem ipsum dolor sit amet.</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptates et, libero
+                        incidunt,
+                        repudiandae, debitis ipsam natus nihil omnis voluptatem qui commodi blanditiis eveniet
+                        inventore debitis ipsam natus nihil!
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% include 'banner.html' %}
+    </div>
+    <!-- <script src="{% static 'scripts/index.js' %}"></script> -->
+    <script>
+        document.getElementById("show-logout").onclick = function () {
+            location.href = "/logout";
+        };
+
+        function scrollToLeft() {
+            const rollContainer = document.querySelector('.rollcardcontainer');
+            rollContainer.scrollLeft -= 500; // Decrease the scrollLeft value for left scroll
+        }
+
+        function scrollToRight() {
+            const rollContainer = document.querySelector('.rollcardcontainer');
+            rollContainer.scrollLeft += 500; // Increase the scrollLeft value for right scroll
+        }
+
+
+    </script>
+    {% endblock %}
+</body>
+
+</html>
