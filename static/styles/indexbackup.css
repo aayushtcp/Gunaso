@@ -60,34 +60,6 @@ img {
 
 
 
-#prevbtn,
-#nextbtn {
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    cursor: pointer;
-    height: 100%;
-    width: 2rem;
-    text-transform: capitalize;
-    z-index: 9;
-    top: 50%;
-    color: #868383;
-    font-size: 2.3rem;
-}
-
-#prevbtn:hover,
-#nextbtn:hover {
-    color: #fff;
-}
-
-#prevbtn {
-    left: 20px;
-}
-
-#nextbtn {
-    right: 20px;
-}
-
 @media (max-width: 920px) {
     .carousel {
         height: 40vh;
@@ -273,7 +245,7 @@ img {
     transition: 0.4s ease;
 }
 
-.card:hover, .bigcard:hover,.testimonialwrapper:hover {
+.card:hover, .bigcard:hover, .testimonialwrapper:hover {
     transform: translateY(-10px);
 }
 
@@ -292,27 +264,36 @@ img {
     place-items: center;
     gap: 15px;
 }
+.usercards  .cardcontainer{
+    background-color: gainsboro;
+    border-radius: 10px;
+    padding: 5px;
+
+}
 
 .usercards .text {
     text-align: center;
 }
 
-.topics-card{
+.topics-card {
     display: grid;
     padding: 15px;
     place-items: center;
     gap: 25px;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
-.downwrapper, .rollwrapper{
-    margin-top: 3rem;
+
+.downwrapper, .rollwrapper {
+    margin-top: 2rem;
 }
-.topics-card .cardcontainer{
+
+.topics-card .cardcontainer {
     background-color: gainsboro;
     padding: 10px;
     border-radius: 10px;
     max-width: 700px;
 }
+
 .topics-card .bigcard {
     height: 40vh;
     width: inherit;
@@ -321,21 +302,50 @@ img {
     background-color: var(--dark);
     transition: 0.4s ease;
 }
-.bogcard .text{
+
+.bogcard .text {
     max-width: 700px;
 }
+
 /* for rolling card container */
+#prevbtn,
+#nextbtn {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 2rem;
+    text-transform: capitalize;
+    z-index: 9;
+    top: 50%;
+    color: #868383;
+    font-size: 2.3rem;
+}
+
+#prevbtn {
+    left: 60px;
+}
+
+#nextbtn {
+    right: 60px;
+}
+
+#prevbtn:hover,
+#nextbtn:hover {
+    color: var(--dark);
+}
+
 .rollwrapper {
     padding: 0 150px;
     position: relative;
-    scroll-behavior: smooth;
-    transition: 0.4s ease;
+    margin-bottom: 2rem;
 }
 
 .rollcardcontainer {
     display: flex;
     height: 50vh;
-    background-color: var(--footer);
+    background-color: gainsboro;
     border-radius: 10px;
     gap: 15px;
     overflow: hidden;
@@ -344,7 +354,7 @@ img {
 }
 
 .rollcardcontainer .rollcard {
-    background-color: var(--dark);
+    background-color: violet;
     border-radius: 10px;
     padding: 10px;
     min-width: 400px;
@@ -352,10 +362,11 @@ img {
 
 
 /* for testimonial */
-.testimonial{
+.testimonial {
     padding: 10px 12rem;
 }
-.testimonialwrapper{
+
+.testimonialwrapper {
     max-height: 50vh;
     width: 100%;
     background-color: gainsboro;
@@ -366,20 +377,80 @@ img {
     padding: 10px 1rem;
     transition: 0.4s ease;
 }
-.testimonial .imgpart{
+
+.testimonial .imgpart {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.testimonial .imgpart img{
+
+.testimonial .imgpart img {
     object-fit: cover;
     border-radius: 50%;
     height: 150px;
     width: 150px;
 }
 
-.testimonial .textpart{
+.testimonial .textpart {
     flex: 2;
 }
-
+/* new index for mobile devices css */
+@media (max-width: 920px) {
+    .index-main {
+        margin-left: 0;
+    }
+    .overlapcards {
+        display: none;
+    }
+    .contents {
+        width: 70%;
+        text-align: center;
+    }
+    .contents h2, .contents p {
+        margin: 0;
+        width: 100%;
+        padding: 0 1px;
+    }
+    .usercards {
+        padding:1px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card {
+        width: 180px;
+        height: 28vh;
+    }
+    .wrapper {
+        margin-top: 1rem;
+    }
+    .topics-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .rollwrapper {
+        padding: 0 10px;
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    .rollcardcontainer .rollcard {
+        min-width: 300px;
+    }
+    .testimonial {
+        padding: 1px 10px;
+    }
+    
+    .testimonialwrapper {
+        flex-direction: column;
+    }
+    .testimonial .textpart {
+        margin-top: 30px;
+        text-align: center;
+    }
+    
+    #prevbtn {
+        left: 20px;
+    }
+    
+    #nextbtn {
+        right: 20px;
+    }
+}
