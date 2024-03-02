@@ -205,7 +205,7 @@ def update_profile(request):
         
         # check/verify
         if(password != cpassword):
-            messages.error(request, "Password mismatch")
+            messages.error(request, "Your confirm password is not matching")
             return redirect("update_profile")
         
         if(len(username) >10):
@@ -215,6 +215,25 @@ def update_profile(request):
         if(User.objects.filter(username = username)):
             messages.error(request, "Username already in use")
             return redirect('/update_profile')
+        
+        # username validation
+        if(username):
+            username_regex = re.compile(r'^[a-zA-Z][a-zA-Z0-9]*$')
+            if not username_regex.match(username):
+                messages.error(request,"Invalid username")
+                return redirect('/update_profile')
+        elif(email):
+            email_regix = re.compile(r'^[^\s@]+@[^\s@]+\.[^\s@]+$')
+            if not email_regix.match(email):
+                messages.error(request,"Invalid email")
+                return redirect('/update_profile')
+        elif(password):
+            password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
+            if not password_regex.match(password):
+                messages.error(request,"Invalid password")
+                return redirect('/update_profile')
+            
+        
         # Update user profile
         if (username):
             request.user.username = username

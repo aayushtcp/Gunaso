@@ -25,7 +25,7 @@
                 <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
             </ul>
-            <form action="{% url 'update_profile' %}" method="post"
+            <form action="{% url 'update_profile' %}" onsubmit="return updateProfileClicked()" method="post"
                 enctype="multipart/form-data">
                 <h2>Update Profile:</h2>
                 {% csrf_token %}
@@ -37,23 +37,23 @@
                 <div class="combobox">
                     <div class="formrow">
                         <label>Username:</label>
-                        <input onkeyup="usernameValid()" class="generalinp" type="text" name="username" id="username" >
+                        <input class="generalinp" type="text" name="username" id="username" >
                     </div>
                     <div class="formrow">
                         <label>Email:</label>
-                        <input onkeyup="emailValid()" class="generalinp" type="text" name="email" id="email" >
+                        <input class="generalinp" type="text" name="email" id="email" >
                     </div>
                 </div>
 
                 <div class="combobox">
                     <div class="formrow">
                         <label>Password:</label>
-                        <input onkeyup="passwordValid()" class="generalinp" type="password" name="password"
+                        <input class="generalinp" type="password" name="password"
                             id="password">
                     </div>
                     <div class="formrow">
                         <label>Confirm Password:</label>
-                        <input onkeyup="passwordMatchValid()" class="generalinp" type="password" name="cpassword"
+                        <input class="generalinp" type="password" name="cpassword"
                             id="cpassword">
                     </div>
                 </div>
