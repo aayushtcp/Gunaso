@@ -75,7 +75,9 @@ urlpatterns = [
     # Update systems
     path('update_profile/',views.update_profile, name='update_profile'),
     path('update_intro/',views.editIntro, name='editIntro'),
-    path('update-password/',views.update_password, name='updatePassword'),
+    path('update-password/<str:user>/',views.update_password, name='updatePassword'),
+    # path('change-password/<str:user>/',views.change_password, name='changePassword'),
+    path('update-password/<str:user>/', views.update_password, name='update_password'),
     
     # celebraties/topics confessions/thoughts/comments
     path('postThoughts/',views.postThoughts, name='postThoughts'),

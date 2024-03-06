@@ -19,6 +19,10 @@ from datetime import datetime
 from collections import defaultdict
 from django.db.models import Count
 from django.urls import resolve
+# for update password
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.urls import reverse
 
 # esewa
 # Hash secret  key esewa integration V2
@@ -200,13 +204,13 @@ def update_profile(request):
     if request.method == 'POST':
         username = request.POST['username'].strip()
         email = request.POST['email'].strip()
-        password = request.POST['password'].strip()
-        cpassword = request.POST['cpassword'].strip()
+        # password = request.POST['password'].strip()
+        # cpassword = request.POST['cpassword'].strip()
         
         # check/verify
-        if(password != cpassword):
-            messages.error(request, "Your confirm password is not matching")
-            return redirect("update_profile")
+        # if(password != cpassword):
+        #     messages.error(request, "Your confirm password is not matching")
+        #     return redirect("update_profile")
         
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
@@ -227,11 +231,11 @@ def update_profile(request):
             if not email_regix.match(email):
                 messages.error(request,"Invalid email")
                 return redirect('/update_profile')
-        elif(password):
-            password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
-            if not password_regex.match(password):
-                messages.error(request,"Invalid password")
-                return redirect('/update_profile')
+        # elif(password):
+        #     password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
+        #     if not password_regex.match(password):
+        #         messages.error(request,"Invalid password")
+        #         return redirect('/update_profile')
             
         
         # Update user profile
@@ -239,8 +243,8 @@ def update_profile(request):
             request.user.username = username
         if (email):
             request.user.email = email
-        if (password):
-            request.user.set_password(password)
+        # if (password):
+        #     request.user.set_password(password)
             
         request.user.save()
         
@@ -940,3 +944,18 @@ def send_push_notification(request):
 def update_password(request):
     return render(request, 'updatePassword.html')
         
+@login_required
+def update_password(request, user):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  
+            messages.success(request, 'Your password is successfully updated!')
+            return redirect(reverse('user_timeline', args=[user.username]))
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'updatePassword.html', {'form': form})
