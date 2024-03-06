@@ -934,3 +934,8 @@ def send_push_notification(request):
     )
 
     return HttpResponse("Push notification sent!")
+
+
+# Update password systems
+def update_password(request):
+    return render(request, 'updatePassword.html')

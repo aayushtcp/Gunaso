@@ -76,6 +76,7 @@
     padding: .5rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 8rem;
     margin-bottom: 4rem;
 }
@@ -131,6 +132,18 @@ form .combobox{
     gap: 1.3rem;
     margin-top: 1rem;
 }
+form .combobox:nth-child(2){
+    background-color: red;
+}
+.morebtn{
+    background-color: var(--skyblue);
+    color: #fff;
+    padding: 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+}
 
 form{
     box-sizing: border-box;
@@ -162,6 +175,9 @@ form .generalinp:focus{
 @media(max-width: 980px) {
     .main{
         margin-left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .maintwo{
         display: none;
@@ -169,7 +185,7 @@ form .generalinp:focus{
     .mainone{
         margin-top: 1rem;
         padding: 30px;
-        width: 100vw;
+        width: 100%;
     }    
     form .generalinp{
         width: 97%;
@@ -180,5 +196,6 @@ form .generalinp:focus{
     form .combobox{
         display: flex;
         flex-direction: column;
+        gap: 5px;
     }
 }
