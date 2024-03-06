@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.contrib.auth import views as auth_views
 
 from django.contrib.auth.models import User
 urlpatterns = [
@@ -31,6 +32,13 @@ urlpatterns = [
     path('signup/',views.handleSignup, name='signup'),
     path('login/',views.handleLogin, name='login'),
     path('logout/',views.handleLogout, name='logout'),
+    
+    # Update password whole system Url
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),
+    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
+    path('password_reset_confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
+    path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'), 
+    
     
     path('user/<str:visitedUser>/', views.user_timeline, name='user_timeline'), #category is username from url
     path('analytics/', views.analytics, name='analytics'), #category is username from url for analytics

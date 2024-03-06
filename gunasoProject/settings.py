@@ -144,3 +144,10 @@ WEBPUSH_SETTINGS = {
     "VAPID_PRIVATE_KEY":"PrN5bPaimjKlhY_gTWxMZS1dV8lXeecwoqYzAs_c3jQ",
     "VAPID_ADMIN_EMAIL": "hakukale063@gmail.com"
 }
+
+# for email service
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='hakukale063@gmail.com'
+EMAIL_HOST_PASSWORD ='nmrugtzexqbfhiad'
+EMAIL_USE_TLS = True
