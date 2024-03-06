@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+
+# for env variables
+from dotenv import load_dotenv
+load_dotenv()
 # from django_jinja.builtins import DEFAULT_EXTENSIONS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rm-p&^@!_%px*_=t6g^!0#$gr3iyyo^ncbkqo_^akn)#hg$t@e'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -145,9 +149,9 @@ WEBPUSH_SETTINGS = {
     "VAPID_ADMIN_EMAIL": "hakukale063@gmail.com"
 }
 
-# for email service
+#! for email service
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER ='hakukale063@gmail.com'
-EMAIL_HOST_PASSWORD ='nmrugtzexqbfhiad'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
