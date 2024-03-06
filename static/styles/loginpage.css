@@ -116,6 +116,9 @@ form input:focus{
     text-decoration: none;
     border: none;
 }
+.forgetpass{
+    color: hotpink;
+}
 
 /* footer css for small screen starts */
 @media(max-width: 980px) {
