@@ -939,3 +939,4 @@ def send_push_notification(request):
 # Update password systems
 def update_password(request):
     return render(request, 'updatePassword.html')
+        
