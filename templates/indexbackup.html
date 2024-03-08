@@ -27,7 +27,6 @@
         <!-- top hero part -->
         <div class="hero">
             <img src="{% static 'images/indexmain.jpg' %}" alt="">
-            <!-- <img src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
             <div class="contents">
                 <h2>Express <span class="generalspan" style="color:#643bf9;">in </span>"Gunaso"</h2>
                 <p>" Welcome to our confession community, where your unspoken words find a safe space to be heard,
@@ -129,7 +128,28 @@
         </div>
         {% include 'banner.html' %}
     </div>
-    <!-- <script src="{% static 'scripts/index.js' %}"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var hero = document.querySelector('.hero');
+            var threshold = 10;
+            var scrolled = false;
+    
+            window.addEventListener('scroll', function () {
+                var scrollPosition = window.scrollY;
+    
+                if (scrollPosition > threshold && !scrolled) {
+                    hero.classList.add('scrolled');
+                    scrolled = true;
+                } else if (scrollPosition <= threshold && scrolled) {
+                    hero.classList.remove('scrolled');
+                    scrolled = false;
+                }
+            });
+        });
+    </script>
+    
+    
+    
     <script>
         document.getElementById("show-logout").onclick = function () {
             location.href = "/logout";
