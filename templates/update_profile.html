@@ -27,7 +27,7 @@
                     <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                         {% endfor %}
                 </ul>
-                <form action="/change-password/{{user}}" onsubmit="return updateProfileClicked()" method="post"
+                <form action="/update_profile/" onsubmit="return updateProfileClicked()" method="post"
                     enctype="multipart/form-data">
                     <h2>Update Profile:</h2>
                     {% csrf_token %}

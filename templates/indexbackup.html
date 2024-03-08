@@ -26,26 +26,27 @@
 
         <!-- top hero part -->
         <div class="hero">
-            <img src="{% static 'images/carouseltwo.jpg' %}" alt="">
+            <img src="{% static 'images/indexmain.jpg' %}" alt="">
+            <!-- <img src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
             <div class="contents">
-                <h2>Lorem Lorem</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur magni incidunt fuga quos veniam
-                    alias corporis quo quas nesciunt a.</p>
-                    <a href="/persons">
-                        <button class="copybtn postbtn">Explore</button>
-                    </a>
+                <h2>Express <span class="generalspan" style="color:#643bf9;">in </span>"Gunaso"</h2>
+                <p>" Welcome to our confession community, where your unspoken words find a safe space to be heard,
+                    understood, and embraced, fostering healing and connection among shared experiences. "</p>
+                <a href="/persons">
+                    <button class="copybtn postbtn">Explore</button>
+                </a>
                 <div class="overlapcards">
                     <div class="card">
-                        <h3>Love</h3>
-                        <i class="fa-solid fa-heart fa-beat"></i>
+                        <h3>Confess</h3>
+                        <i class="fa-solid fa-hand-holding-hand fa-beat"></i>
                     </div>
                     <div class="card">
-                        <h3>Politics</h3>
-                        <i class="fa-solid fa-landmark fa-beat"></i>
+                        <h3>Connect</h3>
+                        <i class="fa-solid fa-earth-asia fa-beat"></i>
                     </div>
                     <div class="card">
-                        <h3>Feelings</h3>
-                        <i class="fa-solid fa-heart-crack fa-beat"></i>
+                        <h3>Community</h3>
+                        <i class="fa-solid fa-people-group fa-beat"></i>
                     </div>
                 </div>
             </div>
@@ -100,24 +101,11 @@
 
 
             <section class="rollcardcontainer">
+                {% for i in '012345'|make_list %}
                 <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.1</p>
+                    <img src="https://source.unsplash.com/random/?person of nepal" alt="">
                 </div>
-                <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.2</p>
-                </div>
-                <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.3</p>
-                </div>
-                <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.4</p>
-                </div>
-                <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.5</p>
-                </div>
-                <div class="rollcard">
-                    <p>Lorem ipsum dolor sit amet.6</p>
-                </div>
+                {% endfor %}
             </section>
         </div>
 
@@ -128,14 +116,13 @@
             <div class="testimonialwrapper">
 
                 <div class="imgpart">
-                    <img src="{% static 'images/profileimage.jpg' %}" alt="">
+                    <img src="{% static 'images/sujal.jpg' %}" alt="">
                 </div>
                 <div class="textpart">
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptates et, libero
-                        incidunt,
-                        repudiandae, debitis ipsam natus nihil omnis voluptatem qui commodi blanditiis eveniet
-                        inventore debitis ipsam natus nihil!
+                    <h3>Sujal Rimal</h3>
+                    <p>Using Gunaso makes me more comfortable to share my experiences with all other peoples about my
+                        football skills and it is amazing to use Gunaso to share my emotions to the peoples with whom I
+                        can't communicate face-to-face.
                     </p>
                 </div>
             </div>
