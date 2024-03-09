@@ -39,6 +39,7 @@ body {
 }
 
 .index-main {
+    overflow-x: hidden;
     margin-left: 4.7244rem;
     display: flex;
     flex-direction: column;
@@ -52,7 +53,6 @@ a {
 
 .hero {
     position: relative;
-    /* overflow-x: hidden; */
     height: 60vh;
     width: 100%;
 }
@@ -62,7 +62,7 @@ a {
     height: 100%;
     object-fit: cover;
     filter: brightness(65%);
-    transition: transform 0.5s ease;
+    transition: transform 1.5s ease;
 }
 
 .hero.scrolled img {
@@ -286,6 +286,15 @@ a {
     .index-main {
         margin-left: 0;
     }
+
+    .hero {
+        overflow: hidden;
+    }
+
+    .hero.scrolled img {
+        transform: scale(1.1);
+    }
+
 
     .overlapcards {
         display: none;

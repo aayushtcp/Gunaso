@@ -5,7 +5,6 @@ body.hidden-scrolling {
 }
 
 :root {
-    /* --dark: #05386B; */
     --dark: #754ffe;
     --darkgreen: #379683;
     --bcolor: #5CDB95;
@@ -31,7 +30,6 @@ body.hidden-scrolling {
     justify-content: center;
     gap: 10px;
     animation: bannerloop 20s linear infinite;
-    /* margin: 1rem 0; */
 }
 .bannerpar{
     text-align: center;

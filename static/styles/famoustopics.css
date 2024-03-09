@@ -107,11 +107,16 @@
     object-fit:cover;
     object-position: center;
 }
+
+.tag-wrapper{
+    display: flex;
+    gap: 12px;
+}
 .tags{
     margin-bottom: 1rem;
     border-radius: 6px;
     width: max-content;
-    padding: 4px;
+    padding: 1px 10px;
     background-color: gainsboro;
 }
 

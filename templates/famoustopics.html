@@ -19,7 +19,10 @@
             <div class="leftside">
                 <h2>{{topic.name}}</h2>
                 <p>{{topic.date}}</p>
-                <p class="tags">#{{topic.tagone}} #{{topic.tagtwo}}</p>
+                <div class="tag-wrapper">
+                    <p class="tags">#{{topic.tagone}}</p>
+                    <p class="tags">#{{topic.tagtwo}}</p>
+                </div>
                 <!-- <img src="/media/{{topic.image}}" alt=""> -->
                 <div class="profileimg" onclick="toggleProfileImg()"
                     style="background-image: url('../media/{{ topic.image }}');">
