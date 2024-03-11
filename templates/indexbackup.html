@@ -17,12 +17,6 @@
 
 <body>
     <div class="index-main">
-        <center>
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}
-                style="background-color: rgb(224, 247, 251);">{{ message }}</li>
-                {% endfor %}
-        </center>
 
         <!-- top hero part -->
         <div class="hero">

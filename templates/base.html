@@ -192,7 +192,8 @@
                         <a href="{% url 'developers' %}" class="link flex">
                             <i>
                                 <lord-icon src="https://cdn.lordicon.com/eodeknny.json" trigger="hover"
-                                    style="width:29px;height:29px; margin-left: 5px;" colors="primary:#fff,secondary:#fff">
+                                    style="width:29px;height:29px; margin-left: 5px;"
+                                    colors="primary:#fff,secondary:#fff">
                                 </lord-icon>
                             </i>
                             <span>About Developers</span>
@@ -217,7 +218,7 @@
                         style="border-radius: 50%; height: 35px; width:35px;" />
                 </span>
                 <div class="data_text">
-                    <span class="name" style="font-size: 14px;">Not  <br>Logged in</span>
+                    <span class="name" style="font-size: 14px;">Not <br>Logged in</span>
                     <br>
                 </div>
                 {% endif %}
@@ -267,6 +268,27 @@
         </div>
     </footer>
     <hr>
+    <!-- for toaster -->
+    {% if messages %}
+    <div id="toast">
+        <div id="noti-img"><img style="height: 20px; width: 35px;"
+                src="{% static 'images/logos/g-high-resolution-logo-transparent.png' %}" alt=""></div>
+        <div id="desc">
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Add this script to trigger the toaster function when messages are present
+        document.addEventListener("DOMContentLoaded", function () {
+            launch_toast();
+        });
+    </script>
+    {% endif %}
+
     <!-- Footer HTML Ends -->
     <!-- script for animated icons -->
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
