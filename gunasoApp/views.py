@@ -726,7 +726,27 @@ def deleteFeature(request,visitedUser,post_id):
         messages.success(request, "Deleted the featured post")
         return redirect(f'../../../../user/{request.user.username}')
 
-
+# @login_required(login_url='/login/')
+# def deleteGroupConfession(request,visitedUser,post_id):
+#     current_path = request.path
+#     path_parts = current_path.split('/')
+#     path_parts = [part for part in path_parts if part]
+    
+#     extracted_category = path_parts[-3] if path_parts else None
+                
+#     # Get the specific post by post_id
+#     try:
+#         post = UserPost.objects.get(id=post_id)
+#     except UserPost.DoesNotExist:
+#         return HttpResponseNotFound("Post not found.")
+#     # Check if the logged-in user is the owner of the post
+#     if request.user.username != extracted_category:
+#         return HttpResponseForbidden("Hiro na ban")
+#     else:
+#         # Only proceed with deletion if the user is the owner
+#         post.delete()
+#         messages.success(request, "Post deleted successfully.")
+#         return redirect(f"../../")
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
 

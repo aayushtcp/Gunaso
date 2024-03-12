@@ -247,6 +247,7 @@ textarea {
 .overlay i {
     cursor: pointer;
 }
+
 .deletepost {
     display: flex;
     justify-content: center;
@@ -278,6 +279,7 @@ textarea {
     background-color: red;
     color: var(--footer);
 }
+
 .replycommenttrigger {
     cursor: pointer;
     width: max-content;
@@ -288,6 +290,33 @@ textarea {
     border-radius: 3px;
     font-size: 14px;
     transition: 1s all ease;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 20vw;
+}
+
+.modal form {
+    padding: 20px;
 }
 
 .highlight {

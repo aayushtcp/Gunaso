@@ -62,9 +62,9 @@
                             <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}"
                                 onclick="replyPOP({{ comment.sno }})">Reply</p>
                         </div>
-                        <div class="deletepost">
+                        <!-- <div class="deletepost">
                             <input class="deleteconfession" onclick="openDelPop()" type="submit" value="X">
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -125,12 +125,39 @@
                 </div>
             </div>
         </div>
+        {% for item in comments %}
+        <div id="myModal2" class="modal">
+            <div class="modelcontents">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <center>
+                        <h3>Are You Sure?</h3>
+                        <br>
+                        <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
+                        <input type="submit" name="Edit" value="Yes" class="copybtn">
+                    </center>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        <div id="overlay" class="overlay"></div>
     </div>
     </div>
     <script src="{% static 'scripts/comments.js' %}"></script>
     <script>
+        // to del personal confessions
+        function openDelPop() {
+            document.getElementById('myModal2').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('myModal2').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
         function replyPOP(commentId) {
-            
+
             let overlay = document.querySelector(`#replyform${commentId}`);
             let triggerBtn = document.querySelector(`#replytrigger${commentId}`);
 
