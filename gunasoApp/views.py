@@ -564,7 +564,6 @@ def groupsparticular(request, slug):
     allgroups = ConfessGroup.objects.filter(slug=slug).first()
     comments = GroupsComments.objects.filter(topic=allgroups, parent=None)[::-1]
     replies = GroupsComments.objects.filter(topic=allgroups).exclude(parent = None)
-    # print(comments, replies)
     reply_dict={}
     for reply in replies:
         if reply.parent.sno not in reply_dict.keys():
@@ -572,8 +571,13 @@ def groupsparticular(request, slug):
         else:
             reply_dict[reply.parent.sno].append(reply)
             
-    print(reply_dict)
-    context = {"allgroups": allgroups, "comments": comments, "reply_dict": reply_dict, 'users': users}
+    context = {
+        "allgroups": allgroups,
+        "comments": comments,
+        "reply_dict": reply_dict,
+        'users': users,
+        'owner': allgroups.owner
+        }
     return render(request, 'groupParticular.html', context)
 
 def developers(request):
@@ -716,37 +720,36 @@ def deleteFeature(request,visitedUser,post_id):
     try:
         post = MyFeature.objects.get(id=post_id)
     except UserPost.DoesNotExist:
-        return HttpResponseNotFound("Post not found.")
+        return render(request,"Post not found.")
     # Check if the logged-in user is the owner of the post
     if request.user.username != extracted_category:
-        return HttpResponseForbidden("Hiro na ban randi ko ban.")
+        message_error = "You are not the one...."
+        return render(request, "404.html", {'message_error': message_error})
     else:
         # Only proceed with deletion if the user is the owner
         post.delete()
         messages.success(request, "Deleted the featured post")
         return redirect(f'../../../../user/{request.user.username}')
 
-# @login_required(login_url='/login/')
-# def deleteGroupConfession(request,visitedUser,post_id):
-#     current_path = request.path
-#     path_parts = current_path.split('/')
-#     path_parts = [part for part in path_parts if part]
+@login_required(login_url='/login/')
+def deleteGroupConfession(request, visitedGroup, post_id):
+    # Get the specific group by visitedGroup
+    group_instance = get_object_or_404(ConfessGroup, sno=visitedGroup)
     
-#     extracted_category = path_parts[-3] if path_parts else None
-                
-#     # Get the specific post by post_id
-#     try:
-#         post = UserPost.objects.get(id=post_id)
-#     except UserPost.DoesNotExist:
-#         return HttpResponseNotFound("Post not found.")
-#     # Check if the logged-in user is the owner of the post
-#     if request.user.username != extracted_category:
-#         return HttpResponseForbidden("Hiro na ban")
-#     else:
-#         # Only proceed with deletion if the user is the owner
-#         post.delete()
-#         messages.success(request, "Post deleted successfully.")
-#         return redirect(f"../../")
+    if request.user == group_instance.owner:
+        try:
+            post = GroupsComments.objects.get(sno=post_id)
+            post.delete()
+            messages.success(request, "Confession Deleted Successfully")
+        except GroupsComments.DoesNotExist:
+            return HttpResponseNotFound("Post not found.")
+        
+        # Redirect back to the same page
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        message_error = "Are you trying to edit the URL manually?"
+        return render(request, '404.html', {"message_error": message_error})
+
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
 
@@ -760,7 +763,8 @@ def editIntro(request):
         messages.success(request, "Intro Updated Successfully!")
         return redirect(f'../../../../user/{request.user.username}')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
         
         
 # Search for perosns
@@ -849,7 +853,8 @@ def clipping(request, *args, **kwargs):
         messages.success(request, "Clipped Successfully")
         return redirect('/myclippings')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
     
 @login_required(login_url='/login/')
 def unclipping(request, visitedUser, *args, **kwargs):
@@ -861,7 +866,8 @@ def unclipping(request, visitedUser, *args, **kwargs):
         clipping_to_delete.delete()
         return redirect('/persons')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
 
 @login_required(login_url='/login/')
 def groupClipping(request, *args, **kwargs):
@@ -889,7 +895,8 @@ def group_unclipping(request, visitedGroup, *args, **kwargs):
         clipping_to_delete_group.delete()
         return redirect('/groups')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
 
 @login_required(login_url='/login/')
 def storyClipping(request, *args, **kwargs):
@@ -905,7 +912,8 @@ def storyClipping(request, *args, **kwargs):
         messages.success(request, "Story Clipped Successfully")
         return redirect('/myclippings')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool")
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
     
     
 @login_required(login_url='/login/')
@@ -919,7 +927,8 @@ def story_unclipping(request, visitedStory, *args, **kwargs):
         messages.success(request,"Story Unclipped Successfully")
         return redirect('/read-story')
     else:
-        return HttpResponseNotFound("HaHa Don't Try To Be Cool") 
+        message_error = "Are you trying to edit the url manually?"
+        return render(request, "404.html", {'message_error': message_error})
 
 # To show clippings
 @login_required(login_url='/login/')

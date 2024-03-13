@@ -18,16 +18,9 @@
 <body>
     {% block content %}
     <div class="famoustopicsmain">
-        <center>
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                    {% endfor %}
-            </ul>
-        </center>
         <div class="containflex">
             <div class="leftside">
-                <h2>{{allgroups.Groupname}}</h2>
+                <h2>{{allgroups.Groupname}} of {{allgroups.owner}}</h2>
                 <!-- <img src="/media/{{topic.image}}" alt=""> -->
                 <div class="profileimg" onclick="toggleProfileImg()"
                     style="background-image: url('../media/{{ allgroups.image }}');">
@@ -62,9 +55,11 @@
                             <p class="replycommenttrigger" id="replytrigger{{ comment.sno }}"
                                 onclick="replyPOP({{ comment.sno }})">Reply</p>
                         </div>
-                        <!-- <div class="deletepost">
+                        {% if request.user == owner %}
+                        <div class="deletepost">
                             <input class="deleteconfession" onclick="openDelPop()" type="submit" value="X">
-                        </div> -->
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -128,11 +123,14 @@
         {% for item in comments %}
         <div id="myModal2" class="modal">
             <div class="modelcontents">
-                <form method="post" action="">
+                <form method="post" action="/{{allgroups.sno}}/deleteGroupConfession/{{item.sno}}/"> 
+                    <!-- visited group id and post id -->
                     {% csrf_token %}
                     <center>
                         <h3>Are You Sure?</h3>
                         <br>
+                        <!-- <input type="hidden" name="visitedGroup" value="{{allgroups.sno}}">
+                        <input type="hidden" name="postid" value="{{item.sno}}"> -->
                         <input type="button" name="cancel" value="Cancel" class="copybtn" onclick="closePopup()">
                         <input type="submit" name="Edit" value="Yes" class="copybtn">
                     </center>

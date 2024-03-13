@@ -71,6 +71,8 @@ urlpatterns = [
     # for delete
     path('user/<str:visitedUser>/deleteConfession/<int:post_id>/', views.deleteConfession, name='delete_confession'),
     path('user/<str:visitedUser>/deleteFeature/<int:post_id>/', views.deleteFeature, name='deleteFeature'),
+    # !JHHH
+    path('<int:visitedGroup>/deleteGroupConfession/<int:post_id>/', views.deleteGroupConfession, name='deleteGroupConfession'),
     
     # Update systems
     path('update_profile/',views.update_profile, name='update_profile'),
