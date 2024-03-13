@@ -106,38 +106,7 @@ def handleSignup(request):
         cpassword = request.POST['cpassword'].strip()
         # for profile images
         userimage = request.FILES['image']
-    
-
-        # ------------------------for nuditity------------------------------------------------------------
-        # Use NudeNet to detect nudity
-        detector = NudeDetector()
-        
-        # Save the uploaded image to a temporary file
-        with open('temp_image.jpg', 'wb') as temp_image:
-            for chunk in userimage.chunks():
-                temp_image.write(chunk)
-        # Use the detector to scan the temporary file
-        result = detector.detect('temp_image.jpg')
-        if result and 'score' in result[0]:
-            score = result[0]['score']
-            if (score > 0.75):
-                imageclass = result[0]['class']
-                if imageclass not in [
-                    "FEMALE_GENITALIA_COVERED",
-                    "FACE_FEMALE",
-                    "FEET_EXPOSED",
-                    "BELLY_COVERED",
-                    "FEET_COVERED",
-                    "ARMPITS_COVERED",
-                    "FACE_MALE",
-                    "MALE_GENITALIA_EXPOSED",
-                    "ANUS_COVERED",
-                    "FEMALE_BREAST_COVERED",
-                    "BUTTOCKS_COVERED"
-                    ]:
-                    messages.error(request, "Sorry, the uploaded image contains explicit content.")
-                    return redirect("/signup")
-                
+                    
         if not (first_name or username or password or email or cpassword):
             messages.error(request, "Sorry, the uploaded image contains explicit content.")
             return redirect("/signup")
@@ -149,30 +118,22 @@ def handleSignup(request):
         elif len(username) > 15:
             messages.warning(request, "Username is greater than 15 characters")
             return redirect("/signup")
-
-        # Create a new user
-        if(User.objects.filter(username = username)):
+        
+        # create a new user
+        if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists")
             return redirect('/signup')
+        
         myuser = User.objects.create_user(username, email, password)
-        myuser.first_name = first_name  #first name is for intro(bio)
+        myuser.first_name = first_name
         myuser.save()
         
-        # !login directly user starts
-        user = authenticate(username= username, password= password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Login successful")
-            # profile pic upload to Profile modal DB
-            profile = Profile(user=request.user, image=userimage)
-            profile.save()
-            return redirect("/")
-        else:
-            messages.error(request, "Username or password incorrect")
-            return redirect("/login")
-    else:
-        HttpResponse("Hiro na ban")
-    return render(request,'signup.html')
+        profile = Profile(user=myuser, image=userimage)
+        profile.save()
+        
+        return redirect("/login/")
+    
+    return render(request, 'signup.html')
 
 # Login
 def handleLogin(request):
