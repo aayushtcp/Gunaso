@@ -10,25 +10,19 @@ function validName(elem) {
       document.querySelector("#nameError").innerText =
         "Name must start with letter";
       flag = 0;
-      contactsubmitbtn.disabled = true;
-      contactsubmitbtn.style.cursor = "not-allowed";
     } else {
       if (
-        elem.value.match(`(?=.*[!@#$%^&*\/])`) ||
+        elem.value.match(specialChars) ||
         elem.value.match(`(?=.*[0-9])`)
       ) {
         document.querySelector("#nameError").innerText =
           "Name must not have special characters and Numbers";
         flag = 0;
-        contactsubmitbtn.disabled = true;
-        contactsubmitbtn.style.cursor = "not-allowed";
       } else {
         if (!elem.value.match(/^[a-zA-Z]+ [a-zA-Z]+$/)) {
           document.querySelector("#nameError").innerText =
             "Name Must Have First Name and Last Name";
           flag = 0;
-          contactsubmitbtn.disabled = true;
-          contactsubmitbtn.style.cursor = "not-allowed";
         } else {
           document.querySelector("#nameError").innerText = "";
           flag = 1;
@@ -36,9 +30,11 @@ function validName(elem) {
       }
     }
   }
+  toggleSubmitButton();
 }
+
 function validPhone(elem) {
-  if (elem.value.trim() <= 0) {
+  if (elem.value.trim().length <= 0) {
     document.querySelector("#phoneError").innerText = "Please fill your number";
     flag = 0;
   } else {
@@ -46,76 +42,56 @@ function validPhone(elem) {
       document.querySelector("#phoneError").innerText =
         "Only supported numbers";
       flag = 0;
-      contactsubmitbtn.disabled = true;
-      contactsubmitbtn.style.cursor = "not-allowed";
-    } else if (elem.value.length < 10) {
+    } else if (elem.value.length != 10) {
       document.querySelector("#phoneError").innerText =
         "Number must be 10 digits";
       flag = 0;
-      contactsubmitbtn.disabled = true;
-      contactsubmitbtn.style.cursor = "not-allowed";
     } else {
-      if (elem.value.length > 10) {
-        document.querySelector("#phoneError").innerText =
-          "Number must be 10 digits";
-        flag = 0;
-        contactsubmitbtn.disabled = true;
-        contactsubmitbtn.style.cursor = "not-allowed";
-      } else {
-        if ((elem.value.length = 10)) {
-          document.querySelector("#phoneError").innerText = "";
-          flag = 1;
-          contactsubmitbtn.disabled = false;
-          contactsubmitbtn.style.cursor = "pointer";
-        } else {
-          document.querySelector("#phoneError").innerText = "";
-          flag = 1;
-        }
-      }
+      document.querySelector("#phoneError").innerText = "";
+      flag = 1;
     }
   }
+  toggleSubmitButton();
 }
 
 function validMessage(elem) {
-  if (elem.value.trim() <= 0) {
+  if (elem.value.trim().length <= 0) {
     document.querySelector("#contentError").innerText = "Write something";
     flag = 0;
-    contactsubmitbtn.disabled = true;
-    contactsubmitbtn.style.cursor = "not-allowed";
   } else {
     if (!isNaN(elem.value)) {
       document.querySelector("#contentError").innerText =
-        "Must contain alfabets";
+        "Must contain alphabets";
       flag = 0;
-      contactsubmitbtn.disabled = true;
-      contactsubmitbtn.style.cursor = "not-allowed";
     } else {
       if (elem.value.length < 15) {
         document.querySelector("#contentError").innerText =
           "Must contain 15 characters";
         flag = 0;
-        contactsubmitbtn.disabled = true;
-        contactsubmitbtn.style.cursor = "not-allowed";
       } else {
         document.querySelector("#contentError").innerText = "";
         flag = 1;
       }
     }
   }
+  toggleSubmitButton();
 }
-function validate() {
-  if (flag == 1) {
-    return true;
+
+function toggleSubmitButton() {
+  if (flag === 1) {
+    contactsubmitbtn.disabled = false;
+    contactsubmitbtn.style.cursor = "pointer";
   } else {
-    return false;
+    contactsubmitbtn.disabled = true;
+    contactsubmitbtn.style.cursor = "not-allowed";
   }
 }
 
-//
-document.querySelector("#phone").value = "";
-document.querySelector("#name").value = "";
+function validate() {
+  return flag === 1;
+}
 
-// after submit validation,
+// Clearing input fields after submit
 function contactSubmit() {
   let fullName = document.querySelector("#fullName").value.trim();
   let email = document.querySelector("#email").value.trim();
@@ -123,7 +99,7 @@ function contactSubmit() {
   let content = document.querySelector("#content").value.trim();
 
   if (!fullName || !email || !phone || !content) {
-    alert("All fields must be Filled");
+    alert("All fields must be filled");
     return false;
   }
 

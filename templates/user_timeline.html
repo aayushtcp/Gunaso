@@ -15,15 +15,6 @@
 
 <body">
     {% block content %}
-    <center>
-        <ul class="messages">
-            {% for message in messages %}
-            {% if message != "Post deleted successfully." %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endif %}
-                {% endfor %}
-        </ul>
-    </center>
     </center>
     <div class="famoustopicsmain">
         <div class="containflex">
@@ -152,7 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="particularstory">
+    <!-- <div class="particularstory">
         <center>
             {% if request.user.username == extracted_category %}
             <a href="{% url 'yourstory' %}">
@@ -160,7 +151,7 @@
             </a>
             {% endif %}
         </center>
-    </div>
+    </div> -->
     </div>
     </div>
     <!-- The Modal -->

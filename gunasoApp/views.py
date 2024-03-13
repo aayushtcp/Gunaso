@@ -299,7 +299,7 @@ def user_timeline(request, visitedUser):
     date =[]
     finaldate_set = set()
     visited_user = get_object_or_404(User, username=visitedUser)
-    user_posts = UserPost.objects.filter(visitedUser=visited_user)
+    user_posts = UserPost.objects.filter(visitedUser=visited_user)[::-1]
 
     current_path = request.path
     path_parts = current_path.split('/')
@@ -593,6 +593,7 @@ def contact(request):
         content = request.POST['content']
         tosave = Contact(name = name, email = email, phone = phone, content = content)
         tosave.save()
+        messages.success(request, "Your message has been sent.")
         return render(request, 'contact.html')
     return render(request, 'contact.html')
 

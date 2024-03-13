@@ -46,6 +46,7 @@ function onKey() {
 function validateForm() {
   const contentValue = document.querySelector("#content").value.toLowerCase();
   const contentLength = contentValue.replace(/\s/g, "").length; // Exclude spaces
+  const paddedContent = ` ${contentValue} `; // Add spaces at both ends
 
   if (contentLength < 30) {
     document.querySelector("#messagejs").innerText =
@@ -53,13 +54,14 @@ function validateForm() {
     document.querySelector(".postbtn").style.cursor = "not-allowed";
     return false;
   }
-  if (badWords.some((word) => contentValue.includes(word))) {
+  if (badWords.some((word) => paddedContent.includes(` ${word} `))) {
     document.querySelector("#messagejs").innerText = "Bad Word Detected";
     document.querySelector(".postbtn").style.cursor = "not-allowed";
     return false;
   }
   return true;
 }
+
 
 // // reply of group comments form validations
 // function onKey2() {
