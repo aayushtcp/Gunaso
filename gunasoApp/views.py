@@ -809,8 +809,8 @@ def clipping(request, *args, **kwargs):
         saveClipping = Clipping(user=user, visitedUser=visited_user)
         saveClipping.save()
         # for push notification start---------------------------------+
-        payload = {"head": "Clipping!", "body": "User Clipped Successfully", "icon": "../static/images/logos/g-favicon-color.png"}
-        send_user_notification(user=user, payload=payload, ttl=1000)
+        # payload = {"head": "Clipping!", "body": "User Clipped Successfully", "icon": "../static/images/logos/g-favicon-color.png"}
+        # send_user_notification(user=user, payload=payload, ttl=1000)
         # ------------------------------------------------------------+
         messages.success(request, "Clipped Successfully")
         return redirect('/myclippings')
