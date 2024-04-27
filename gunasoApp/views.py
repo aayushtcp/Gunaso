@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, HttpResponseForbidden,HttpResponseNotFound,HttpResponseBadRequest,HttpResponseRedirect
 from django.core.mail import send_mail
@@ -33,6 +33,10 @@ import base64
 
 # to prevent nude and unusual images
 from nudenet import NudeDetector
+# to prevent violent images
+import cv2
+import numpy as np
+from .detectViolence import detect_violence
 
 # custom 404 view
 def not_found(request,exception):
@@ -299,42 +303,48 @@ def user_timeline(request, visitedUser):
             userimageFeature= request.FILES['file-input']
             # for feature image setup
             if 'file-input' in request.FILES:
+                # ------------------------for violence------------------------------------------------------------
+                is_violent = detect_violence(request.FILES['file-input'])
+                if is_violent:
+                    messages.error(request, "Image contents inappropriate things!")
+                    return redirect("user_timeline", visitedUser=extracted_category)
+                else:
                 # ------------------------for nuditity------------------------------------------------------------
-                # Use NudeNet to detect nudity
-                detector = NudeDetector()
-                
-                # Save the uploaded image to a temporary file
-                with open('temp_image.jpg', 'wb') as temp_image:
-                    for chunk in userimageFeature.chunks():
-                        temp_image.write(chunk)
-                # Use the detector to scan the temporary file
-                result = detector.detect('temp_image.jpg')
-                if result and 'score' in result[0]:
-                    score = result[0]['score']
-                    print(f"Nudity score: {score}")
-                    if (score > 0.75):
-                        imageclass = result[0]['class']
-                        print(f"Class: {imageclass}")
-                        if (imageclass == "FACE_FEMALE" and score > 0.87):
-                            print("Removing face female....")
-                            messages.error(request, "Sorry, the uploaded image contains explicit content.")
-                            return redirect("user_timeline", visitedUser=extracted_category)
-                        if imageclass not in [
-                            "FEMALE_GENITALIA_COVERED",
-                            "FACE_FEMALE",
-                            "FEET_EXPOSED",
-                            "BELLY_COVERED",
-                            "FEET_COVERED",
-                            "ARMPITS_COVERED",
-                            "FACE_MALE",
-                            "MALE_GENITALIA_EXPOSED",
-                            "ANUS_COVERED",
-                            "FEMALE_BREAST_COVERED",
-                            "BUTTOCKS_COVERED"
-                            ]:
-                            print("Removing....")
-                            messages.error(request, "Sorry, the uploaded image contains explicit content.")
-                            return redirect("user_timeline", visitedUser=extracted_category)
+                    # Use NudeNet to detect nudity
+                    detector = NudeDetector()
+                    
+                    # Save the uploaded image to a temporary file
+                    with open('temp_image.jpg', 'wb') as temp_image:
+                        for chunk in userimageFeature.chunks():
+                            temp_image.write(chunk)
+                    # Use the detector to scan the temporary file
+                    result = detector.detect('temp_image.jpg')
+                    if result and 'score' in result[0]:
+                        score = result[0]['score']
+                        print(f"Nudity score: {score}")
+                        if (score > 0.89):
+                            imageclass = result[0]['class']
+                            print(f"Class: {imageclass}")
+                            if (imageclass == "FACE_FEMALE" and score > 0.87):
+                                print("Removing face female....")
+                                messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                                return redirect("user_timeline", visitedUser=extracted_category)
+                            if imageclass not in [
+                                "FEMALE_GENITALIA_COVERED",
+                                "FACE_FEMALE",
+                                "FEET_EXPOSED",
+                                "BELLY_COVERED",
+                                "FEET_COVERED",
+                                "ARMPITS_COVERED",
+                                "FACE_MALE",
+                                "MALE_GENITALIA_EXPOSED",
+                                "ANUS_COVERED",
+                                "FEMALE_BREAST_COVERED",
+                                "BUTTOCKS_COVERED"
+                                ]:
+                                print("Removing....")
+                                messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                                return redirect("user_timeline", visitedUser=extracted_category)
                 # ------------------------------------------------------------------------------------------------
                 feature = MyFeature(user = request.user, file = userimageFeature)
                 feature.save()
