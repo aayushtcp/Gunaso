@@ -127,10 +127,10 @@
             var hero = document.querySelector('.hero');
             var threshold = 10;
             var scrolled = false;
-    
+
             window.addEventListener('scroll', function () {
                 var scrollPosition = window.scrollY;
-    
+
                 if (scrollPosition > threshold && !scrolled) {
                     hero.classList.add('scrolled');
                     scrolled = true;
@@ -141,9 +141,9 @@
             });
         });
     </script>
-    
-    
-    
+
+
+
     <script>
         document.getElementById("show-logout").onclick = function () {
             location.href = "/logout";
@@ -161,6 +161,7 @@
 
 
     </script>
+
     {% endblock %}
 </body>
 
