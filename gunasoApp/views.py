@@ -110,33 +110,38 @@ def handleSignup(request):
         cpassword = request.POST['cpassword'].strip()
         # for profile images
         userimage = request.FILES['image']
-                    
-        if not (first_name or username or password or email or cpassword):
-            messages.error(request, "Sorry, the uploaded image contains explicit content.")
-            return redirect("/signup")
+        
+        # ------------------------for violence------------------------------------------------------------
+        is_violent = detect_violence(request.FILES['image'])
+        if is_violent:
+            messages.error(request, "Image contents inappropriate things!")
+            return redirect("signup")
+        else:
+            if not (first_name or username or password or email or cpassword):
+                messages.error(request, "Sorry, the uploaded image contains explicit content.")
+                return redirect("/signup")
 
-        elif password != cpassword:
-            messages.error(request, "Password mismatch")
-            return redirect("/signup")
+            elif password != cpassword:
+                messages.error(request, "Password mismatch")
+                return redirect("/signup")
 
-        elif len(username) > 15:
-            messages.warning(request, "Username is greater than 15 characters")
-            return redirect("/signup")
+            elif len(username) > 15:
+                messages.warning(request, "Username is greater than 15 characters")
+                return redirect("/signup")
+
+            # create a new user
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Username already exists")
+                return redirect('/signup')
+
+            myuser = User.objects.create_user(username, email, password)
+            myuser.first_name = first_name
+            myuser.save()
+
+            profile = Profile(user=myuser, image=userimage)
+            profile.save()
         
-        # create a new user
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists")
-            return redirect('/signup')
-        
-        myuser = User.objects.create_user(username, email, password)
-        myuser.first_name = first_name
-        myuser.save()
-        
-        profile = Profile(user=myuser, image=userimage)
-        profile.save()
-        
-        return redirect("/login/")
-    
+            return redirect("/login/")
     return render(request, 'signup.html')
 
 # Login
@@ -953,7 +958,9 @@ def update_password(request, user):
             user = form.save()
             update_session_auth_hash(request, user)  
             messages.success(request, 'Your password is successfully updated!')
-            return redirect(reverse('user_timeline', args=[user.username]))
+            logout(request)
+            return redirect('/login')
+            # return redirect(reverse('user_timeline', args=[user.username]))
         else:
             messages.error(request, 'Please correct the error below.')
     else:

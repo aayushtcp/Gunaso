@@ -873,7 +873,7 @@ button:active:before {
 /* toaster css */
 #toast {
     visibility: hidden;
-    max-width: 50px;
+    max-width:max-content;
     height: 50px;
     margin: auto;
     background-color: #fff;
