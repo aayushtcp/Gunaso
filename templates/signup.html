@@ -17,7 +17,7 @@
     {% block content %}
     <div class="main">
         <div class="mainone">
-            <form action="{% url 'signup' %}" method="post" onsubmit=" return onSignupSubmit()" enctype="multipart/form-data">
+            <form action="{% url 'signup' %}" method="post" onsubmit=" return onSignupSubmit()" enctype="multipart/form-data" accept=".png,.jpg,.jpeg">
                 {% csrf_token %}
                 <h2>Signup:</h2>
                 <ul class="messages">
@@ -28,7 +28,9 @@
                 <div class="profilepiccontainer" id="profilePicContainer">
                     <!-- Display uploaded image here -->
                 </div>  
-                <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)" required >
+                <input type="file"  onchange="handleFileChange(this)" id="profile-pic" name="image" accept="image/*" class="imageinput" onchange="displayImage(this)" required >
+                <div id="error-message" style="color: red; display: none;">Invalid file type. Only PNG,
+                    JPG, and JPEG are allowed.</div>
                 <label>Your Intro:</label>
                 <input class="generalinp" onkeyup="introValid()" type="text" name="intro" id="intro" required>
                 <div class="combobox">

@@ -14,18 +14,6 @@ function loginSubmit() {
 }
 // for login page ends----------------------------
 
-// to display image in div
-function displayImage(input) {
-  var file = input.files[0];
-  if (file) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById("profilePicContainer").style.backgroundImage =
-        "url(" + e.target.result + ")";
-    };
-    reader.readAsDataURL(file);
-  }
-}
 
 // Full form validation of signup
 function onSignupSubmit() {
@@ -104,10 +92,11 @@ function emailValid() {
     submitButton.disabled = true;
     submitButton.style.cursor = "not-allowed";
   } else {
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // old is right too but only doing gmail for now
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!emailRegex.test(email)) {
       submitButton.style.cursor = "not-allowed";
-      message.innerHTML = "Invalid email. Please enter a valid email address";
+      message.innerHTML = "Invalid email. Please enter a valid email address (only @gmail.com supported)";
       submitButton.disabled = true;
     } else {
       message.innerHTML = "";
@@ -159,5 +148,35 @@ function passwordMatchValid() {
     message.innerHTML = "";
     submitButton.style.cursor = "pointer";
     submitButton.disabled = false;
+  }
+}
+
+
+function handleFileChange(input) {
+  const file = input.files[0];
+  const errorMessage = document.getElementById('error-message');
+  const imagePreview = document.getElementById('image-preview');
+  const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+  
+  if (file && !allowedExtensions.exec(file.name)) {
+      errorMessage.style.display = 'block';
+      input.value = ''; 
+      imagePreview.innerHTML = ''; 
+  } else {
+      errorMessage.style.display = 'none';
+      displayImage(input); 
+  }
+}
+
+// to display image in div
+function displayImage(input) {
+  var file = input.files[0];
+  if (file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("profilePicContainer").style.backgroundImage =
+        "url(" + e.target.result + ")";
+    };
+    reader.readAsDataURL(file);
   }
 }

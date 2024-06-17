@@ -38,6 +38,8 @@ import cv2
 import numpy as np
 from .detectViolence import detect_violence
 
+max_file_size = 10 * 1024 * 1024
+
 # custom 404 view
 def not_found(request,exception):
     return render(request, '404.html')
@@ -90,16 +92,6 @@ def about(request):
         return render(request, "foresewa.html", context)
     return render(request, 'about.html')
 
-
-# def prehandleSignup(request):
-#     return render(request, 'signup.html')
-
-# def prehandleLogin(request):
-#     return render(request, 'login.html')
-
-
-
-
 # Signup
 def handleSignup(request):
     if request.method == 'POST':
@@ -110,7 +102,10 @@ def handleSignup(request):
         cpassword = request.POST['cpassword'].strip()
         # for profile images
         userimage = request.FILES['image']
-        
+        # ------------------------for size------------------------------------------------------------
+        if userimage.size > max_file_size:
+            messages.error(request, "Image is above 10 MB")
+            return redirect("signup")
         # ------------------------for violence------------------------------------------------------------
         is_violent = detect_violence(request.FILES['image'])
         if is_violent:
@@ -308,6 +303,16 @@ def user_timeline(request, visitedUser):
             userimageFeature= request.FILES['file-input']
             # for feature image setup
             if 'file-input' in request.FILES:
+                # ------------------------for format------------------------------------------------------------
+                if not userimageFeature.name.endswith(('.png', '.jpg', '.jpeg')):
+                    messages.error(request, "Only supported png, jpg and jpeg")
+                    return redirect("user_timeline", visitedUser=extracted_category)
+                
+                # ------------------------for size------------------------------------------------------------
+                if userimageFeature.size > max_file_size:
+                    messages.error(request, "Image is above 10 MB")
+                    return redirect("user_timeline", visitedUser=extracted_category)
+                
                 # ------------------------for violence------------------------------------------------------------
                 is_violent = detect_violence(request.FILES['file-input'])
                 if is_violent:

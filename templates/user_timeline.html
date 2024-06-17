@@ -90,12 +90,14 @@
                             {% if request.user.username != extracted_category %}
                             <h3>No Feature</h3>
                             {% else %}
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="" method="post" enctype="multipart/form-data" accept=".png,.jpg,.jpeg">
                                 {% csrf_token %}
                                 <input type="file" id="file-input" accept="image/*" name="file-input"
-                                    onchange="displayImage(this)" />
+                                onchange="handleFileChange(this)" />
                                 <label id="file-input-label" for="file-input">+</label>
                                 <input type="submit" value="Post" class="postbtn">
+                                <div id="error-message" style="color: red; display: none;">Invalid file type. Only PNG,
+                                    JPG, and JPEG are allowed.</div>
                             </form>
                             {% endif %}
                             {% endif %}
@@ -214,6 +216,22 @@
     <script src="{% static 'scripts/comments.js' %}"></script>
     <script src="{% static 'scripts/signup.js' %}"></script>
     <script>
+    function handleFileChange(input) {
+        const file = input.files[0];
+        const errorMessage = document.getElementById('error-message');
+        const imagePreview = document.getElementById('image-preview');
+        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        
+        if (file && !allowedExtensions.exec(file.name)) {
+            errorMessage.style.display = 'block';
+            input.value = ''; 
+            imagePreview.innerHTML = ''; 
+        } else {
+            errorMessage.style.display = 'none';
+            displayImage(input); 
+        }
+    }
+
         // to del personal confessions
         function openDelPop() {
             document.getElementById('myModal2').style.display = 'block';
