@@ -35,7 +35,9 @@
                         <!-- Display uploaded image here -->
                     </div>
                     <input type="file" id="profile-pic" name="image" accept="image/*" class="imageinput"
-                        onchange="displayImage(this)">
+                    onchange="handleFileChange(this)">
+                    <div id="error-message" style="color: red; display: none;">Invalid file type. Only PNG,
+                        JPG, and JPEG are allowed.</div>
                     <div class="combobox">
                         <div class="formrow">
                             <label>Username:</label>

@@ -102,6 +102,10 @@ def handleSignup(request):
         cpassword = request.POST['cpassword'].strip()
         # for profile images
         userimage = request.FILES['image']
+        # ------------------------for format------------------------------------------------------------
+        if not userimage.name.endswith(('.png', '.jpg', '.jpeg')):
+            messages.error(request, "Only supported png, jpg and jpeg")
+            return redirect("signup")
         # ------------------------for size------------------------------------------------------------
         if userimage.size > max_file_size:
             messages.error(request, "Image is above 10 MB")
@@ -169,13 +173,6 @@ def update_profile(request):
     if request.method == 'POST':
         username = request.POST['username'].strip()
         email = request.POST['email'].strip()
-        # password = request.POST['password'].strip()
-        # cpassword = request.POST['cpassword'].strip()
-        
-        # check/verify
-        # if(password != cpassword):
-        #     messages.error(request, "Your confirm password is not matching")
-        #     return redirect("update_profile")
         
         if(len(username) >10):
             messages.warning(request, "Username is greater than 10 characters")
@@ -196,12 +193,6 @@ def update_profile(request):
             if not email_regix.match(email):
                 messages.error(request,"Invalid email")
                 return redirect('/update_profile')
-        # elif(password):
-        #     password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
-        #     if not password_regex.match(password):
-        #         messages.error(request,"Invalid password")
-        #         return redirect('/update_profile')
-            
         
         # Update user profile
         if (username):
