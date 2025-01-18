@@ -934,9 +934,9 @@ def send_push_notification(request):
         payload={
             'head': 'Notification Title',
             'body': 'Notification Body',
-            'icon': '../static/images/logos/g-high-resolution-logo-white-transparent.png',  # Optional: Provide a path to an icon
+            'icon': '../static/images/logos/g-high-resolution-logo-white-transparent.png',
         },
-        ttl=1000  # Time to live for the notification in milliseconds
+        ttl=1000  # Time to live
     )
 
     return HttpResponse("Push notification sent!")
